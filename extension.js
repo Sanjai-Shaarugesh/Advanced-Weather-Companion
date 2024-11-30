@@ -151,49 +151,90 @@ export default class WeatherExtension extends Extension {
 
     _detectLocationAndLoadWeather() {
         const session = new Soup.Session();
-        const url = IP_GEOLOCATION_URL;
+        const fallbackLocations = [
+            { name: 'San Francisco, USA', lat: 37.7749, lon: -122.4194 },
+            { name: 'New York, USA', lat: 40.7128, lon: -74.0060 },
+            { name: 'London, UK', lat: 51.5074, lon: -0.1278 }
+        ];
+    
         
-        const message = Soup.Message.new('GET', url);
-        session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null, (session, result) => {
-            try {
-                const bytes = session.send_and_read_finish(result);
-                const response = JSON.parse(bytes.get_data().toString());
-                
-                if (response.latitude && response.longitude) {
-                    this._latitude = response.latitude;
-                    this._longitude = response.longitude;
-                    this._locationName = `${response.city}, ${response.country_name}`;
-                    this._loadWeatherData();
-                } else {
-                    
-                    this._latitude = 37.7749;
-                    this._longitude = -122.4194;
-                    this._locationName = 'San Francisco, USA';
-                    this._loadWeatherData();
+        const geolocServices = [
+            { 
+                url: 'https://ipapi.co/json/', 
+                parser: (response) => ({
+                    latitude: response.latitude,
+                    longitude: response.longitude,
+                    locationName: `${response.city}, ${response.country_name}`
+                })
+            },
+            {
+                url: 'https://ipinfo.io/json', 
+                parser: (response) => {
+                    const [latitude, longitude] = response.loc.split(',').map(parseFloat);
+                    return {
+                        latitude,
+                        longitude,
+                        locationName: `${response.city}, ${response.country}`
+                    };
                 }
-            } catch (e) {
-                console.error('Location Detection Error:', e);
-                
-                this._latitude = 37.7749;
-                this._longitude = -122.4194;
-                this._locationName = 'San Francisco, USA';
-                this._loadWeatherData();
             }
-        });
+        ];
+    
+        const tryNextService = (serviceIndex = 0) => {
+            if (serviceIndex >= geolocServices.length) {
+                
+                const fallback = fallbackLocations[Math.floor(Math.random() * fallbackLocations.length)];
+                this._latitude = fallback.lat;
+                this._longitude = fallback.lon;
+                this._locationName = fallback.name;
+                this._loadWeatherData();
+                return;
+            }
+    
+            const service = geolocServices[serviceIndex];
+            const message = Soup.Message.new('GET', service.url);
+            
+            session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null, (session, result) => {
+                try {
+                    const bytes = session.send_and_read_finish(result);
+                    const response = JSON.parse(bytes.get_data().toString());
+                    
+                    const locationData = service.parser(response);
+                    
+                    if (locationData.latitude && locationData.longitude) {
+                        this._latitude = locationData.latitude;
+                        this._longitude = locationData.longitude;
+                        this._locationName = locationData.locationName || 'Unknown Location';
+                        this._loadWeatherData();
+                    } else {
+                        
+                        tryNextService(serviceIndex + 1);
+                    }
+                } catch (e) {
+                    console.error(`Geolocation service ${service.url} failed:`, e);
+                    
+                    tryNextService(serviceIndex + 1);
+                }
+            });
+        };
+    
+        
+        tryNextService();
     }
 
     _loadWeatherData() {
         const url = `${BASE_URL}?latitude=${this._latitude}&longitude=${this._longitude}&current_weather=true&windspeed=true&hourly=temperature_2m,weathercode&daily=temperature_2m_max,temperature_2m_min,weathercode`;
-
+    
         const session = new Soup.Session();
         const message = Soup.Message.new('GET', url);
-
+    
         session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null, (session, result) => {
             try {
                 const bytes = session.send_and_read_finish(result);
                 const response = JSON.parse(bytes.get_data().toString());
-
+    
                 const data = {
+                    location: this._locationName, 
                     current_weather: {
                         ...response.current_weather,
                         temperature: response.current_weather.temperature.toFixed(1)
@@ -210,7 +251,7 @@ export default class WeatherExtension extends Extension {
                         weathercode: response.daily.weathercode[index],
                     })),
                 };
-
+    
                 this._panelButton.updateWeather(data);
             } catch (e) {
                 console.error('Weather Extension: Failed to fetch weather data', e);
