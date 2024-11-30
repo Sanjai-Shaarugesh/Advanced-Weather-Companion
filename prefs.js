@@ -4,7 +4,7 @@ import { ExtensionPreferences } from 'resource:///org/gnome/shell/extensions/ext
 
 export default class WeatherPreferences extends ExtensionPreferences {
     fillPreferencesWindow(window) {
-        const settings = this.getSettings('org.gnome.shell.extensions.weather-extension');
+        const settings = this.getSettings('org.gnome.shell.extensions.advaced-weather');
 
         const page = new Adw.PreferencesPage();
         const group = new Adw.PreferencesGroup({ title: 'Weather Settings' });

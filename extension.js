@@ -10,8 +10,7 @@ import * as PanelMenu from 'resource:///org/gnome/shell/ui/panelMenu.js';
 import * as PopupMenu from 'resource:///org/gnome/shell/ui/popupMenu.js';
 
 const BASE_URL = 'https://api.open-meteo.com/v1/forecast';
-const GEOCODING_URL = 'https://geocoding-api.open-meteo.com/v1/search';
-
+const IP_GEOLOCATION_URL = 'https://ipapi.co/json/';
 
 const WEATHER_CONDITIONS = {
     0: { name: 'Clear Sky', icon: 'weather-clear-symbolic', description: 'Completely clear, sunny day' },
@@ -40,13 +39,13 @@ const WEATHER_CONDITIONS = {
     99: { name: 'Thunderstorm with Heavy Hail', icon: 'weather-storm-symbolic', description: 'Thunderstorm with heavy hail' }
 };
 
+
 const WeatherPanelButton = GObject.registerClass(
 class WeatherPanelButton extends PanelMenu.Button {
     _init(ext) {
         super._init(0.0, 'Weather Extension');
         this._ext = ext;
 
-        
         this._weatherIcon = new St.Icon({
             icon_name: 'weather-clear-day-symbolic',
             icon_size: 24,
@@ -54,7 +53,7 @@ class WeatherPanelButton extends PanelMenu.Button {
         });
         
         this._weatherLabel = new St.Label({
-            text: 'Loading...',
+            text: 'Detecting Location...',
             y_align: Clutter.ActorAlign.CENTER,
             style: 'font-weight: bold; font-size: 0.9em;'
         });
@@ -64,7 +63,6 @@ class WeatherPanelButton extends PanelMenu.Button {
         buttonBox.add_child(this._weatherLabel);
         this.add_child(buttonBox);
 
-        
         this.currentWeatherSection = new PopupMenu.PopupSubMenuMenuItem('📍 Current Weather');
         this.hourlyWeatherSection = new PopupMenu.PopupSubMenuMenuItem('⏰ Hourly Forecast');
         this.dailyWeatherSection = new PopupMenu.PopupSubMenuMenuItem('📅 Daily Forecast');
@@ -73,86 +71,9 @@ class WeatherPanelButton extends PanelMenu.Button {
         this.menu.addMenuItem(this.hourlyWeatherSection);
         this.menu.addMenuItem(this.dailyWeatherSection);
 
-        
-        const locationMenu = new PopupMenu.PopupSubMenuMenuItem('🗺️ Location Settings');
-        const manualSetItem = new PopupMenu.PopupMenuItem('📍 Auto Manual Location detect');
-
-        manualSetItem.connect('activate', () => this._ext._openManualLocationDialog());
-
-        locationMenu.menu.addMenuItem(manualSetItem);
-        this.menu.addMenuItem(locationMenu);
-
-        
         const refreshButton = new PopupMenu.PopupMenuItem('🔄 Refresh Weather');
-        refreshButton.connect('activate', () => this._ext._loadWeatherData());
+        refreshButton.connect('activate', () => this._ext._detectLocationAndLoadWeather());
         this.menu.addMenuItem(refreshButton);
-    }
-
-    _openManualLocationDialog() {
-        const dialog = new St.Dialog({
-            modal: true,
-            style_class: 'manual-location-dialog',
-            width: 400,
-            height: 250
-        });
-
-        const titleLabel = new St.Label({
-            text: 'Set Manual Location',
-            style_class: 'dialog-title'
-        });
-
-        const instructionLabel = new St.Label({
-            text: 'Enter city, country or precise coordinates (lat,lon)',
-            style_class: 'dialog-instruction'
-        });
-
-        const locationEntry = new St.Entry({
-            hint_text: 'New York, USA or 40.7128,-74.0060',
-            style_class: 'manual-location-entry',
-            can_focus: true
-        });
-
-        const buttonBox = new St.BoxLayout({
-            style_class: 'dialog-button-box',
-            vertical: false
-        });
-
-        const saveButton = new St.Button({
-            label: 'Save',
-            style_class: 'dialog-save-button'
-        });
-
-        const cancelButton = new St.Button({
-            label: 'Cancel',
-            style_class: 'dialog-cancel-button'
-        });
-
-        saveButton.connect('clicked', () => {
-            const input = locationEntry.get_text().trim();
-            if (input) {
-                this._ext._resolveLocation(input);
-                dialog.close();
-            }
-        });
-
-        cancelButton.connect('clicked', () => {
-            dialog.close();
-        });
-
-        buttonBox.add_child(saveButton);
-        buttonBox.add_child(cancelButton);
-
-        const contentBox = new St.BoxLayout({
-            vertical: true,
-            style_class: 'dialog-content-box'
-        });
-        contentBox.add_child(titleLabel);
-        contentBox.add_child(instructionLabel);
-        contentBox.add_child(locationEntry);
-        contentBox.add_child(buttonBox);
-
-        dialog.add_child(contentBox);
-        dialog.open();
     }
 
     updateWeather(data) {
@@ -160,11 +81,9 @@ class WeatherPanelButton extends PanelMenu.Button {
         const weatherCondition = WEATHER_CONDITIONS[current.weathercode] || 
             { name: 'Unknown', icon: 'weather-severe-alert-symbolic', description: 'Unable to determine' };
 
-        
         this._weatherIcon.set_icon_name(weatherCondition.icon);
         this._weatherLabel.set_text(`${current.temperature}°C | ${weatherCondition.name}`);
 
-        
         this.currentWeatherSection.menu.removeAll();
         const temperatureItem = new PopupMenu.PopupMenuItem(`🌡️ Temperature: ${current.temperature}°C`);
         const conditionItem = new PopupMenu.PopupMenuItem(`☁️ Condition: ${weatherCondition.name}`);
@@ -176,7 +95,6 @@ class WeatherPanelButton extends PanelMenu.Button {
         this.currentWeatherSection.menu.addMenuItem(descriptionItem);
         this.currentWeatherSection.menu.addMenuItem(windItem);
 
-        
         this.hourlyWeatherSection.menu.removeAll();
         data.hourly.slice(0, 12).forEach(hour => {
             const hourCondition = WEATHER_CONDITIONS[hour.weathercode] || 
@@ -195,7 +113,6 @@ class WeatherPanelButton extends PanelMenu.Button {
             this.hourlyWeatherSection.menu.addMenuItem(hourItem);
         });
 
-        
         this.dailyWeatherSection.menu.removeAll();
         data.daily.forEach(day => {
             const dayCondition = WEATHER_CONDITIONS[day.weathercode] || 
@@ -222,10 +139,7 @@ export default class WeatherExtension extends Extension {
         Main.panel.addToStatusArea('weather-extension', this._panelButton);
         
         
-        this._settings = this.getSettings('org.gnome.shell.extensions.weather-extension');
-        
-        
-        this._openManualLocationDialog();
+        this._detectLocationAndLoadWeather();
     }
 
     disable() {
@@ -235,67 +149,9 @@ export default class WeatherExtension extends Extension {
         }
     }
 
-    _openManualLocationDialog() {
-        const dialog = new St.Dialog({
-            modal: true,
-            style_class: 'manual-location-dialog',
-            width: 400,
-            height: 250
-        });
-
-        const titleLabel = new St.Label({
-            text: 'Set Weather Location',
-            style_class: 'dialog-title'
-        });
-
-        const instructionLabel = new St.Label({
-            text: 'Enter city, country or precise coordinates (lat,lon)\nExamples:\n- New York, USA\n- London, UK\n- 40.7128,-74.0060',
-            style_class: 'dialog-instruction'
-        });
-
-        const locationEntry = new St.Entry({
-            hint_text: 'Enter location',
-            style_class: 'manual-location-entry',
-            can_focus: true
-        });
-
-        const buttonBox = new St.BoxLayout({
-            style_class: 'dialog-button-box',
-            vertical: false
-        });
-
-        const saveButton = new St.Button({
-            label: 'Save',
-            style_class: 'dialog-save-button'
-        });
-
-        saveButton.connect('clicked', () => {
-            const input = locationEntry.get_text().trim();
-            
-            if (input) {
-                this._resolveLocation(input);
-                dialog.close();
-            }
-        });
-
-        buttonBox.add_child(saveButton);
-
-        const contentBox = new St.BoxLayout({
-            vertical: true,
-            style_class: 'dialog-content-box'
-        });
-        contentBox.add_child(titleLabel);
-        contentBox.add_child(instructionLabel);
-        contentBox.add_child(locationEntry);
-        contentBox.add_child(buttonBox);
-
-        dialog.add_child(contentBox);
-        dialog.open();
-    }
-
-    _resolveLocation(location) {
+    _detectLocationAndLoadWeather() {
         const session = new Soup.Session();
-        const url = `${GEOCODING_URL}?name=${encodeURIComponent(location)}&count=1&language=en&format=json`;
+        const url = IP_GEOLOCATION_URL;
         
         const message = Soup.Message.new('GET', url);
         session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null, (session, result) => {
@@ -303,26 +159,31 @@ export default class WeatherExtension extends Extension {
                 const bytes = session.send_and_read_finish(result);
                 const response = JSON.parse(bytes.get_data().toString());
                 
-                if (response.results && response.results.length > 0) {
-                    const { latitude, longitude } = response.results[0];
-                    this._latitude = latitude;
-                    this._longitude = longitude;
-                    this._locationName = response.results[0].name;
+                if (response.latitude && response.longitude) {
+                    this._latitude = response.latitude;
+                    this._longitude = response.longitude;
+                    this._locationName = `${response.city}, ${response.country_name}`;
                     this._loadWeatherData();
                 } else {
                     
-                    this._openManualLocationDialog();
+                    this._latitude = 37.7749;
+                    this._longitude = -122.4194;
+                    this._locationName = 'San Francisco, USA';
+                    this._loadWeatherData();
                 }
             } catch (e) {
-                logError(e, 'Location Resolution Error');
-                this._openManualLocationDialog();
+                console.error('Location Detection Error:', e);
+                
+                this._latitude = 37.7749;
+                this._longitude = -122.4194;
+                this._locationName = 'San Francisco, USA';
+                this._loadWeatherData();
             }
         });
     }
 
     _loadWeatherData() {
-        const { latitude, longitude } = this._getLocation();
-        const url = `${BASE_URL}?latitude=${latitude}&longitude=${longitude}&current_weather=true&windspeed=true&hourly=temperature_2m,weathercode&daily=temperature_2m_max,temperature_2m_min,weathercode`;
+        const url = `${BASE_URL}?latitude=${this._latitude}&longitude=${this._longitude}&current_weather=true&windspeed=true&hourly=temperature_2m,weathercode&daily=temperature_2m_max,temperature_2m_min,weathercode`;
 
         const session = new Soup.Session();
         const message = Soup.Message.new('GET', url);
@@ -352,17 +213,8 @@ export default class WeatherExtension extends Extension {
 
                 this._panelButton.updateWeather(data);
             } catch (e) {
-                logError(e, 'Weather Extension: Failed to fetch weather data');
-                this._openManualLocationDialog();
+                console.error('Weather Extension: Failed to fetch weather data', e);
             }
         });
-    }
-
-    _getLocation() {
-        
-        return { 
-            latitude: this._latitude || 37.7749, 
-            longitude: this._longitude || -122.4194 
-        };
     }
 }
