@@ -1,0 +1,16 @@
+.weather-panel-button {
+    background-color: rgba(50, 50, 50, 0.3);
+    border-radius: 10px;
+    padding: 6px 12px;
+    transition: all 0.3s ease;
+}
+
+.weather-panel-button:hover {
+    background-color: rgba(70, 70, 70, 0.6);
+    transform: scale(1.05);
+}
+
+.popup-menu-item {
+    font-size: 0.9em;
+}
+

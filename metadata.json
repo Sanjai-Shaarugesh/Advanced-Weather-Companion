@@ -1,0 +1,11 @@
+{
+  "uuid": "advanced-weather@sanjai.com",
+  "name": "Advanced Weather Companion",
+  "description": "Cutting-edge weather extension with comprehensive forecasts, dynamic icons, precise location search, and modern UI/UX",
+  "shell-version": ["45", "46", "47", "48"],
+  "url": "https://github.com/Sanjai-Shaarugesh/Weather-Extension",
+  "version": 3,
+  "gettext-domain": "advanced-weather",
+  "settings-schema": "org.gnome.shell.extensions.advanced-weather",
+  "preferences": "prefs.js"
+}
