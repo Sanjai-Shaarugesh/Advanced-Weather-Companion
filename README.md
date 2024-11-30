@@ -26,8 +26,8 @@ Advanced Weather is a feature-rich GNOME Shell extension that provides detailed 
 
 ### Manual Installation
 ```bash
-git clone https://github.com/yourusername/advanced-weather-extension.git
-cd advanced-weather-extension
+git clone https://github.com/Sanjai-Shaarugesh/Advanced-Weather
+cd Advanced-Weather
 make install
 ```
 
@@ -74,6 +74,10 @@ Right-click the weather widget to access:
   - Verify API key
   - Restart GNOME Shell (Alt+F2, then type 'r')
 
+[<img src="images/gnome.png" height="100">](https://extensions.gnome.org/extension/7591/commands-store/)
+
+
+[<img src="images/github.png" height="100">](https://github.com/Sanjai-Shaarugesh/Advanced-Weather)
 
 
 ## Contributing
