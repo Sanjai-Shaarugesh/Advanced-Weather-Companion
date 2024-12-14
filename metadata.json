@@ -1,8 +1,12 @@
 {
   "uuid": "advanced-weather@sanjai.com",
   "name": "Advanced Weather Companion",
-  "description": "Cutting-edge weather extension with comprehensive forecasts, dynamic icons, precise location search, and modern UI/UX",
-  "shell-version": ["45", "46", "47"],
+  "description": "Advanced weather extension with comprehensive features:\n- Dynamic location detection\n- Manual location override\n- Temperature unit selection\n- Weather insights and trend analysis\n- Extreme weather alerts\n- Hourly and daily forecasts",
+  "shell-version": [
+    "45",
+    "46",
+    "47"
+  ],
   "url": "https://github.com/Sanjai-Shaarugesh/Weather-Extension",
   "version": 3,
   "gettext-domain": "advanced-weather",

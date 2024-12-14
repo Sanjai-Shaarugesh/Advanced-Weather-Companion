@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schemalist gettext-domain="gnome-shell-extensions">
+<schemalist gettext-domain="advanced-weather">
     <schema id="org.gnome.shell.extensions.advanced-weather" path="/org/gnome/shell/extensions/advanced-weather/">
         <key type="s" name="location-mode">
             <default>'auto'</default>
             <summary>Location Detection Mode</summary>
-            <description>Choose between auto-detect and manual location</description>
+            <description>Choose between automatic location detection or manual setup</description>
         </key>
+        
         <key type="s" name="location">
             <default>''</default>
-            <summary>User Location</summary>
-            <description>City name or coordinates for weather data</description>
+            <summary>Manual Location</summary>
+            <description>Manually set location by coordinates or city name</description>
         </key>
+        
         <key type="b" name="use-fahrenheit">
             <default>false</default>
             <summary>Temperature Unit</summary>
