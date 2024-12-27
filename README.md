@@ -4,7 +4,7 @@
 
 Advanced Weather is a feature-rich GNOME Shell extension that provides detailed and customizable weather information right on your desktop. With support for multiple locations, advanced forecasting, and beautiful visualizations, this extension transforms how you interact with weather data.
 
-![Extension Preview](images/v1.webm)
+![Extension Preview](images/v1.mp4)
 
 ## Features
 
