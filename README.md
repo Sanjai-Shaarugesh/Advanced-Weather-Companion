@@ -4,7 +4,7 @@
 
 Advanced Weather is a feature-rich GNOME Shell extension that provides detailed and customizable weather information right on your desktop. With support for multiple locations, advanced forecasting, and beautiful visualizations, this extension transforms how you interact with weather data.
 
-![Extension Preview](images/v1.mp4)
+![Extension Preview](images/v1.gif)
 
 ## Features
 
@@ -33,7 +33,7 @@ Install from source
 - Install and enable the extension by executing `gnome-extensions install extension.zip --force` in the terminal
 
 > To setup your manual location by giving your location coordinates in the settings in the extension or in the Location settings in the main menu of the extension , you can get you location coordinates from the google map by going to your location and right clink on in it and coping the location coordinates from it by clicking them 
-![Google Map](images/v3.mp4)
+![Google Map](images/v3.gif)
 
 
 ## Screenshots
@@ -60,6 +60,8 @@ Install from source
 ![Multiple Locations](images/img7.png)
 
 ## Configuration
+### Weather Widget configuration in settings
+![Configuration](images/v2.gif)
 
 Right-click the weather widget to access:
 - Location settings
