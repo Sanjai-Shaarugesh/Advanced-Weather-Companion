@@ -1,15 +1,15 @@
-# Advanced Weather GNOME Shell Extension
+# Advanced Weather Companion GNOME Shell Extension
 
 ## Overview
 
 Advanced Weather is a feature-rich GNOME Shell extension that provides detailed and customizable weather information right on your desktop. With support for multiple locations, advanced forecasting, and beautiful visualizations, this extension transforms how you interact with weather data.
 
-![Extension Preview](images/v2.gif)
+![Extension Preview](images/v1.webm)
 
 ## Features
 
 - 🌦️ Real-time weather updates
-- 📍 Multi-location support
+- 📍Auto-location detection
 - 🌡️ Detailed temperature and feels-like information
 - 💨 Wind speed and direction
 - 💧 Humidity and precipitation forecasts
@@ -21,33 +21,43 @@ Advanced Weather is a feature-rich GNOME Shell extension that provides detailed 
 
 ### From GNOME Extensions Website
 1. Visit [GNOME Extensions](https://extensions.gnome.org/)
-2. Search for "Advanced Weather"
+2. Search for "Advanced Weather Companion"
 3. Toggle the switch to install
 
-### Manual Installation
-```bash
-git clone https://github.com/Sanjai-Shaarugesh/Advanced-Weather
-cd Advanced-Weather
-make install
-```
+#### Manual installation
+
+Install from source
+
+- Download archive file from the releases tab
+- Open a terminal in the directory containing the downloaded file
+- Install and enable the extension by executing `gnome-extensions install extension.zip --force` in the terminal
+
+> To setup your manual location by giving your location coordinates in the settings in the extension or in the Location settings in the main menu of the extension , you can get you location coordinates from the google map by going to your location and right clink on in it and coping the location coordinates from it by clicking them 
+![Google Map](images/v3.mp4)
+
 
 ## Screenshots
 
+### Weather Widget in home screen 
+![Weather Widget](images/img1.png)
+
 ### Main Interface
-![Main Interface](images/image1.png)
+![Main Interface](images/img2.png)
 
-### Configuration Panel
-![Configuration](images/image3.png)
+### Hourly Forecast Interface
+![Configuration](images/img3.png)
 
-### Multiple Location Support
-![Multiple Locations](images/image4.png)
+### Daily Forecast Interface
+![Multiple Locations](images/img4.png)
 
-## Some screeshots of this extension 
-![Multiple Locations](images/image2.png)
+## Weather Insight Interface
+![Multiple Locations](images/img5.png)
 
-![Multiple Locations](images/image5.png)
+## Location settings
+![Multiple Locations](images/img6.png)
 
-![Multiple Locations](images/image6.png)
+## Refresh button Interface
+![Multiple Locations](images/img7.png)
 
 ## Configuration
 
@@ -70,8 +80,8 @@ Right-click the weather widget to access:
 
 ### Common Issues
 - No weather data displayed
-  - Check internet connection
-  - Verify API key
+  - Click the refresh button 🔄
+  - Check your internet connection 
   - Restart GNOME Shell (Alt+F2, then type 'r')
 
 [<img src="images/gnome.png" height="100">](https://extensions.gnome.org/extension/7591/commands-store/)
@@ -94,9 +104,8 @@ Right-click the weather widget to access:
 3. Commit changes
 4. Push and create Pull Request
 
-## Localization
-
-Help translate Advanced Weather into your language! Check `po/` directory for translation files.
+## Uses 
+This extension is using `ipapi.co` and `open-meteo.com` services
 
 ## License
 
@@ -105,21 +114,12 @@ MIT License - See [LICENSE](LICENSE) for details
 ## Donations
 
 Support the development:
-- [Buy me a Coffee](https://buymeacoffee.com/weatherextension)
+
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://buymeacoffee.com/sanjai)
+
+**Thank you for your support!**
+# Please forgive me for my bad documentation 😅
   
 
-## Credits
 
-- Weather icons by [WeatherIcons](https://weathericons.org)
-- Inspired by community feedback
-
-## Changelog
-
-### v2.3.0
-- Added AccuWeather support
-- Improved performance
-- Bug fixes
-
----
-
-**Star ⭐ the repository if you find it useful!**
+**Star ⭐ my   repository if you find it useful!**

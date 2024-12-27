@@ -143,74 +143,216 @@ const WeatherPanelButton = GObject.registerClass(
       this._weatherIcon = new St.Icon({
         icon_name: "weather-clear-day-symbolic",
         icon_size: 24,
-        style: "margin-right: 10px;",
+        style_class: "weather-icon",
       });
 
       this._weatherLabel = new St.Label({
         text: "Detecting Location...",
         y_align: Clutter.ActorAlign.CENTER,
-        style: "font-weight: bold; font-size: 0.9em;",
+        style_class: "weather-label",
       });
 
-      const buttonBox = new St.BoxLayout();
+      this._locationIcon = new St.Icon({
+        icon_name: "find-location-symbolic",
+        icon_size: 16,
+        style_class: "location-icon",
+      });
+
+      this._locationModeLabel = new St.Label({
+        text: this._getInitialLocationMode(),
+        y_align: Clutter.ActorAlign.CENTER,
+        style_class: "location-mode-label",
+      });
+
+      const buttonBox = new St.BoxLayout({ style_class: "weather-button-box" });
       buttonBox.add_child(this._weatherIcon);
       buttonBox.add_child(this._weatherLabel);
+      buttonBox.add_child(this._locationIcon);
+      buttonBox.add_child(this._locationModeLabel);
       this.add_child(buttonBox);
 
       this.currentWeatherSection = new PopupMenu.PopupSubMenuMenuItem(
         "📍 Current Weather",
+        true
       );
       this.hourlyWeatherSection = new PopupMenu.PopupSubMenuMenuItem(
         "⏰ Hourly Forecast",
+        true
       );
       this.dailyWeatherSection = new PopupMenu.PopupSubMenuMenuItem(
         "📅 Daily Forecast",
+        true
       );
+      this.insightsSection = new PopupMenu.PopupSubMenuMenuItem(
+        "🔍 Weather Insights",
+        true
+      );
+      this.locationSection = new PopupMenu.PopupSubMenuMenuItem(
+        "📱 Location Settings",
+        true
+      );
+
+      this._setupLocationSwitcher();
 
       this.menu.addMenuItem(this.currentWeatherSection);
+      this.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
       this.menu.addMenuItem(this.hourlyWeatherSection);
       this.menu.addMenuItem(this.dailyWeatherSection);
+      this.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
+      this.menu.addMenuItem(this.insightsSection);
+      this.menu.addMenuItem(this.locationSection);
 
-      const refreshButton = new PopupMenu.PopupMenuItem("🔄 Refresh Weather");
-      refreshButton.connect(
-        "activate",
-        () => this._ext._detectLocationAndLoadWeather(),
-      );
+      const refreshButton = new PopupMenu.PopupMenuItem("🔄 Refresh Weather", {
+        style_class: "refresh-button",
+      });
+      refreshButton.connect("activate", () => {
+        this._animateRefresh();
+        this._ext._detectLocationAndLoadWeather();
+      });
       this.menu.addMenuItem(refreshButton);
+
+      
+      this._ext._settings.connect('changed::location-mode', () => {
+        this._updateLocationModeDisplay();
+      });
+    }
+
+    _getInitialLocationMode() {
+      const mode = this._ext._settings.get_string('location-mode');
+      return mode.toUpperCase() || 'AUTO';
+    }
+
+    _updateLocationModeDisplay() {
+      const mode = this._ext._settings.get_string('location-mode');
+      this._locationModeLabel.set_text(mode.toUpperCase());
+      this._animateLocationUpdate();
+    }
+
+    _setupLocationSwitcher() {
+      const locationModeBox = new St.BoxLayout({
+        style_class: "location-mode-box",
+      });
+
+      const autoLocationButton = new PopupMenu.PopupMenuItem("🌍 Auto Detect", {
+        style_class: "location-mode-button",
+      });
+      const manualLocationButton = new PopupMenu.PopupMenuItem(
+        "📍 Manual Location",
+        { style_class: "location-mode-button" }
+      );
+
+      this.locationSection.menu.addMenuItem(autoLocationButton);
+      this.locationSection.menu.addMenuItem(manualLocationButton);
+
+      const locationInput = new St.Entry({
+        hint_text: "Enter coordinates (lat,lon)",
+        style_class: "location-input",
+      });
+
+      const locationInputItem = new PopupMenu.PopupBaseMenuItem({
+        reactive: false,
+      });
+      locationInputItem.add_child(locationInput);
+
+      this.locationSection.menu.addMenuItem(locationInputItem);
+      this.locationSection.actor.add_style_class_name("location-section");
+
+      autoLocationButton.connect("activate", () => {
+        this._ext._settings.set_string("location-mode", "auto");
+        this._locationModeLabel.set_text("AUTO");
+        this._animateLocationChange();
+        this._ext._detectLocationAndLoadWeather();
+      });
+
+      manualLocationButton.connect("activate", () => {
+        this._ext._settings.set_string("location-mode", "manual");
+        this._locationModeLabel.set_text("MANUAL");
+        this._animateLocationChange();
+      });
+
+      locationInput.clutter_text.connect("activate", () => {
+        const text = locationInput.get_text();
+        if (text) {
+          this._ext._settings.set_string("location", text);
+          this._ext._detectLocationAndLoadWeather();
+          this._animateLocationUpdate();
+        }
+      });
+    }
+
+    _animateRefresh() {
+      this._weatherIcon.ease({
+        rotation_angle_z: 360,
+        duration: 1000,
+        mode: Clutter.AnimationMode.EASE_OUT_CUBIC,
+        onComplete: () => {
+          this._weatherIcon.set_rotation_angle(Clutter.RotateAxis.Z_AXIS, 0);
+        },
+      });
+    }
+
+    _animateLocationChange() {
+      this._locationIcon.ease({
+        scale_x: 1.2,
+        scale_y: 1.2,
+        duration: 200,
+        mode: Clutter.AnimationMode.EASE_OUT_QUAD,
+        onComplete: () => {
+          this._locationIcon.ease({
+            scale_x: 1.0,
+            scale_y: 1.0,
+            duration: 200,
+            mode: Clutter.AnimationMode.EASE_OUT_QUAD,
+          });
+        },
+      });
+    }
+
+    _animateLocationUpdate() {
+      this._locationModeLabel.ease({
+        opacity: 0,
+        duration: 200,
+        mode: Clutter.AnimationMode.EASE_OUT_QUAD,
+        onComplete: () => {
+          this._locationModeLabel.ease({
+            opacity: 255,
+            duration: 200,
+            mode: Clutter.AnimationMode.EASE_OUT_QUAD,
+          });
+        },
+      });
     }
 
     updateWeather(data, useFahrenheit) {
       const current = data.current_weather;
-      const weatherCondition = WEATHER_CONDITIONS[current.weathercode] ||
-        {
-          name: "Unknown",
-          icon: "weather-severe-alert-symbolic",
-          description: "Unable to determine",
-        };
+      const weatherCondition = WEATHER_CONDITIONS[current.weathercode] || {
+        name: "Unknown",
+        icon: "weather-severe-alert-symbolic",
+        description: "Unable to determine",
+      };
 
-      
       const temperature = useFahrenheit
-        ? (current.temperature * 9 / 5 + 32).toFixed(1)
+        ? (current.temperature * 9/5 + 32).toFixed(1)
         : current.temperature;
       const tempUnit = useFahrenheit ? "°F" : "°C";
 
       this._weatherIcon.set_icon_name(weatherCondition.icon);
       this._weatherLabel.set_text(
-        `${temperature}${tempUnit} | ${weatherCondition.name}`,
+        `${temperature}${tempUnit} | ${weatherCondition.name}`
       );
 
       this.currentWeatherSection.menu.removeAll();
       const temperatureItem = new PopupMenu.PopupMenuItem(
-        `🌡️ Temperature: ${temperature}${tempUnit}`,
+        `🌡️ Temperature: ${temperature}${tempUnit}`
       );
       const conditionItem = new PopupMenu.PopupMenuItem(
-        `☁️ Condition: ${weatherCondition.name}`,
+        `☁️ Condition: ${weatherCondition.name}`
       );
       const descriptionItem = new PopupMenu.PopupMenuItem(
-        `📝 Description: ${weatherCondition.description}`,
+        `📝 Description: ${weatherCondition.description}`
       );
       const windItem = new PopupMenu.PopupMenuItem(
-        `💨 Wind: ${current.windspeed} km/h`,
+        `💨 Wind: ${current.windspeed} km/h`
       );
 
       this.currentWeatherSection.menu.addMenuItem(temperatureItem);
@@ -220,16 +362,18 @@ const WeatherPanelButton = GObject.registerClass(
 
       this.hourlyWeatherSection.menu.removeAll();
       data.hourly.slice(0, 12).forEach((hour) => {
-        const hourCondition = WEATHER_CONDITIONS[hour.weathercode] ||
-          { name: "Unknown", icon: "weather-severe-alert-symbolic" };
+        const hourCondition = WEATHER_CONDITIONS[hour.weathercode] || {
+          name: "Unknown",
+          icon: "weather-severe-alert-symbolic",
+        };
 
         const hourTemp = useFahrenheit
-          ? (parseFloat(hour.temperature) * 9 / 5 + 32).toFixed(1)
+          ? (parseFloat(hour.temperature) * 9/5 + 32).toFixed(1)
           : hour.temperature;
 
         const hourItem = new PopupMenu.PopupMenuItem(
           `⏰ ${hour.time}: ${hourTemp}${tempUnit} | ${hourCondition.name}`,
-          { reactive: false },
+          { reactive: false }
         );
         const hourIcon = new St.Icon({
           icon_name: hourCondition.icon,
@@ -242,19 +386,21 @@ const WeatherPanelButton = GObject.registerClass(
 
       this.dailyWeatherSection.menu.removeAll();
       data.daily.forEach((day) => {
-        const dayCondition = WEATHER_CONDITIONS[day.weathercode] ||
-          { name: "Unknown", icon: "weather-severe-alert-symbolic" };
+        const dayCondition = WEATHER_CONDITIONS[day.weathercode] || {
+          name: "Unknown",
+          icon: "weather-severe-alert-symbolic",
+        };
 
         const highTemp = useFahrenheit
-          ? (parseFloat(day.high) * 9 / 5 + 32).toFixed(1)
+          ? (parseFloat(day.high) * 9/5 + 32).toFixed(1)
           : day.high;
         const lowTemp = useFahrenheit
-          ? (parseFloat(day.low) * 9 / 5 + 32).toFixed(1)
+          ? (parseFloat(day.low) * 9/5 + 32).toFixed(1)
           : day.low;
 
         const dayItem = new PopupMenu.PopupMenuItem(
           `📅 ${day.day}: High ${highTemp}${tempUnit} / Low ${lowTemp}${tempUnit} | ${dayCondition.name}`,
-          { reactive: false },
+          { reactive: false }
         );
         const dayIcon = new St.Icon({
           icon_name: dayCondition.icon,
@@ -264,30 +410,97 @@ const WeatherPanelButton = GObject.registerClass(
         dayItem.add_child(dayIcon);
         this.dailyWeatherSection.menu.addMenuItem(dayItem);
       });
+
+      this.insightsSection.menu.removeAll();
+      const hourlyTemps = data.hourly.map(h => parseFloat(h.temperature));
+      const tempTrend = this._analyzeTrend(hourlyTemps);
+      
+      const trendItem = new PopupMenu.PopupMenuItem(
+        `🌡️ Temperature Trend: ${tempTrend}`,
+        { reactive: false }
+      );
+      this.insightsSection.menu.addMenuItem(trendItem);
+      
+      const precipCodes = [51, 53, 55, 61, 63, 65, 80, 81, 82, 85, 86];
+      const precipHours = data.hourly.filter(h => precipCodes.includes(h.weathercode));
+      const precipChance = (precipHours.length / data.hourly.length * 100).toFixed(1);
+      const precipItem = new PopupMenu.PopupMenuItem(
+        `💧 Precipitation Chance: ${precipChance}%`,
+        { reactive: false }
+      );
+      this.insightsSection.menu.addMenuItem(precipItem);
+      
+      const extremeWeatherCodes = [95, 96, 99, 82, 86];
+      const extremeWeather = data.hourly.some(h => extremeWeatherCodes.includes(h.weathercode));
+      if (extremeWeather) {
+        const warningItem = new PopupMenu.PopupMenuItem(
+          "⚠️ Extreme Weather Alert!",
+          { 
+            reactive: false,
+            style_class: "popup-menu-item-warning"
+          }
+        );
+        this.insightsSection.menu.addMenuItem(warningItem);
+      }
+
+      this._weatherLabel.ease({
+        opacity: 0,
+        duration: 200,
+        mode: Clutter.AnimationMode.EASE_OUT_QUAD,
+        onComplete: () => {
+          this._weatherLabel.set_text(
+            `${temperature}${tempUnit} | ${weatherCondition.name}`
+          );
+          this._weatherLabel.ease({
+            opacity: 255,
+            duration: 200,
+            mode: Clutter.AnimationMode.EASE_OUT_QUAD,
+          });
+        },
+      });
     }
-  },
+
+    _analyzeTrend(temperatures) {
+      if (temperatures.length < 2) return "Insufficient data";
+      
+      let increasingCount = 0;
+      let decreasingCount = 0;
+      
+      for (let i = 1; i < temperatures.length; i++) {
+        if (temperatures[i] > temperatures[i - 1]) {
+          increasingCount++;
+        } else if (temperatures[i] < temperatures[i - 1]) {
+          decreasingCount++;
+        }
+      }
+      
+      if (increasingCount > decreasingCount) return "Warming 🔥";
+      if (decreasingCount > increasingCount) return "Cooling 🧊";
+      return "Stable 🟰";
+    }
+  }
 );
 
 export default class WeatherExtension extends Extension {
   enable() {
+    this._settings = this.getSettings(
+      "org.gnome.shell.extensions.advanced-weather"
+    );
+    
     this._panelButton = new WeatherPanelButton(this);
     Main.panel.addToStatusArea("weather-extension", this._panelButton);
 
-    
-    this._settings = this.getSettings(
-      "org.gnome.shell.extensions.advanced-weather",
-    );
     this._settings.connect(
       "changed::location-mode",
-      () => this._detectLocationAndLoadWeather(),
+      () => this._detectLocationAndLoadWeather()
     );
     this._settings.connect(
       "changed::location",
-      () => this._detectLocationAndLoadWeather(),
+      () => this._detectLocationAndLoadWeather()
     );
     this._settings.connect(
       "changed::use-fahrenheit",
-      () => this._reloadWeatherDisplay(),
+      () => this._reloadWeatherDisplay()
     );
 
     this._detectLocationAndLoadWeather();
@@ -305,7 +518,6 @@ export default class WeatherExtension extends Extension {
   }
 
   _reloadWeatherDisplay() {
-    
     if (this._lastWeatherData) {
       const useFahrenheit = this._settings.get_boolean("use-fahrenheit");
       this._panelButton.updateWeather(this._lastWeatherData, useFahrenheit);
@@ -345,10 +557,8 @@ export default class WeatherExtension extends Extension {
 
     const setManualLocation = () => {
       const manualLocation = this._settings.get_string("location");
-
-      
       const coordMatch = manualLocation.match(
-        /^([-+]?\d+\.?\d*),\s*([-+]?\d+\.?\d*)$/,
+        /^([-+]?\d+\.?\d*),\s*([-+]?\d+\.?\d*)$/
       );
       if (coordMatch) {
         this._latitude = parseFloat(coordMatch[1]);
@@ -357,11 +567,7 @@ export default class WeatherExtension extends Extension {
         this._loadWeatherData();
         return true;
       }
-
-      
-      console.error(
-        "City name geocoding not implemented. Please use coordinates.",
-      );
+      console.error("City name geocoding not implemented. Please use coordinates.");
       return false;
     };
 
@@ -371,7 +577,6 @@ export default class WeatherExtension extends Extension {
       }
 
       if (serviceIndex >= geolocServices.length) {
-        
         const fallback = fallbackLocations[
           Math.floor(Math.random() * fallbackLocations.length)
         ];
@@ -393,40 +598,33 @@ export default class WeatherExtension extends Extension {
           try {
             const bytes = session.send_and_read_finish(result);
             const response = JSON.parse(bytes.get_data().toString());
-
             const locationData = service.parser(response);
 
             if (locationData.latitude && locationData.longitude) {
               this._latitude = locationData.latitude;
               this._longitude = locationData.longitude;
-              this._locationName = locationData.locationName ||
-                "Unknown Location";
+              this._locationName = locationData.locationName || "Unknown Location";
               this._loadWeatherData();
             } else {
-              
               tryNextService(serviceIndex + 1);
             }
           } catch (e) {
             console.error(`Geolocation service ${service.url} failed:`, e);
-
-            
             tryNextService(serviceIndex + 1);
           }
-        },
+        }
       );
     };
 
-    
     tryNextService();
   }
 
   _loadWeatherData() {
-    const url =
-      `${BASE_URL}?latitude=${this._latitude}&longitude=${this._longitude}&current_weather=true&windspeed=true&hourly=temperature_2m,weathercode&daily=temperature_2m_max,temperature_2m_min,weathercode`;
-
+    const url = `${BASE_URL}?latitude=${this._latitude}&longitude=${this._longitude}&current_weather=true&windspeed=true&hourly=temperature_2m,weathercode&daily=temperature_2m_max,temperature_2m_min,weathercode`;
+    
     const session = new Soup.Session();
     const message = Soup.Message.new("GET", url);
-
+    
     session.send_and_read_async(
       message,
       GLib.PRIORITY_DEFAULT,
@@ -435,122 +633,41 @@ export default class WeatherExtension extends Extension {
         try {
           const bytes = session.send_and_read_finish(result);
           const response = JSON.parse(bytes.get_data().toString());
-
+          
           const data = {
             location: this._locationName,
             current_weather: {
               ...response.current_weather,
-              temperature: response.current_weather.temperature.toFixed(1),
+              temperature: response.current_weather.temperature.toFixed(1)
             },
             hourly: response.hourly.time.map((time, index) => ({
               time: time.split("T")[1].slice(0, 5),
               temperature: response.hourly.temperature_2m[index].toFixed(1),
-              weathercode: response.hourly.weathercode[index],
+              weathercode: response.hourly.weathercode[index]
             })),
             daily: response.daily.time.map((time, index) => ({
-              day: new Date(time).toLocaleDateString("en-US", {
-                weekday: "short",
-              }),
+              day: new Date(time).toLocaleDateString("en-US", { weekday: "short" }),
               high: response.daily.temperature_2m_max[index].toFixed(1),
               low: response.daily.temperature_2m_min[index].toFixed(1),
-              weathercode: response.daily.weathercode[index],
-            })),
+              weathercode: response.daily.weathercode[index]
+            }))
           };
-
           
           this._lastWeatherData = data;
-
-          
           const useFahrenheit = this._settings.get_boolean("use-fahrenheit");
-
-          
           this._panelButton.updateWeather(data, useFahrenheit);
-
           
           if (this._panelButton.currentWeatherSection) {
             const locationItem = new PopupMenu.PopupMenuItem(
               `📍 Location: ${this._locationName}`,
-              { reactive: false },
+              { reactive: false }
             );
-            this._panelButton.currentWeatherSection.menu.addMenuItem(
-              locationItem,
-            );
+            this._panelButton.currentWeatherSection.menu.addMenuItem(locationItem, 0);
           }
-
-          
-          this._addWeatherInsights(data);
         } catch (e) {
           console.error("Weather Extension: Failed to fetch weather data", e);
         }
-      },
-    );
-  }
-
-  _addWeatherInsights(data) {
-    
-    if (!this._insightsSection) {
-      this._insightsSection = new PopupMenu.PopupSubMenuMenuItem(
-        "🔍 Weather Insights",
-      );
-      this.menu.addMenuItem(this._insightsSection);
-    }
-    this._insightsSection.menu.removeAll();
-
-    
-    const hourlyTemps = data.hourly.map((h) => parseFloat(h.temperature));
-    const tempTrend = this._analyzeTrend(hourlyTemps);
-    const trendItem = new PopupMenu.PopupMenuItem(
-      `🌡️ Temperature Trend: ${tempTrend}`,
-      { reactive: false },
-    );
-    this._insightsSection.menu.addMenuItem(trendItem);
-
-    
-    const precipCodes = [51, 53, 55, 61, 63, 65, 80, 81, 82, 85, 86];
-    const precipHours = data.hourly.filter((h) =>
-      precipCodes.includes(h.weathercode)
-    );
-    const precipChance = (precipHours.length / data.hourly.length * 100)
-      .toFixed(1);
-    const precipItem = new PopupMenu.PopupMenuItem(
-      `💧 Precipitation Chance: ${precipChance}%`,
-      { reactive: false },
-    );
-    this._insightsSection.menu.addMenuItem(precipItem);
-
-    
-    const extremeWeatherCodes = [95, 96, 99, 82, 86];
-    const extremeWeather = data.hourly.some((h) =>
-      extremeWeatherCodes.includes(h.weathercode)
-    );
-    if (extremeWeather) {
-      const warningItem = new PopupMenu.PopupMenuItem(
-        "⚠️ Extreme Weather Alert!",
-        {
-          reactive: false,
-          style_class: "popup-menu-item-warning",
-        },
-      );
-      this._insightsSection.menu.addMenuItem(warningItem);
-    }
-  }
-
-  _analyzeTrend(temperatures) {
-    if (temperatures.length < 2) return "Insufficient data";
-
-    let increasingCount = 0;
-    let decreasingCount = 0;
-
-    for (let i = 1; i < temperatures.length; i++) {
-      if (temperatures[i] > temperatures[i - 1]) {
-        increasingCount++;
-      } else if (temperatures[i] < temperatures[i - 1]) {
-        decreasingCount++;
       }
-    }
-
-    if (increasingCount > decreasingCount) return "Warming 🔥";
-    if (decreasingCount > increasingCount) return "Cooling 🧊";
-    return "Stable 🟰";
+    );
   }
 }
