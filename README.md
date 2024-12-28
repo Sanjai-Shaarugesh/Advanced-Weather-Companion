@@ -88,10 +88,7 @@ Right-click the weather widget to access:
 
 - GNOME Shell 45+
 - Internet connection
-- One of the supported weather APIs:
-  - OpenWeatherMap
-  - WeatherAPI
-  - AccuWeather
+
 
 ## Troubleshooting
 
