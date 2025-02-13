@@ -1,5 +1,8 @@
 # Advanced Weather Companion GNOME Shell Extension
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+
 ## Overview
 
 Advanced Weather is a feature-rich GNOME Shell extension that provides detailed and customizable weather information right on your desktop. With support for multiple locations, advanced forecasting, and beautiful visualizations, this extension transforms how you interact with weather data.
@@ -123,7 +126,8 @@ This extension is using `ipapi.co` and `open-meteo.com` services
 
 ## License
 
-MIT License - See [LICENSE](LICENSE) for details
+MIT License  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 
 ## Donations
 
