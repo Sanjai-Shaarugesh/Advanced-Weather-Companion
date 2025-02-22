@@ -18,5 +18,15 @@
             <summary>Temperature Unit</summary>
             <description>Use Fahrenheit instead of Celsius</description>
         </key>
+        <key name="wind-speed-unit" type="s">
+              <default>'kmh'</default>
+              <summary>Wind speed unit</summary>
+              <description>Unit to display wind speed (kmh, mph, ms, knots)</description>
+            </key>
+            <key name="panel-position" type="s">
+              <default>'right'</default>
+              <summary>Panel position</summary>
+              <description>Position in the panel (left, center, right)</description>
+            </key>
     </schema>
 </schemalist>

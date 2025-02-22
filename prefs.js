@@ -12,14 +12,20 @@ export default class WeatherPreferences extends ExtensionPreferences {
     const settings = this.getSettings(
       "org.gnome.shell.extensions.advanced-weather"
     );
+    
+   
+     // Fallback GNOME icon
+      
+
 
     const page = new Adw.PreferencesPage();
-    const group = new Adw.PreferencesGroup({ 
-      title: _("Weather Settings"),
-      description: _("Configure location settings and temperature units")
+    
+    // Location Settings Group
+    const locationGroup = new Adw.PreferencesGroup({ 
+      title: _("Location Settings"),
+      description: _("Configure location settings and units")
     });
 
-    
     const locationModeRow = new Adw.ActionRow({
       title: _("Location Mode"),
       subtitle: _("Choose how location is determined"),
@@ -32,9 +38,8 @@ export default class WeatherPreferences extends ExtensionPreferences {
     locationModeCombo.set_active_id(currentMode);
 
     locationModeRow.add_suffix(locationModeCombo);
-    group.add(locationModeRow);
+    locationGroup.add(locationModeRow);
 
-    
     const locationRow = new Adw.ActionRow({
       title: _("Manual Location"),
       subtitle: _("Enter coordinates as 'latitude,longitude' (e.g., 40.7128,-74.0060)"),
@@ -51,7 +56,7 @@ export default class WeatherPreferences extends ExtensionPreferences {
       placeholder_text: _("40.7128,-74.0060"),
       width_request: 200,
       max_length: 50,
-      secondary_icon_name: "edit-clear-symbolic",
+      secondary_icon_name: "weather-few-clouds-symbolic",
       secondary_icon_tooltip_text: _("Clear")
     });
 
@@ -63,9 +68,79 @@ export default class WeatherPreferences extends ExtensionPreferences {
     locationBox.append(locationEntry);
     locationBox.append(validationLabel);
     locationRow.add_suffix(locationBox);
-    group.add(locationRow);
+    locationGroup.add(locationRow);
 
+    // Units Settings Group
+    const unitsGroup = new Adw.PreferencesGroup({
+      title: _("Units Settings"),
+      description: _("Configure temperature and wind speed units")
+    });
+
+    // Temperature Unit Row
+    const tempUnitRow = new Adw.ActionRow({
+      title: _("Temperature Unit"),
+      subtitle: _("Toggle between Celsius (°C) and Fahrenheit (°F)")
+    });
     
+    const tempUnitSwitch = new Gtk.Switch({
+      active: settings.get_boolean("use-fahrenheit") || false,
+      valign: Gtk.Align.CENTER
+    });
+    
+    tempUnitRow.add_suffix(tempUnitSwitch);
+    unitsGroup.add(tempUnitRow);
+
+    // Wind Speed Unit Row
+    const windUnitRow = new Adw.ActionRow({
+      title: _("Wind Speed Unit"),
+      subtitle: _("Choose your preferred wind speed unit")
+    });
+
+    const windUnitCombo = new Gtk.ComboBoxText();
+    windUnitCombo.append("kmh", _("Kilometers per hour (km/h)"));
+    windUnitCombo.append("mph", _("Miles per hour (mph)"));
+    windUnitCombo.append("ms", _("Meters per second (m/s)"));
+    windUnitCombo.append("knots", _("Knots (kts)"));
+
+    const currentWindUnit = settings.get_string("wind-speed-unit") || "kmh";
+    windUnitCombo.set_active_id(currentWindUnit);
+
+    windUnitRow.add_suffix(windUnitCombo);
+    unitsGroup.add(windUnitRow);
+
+    // Position Settings Group
+    const positionGroup = new Adw.PreferencesGroup({
+      title: _("Panel Position"),
+      description: _("Configure where the weather indicator appears")
+    });
+
+    const positionRow = new Adw.ActionRow({
+      title: _("Panel Position"),
+      subtitle: _("Choose where to show the weather indicator")
+    });
+
+    const positionCombo = new Gtk.ComboBoxText();
+    positionCombo.append("right", _("Right"));
+    positionCombo.append("center", _("Center"));
+    positionCombo.append("left", _("Left"));
+
+    const currentPosition = settings.get_string("panel-position") || "right";
+    positionCombo.set_active_id(currentPosition);
+
+    positionCombo.connect("changed", (widget) => {
+          const newPosition = widget.get_active_id();
+          settings.set_string("panel-position", newPosition);
+          if (global.weatherExtensionInstance) {
+            global.weatherExtensionInstance._updatePanelPosition();
+          }
+        });
+    
+        positionRow.add_suffix(positionCombo);
+        positionGroup.add(positionRow);
+        page.add(positionGroup);
+        window.add(page);
+
+    // Event Handlers
     const validateCoordinates = (text) => {
       if (!text) {
         validationLabel.set_text(_("Coordinates required"));
@@ -93,7 +168,6 @@ export default class WeatherPreferences extends ExtensionPreferences {
       return true;
     };
 
-    
     locationModeCombo.connect("changed", (widget) => {
       const newMode = widget.get_active_id();
       settings.set_string("location-mode", newMode);
@@ -120,26 +194,23 @@ export default class WeatherPreferences extends ExtensionPreferences {
       }
     });
 
-    
-    const unitRow = new Adw.ActionRow({
-      title: _("Temperature Unit"),
-      subtitle: _("Toggle between Celsius (°C) and Fahrenheit (°F)")
-    });
-    
-    const unitSwitch = new Gtk.Switch({
-      active: settings.get_boolean("use-fahrenheit") || false,
-      valign: Gtk.Align.CENTER
-    });
-    
-    unitRow.add_suffix(unitSwitch);
-    group.add(unitRow);
-
-    unitSwitch.connect("state-set", (widget, state) => {
+    tempUnitSwitch.connect("state-set", (widget, state) => {
       settings.set_boolean("use-fahrenheit", state);
       return false;
     });
 
-    page.add(group);
+    windUnitCombo.connect("changed", (widget) => {
+      settings.set_string("wind-speed-unit", widget.get_active_id());
+    });
+
+    positionCombo.connect("changed", (widget) => {
+      settings.set_string("panel-position", widget.get_active_id());
+    });
+
+    // Add all groups to the page
+    page.add(locationGroup);
+    page.add(unitsGroup);
+    page.add(positionGroup);
     window.add(page);
   }
 }
