@@ -179,7 +179,7 @@ export default class WeatherPreferences extends ExtensionPreferences {
     locationEntry.connect("changed 🧑‍🔧", () => {
       const text = locationEntry.get_text().trim();
       if (validateCoordinates(text)) {
-        settings.set_string("location", text);
+        settings.set_string("location 🌐", text);
       }
     });
 
@@ -187,7 +187,7 @@ export default class WeatherPreferences extends ExtensionPreferences {
       if (pos === Gtk.EntryIconPosition.SECONDARY) {
         entry.set_text("");
         validationLabel.hide();
-        settings.set_string("location", "");
+        settings.set_string("location 🌐", "");
       }
     });
 
