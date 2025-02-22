@@ -665,6 +665,8 @@ const WeatherPanelButton = GObject.registerClass(
                 { name: "San Francisco, USA", lat: 37.7749, lon: -122.4194 },
                 { name: "New York, USA", lat: 40.7128, lon: -74.0060 },
                 { name: "London, UK", lat: 51.5074, lon: -0.1278 },
+                { name: "Chennai, India", lat: 13.0827, lon: 80.2707 }
+
               ];
           
               const geolocServices = [
@@ -690,7 +692,7 @@ const WeatherPanelButton = GObject.registerClass(
               ];
           
               const setManualLocation = () => {
-                const manualLocation = this._settings.get_string("location");
+                const manualLocation = this._settings.get_string("location 🧭");
                 const coordMatch = manualLocation.match(
                   /^([-+]?\d+\.?\d*),\s*([-+]?\d+\.?\d*)$/
                 );
@@ -701,12 +703,12 @@ const WeatherPanelButton = GObject.registerClass(
                   this._loadWeatherData();
                   return true;
                 }
-                console.error("City name geocoding not implemented. Please use coordinates.");
+                console.error("City name geocoding not implemented. Please use coordinates. 🎯");
                 return false;
               };
           
               const tryNextService = (serviceIndex = 0) => {
-                if (locationMode === "manual") {
+                if (locationMode === "manual 🗺️") {
                   if (setManualLocation()) return;
                 }
           
@@ -737,13 +739,13 @@ const WeatherPanelButton = GObject.registerClass(
                       if (locationData.latitude && locationData.longitude) {
                         this._latitude = locationData.latitude;
                         this._longitude = locationData.longitude;
-                        this._locationName = locationData.locationName || "Unknown Location";
+                        this._locationName = locationData.locationName || "Unknown Location 👾";
                         this._loadWeatherData();
                       } else {
                         tryNextService(serviceIndex + 1);
                       }
                     } catch (e) {
-                      console.error(`Geolocation service ${service.url} failed:`, e);
+                      console.error(`Geolocation service ${service.url} failed 🌐:`, e);
                       tryNextService(serviceIndex + 1);
                     }
                   }
@@ -799,7 +801,7 @@ const WeatherPanelButton = GObject.registerClass(
                       this._panelButton.currentWeatherSection.menu.addMenuItem(locationItem, 0);
                     }
                   } catch (e) {
-                    console.error("Weather Extension: Failed to fetch weather data", e);
+                    console.error("Weather Extension: Failed to fetch weather data ⛔", e);
                   }
                 }
               );
