@@ -1,0 +1,108 @@
+/* stylesheet.css */
+
+.weather-button-box {
+    background-color: rgba(50, 50, 50, 0.3);
+    border-radius: 20px;
+    padding: 6px 12px;
+    gap: 6px;
+    transition: all 0.3s ease;
+}
+
+.weather-button-box:hover {
+    background-color: rgba(70, 70, 70, 0.6);
+    transform: scale(1.05);
+}
+
+.weather-icon {
+    margin-right: 4px;
+    transition: all 0.3s ease;
+}
+
+.weather-label {
+    font-weight: bold;
+    font-size: 0.9em;
+    transition: all 0.3s ease;
+}
+
+.location-icon {
+    margin-left: 8px;
+    margin-right: 4px;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+
+.location-mode-label {
+    font-size: 0.7em;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    padding: 0 4px;
+    margin-left: 4px;
+}
+
+.location-mode-box {
+    margin: 8px 0;
+    gap: 8px;
+}
+
+.location-mode-button {
+    border-radius: 15px;
+    padding: 8px 16px;
+    transition: all 0.3s ease;
+}
+
+.location-mode-button:hover {
+    background-color: rgba(70, 70, 70, 0.8);
+}
+
+.location-input {
+    margin: 8px 16px;
+    padding: 8px;
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.location-section {
+    margin-top: 8px;
+}
+
+.popup-menu-item {
+    font-size: 0.9em;
+    transition: all 0.2s ease;
+}
+
+.popup-menu-item:hover {
+    background-color: rgba(70, 70, 70, 0.8);
+}
+
+.popup-menu-item-warning {
+    color: #ff4c4c;
+    font-weight: bold;
+    background-color: rgba(255, 76, 76, 0.1);
+    border-radius: 8px;
+}
+
+.refresh-button {
+    margin-top: 8px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.refresh-button:hover {
+    background-color: rgba(70, 70, 70, 0.8);
+}
+
+/* Animations */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+@keyframes fade {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
