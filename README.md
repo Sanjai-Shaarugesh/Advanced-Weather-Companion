@@ -138,6 +138,6 @@ Support the development:
 **Thank you for your support!**
 # Please forgive me for my bad documentation 😅
   
-
+*If you have any queries fell free to ask*
 
 **Star ⭐ my   repository if you find it useful!**
