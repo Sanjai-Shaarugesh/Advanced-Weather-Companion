@@ -11,6 +11,7 @@ import * as PopupMenu from "resource:///org/gnome/shell/ui/popupMenu.js";
 
 const BASE_URL = "https://api.open-meteo.com/v1/forecast";
 
+// Icons name 
 const WEATHER_CONDITIONS = {
   0: {
     name: "Clear Sky",
@@ -215,7 +216,7 @@ const WeatherPanelButton = GObject.registerClass(
         this._updateLocationModeDisplay();
       });
     }
-
+    // Notify auto or manual location mode
     _getInitialLocationMode() {
       const mode = this._ext._settings.get_string("location-mode");
       return mode.toUpperCase() || "AUTO";
@@ -225,7 +226,7 @@ const WeatherPanelButton = GObject.registerClass(
       const unit = this._ext._getRegionalWindUnit();
       let convertedSpeed;
       let unitLabel;
-
+      // units per region 
       switch (unit) {
         case "mph":
           convertedSpeed = speedKmh * 0.621371;
@@ -268,7 +269,8 @@ const WeatherPanelButton = GObject.registerClass(
 
       this.locationSection.menu.addMenuItem(autoLocationButton);
       this.locationSection.menu.addMenuItem(manualLocationButton);
-
+        
+      // Manual location input 
       const locationInput = new St.Entry({
         hint_text: "Enter coordinates (lat,lon)",
         style_class: "location-input",
@@ -315,7 +317,7 @@ const WeatherPanelButton = GObject.registerClass(
         },
       });
     }
-
+    //Animation 
     _animateLocationChange() {
       this._locationIcon.ease({
         scale_x: 1.2,

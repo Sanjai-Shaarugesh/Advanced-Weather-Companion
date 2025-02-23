@@ -8,12 +8,8 @@
     "47"
   ],
   "url": "https://github.com/Sanjai-Shaarugesh/Weather-Extension",
-<<<<<<< HEAD
   
   "version": 6,
-=======
-  "version": 4,
->>>>>>> 0ea3ffac8442c459936f112498bb36738e3a1f13
   "gettext-domain": "advanced-weather",
   "settings-schema": "org.gnome.shell.extensions.advanced-weather",
   "preferences": "prefs.js"
