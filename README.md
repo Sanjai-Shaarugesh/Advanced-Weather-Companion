@@ -33,7 +33,8 @@ Install from source
 - Install and enable the extension by executing `gnome-extensions install extension.zip --force` in the terminal
 
 > To setup your manual location by giving your location coordinates in the settings in the extension or in the Location settings in the main menu of the extension , you can get you location coordinates from the google map by going to your location and right clink on in it and coping the location coordinates from it by clicking them 
-![Google Map](images/v3.gif)
+
+https://github.com/user-attachments/assets/706925f5-410c-473c-af72-099fc4096503
 
 
 ## Screenshots
