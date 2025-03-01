@@ -15,7 +15,6 @@ export default class WeatherPreferences extends ExtensionPreferences {
 
     const page = new Adw.PreferencesPage();
 
-    // Location Settings Group
     const locationGroup = new Adw.PreferencesGroup({
       title: _("Location Settings"),
       description: _("Configure location settings and units"),
@@ -67,13 +66,11 @@ export default class WeatherPreferences extends ExtensionPreferences {
     locationRow.add_suffix(locationBox);
     locationGroup.add(locationRow);
 
-    // Units Settings Group
     const unitsGroup = new Adw.PreferencesGroup({
       title: _("Units Settings"),
       description: _("Configure temperature and wind speed units"),
     });
 
-    // Temperature Unit Row
     const tempUnitRow = new Adw.ActionRow({
       title: _("Temperature Unit"),
       subtitle: _("Toggle between Celsius (°C) and Fahrenheit (°F)"),
@@ -87,7 +84,6 @@ export default class WeatherPreferences extends ExtensionPreferences {
     tempUnitRow.add_suffix(tempUnitSwitch);
     unitsGroup.add(tempUnitRow);
 
-    // Wind Speed Unit Row
     const windUnitRow = new Adw.ActionRow({
       title: _("Wind Speed Unit"),
       subtitle: _("Choose your preferred wind speed unit"),
@@ -105,7 +101,6 @@ export default class WeatherPreferences extends ExtensionPreferences {
     windUnitRow.add_suffix(windUnitCombo);
     unitsGroup.add(windUnitRow);
 
-    // Position Settings Group
     const positionGroup = new Adw.PreferencesGroup({
       title: _("Panel Position"),
       description: _("Configure where the weather indicator appears"),
@@ -137,7 +132,6 @@ export default class WeatherPreferences extends ExtensionPreferences {
     page.add(positionGroup);
     window.add(page);
 
-    // Event Handlers
     const validateCoordinates = (text) => {
       if (!text) {
         validationLabel.set_text(_("Coordinates required"));
@@ -176,11 +170,11 @@ export default class WeatherPreferences extends ExtensionPreferences {
       }
     });
 
-    locationEntry.connect("changed 🧑‍🔧", () => {
-      const text = locationEntry.get_text().trim();
-      if (validateCoordinates(text)) {
-        settings.set_string("location", text);
-      }
+    locationEntry.connect("changed", () => {
+        const text = locationEntry.get_text().trim();
+        if (validateCoordinates(text)) {
+            settings.set_string("location", text);
+        }
     });
 
     locationEntry.connect("icon-release", (entry, pos) => {
@@ -204,7 +198,6 @@ export default class WeatherPreferences extends ExtensionPreferences {
       settings.set_string("panel-position", widget.get_active_id());
     });
 
-    // Add all groups to the page
     page.add(locationGroup);
     page.add(unitsGroup);
     page.add(positionGroup);
