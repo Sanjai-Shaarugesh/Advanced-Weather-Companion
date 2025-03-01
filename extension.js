@@ -702,7 +702,7 @@ export default class WeatherExtension extends Extension {
     ];
 
     const setManualLocation = () => {
-      const manualLocation = this._settings.get_string("location 🧭");
+      const manualLocation = this._settings.get_string("location");
       const coordMatch = manualLocation.match(
         /^([-+]?\d+\.?\d*),\s*([-+]?\d+\.?\d*)$/,
       );
@@ -758,7 +758,7 @@ export default class WeatherExtension extends Extension {
               tryNextService(serviceIndex + 1);
             }
           } catch (e) {
-            console.error(`Geolocation service ${service.url} failed 🌐:`, e);
+            console.error(`Geolocation service ${service.url} failed:`, e);
             tryNextService(serviceIndex + 1);
           }
         },
