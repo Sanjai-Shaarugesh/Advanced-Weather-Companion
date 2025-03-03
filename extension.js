@@ -734,9 +734,13 @@ const WeatherPanelButton = GObject.registerClass(
                 }
           
                 if (serviceIndex >= geolocServices.length) {
-                  const fallback = fallbackLocations[
-                    Math.floor(window.crypto.getRandomValues(new Uint32Array(1))[0] / (0xFFFFFFFF + 1) * fallbackLocations.length)
-                  ];
+                  let index;
+                  const max = Math.floor(0xFFFFFFFF / fallbackLocations.length) * fallbackLocations.length;
+                  do {
+                    index = window.crypto.getRandomValues(new Uint32Array(1))[0];
+                  } while (index >= max);
+                  index = index % fallbackLocations.length;
+                  const fallback = fallbackLocations[index];
                   this._latitude = fallback.lat;
                   this._longitude = fallback.lon;
                   this._locationName = fallback.name;
