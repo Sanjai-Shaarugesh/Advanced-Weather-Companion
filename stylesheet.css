@@ -1,11 +1,15 @@
 /* stylesheet.css */
 
-.weather-button-box {
-    background-color: rgba(50, 50, 50, 0.3);
+.weather-button-box,
+.weather-button-box-filled {
     border-radius: 20px;
     padding: 6px 12px;
     gap: 6px;
     transition: all 0.3s ease;
+}
+
+.weather-button-box-filled {
+    background-color: rgba(50, 50, 50, 0.3);
 }
 
 .weather-button-box:hover {
