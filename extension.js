@@ -164,12 +164,12 @@ const WeatherPanelButton = GObject.registerClass(
         style_class: "location-mode-label",
       });
 
-      const buttonBox = new St.BoxLayout({ style_class: "weather-button-box" });
-      buttonBox.add_child(this._weatherIcon);
-      buttonBox.add_child(this._weatherLabel);
-      buttonBox.add_child(this._locationIcon);
-      buttonBox.add_child(this._locationModeLabel);
-      this.add_child(buttonBox);
+      this._buttonBox = new St.BoxLayout({ style_class: "weather-button-box" });
+      this._buttonBox.add_child(this._weatherIcon);
+      this._buttonBox.add_child(this._weatherLabel);
+      this._buttonBox.add_child(this._locationIcon);
+      this._buttonBox.add_child(this._locationModeLabel);
+      this.add_child(this._buttonBox);
 
       this.currentWeatherSection = new PopupMenu.PopupSubMenuMenuItem(
         "📍 Current Weather",
@@ -346,6 +346,12 @@ const WeatherPanelButton = GObject.registerClass(
           });
         },
       });
+    }
+    
+    /* Makes the background filled or transparent based upon fillBackground
+     */
+    _updateBackground(fillBackground) {
+        this._buttonBox.set_style_class_name(fillBackground ? "weather-button-box-filled" : "weather-button-box");
     }
 
     updateWeather(data, useFahrenheit) {
@@ -539,6 +545,7 @@ const WeatherPanelButton = GObject.registerClass(
                   );
                   
                   this._updatePanelPosition();
+                  this._updatePanelBackground();
                   global.weatherExtensionInstance = this;
               
               this._settings.connect(
@@ -567,6 +574,10 @@ const WeatherPanelButton = GObject.registerClass(
               this._settings.connect(
                 "changed::panel-position",
                 () => this._updatePanelPosition()
+              );
+              this._settings.connect(
+                "changed::fill-button-background",
+                () => this._updatePanelBackground()
               );
           
               this._detectLocationAndLoadWeather();
@@ -648,6 +659,16 @@ const WeatherPanelButton = GObject.registerClass(
                 
                 const position = this._settings.get_string('panel-position') || 'right';
                 Main.panel.addToStatusArea('weather-extension', this._panelButton, 0, position);
+              }
+            }
+            
+            /* Updates the Panel Background with the current settings
+             * Either a filled or transparent background
+             */
+            _updatePanelBackground() {
+              if (this._panelButton) {
+                const showBackground = this._settings.get_boolean("fill-button-background") || false;
+                this._panelButton._updateBackground(showBackground);
               }
             }
           

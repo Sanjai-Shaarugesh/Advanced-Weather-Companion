@@ -198,9 +198,31 @@ export default class WeatherPreferences extends ExtensionPreferences {
       settings.set_string("panel-position", widget.get_active_id());
     });
 
+    const styleGroup = new Adw.PreferencesGroup({
+      title: _("Style Settings"),
+      description: _("Configure the appearance of the weather indicator"),
+    });
+
+    const backgroundRow = new Adw.ActionRow({
+      title: _("Fill Background"),
+      subtitle: _("Choose whether fill the background in the panel or not"),
+    });
+
+    const backgroundSwitch = new Gtk.Switch({
+        active: settings.get_boolean("fill-button-background") || true,
+        valign: Gtk.Align.CENTER,
+    });
+
+    backgroundSwitch.connect("state-set", (widget, state) => {
+        settings.set_boolean("fill-button-background", state);
+    });
+    backgroundRow.add_suffix(backgroundSwitch);
+    styleGroup.add(backgroundRow);
+
     page.add(locationGroup);
     page.add(unitsGroup);
     page.add(positionGroup);
+    page.add(styleGroup);
     window.add(page);
   }
 }
