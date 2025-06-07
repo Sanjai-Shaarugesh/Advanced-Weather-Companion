@@ -13,41 +13,44 @@ export default class WeatherPreferences extends ExtensionPreferences {
       "org.gnome.shell.extensions.advanced-weather",
     );
     
-    // Create header with logo
+    // Create the preferences page
+    const page = new Adw.PreferencesPage();
+    
+    // Create a header group for the logo
+    const headerGroup = new Adw.PreferencesGroup();
+    
+    // Create a horizontal box for a more compact header
     const headerBox = new Gtk.Box({
-      orientation: Gtk.Orientation.VERTICAL,
-      margin_top: 24,
-      margin_bottom: 24,
+      orientation: Gtk.Orientation.HORIZONTAL,
+      margin_top: 8,
+      margin_bottom: 12,
       halign: Gtk.Align.CENTER,
+      spacing: 8
     });
     
-    // Create image using Gtk.Picture (for GTK4)
+    // Create a smaller logo
     const logo = new Gtk.Picture({
-      file: Gio.File.new_for_path(`${this.path}/icons/weather-logo.png`),
-      content_fit: Gtk.ContentFit.CONTAIN,
-      height_request: 100,
-    });
+  file: Gio.File.new_for_path(`${this.path}/icons/weather-logo.png`),
+  content_fit: Gtk.ContentFit.CONTAIN,
+  height_request: 32,
+  width_request: 32,
+});
     
     const title = new Gtk.Label({
-      label: '<span size="large" weight="bold">Advanced Weather</span>',
+      label: '<span weight="bold">Advanced Weather Companion</span>',
       use_markup: true,
-      margin_top: 12,
     });
     
     headerBox.append(logo);
     headerBox.append(title);
     
-    // Main content container to hold both header and preferences
-    const mainBox = new Gtk.Box({
-      orientation: Gtk.Orientation.VERTICAL,
-    });
+    // Add the header to its group
+    headerGroup.add(headerBox);
     
-    // Add the header to the main container
-    mainBox.append(headerBox);
+    // Add the header group as the first item in the page
+    page.add(headerGroup);
     
     // Create the preferences page
-    const page = new Adw.PreferencesPage();
-
     const locationGroup = new Adw.PreferencesGroup({
       title: _("Location Settings"),
       description: _("Configure location settings and units"),
@@ -163,7 +166,6 @@ export default class WeatherPreferences extends ExtensionPreferences {
     positionRow.add_suffix(positionCombo);
     positionGroup.add(positionRow);
     page.add(positionGroup);
-    window.add(page);
 
     const validateCoordinates = (text) => {
       if (!text) {
@@ -271,16 +273,10 @@ export default class WeatherPreferences extends ExtensionPreferences {
     locationLabelRow.add_suffix(locationLabelSwitch);
     styleGroup.add(locationLabelRow);
 
-    page.add(locationGroup);
-    page.add(unitsGroup);
-    page.add(positionGroup);
-    page.add(styleGroup);
-    window.add(page);
-
     // Add Weather Display Preview group
     const previewGroup = new Adw.PreferencesGroup({
       title: _("Weather Display Preview"),
-      description: _("Sample appearance in different conditions"),
+      description: _("Sample appearance in different conditions according to your GTK theme"),
     });
 
     const previewBox = new Gtk.Box({
@@ -323,12 +319,16 @@ export default class WeatherPreferences extends ExtensionPreferences {
 
     previewGroup.add(previewBox);
     page.add(previewGroup);
-    window.add(page);
-
-    // Add the page to the main container (ONCE, at the end)
-    mainBox.append(page);
     
-    // Set the main container as the window content
-    window.set_content(mainBox);
+    // Add all groups to the page (only once)
+    page.add(locationGroup);
+    page.add(unitsGroup);
+    page.add(positionGroup);
+    page.add(styleGroup);
+    page.add(previewGroup);
+    
+    
+    // and use only this one:
+    window.set_content(page);
   }
 }
