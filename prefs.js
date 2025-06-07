@@ -12,45 +12,88 @@ export default class WeatherPreferences extends ExtensionPreferences {
     const settings = this.getSettings(
       "org.gnome.shell.extensions.advanced-weather",
     );
-    
-    // Create the preferences page
+
     const page = new Adw.PreferencesPage();
-    
-    // Create a header group for the logo
+
     const headerGroup = new Adw.PreferencesGroup();
+
     
-    // Create a horizontal box for a more compact header
     const headerBox = new Gtk.Box({
       orientation: Gtk.Orientation.HORIZONTAL,
       margin_top: 8,
       margin_bottom: 12,
-      halign: Gtk.Align.CENTER,
-      spacing: 8
+      halign: Gtk.Align.FILL,
+      hexpand: true,
+      spacing: 8,
     });
+
     
-    // Create a smaller logo
+    const logoTitleBox = new Gtk.Box({
+      orientation: Gtk.Orientation.HORIZONTAL,
+      halign: Gtk.Align.START,
+      spacing: 8,
+    });
+
+    
     const logo = new Gtk.Picture({
-  file: Gio.File.new_for_path(`${this.path}/icons/weather-logo.png`),
-  content_fit: Gtk.ContentFit.CONTAIN,
-  height_request: 32,
-  width_request: 32,
-});
-    
+      file: Gio.File.new_for_path(`${this.path}/icons/weather-logo.png`),
+      content_fit: Gtk.ContentFit.CONTAIN,
+      height_request: 32,
+      width_request: 32,
+    });
+
     const title = new Gtk.Label({
       label: '<span weight="bold">Advanced Weather Companion</span>',
       use_markup: true,
     });
+
+    logoTitleBox.append(logo);
+    logoTitleBox.append(title);
+
     
-    headerBox.append(logo);
-    headerBox.append(title);
+    const windowControlsBox = new Gtk.Box({
+      orientation: Gtk.Orientation.HORIZONTAL,
+      halign: Gtk.Align.END,
+      hexpand: true,
+      spacing: 4,
+    });
+
     
-    // Add the header to its group
+    const minimizeButton = new Gtk.Button({
+      icon_name: "window-minimize-symbolic",
+      has_frame: false,
+      valign: Gtk.Align.CENTER,
+    });
+
+    
+    const closeButton = new Gtk.Button({
+      icon_name: "window-close-symbolic",
+      has_frame: false,
+      valign: Gtk.Align.CENTER,
+    });
+
+    
+    minimizeButton.connect("clicked", () => {
+      window.minimize();
+    });
+
+    closeButton.connect("clicked", () => {
+      window.close();
+    });
+
+    
+    windowControlsBox.append(minimizeButton);
+    windowControlsBox.append(closeButton);
+
+    
+    headerBox.append(logoTitleBox);
+    headerBox.append(windowControlsBox);
+
+    
     headerGroup.add(headerBox);
-    
-    // Add the header group as the first item in the page
+
     page.add(headerGroup);
-    
-    // Create the preferences page
+
     const locationGroup = new Adw.PreferencesGroup({
       title: _("Location Settings"),
       description: _("Configure location settings and units"),
@@ -206,10 +249,10 @@ export default class WeatherPreferences extends ExtensionPreferences {
     });
 
     locationEntry.connect("changed", () => {
-        const text = locationEntry.get_text().trim();
-        if (validateCoordinates(text)) {
-            settings.set_string("location", text);
-        }
+      const text = locationEntry.get_text().trim();
+      if (validateCoordinates(text)) {
+        settings.set_string("location", text);
+      }
     });
 
     locationEntry.connect("icon-release", (entry, pos) => {
@@ -244,17 +287,16 @@ export default class WeatherPreferences extends ExtensionPreferences {
     });
 
     const backgroundSwitch = new Gtk.Switch({
-        active: settings.get_boolean("fill-button-background") || true,
-        valign: Gtk.Align.CENTER,
+      active: settings.get_boolean("fill-button-background") || true,
+      valign: Gtk.Align.CENTER,
     });
 
     backgroundSwitch.connect("state-set", (widget, state) => {
-        settings.set_boolean("fill-button-background", state);
+      settings.set_boolean("fill-button-background", state);
     });
     backgroundRow.add_suffix(backgroundSwitch);
     styleGroup.add(backgroundRow);
 
-    // Add Show Location Label option
     const locationLabelRow = new Adw.ActionRow({
       title: _("Show Location Mode Label"),
       subtitle: _("Show or hide the AUTO/MANUAL indicator in the panel"),
@@ -273,10 +315,11 @@ export default class WeatherPreferences extends ExtensionPreferences {
     locationLabelRow.add_suffix(locationLabelSwitch);
     styleGroup.add(locationLabelRow);
 
-    // Add Weather Display Preview group
     const previewGroup = new Adw.PreferencesGroup({
       title: _("Weather Display Preview"),
-      description: _("Sample appearance in different conditions according to your GTK theme"),
+      description: _(
+        "Sample appearance in different conditions according to your GTK theme",
+      ),
     });
 
     const previewBox = new Gtk.Box({
@@ -288,30 +331,29 @@ export default class WeatherPreferences extends ExtensionPreferences {
       halign: Gtk.Align.CENTER,
     });
 
-    // Create weather preview samples
     const weatherTypes = [
       { icon: "weather-clear-symbolic", label: "Clear" },
       { icon: "weather-showers-symbolic", label: "Rain" },
       { icon: "weather-snow-symbolic", label: "Snow" },
-      { icon: "weather-storm-symbolic", label: "Storm" }
+      { icon: "weather-storm-symbolic", label: "Storm" },
     ];
 
-    weatherTypes.forEach(type => {
+    weatherTypes.forEach((type) => {
       const sampleBox = new Gtk.Box({
         orientation: Gtk.Orientation.VERTICAL,
         spacing: 6,
         halign: Gtk.Align.CENTER,
       });
-      
+
       const icon = new Gtk.Image({
         icon_name: type.icon,
         pixel_size: 48,
       });
-      
+
       const label = new Gtk.Label({
         label: type.label,
       });
-      
+
       sampleBox.append(icon);
       sampleBox.append(label);
       previewBox.append(sampleBox);
@@ -319,16 +361,13 @@ export default class WeatherPreferences extends ExtensionPreferences {
 
     previewGroup.add(previewBox);
     page.add(previewGroup);
-    
-    // Add all groups to the page (only once)
+
     page.add(locationGroup);
     page.add(unitsGroup);
     page.add(positionGroup);
     page.add(styleGroup);
     page.add(previewGroup);
-    
-    
-    // and use only this one:
+
     window.set_content(page);
   }
 }
