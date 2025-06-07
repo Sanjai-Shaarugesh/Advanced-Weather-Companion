@@ -164,6 +164,9 @@ const WeatherPanelButton = GObject.registerClass(
         style_class: "location-mode-label",
       });
 
+      // Apply the visibility based on settings
+      this._updateLocationLabelVisibility(this._ext._settings.get_boolean('show-location-label'));
+
       this._buttonBox = new St.BoxLayout({ style_class: "weather-button-box" });
       this._buttonBox.add_child(this._weatherIcon);
       this._buttonBox.add_child(this._weatherLabel);
@@ -213,6 +216,9 @@ const WeatherPanelButton = GObject.registerClass(
 
       this._ext._settings.connect('changed::location-mode', () => {
         this._updateLocationModeDisplay();
+      });
+      this._ext._settings.connect('changed::show-location-label', () => {
+        this._updateLocationLabelVisibility(this._ext._settings.get_boolean('show-location-label'));
       });
     }
 
@@ -352,6 +358,11 @@ const WeatherPanelButton = GObject.registerClass(
      */
     _updateBackground(fillBackground) {
         this._buttonBox.set_style_class_name(fillBackground ? "weather-button-box-filled" : "weather-button-box");
+    }
+
+    _updateLocationLabelVisibility(show) {
+      this._locationModeLabel.visible = show;
+      this._locationIcon.visible = show;  // Also hide/show the GPS icon
     }
 
     updateWeather(data, useFahrenheit) {
@@ -552,6 +563,14 @@ const WeatherPanelButton = GObject.registerClass(
                   "changed::location-mode",
                   () => this._detectLocationAndLoadWeather()
                 );
+              this._settings.connect(
+                "changed::show-location-label",
+                () => {
+                  if (this._panelButton) {
+                    this._panelButton._updateLocationLabelVisibility(this._settings.get_boolean('show-location-label'));
+                  }
+                }
+              );
               
               global.weatherExtensionInstance = this;
           

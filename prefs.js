@@ -12,7 +12,40 @@ export default class WeatherPreferences extends ExtensionPreferences {
     const settings = this.getSettings(
       "org.gnome.shell.extensions.advanced-weather",
     );
-
+    
+    // Create header with logo
+    const headerBox = new Gtk.Box({
+      orientation: Gtk.Orientation.VERTICAL,
+      margin_top: 24,
+      margin_bottom: 24,
+      halign: Gtk.Align.CENTER,
+    });
+    
+    // Create image using Gtk.Picture (for GTK4)
+    const logo = new Gtk.Picture({
+      file: Gio.File.new_for_path(`${this.path}/icons/weather-logo.png`),
+      content_fit: Gtk.ContentFit.CONTAIN,
+      height_request: 100,
+    });
+    
+    const title = new Gtk.Label({
+      label: '<span size="large" weight="bold">Advanced Weather</span>',
+      use_markup: true,
+      margin_top: 12,
+    });
+    
+    headerBox.append(logo);
+    headerBox.append(title);
+    
+    // Main content container to hold both header and preferences
+    const mainBox = new Gtk.Box({
+      orientation: Gtk.Orientation.VERTICAL,
+    });
+    
+    // Add the header to the main container
+    mainBox.append(headerBox);
+    
+    // Create the preferences page
     const page = new Adw.PreferencesPage();
 
     const locationGroup = new Adw.PreferencesGroup({
@@ -219,10 +252,83 @@ export default class WeatherPreferences extends ExtensionPreferences {
     backgroundRow.add_suffix(backgroundSwitch);
     styleGroup.add(backgroundRow);
 
+    // Add Show Location Label option
+    const locationLabelRow = new Adw.ActionRow({
+      title: _("Show Location Mode Label"),
+      subtitle: _("Show or hide the AUTO/MANUAL indicator in the panel"),
+    });
+
+    const locationLabelSwitch = new Gtk.Switch({
+      active: settings.get_boolean("show-location-label") || false,
+      valign: Gtk.Align.CENTER,
+    });
+
+    locationLabelSwitch.connect("state-set", (widget, state) => {
+      settings.set_boolean("show-location-label", state);
+      return false;
+    });
+
+    locationLabelRow.add_suffix(locationLabelSwitch);
+    styleGroup.add(locationLabelRow);
+
     page.add(locationGroup);
     page.add(unitsGroup);
     page.add(positionGroup);
     page.add(styleGroup);
     window.add(page);
+
+    // Add Weather Display Preview group
+    const previewGroup = new Adw.PreferencesGroup({
+      title: _("Weather Display Preview"),
+      description: _("Sample appearance in different conditions"),
+    });
+
+    const previewBox = new Gtk.Box({
+      orientation: Gtk.Orientation.HORIZONTAL,
+      spacing: 24,
+      margin_top: 12,
+      margin_bottom: 12,
+      homogeneous: true,
+      halign: Gtk.Align.CENTER,
+    });
+
+    // Create weather preview samples
+    const weatherTypes = [
+      { icon: "weather-clear-symbolic", label: "Clear" },
+      { icon: "weather-showers-symbolic", label: "Rain" },
+      { icon: "weather-snow-symbolic", label: "Snow" },
+      { icon: "weather-storm-symbolic", label: "Storm" }
+    ];
+
+    weatherTypes.forEach(type => {
+      const sampleBox = new Gtk.Box({
+        orientation: Gtk.Orientation.VERTICAL,
+        spacing: 6,
+        halign: Gtk.Align.CENTER,
+      });
+      
+      const icon = new Gtk.Image({
+        icon_name: type.icon,
+        pixel_size: 48,
+      });
+      
+      const label = new Gtk.Label({
+        label: type.label,
+      });
+      
+      sampleBox.append(icon);
+      sampleBox.append(label);
+      previewBox.append(sampleBox);
+    });
+
+    previewGroup.add(previewBox);
+    page.add(previewGroup);
+    window.add(page);
+
+    // Add the page to the main container (ONCE, at the end)
+    mainBox.append(page);
+    
+    // Set the main container as the window content
+    window.set_content(mainBox);
   }
 }

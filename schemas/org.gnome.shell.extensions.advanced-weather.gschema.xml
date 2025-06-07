@@ -1,38 +1,39 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<schemalist gettext-domain="advanced-weather">
-    <schema id="org.gnome.shell.extensions.advanced-weather" path="/org/gnome/shell/extensions/advanced-weather/">
-        <key type="s" name="location-mode">
-            <default>'auto'</default>
-            <summary>Location Detection Mode</summary>
-            <description>Choose between automatic location detection or manual setup</description>
-        </key>
-        
-        <key type="s" name="location">
-            <default>''</default>
-            <summary>Manual Location</summary>
-            <description>Manually set location by coordinates or city name</description>
-        </key>
-        
-        <key type="b" name="use-fahrenheit">
-            <default>false</default>
-            <summary>Temperature Unit</summary>
-            <description>Use Fahrenheit instead of Celsius</description>
-        </key>
-        <key name="wind-speed-unit" type="s">
-            <default>'kmh'</default>
-            <summary>Wind speed unit</summary>
-            <description>Unit to display wind speed (kmh, mph, ms, knots)</description>
-        </key>
-        <key name="panel-position" type="s">
-            <default>'right'</default>
-            <summary>Panel position</summary>
-            <description>Position in the panel (left, center, right)</description>
-        </key>
-      
-        <key name="fill-button-background" type="b">
-            <default>true</default>
-            <summary>Draw background in panel</summary>
-        </key>
-    </schema>
+<schemalist>
+  <schema id="org.gnome.shell.extensions.advanced-weather" path="/org/gnome/shell/extensions/advanced-weather/">
+    <key name="location-mode" type="s">
+      <default>'auto'</default>
+      <summary>Location Detection Mode</summary>
+      <description>Choose between automatic location detection or manual setup</description>
+    </key>
+    <key name="location" type="s">
+      <default>''</default>
+      <summary>Manual Location</summary>
+      <description>Manually set location by coordinates or city name</description>
+    </key>
+    <key name="use-fahrenheit" type="b">
+      <default>false</default>
+      <summary>Temperature Unit</summary>
+      <description>Use Fahrenheit instead of Celsius</description>
+    </key>
+    <key name="wind-speed-unit" type="s">
+      <default>'kmh'</default>
+      <summary>Wind speed unit</summary>
+      <description>Unit to display wind speed (kmh, mph, ms, knots)</description>
+    </key>
+    <key name="panel-position" type="s">
+      <default>'right'</default>
+      <summary>Panel position</summary>
+      <description>Position in the panel (left, center, right)</description>
+    </key>
+    <key name="fill-button-background" type="b">
+      <default>true</default>
+      <summary>Draw background in panel</summary>
+      <description>Draw background in panel</description>
+    </key>
+    <key name="show-location-label" type="b">
+      <default>true</default>
+      <summary>Show location mode label</summary>
+      <description>Show AUTO/MANUAL label in the panel</description>
+    </key>
+  </schema>
 </schemalist>
-  
