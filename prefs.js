@@ -180,6 +180,38 @@ export default class WeatherPreferences extends ExtensionPreferences {
     windUnitRow.add_suffix(windUnitCombo);
     unitsGroup.add(windUnitRow);
 
+    const timeFormatRow = new Adw.ActionRow({
+      title: _("Time Format"),
+      subtitle: _("Choose between 12-hour (1:00 PM) or 24-hour (13:00) format"),
+    });
+
+    const timeFormatSwitch = new Gtk.Switch({
+      active: settings.get_boolean("use-12hour-format") || false,
+      valign: Gtk.Align.CENTER,
+    });
+
+    // Add labels to clarify what each position means
+    const timeFormatBox = new Gtk.Box({
+      orientation: Gtk.Orientation.HORIZONTAL,
+      spacing: 8,
+    });
+
+    const hourFormatLabel = new Gtk.Label({
+      label: timeFormatSwitch.active ? "12h" : "24h",
+      css_classes: ["caption"],
+    });
+
+    timeFormatSwitch.connect("state-set", (widget, state) => {
+      settings.set_boolean("use-12hour-format", state);
+      hourFormatLabel.set_label(state ? "12h" : "24h");
+      return false;
+    });
+
+    timeFormatBox.append(hourFormatLabel);
+    timeFormatBox.append(timeFormatSwitch);
+    timeFormatRow.add_suffix(timeFormatBox);
+    unitsGroup.add(timeFormatRow);
+
     const positionGroup = new Adw.PreferencesGroup({
       title: _("Panel Position"),
       description: _("Configure where the weather indicator appears"),

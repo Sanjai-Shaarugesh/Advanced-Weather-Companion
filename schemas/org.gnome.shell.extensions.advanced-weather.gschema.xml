@@ -35,5 +35,10 @@
       <summary>Show location mode label</summary>
       <description>Show AUTO/MANUAL label in the panel</description>
     </key>
+    <key name="use-12hour-format" type="b">
+      <default>false</default>
+      <summary>Use 12-hour time format</summary>
+      <description>Whether to display time in 12-hour format (AM/PM) instead of 24-hour format</description>
+    </key>
   </schema>
 </schemalist>
