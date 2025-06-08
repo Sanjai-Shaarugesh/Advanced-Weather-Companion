@@ -203,7 +203,7 @@ export default class WeatherPreferences extends ExtensionPreferences {
 
     timeFormatSwitch.connect("state-set", (widget, state) => {
       settings.set_boolean("use-12hour-format", state);
-      hourFormatLabel.set_label(state ? "12h" : "24h");
+      hourFormatLabel.set_label(state ? "24h" : "12h");
       return false;
     });
 
