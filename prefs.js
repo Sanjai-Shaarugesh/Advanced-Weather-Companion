@@ -190,7 +190,7 @@ export default class WeatherPreferences extends ExtensionPreferences {
       valign: Gtk.Align.CENTER,
     });
 
-    // Add labels to clarify what each position means
+    
     const timeFormatBox = new Gtk.Box({
       orientation: Gtk.Orientation.HORIZONTAL,
       spacing: 8,

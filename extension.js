@@ -706,6 +706,32 @@ export default class WeatherExtension extends Extension {
   _reloadWeatherDisplay() {
     if (this._lastWeatherData) {
       const useFahrenheit = this._settings.get_boolean("use-fahrenheit");
+      const use12HourFormat = this._settings.get_boolean("use-12hour-format");
+      
+     
+      if (this._lastWeatherData.hourly && this._lastWeatherData._rawHourlyData) {
+      
+        const formatTime = (timeStr) => {
+          const [hours, minutes] = timeStr.split(':').map(Number);
+          
+          if (use12HourFormat) {
+            const period = hours >= 12 ? 'PM' : 'AM';
+            const hours12 = hours % 12 || 12; 
+            return `${hours12}:${minutes.toString().padStart(2, '0')} ${period}`;
+          } else {
+            return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+          }
+        };
+        
+        
+        this._lastWeatherData.hourly = this._lastWeatherData._rawHourlyData.map(item => ({
+          time: formatTime(item.rawTime.split("T")[1].slice(0, 5)),
+          temperature: item.temperature,
+          weathercode: item.weathercode
+        }));
+      }
+      
+      
       this._panelButton.updateWeather(this._lastWeatherData, useFahrenheit);
     }
   }
@@ -897,6 +923,8 @@ export default class WeatherExtension extends Extension {
               ...response.current_weather,
               temperature: response.current_weather.temperature.toFixed(1),
             },
+           
+            _rawHourlyData: reorderedHourly,  
             hourly: reorderedHourly.map(item => ({
               time: item.formattedTime,
               temperature: item.temperature,
