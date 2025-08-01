@@ -1,44 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
   <schema id="org.gnome.shell.extensions.advanced-weather" path="/org/gnome/shell/extensions/advanced-weather/">
-    <key name="location-mode" type="s">
-      <default>'auto'</default>
-      <summary>Location Detection Mode</summary>
-      <description>Choose between automatic location detection or manual setup</description>
-    </key>
-    <key name="location" type="s">
-      <default>''</default>
-      <summary>Manual Location</summary>
-      <description>Manually set location by coordinates or city name</description>
-    </key>
+
+    <!-- General Settings -->
     <key name="use-fahrenheit" type="b">
       <default>false</default>
-      <summary>Temperature Unit</summary>
-      <description>Use Fahrenheit instead of Celsius</description>
+      <summary>Use Fahrenheit</summary>
+      <description>Switch between Celsius and Fahrenheit for temperature display.</description>
     </key>
-    <key name="wind-speed-unit" type="s">
-      <default>'kmh'</default>
-      <summary>Wind speed unit</summary>
-      <description>Unit to display wind speed (kmh, mph, ms, knots)</description>
-    </key>
-    <key name="panel-position" type="s">
-      <default>'right'</default>
-      <summary>Panel position</summary>
-      <description>Position in the panel (left, center, right)</description>
-    </key>
-    <key name="fill-button-background" type="b">
-      <default>true</default>
-      <summary>Draw background in panel</summary>
-      <description>Draw background in panel</description>
-    </key>
-    <key name="show-location-label" type="b">
-      <default>true</default>
-      <summary>Show location mode label</summary>
-      <description>Show AUTO/MANUAL label in the panel</description>
-    </key>
+
     <key name="use-12hour-format" type="b">
       <default>false</default>
-      <summary>Use 12-hour time format</summary>
-      <description>Whether to display time in 12-hour format (AM/PM) instead of 24-hour format</description>
+      <summary>Use 12-Hour Format</summary>
+      <description>Display time in 12-hour format with AM/PM.</description>
     </key>
+
+    <key name="update-interval" type="i">
+      <default>10</default>
+      <summary>Update Interval</summary>
+      <description>How often to refresh weather data, in minutes.</description>
+    </key>
+
+    <key name="show-humidity" type="b">
+      <default>true</default>
+      <summary>Show Humidity</summary>
+      <description>Display relative humidity in weather details.</description>
+    </key>
+
+    <!-- Location Settings -->
+    <key name="location-mode" type="s">
+      <default>'auto'</default>
+      <summary>Location Mode</summary>
+      <description>How to detect location: 'auto' or 'manual'.</description>
+    </key>
+
+    <key name="location" type="s">
+      <default>''</default>
+      <summary>Manual Location Coordinates</summary>
+      <description>Latitude and longitude (comma separated) when in manual mode.</description>
+    </key>
+
+    <key name="location-name" type="s">
+      <default>''</default>
+      <summary>Manual Location Name</summary>
+      <description>Display name of the manually set location.</description>
+    </key>
+
+    <!-- Appearance Settings -->
+    <key name="panel-position" type="s">
+      <default>'right'</default>
+      <summary>Panel Position</summary>
+      <description>Where to place the weather widget on the GNOME panel: 'left', 'center', or 'right'.</description>
+    </key>
+
+    <key name="panel-position-index" type="i">
+      <default>2</default>
+      <summary>Panel position index</summary>
+      <description>
+        An integer index representing the panel position:
+        0 = Left, 1 = Center, 2 = Right.
+      </description>
+    </key>
+
+
+    <key name="show-text-in-panel" type="b">
+      <default>true</default>
+      <summary>Show Temperature Text</summary>
+      <description>Display the temperature as text next to the icon in the panel.</description>
+    </key>
+
+    <key name="show-location-label" type="b">
+      <default>false</default>
+      <summary>Show Location Indicator</summary>
+      <description>Display location mode indicator with GPS icon in the panel.</description>
+    </key>
+
+    <key name="panel-icon-size" type="i">
+      <default>16</default>
+      <summary>Panel Icon Size</summary>
+      <description>Size of the weather icon in the GNOME panel in pixels.</description>
+    </key>
+
+    <key name="panel-text-size" type="i">
+      <default>13</default>
+      <summary>Panel Text Size</summary>
+      <description>Size of the temperature text in the GNOME panel in pixels.</description>
+    </key>
+
+
+
+
   </schema>
 </schemalist>
