@@ -16,10 +16,8 @@ export default class WeatherPreferences extends ExtensionPreferences {
     const settings = this.getSettings("org.gnome.shell.extensions.advanced-weather");
     this._session = new Soup.Session();
 
-    // Enhanced session settings for better API compatibility
+    // Use same session settings as extension.js
     this._session.timeout = 15;
-    this._session.max_conns = 10;
-    this._session.max_conns_per_host = 5;
 
     window.set_title(_("Advanced Weather Extension"));
     window.set_default_size(700, 650);
@@ -583,59 +581,36 @@ export default class WeatherPreferences extends ExtensionPreferences {
     this._searchButton.set_sensitive(false);
 
     try {
-      const encodedQuery = encodeURIComponent(query);
-      const url = `${GEOCODING_URL}?name=${encodedQuery}&count=10&language=en&format=json`;
+      // Use the exact same approach as extension.js
+      const url = `${GEOCODING_URL}?name=${encodeURIComponent(query)}&count=10&language=en&format=json`;
 
       console.log(`Searching for location: ${query}`);
-      console.log(`API URL: ${url}`);
 
       const message = Soup.Message.new("GET", url);
 
-      // Set proper headers for better compatibility
-      message.request_headers.replace('User-Agent', 'Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0');
-      message.request_headers.replace('Accept', 'application/json, text/plain, */*');
-      message.request_headers.replace('Accept-Language', 'en-US,en;q=0.5');
-      message.request_headers.replace('Accept-Encoding', 'gzip, deflate, br');
-      message.request_headers.replace('Connection', 'keep-alive');
-      message.request_headers.replace('Upgrade-Insecure-Requests', '1');
+      // Use the same headers as extension.js
+      message.request_headers.append('User-Agent', 'GNOME-Weather-Extension/1.0');
 
-      // Use the simpler send_and_read_async method
-      const cancellable = new Gio.Cancellable();
-      const timeoutId = GLib.timeout_add_seconds(GLib.PRIORITY_DEFAULT, 15, () => {
-        console.log("Search request timeout");
-        cancellable.cancel();
-        return GLib.SOURCE_REMOVE;
+      // Use promise-based approach for better error handling
+      const bytes = await new Promise((resolve, reject) => {
+        this._session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null, (session, result) => {
+          try {
+            const bytes = session.send_and_read_finish(result);
+            resolve(bytes);
+          } catch (error) {
+            reject(error);
+          }
+        });
       });
 
-      const bytes = await this._session.send_and_read_async(
-        message,
-        GLib.PRIORITY_DEFAULT,
-        cancellable
-      );
-
-      GLib.source_remove(timeoutId);
-
-      console.log(`Response status: ${message.status_code}`);
-
       if (message.status_code !== 200) {
-        throw new Error(`HTTP ${message.status_code}: ${message.reason_phrase || 'Request failed'}`);
+        throw new Error(`HTTP ${message.status_code}: ${message.reason_phrase}`);
       }
 
       const responseText = new TextDecoder().decode(bytes.get_data());
-      console.log(`Response received, length: ${responseText.length}`);
+      console.log('Raw response:', responseText);
 
-      if (!responseText.trim()) {
-        throw new Error("Empty response from server");
-      }
-
-      let response;
-      try {
-        response = JSON.parse(responseText);
-      } catch (parseError) {
-        console.error("JSON Parse Error:", parseError);
-        throw new Error("Invalid response format");
-      }
-
+      const response = JSON.parse(responseText);
       console.log('Parsed response:', response);
 
       if (response.results && response.results.length > 0) {
@@ -649,19 +624,17 @@ export default class WeatherPreferences extends ExtensionPreferences {
     } catch (error) {
       console.error("Location search failed:", error);
 
-      // Only show error if it's not a cancellation and search is still in progress
-      if (!error.message.includes('cancelled') && this._searchInProgress) {
-        let errorMessage;
-        if (error.message.includes('timeout')) {
+      // Only show error if search is still in progress
+      if (this._searchInProgress) {
+        // Provide more specific error messages
+        let errorMessage = _("Search failed. Please try again.");
+
+        if (error.message.includes('HTTP')) {
+          errorMessage = _("Unable to connect to location service. Check your internet connection.");
+        } else if (error.message.includes('JSON')) {
+          errorMessage = _("Invalid response from location service. Please try again.");
+        } else if (error.message.includes('timeout')) {
           errorMessage = _("Search timed out. Please try again.");
-        } else if (error.message.includes('network') || error.message.includes('resolve')) {
-          errorMessage = _("Network error. Check your internet connection.");
-        } else if (error.message.includes('HTTP 4')) {
-          errorMessage = _("Search service unavailable. Try again later.");
-        } else if (error.message.includes('HTTP 5')) {
-          errorMessage = _("Server error. Please try again.");
-        } else {
-          errorMessage = _("Search failed. Please try again.");
         }
 
         this._showSearchError(errorMessage);
@@ -673,11 +646,15 @@ export default class WeatherPreferences extends ExtensionPreferences {
     }
   }
 
+    // Prevent multiple concurrent searches
+
+
   _showSearchResults(results) {
     this._clearSearchResults();
     this._searchResultsGroup.set_visible(true);
 
     results.forEach((result, index) => {
+      // Use the same format as extension.js
       const locationName = result.admin1
         ? `${result.name}, ${result.admin1}, ${result.country}`
         : `${result.name}, ${result.country}`;
@@ -685,8 +662,8 @@ export default class WeatherPreferences extends ExtensionPreferences {
       const coordinates = `${result.latitude.toFixed(4)}, ${result.longitude.toFixed(4)}`;
 
       const resultRow = new Adw.ActionRow({
-        title: locationName,
-        subtitle: `📍 ${coordinates}`,
+        title: `📍 ${locationName}`,
+        subtitle: `${coordinates}`,
         activatable: true
       });
 
@@ -741,6 +718,24 @@ export default class WeatherPreferences extends ExtensionPreferences {
     noResultsRow.add_prefix(warningIcon);
     this._searchResultsGroup.add(noResultsRow);
     this._searchResultsGroup.set_visible(true);
+  }
+
+  _clearSearchResults() {
+    // Don't clear if we don't have the results group
+    if (!this._searchResultsGroup) {
+      return;
+    }
+
+    // Remove all child rows
+    let child = this._searchResultsGroup.get_first_child();
+    while (child) {
+      const next = child.get_next_sibling();
+      this._searchResultsGroup.remove(child);
+      child = next;
+    }
+
+    // Hide the results group
+    this._searchResultsGroup.set_visible(false);
   }
 
   _showSearchError(message) {
