@@ -86,9 +86,5 @@
       <summary>Panel Text Size</summary>
       <description>Size of the temperature text in the GNOME panel in pixels.</description>
     </key>
-
-
-
-
-  </schema>
+ </schema>
 </schemalist>

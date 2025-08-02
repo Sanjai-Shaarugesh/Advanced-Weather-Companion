@@ -71,12 +71,19 @@ const WeatherPanelButton = GObject.registerClass(
         style_class: "weather-icon"
       });
 
-      // Weather text
+      // Weather text with dynamic sizing
       this._weatherLabel = new St.Label({
         text: "…",
         y_align: Clutter.ActorAlign.CENTER,
-        style_class: "weather-label"
+        style_class: "weather-label",
+        style: this._getTextStyle()
       });
+
+      this._locationContainer = new St.BoxLayout({
+              vertical: false,
+              style_class: "location-container",
+              visible: this._ext._settings.get_boolean("show-location-label")
+            });
 
       // Location indicator
       this._locationIcon = new St.Icon({
@@ -111,6 +118,11 @@ const WeatherPanelButton = GObject.registerClass(
       this._startUpdateTimer();
     }
 
+    _getTextStyle() {
+      const textSize = this._ext._settings.get_int("panel-text-size") || 13;
+      return `font-size: ${textSize}px;`;
+    }
+
     _getLocationModeText() {
       const mode = this._ext._settings.get_string("location-mode") || "auto";
       return mode === "auto" ? "AUTO" : "MANUAL";
@@ -131,6 +143,12 @@ const WeatherPanelButton = GObject.registerClass(
         this._ext._settings.connect("changed::panel-icon-size", () => {
           this._weatherIcon.icon_size = this._ext._settings.get_int("panel-icon-size");
         }),
+        this._ext._settings.connect("changed::panel-text-size", () => {
+          this._updateTextSize();
+        }),
+        this._ext._settings.connect("changed::show-humidity", () => {
+          this._ext._detectLocationAndLoadWeather();
+        }),
         this._ext._settings.connect("changed::use-fahrenheit", () => {
           this._ext._detectLocationAndLoadWeather();
         }),
@@ -138,6 +156,12 @@ const WeatherPanelButton = GObject.registerClass(
           this._ext._detectLocationAndLoadWeather();
         })
       ];
+    }
+
+    _updateTextSize() {
+      if (this._weatherLabel) {
+        this._weatherLabel.set_style(this._getTextStyle());
+      }
     }
 
     _updateLocationVisibility() {
@@ -226,6 +250,8 @@ const WeatherPanelButton = GObject.registerClass(
       this.menu.addMenuItem(this._settingsItem);
     }
 
+    // In the _setupLocationInfo() method, update the search section:
+
     _setupLocationInfo() {
       // Current location display
       this._currentLocationItem = new PopupMenu.PopupMenuItem("Current: Loading...", {
@@ -277,11 +303,17 @@ const WeatherPanelButton = GObject.registerClass(
 
       this._searchButton = new St.Button({
         label: "Search",
-        style_class: "search-button-minimal"
+        style_class: "search-button-panel"
+      });
+
+      this._clearButton = new St.Button({
+        label: "Clear",
+        style_class: "clear-button-panel"
       });
 
       inputBox.add_child(this._searchEntry);
       inputBox.add_child(this._searchButton);
+      inputBox.add_child(this._clearButton);
       searchBox.add_child(inputBox);
       searchItem.add_child(searchBox);
 
@@ -292,6 +324,9 @@ const WeatherPanelButton = GObject.registerClass(
       this._searchButton.connect("clicked", () => this._searchLocation());
       this._searchEntry.clutter_text.connect("activate", () => this._searchLocation());
 
+      // Connect clear functionality
+      this._clearButton.connect("clicked", () => this._clearSearch());
+
       // Add items to location info menu
       this._locationInfoSection.menu.addMenuItem(this._currentLocationItem);
       this._locationInfoSection.menu.addMenuItem(this._coordinatesItem);
@@ -300,6 +335,13 @@ const WeatherPanelButton = GObject.registerClass(
       this._locationInfoSection.menu.addMenuItem(manualItem);
       this._locationInfoSection.menu.addMenuItem(searchItem);
       this._locationInfoSection.menu.addMenuItem(this._searchResults);
+    }
+
+    // Add this new method to handle clearing the search:
+
+    _clearSearch() {
+      this._searchEntry.set_text("");
+      this._searchResults.removeAll();
     }
 
     async _searchLocation() {
@@ -370,6 +412,7 @@ const WeatherPanelButton = GObject.registerClass(
 
     _updateLocationIndicator() {
       const mode = this._ext._settings.get_string("location-mode") || "auto";
+
       this._locationDot.text = this._getLocationModeText();
       this._updateLocationInfo();
     }
@@ -523,6 +566,7 @@ const WeatherPanelButton = GObject.registerClass(
       let currentText = `🌡️ ${temp}${unit} • ${condition.name}\n`;
       currentText += `💨 ${windSpeed} km/h`;
 
+      // Check if humidity should be shown
       if (this._ext._settings.get_boolean("show-humidity")) {
         currentText += ` • 💧 ${current.relative_humidity_2m}%`;
       }

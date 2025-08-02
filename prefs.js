@@ -4,12 +4,14 @@ import Gio from "gi://Gio";
 import GObject from "gi://GObject";
 import GLib from "gi://GLib";
 import Soup from "gi://Soup";
+import GdkPixbuf from "gi://GdkPixbuf";
 import {
   ExtensionPreferences,
   gettext as _,
 } from "resource:///org/gnome/Shell/Extensions/js/extensions/prefs.js";
 
 const GEOCODING_URL = "https://geocoding-api.open-meteo.com/v1/search";
+const REVERSE_GEOCODING_URL = "https://api.bigdatacloud.net/data/reverse-geocode-client";
 
 export default class WeatherPreferences extends ExtensionPreferences {
   fillPreferencesWindow(window) {
@@ -146,7 +148,7 @@ export default class WeatherPreferences extends ExtensionPreferences {
     });
 
     const gpsIcon = new Gtk.Image({
-      icon_name: currentMode === "auto" ? "find-location-symbolic" : "mark-location-symbolic",
+      icon_name: currentMode === "auto" ? "location-services-active-symbolic" : "location-services-disabled-symbolic",
       pixel_size: 16
     });
     currentLocationRow.add_prefix(gpsIcon);
@@ -160,7 +162,6 @@ export default class WeatherPreferences extends ExtensionPreferences {
     });
     refreshButton.connect("clicked", () => {
       this._updateCurrentLocationDisplay();
-      // Don't show toast for location refresh as it's just updating display
       console.log("Location display refreshed");
     });
     currentLocationRow.add_suffix(refreshButton);
@@ -170,7 +171,7 @@ export default class WeatherPreferences extends ExtensionPreferences {
 
     const searchGroup = new Adw.PreferencesGroup({
       title: _("Manual Location Search"),
-      description: _("Search and select your location manually"),
+      description: _("Search by city name or coordinates (latitude, longitude)"),
       sensitive: currentMode === "manual"
     });
 
@@ -179,10 +180,11 @@ export default class WeatherPreferences extends ExtensionPreferences {
       text: "",
       show_apply_button: true
     });
-    searchEntryRow.set_input_hints(Gtk.InputHints.LOWERCASE);
+    // Allow all input types for coordinates
+    searchEntryRow.set_input_hints(Gtk.InputHints.NONE);
 
     const searchButton = new Gtk.Button({
-      icon_name: "system-search-symbolic",
+      icon_name: "edit-find-symbolic",
       valign: Gtk.Align.CENTER,
       tooltip_text: _("Search for location"),
       css_classes: ["suggested-action"]
@@ -191,11 +193,25 @@ export default class WeatherPreferences extends ExtensionPreferences {
     const clearButton = new Gtk.Button({
       icon_name: "edit-clear-symbolic",
       valign: Gtk.Align.CENTER,
-      tooltip_text: _("Clear search")
+      tooltip_text: _("Clear search"),
+      css_classes: ["flat"]
     });
 
     searchEntryRow.add_suffix(searchButton);
     searchEntryRow.add_suffix(clearButton);
+
+    // Add help text for coordinate format
+    const helpRow = new Adw.ActionRow({
+      title: _("Search Examples"),
+      subtitle: _("City names: 'London', 'New York', 'Tokyo'\nCoordinates: '40.7128, -74.0060' or '40.7128 -74.0060'"),
+      activatable: false,
+      sensitive: false
+    });
+    const helpIcon = new Gtk.Image({
+      icon_name: "dialog-information-symbolic",
+      pixel_size: 16
+    });
+    helpRow.add_prefix(helpIcon);
 
     this._searchResultsGroup = new Adw.PreferencesGroup({
       title: _("Search Results"),
@@ -216,11 +232,10 @@ export default class WeatherPreferences extends ExtensionPreferences {
       this._updateLocationSensitivity(mode);
       this._updateCurrentLocationDisplay();
       // Update icon based on mode
-      this._gpsIcon.set_from_icon_name(mode === "auto" ? "find-location-symbolic" : "mark-location-symbolic");
+      this._gpsIcon.set_from_icon_name(mode === "auto" ? "location-services-active-symbolic" : "location-services-disabled-symbolic");
     });
 
     searchButton.connect("clicked", () => {
-      // Clear any existing results before starting new search
       this._clearSearchResults();
       this._performLocationSearch();
     });
@@ -237,13 +252,18 @@ export default class WeatherPreferences extends ExtensionPreferences {
       this._clearSearchResults();
     });
 
-    // Add real-time search validation
+    // Enhanced search validation
     searchEntryRow.connect("notify::text", () => {
       const query = searchEntryRow.get_text().trim();
-      searchButton.set_sensitive(query.length >= 2);
+      const coordPattern = /^(-?\d+\.?\d*)[,\s]+(-?\d+\.?\d*)$/;
+      const isCoordinates = coordPattern.test(query);
+
+      // Enable search for valid coordinates or text queries >= 2 chars
+      searchButton.set_sensitive(isCoordinates || query.length >= 2);
     });
 
     searchGroup.add(searchEntryRow);
+    searchGroup.add(helpRow);
     page.add(locationGroup);
     page.add(searchGroup);
     page.add(this._searchResultsGroup);
@@ -313,7 +333,7 @@ export default class WeatherPreferences extends ExtensionPreferences {
       subtitle: _("Display location mode indicator in panel")
     });
     const locationModeIcon = new Gtk.Image({
-      icon_name: "find-location-symbolic",
+      icon_name: "location-services-active-symbolic",
       pixel_size: 16
     });
     showLocationRow.add_prefix(locationModeIcon);
@@ -438,15 +458,12 @@ export default class WeatherPreferences extends ExtensionPreferences {
       subtitle: _("Source code, issues, and contributions"),
       activatable: true
     });
-    const githubIcon = new Gtk.Image({
-      icon_name: "computer-symbolic",
-      pixel_size: 20
-    });
+
+    // Create custom GitHub icon
+    const githubIcon = this._createGitHubIcon();
     githubRow.add_prefix(githubIcon);
-    const externalIcon = new Gtk.Image({
-      icon_name: "adw-external-link-symbolic",
-      pixel_size: 16
-    });
+
+    const externalIcon = new Gtk.Image({ icon_name: "adw-external-link-symbolic", pixel_size: 16 });
     githubRow.add_suffix(externalIcon);
     githubRow.connect("activated", () => {
       try {
@@ -466,10 +483,7 @@ export default class WeatherPreferences extends ExtensionPreferences {
       pixel_size: 20
     });
     sponsorRow.add_prefix(heartIcon);
-    const sponsorIcon = new Gtk.Image({
-      icon_name: "adw-external-link-symbolic",
-      pixel_size: 16
-    });
+    const sponsorIcon = new Gtk.Image({ icon_name: "adw-external-link-symbolic", pixel_size: 16 });
     sponsorRow.add_suffix(sponsorIcon);
     sponsorRow.connect("activated", () => {
       try {
@@ -560,6 +574,64 @@ export default class WeatherPreferences extends ExtensionPreferences {
     return page;
   }
 
+  // Create custom GitHub icon from SVG
+  _createGitHubIcon() {
+    try {
+      // First try to load from file
+      const githubIconPath = `${this.dir.get_path()}/icons/github.svg`;
+      const file = Gio.File.new_for_path(githubIconPath);
+
+      if (file.query_exists(null)) {
+        return new Gtk.Image({
+          file: githubIconPath,
+          pixel_size: 20
+        });
+      }
+    } catch (error) {
+      console.log("GitHub icon file not found, creating from SVG data");
+    }
+
+    // If file doesn't exist, create from SVG data
+    try {
+      const githubSvg = `<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+</svg>`;
+
+      // Create a temporary file for the SVG
+      const tempDir = GLib.get_tmp_dir();
+      const tempPath = `${tempDir}/github-icon-${Date.now()}.svg`;
+      const tempFile = Gio.File.new_for_path(tempPath);
+
+      tempFile.replace_contents(githubSvg, null, false, Gio.FileCreateFlags.NONE, null);
+
+      const githubIcon = new Gtk.Image({
+        file: tempPath,
+        pixel_size: 20
+      });
+
+      // Clean up temp file after a short delay
+      GLib.timeout_add(GLib.PRIORITY_DEFAULT, 1000, () => {
+        try {
+          tempFile.delete(null);
+        } catch (e) {
+          // Ignore cleanup errors
+        }
+        return GLib.SOURCE_REMOVE;
+      });
+
+      return githubIcon;
+    } catch (error) {
+      console.error("Failed to create GitHub icon:", error);
+      // Fallback to generic icon
+      return new Gtk.Image({
+        icon_name: "software-properties-symbolic",
+        pixel_size: 20
+      });
+    }
+  }
+
+  // Enhanced location search with coordinate support
   async _performLocationSearch() {
     const query = this._searchEntryRow.get_text().trim();
 
@@ -581,44 +653,26 @@ export default class WeatherPreferences extends ExtensionPreferences {
     this._searchButton.set_sensitive(false);
 
     try {
-      // Use the exact same approach as extension.js
-      const url = `${GEOCODING_URL}?name=${encodeURIComponent(query)}&count=10&language=en&format=json`;
+      // Check if query looks like coordinates (lat,lon or lat lon)
+      const coordPattern = /^(-?\d+\.?\d*)[,\s]+(-?\d+\.?\d*)$/;
+      const coordMatch = query.match(coordPattern);
 
-      console.log(`Searching for location: ${query}`);
+      if (coordMatch) {
+        // Handle coordinate search
+        const lat = parseFloat(coordMatch[1]);
+        const lon = parseFloat(coordMatch[2]);
 
-      const message = Soup.Message.new("GET", url);
-
-      // Use the same headers as extension.js
-      message.request_headers.append('User-Agent', 'GNOME-Weather-Extension/1.0');
-
-      // Use promise-based approach for better error handling
-      const bytes = await new Promise((resolve, reject) => {
-        this._session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null, (session, result) => {
-          try {
-            const bytes = session.send_and_read_finish(result);
-            resolve(bytes);
-          } catch (error) {
-            reject(error);
-          }
-        });
-      });
-
-      if (message.status_code !== 200) {
-        throw new Error(`HTTP ${message.status_code}: ${message.reason_phrase}`);
-      }
-
-      const responseText = new TextDecoder().decode(bytes.get_data());
-      console.log('Raw response:', responseText);
-
-      const response = JSON.parse(responseText);
-      console.log('Parsed response:', response);
-
-      if (response.results && response.results.length > 0) {
-        console.log(`Found ${response.results.length} results`);
-        this._showSearchResults(response.results);
+        // Validate coordinate ranges
+        if (lat >= -90 && lat <= 90 && lon >= -180 && lon <= 180) {
+          console.log(`Searching by coordinates: ${lat}, ${lon}`);
+          await this._searchByCoordinates(lat, lon);
+        } else {
+          this._showSearchError(_("Invalid coordinates. Latitude must be between -90 and 90, longitude between -180 and 180."));
+        }
       } else {
-        console.log("No results found");
-        this._showNoResults();
+        // Handle regular location name search
+        console.log(`Searching for location: ${query}`);
+        await this._searchByName(query);
       }
 
     } catch (error) {
@@ -641,14 +695,137 @@ export default class WeatherPreferences extends ExtensionPreferences {
       }
     } finally {
       this._searchInProgress = false;
-      this._searchButton.set_icon_name("system-search-symbolic");
+      this._searchButton.set_icon_name("edit-find-symbolic");
       this._searchButton.set_sensitive(true);
     }
   }
 
-    // Prevent multiple concurrent searches
+  // Search by coordinates with reverse geocoding
+  async _searchByCoordinates(lat, lon) {
+    // Create a result with the coordinates
+    const coordinateResult = {
+      name: "Custom Location",
+      latitude: lat,
+      longitude: lon,
+      country: "",
+      admin1: ""
+    };
 
+    try {
+      // Try reverse geocoding to get a readable location name
+      const reverseUrl = `${REVERSE_GEOCODING_URL}?latitude=${lat}&longitude=${lon}&localityLanguage=en`;
 
+      const reverseMessage = Soup.Message.new("GET", reverseUrl);
+      reverseMessage.request_headers.append('User-Agent', 'GNOME-Weather-Extension/1.0');
+
+      const reverseBytes = await new Promise((resolve, reject) => {
+        this._session.send_and_read_async(reverseMessage, GLib.PRIORITY_DEFAULT, null, (session, result) => {
+          try {
+            const bytes = session.send_and_read_finish(result);
+            resolve(bytes);
+          } catch (error) {
+            reject(error);
+          }
+        });
+      });
+
+      if (reverseMessage.status_code === 200) {
+        const reverseResponseText = new TextDecoder().decode(reverseBytes.get_data());
+        const reverseResponse = JSON.parse(reverseResponseText);
+
+        if (reverseResponse.locality || reverseResponse.city || reverseResponse.countryName) {
+          const locationParts = [];
+
+          if (reverseResponse.locality) locationParts.push(reverseResponse.locality);
+          else if (reverseResponse.city) locationParts.push(reverseResponse.city);
+
+          if (reverseResponse.principalSubdivision) locationParts.push(reverseResponse.principalSubdivision);
+          if (reverseResponse.countryName) locationParts.push(reverseResponse.countryName);
+
+          coordinateResult.name = locationParts.join(", ") || "Custom Location";
+          coordinateResult.country = reverseResponse.countryName || "";
+          coordinateResult.admin1 = reverseResponse.principalSubdivision || "";
+        }
+      }
+    } catch (error) {
+      console.log("Reverse geocoding failed, using coordinates only:", error);
+    }
+
+    console.log("Coordinate result:", coordinateResult);
+    this._showCoordinateResults([coordinateResult]);
+  }
+
+  // Search by location name
+  async _searchByName(query) {
+    const url = `${GEOCODING_URL}?name=${encodeURIComponent(query)}&count=10&language=en&format=json`;
+
+    const message = Soup.Message.new("GET", url);
+    message.request_headers.append('User-Agent', 'GNOME-Weather-Extension/1.0');
+
+    const bytes = await new Promise((resolve, reject) => {
+      this._session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null, (session, result) => {
+        try {
+          const bytes = session.send_and_read_finish(result);
+          resolve(bytes);
+        } catch (error) {
+          reject(error);
+        }
+      });
+    });
+
+    if (message.status_code !== 200) {
+      throw new Error(`HTTP ${message.status_code}: ${message.reason_phrase}`);
+    }
+
+    const responseText = new TextDecoder().decode(bytes.get_data());
+    const response = JSON.parse(responseText);
+
+    if (response.results && response.results.length > 0) {
+      console.log(`Found ${response.results.length} results`);
+      this._showSearchResults(response.results);
+    } else {
+      console.log("No results found");
+      this._showNoResults();
+    }
+  }
+
+  // Show coordinate search results
+  _showCoordinateResults(results) {
+    this._clearSearchResults();
+    this._searchResultsGroup.set_visible(true);
+
+    results.forEach((result) => {
+      const locationName = result.name;
+      const coordinates = `${result.latitude.toFixed(4)}, ${result.longitude.toFixed(4)}`;
+
+      const resultRow = new Adw.ActionRow({
+        title: `🎯 ${locationName}`,
+        subtitle: `Coordinates: ${coordinates}`,
+        activatable: true
+      });
+
+      const locationIcon = new Gtk.Image({
+        icon_name: "view-pin-symbolic",
+        pixel_size: 16
+      });
+      resultRow.add_prefix(locationIcon);
+
+      const selectButton = new Gtk.Button({
+        icon_name: "object-select-symbolic",
+        valign: Gtk.Align.CENTER,
+        tooltip_text: _("Select this location"),
+        css_classes: ["suggested-action"]
+      });
+
+      selectButton.connect("clicked", () => this._selectLocation(result, locationName));
+      resultRow.connect("activated", () => this._selectLocation(result, locationName));
+      resultRow.add_suffix(selectButton);
+
+      this._searchResultsGroup.add(resultRow);
+    });
+  }
+
+  // Show regular search results
   _showSearchResults(results) {
     this._clearSearchResults();
     this._searchResultsGroup.set_visible(true);
@@ -668,7 +845,7 @@ export default class WeatherPreferences extends ExtensionPreferences {
       });
 
       const locationIcon = new Gtk.Image({
-        icon_name: "mark-location-symbolic",
+        icon_name: "location-services-active-symbolic",
         pixel_size: 16
       });
       resultRow.add_prefix(locationIcon);
@@ -726,6 +903,11 @@ export default class WeatherPreferences extends ExtensionPreferences {
       return;
     }
 
+    // Prevent clearing during search to avoid UI flicker
+    if (this._searchInProgress) {
+      return;
+    }
+
     // Remove all child rows
     let child = this._searchResultsGroup.get_first_child();
     while (child) {
@@ -752,21 +934,6 @@ export default class WeatherPreferences extends ExtensionPreferences {
     errorRow.add_prefix(errorIcon);
     this._searchResultsGroup.add(errorRow);
     this._searchResultsGroup.set_visible(true);
-  }
-
-  _clearSearchResults() {
-    // Prevent clearing during search to avoid UI flicker
-    if (this._searchInProgress) {
-      return;
-    }
-
-    let child = this._searchResultsGroup.get_first_child();
-    while (child) {
-      const next = child.get_next_sibling();
-      this._searchResultsGroup.remove(child);
-      child = next;
-    }
-    this._searchResultsGroup.set_visible(false);
   }
 
   _updateLocationSensitivity(mode) {

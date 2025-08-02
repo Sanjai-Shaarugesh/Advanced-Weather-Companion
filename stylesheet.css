@@ -1,196 +1,144 @@
-/* Weather Extension - Pure Native GNOME Shell Theme Integration */
+/* stylesheet.css */
 
-/*
- * CORE PRINCIPLE: Zero theme override - use only native GNOME Shell styling
- * This ensures perfect integration without changing user's theme
- */
-
-/* ====== PANEL INTEGRATION - NATIVE ONLY ====== */
-.weather-button-box {
-    padding: 0 8px;
-    spacing: 6px;
-    /* Remove all custom styling - let shell theme handle everything */
+.weather-button-box,
+.weather-button-box-filled {
+    border-radius: 20px;
+    padding: 6px 12px;
+    gap: 6px;
+    transition: all 0.3s ease;
 }
 
-/* Use shell's native panel button behavior */
+.weather-button-box-filled {
+    background-color: rgba(50, 50, 50, 0.3);
+}
+
 .weather-button-box:hover {
-    /* Let the shell theme define hover states */
+    background-color: rgba(70, 70, 70, 0.6);
+    transform: scale(1.05);
 }
 
 .weather-icon {
-    margin: 0 4px 0 0;
-    icon-size: 16px;
+    margin-right: 4px;
+    transition: all 0.3s ease;
 }
 
 .weather-label {
-    /* Use shell's native text styling */
+    font-weight: bold;
+    font-size: 0.9em;
+    transition: all 0.3s ease;
 }
 
 .location-icon {
-    margin: 0 2px 0 6px;
-    opacity: 0.7;
-    icon-size: 12px;
+    margin-left: 8px;
+    margin-right: 4px;
+    opacity: 0.8;
+    transition: all 0.3s ease;
 }
 
 .location-mode-label {
     font-size: 0.7em;
     font-weight: bold;
-    opacity: 0.6;
-    border-radius: 12px; /* Rounded corners */
-    padding: 2px 6px;
-    margin-left: 2px;
+    color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    padding: 0 4px;
+    margin-left: 4px;
 }
 
-/* ====== POPUP MENU - NATIVE SHELL STYLING ====== */
-.popup-menu {
-    border-radius: 12px; /* Rounded corners for all dropdowns */
+.location-mode-box {
+    margin: 8px 0;
+    gap: 8px;
+}
+
+.location-mode-button {
+    border-radius: 15px;
+    padding: 8px 16px;
+    transition: all 0.3s ease;
+}
+
+.location-mode-button:hover {
+    background-color: rgba(70, 70, 70, 0.8);
+}
+
+.location-input {
+    margin: 8px 16px;
+    padding: 8px;
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.location-section {
+    margin-top: 8px;
 }
 
 .popup-menu-item {
-    border-radius: 8px; /* Rounded menu items */
-    margin: 2px 4px;
-    padding: 8px 12px;
+    font-size: 0.9em;
+    transition: all 0.2s ease;
 }
 
-.popup-sub-menu {
-    border-radius: 10px; /* Rounded sub-menus */
+.popup-menu-item:hover {
+    background-color: rgba(70, 70, 70, 0.8);
 }
 
-/* Current weather display */
-.current-weather {
-    border-radius: 10px;
-    padding: 12px;
-    margin: 6px;
-}
-
-/* ====== WEATHER ALERTS - ROUNDED ====== */
-.weather-alert-severe {
-    border-radius: 10px;
-    padding: 8px 12px;
-    margin: 4px 6px;
-}
-
-.weather-alert-warning {
-    border-radius: 10px;
-    padding: 8px 12px;
-    margin: 4px 6px;
-}
-
-/* ====== FORECAST ITEMS - ROUNDED ====== */
-.forecast-item-minimal {
+.popup-menu-item-warning {
+    color: #ff4c4c;
+    font-weight: bold;
+    background-color: rgba(255, 76, 76, 0.1);
     border-radius: 8px;
-    padding: 8px 12px;
-    margin: 2px 4px;
 }
 
-.insight-item-minimal {
-    border-radius: 8px;
-    padding: 8px 12px;
-    margin: 2px 4px;
-}
-
-/* ====== LOCATION SEARCH - ROUNDED ====== */
-.location-search-minimal {
-    border-radius: 10px;
-    padding: 8px;
-    margin: 4px;
-}
-
-.search-entry-minimal {
-    border-radius: 10px;
-    padding: 8px 12px;
-}
-
-.search-button-minimal {
-    border-radius: 10px;
-    padding: 8px 16px;
-}
-
-/* ====== LOCATION RESULTS - ROUNDED ====== */
-.location-result-minimal {
-    border-radius: 10px;
-    padding: 10px 12px;
-    margin: 4px 6px;
-}
-
-.search-error-item {
-    border-radius: 10px;
-    padding: 10px 12px;
-    margin: 4px 6px;
-}
-
-/* ====== BUTTONS - ROUNDED ====== */
 .refresh-button {
     border-radius: 10px;
     padding: 8px 12px;
     margin: 2px 4px;
+    transition: background-color 0.2s ease;
 }
 
-.location-mode-button {
-    border-radius: 10px;
-    padding: 8px 12px;
-    margin: 2px 4px;
+.refresh-button:hover {
+    background-color: rgba(70, 70, 70, 0.8);
 }
 
-/* ====== REMOVE ALL CUSTOM COLORS AND BACKGROUNDS ====== */
-/* Let the user's theme handle all visual styling */
-.weather-button-box,
-.popup-menu-item,
-.current-weather,
-.forecast-item-minimal,
-.insight-item-minimal,
-.search-entry-minimal,
-.search-button-minimal,
-.location-result-minimal,
-.refresh-button,
-.location-mode-button {
-    background: none !important;
-    color: inherit !important;
-    border: none !important;
-    box-shadow: none !important;
-}
-
-/* Only keep essential positioning and spacing */
-.weather-button-box {
-    spacing: 6px;
-    padding: 0 8px;
-}
-
-.popup-menu-item {
+.search-button-panel {
+    background-color: rgba(46, 125, 50, 0.8);
+    border: none;
+    border-radius: 6px;
     padding: 6px 12px;
-    margin: 1px 4px;
+    color: white;
+    font-weight: 600;
+    font-size: 0.85em;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
 }
 
-/* ====== PREFERENCES WINDOW - ROUNDED STYLING ====== */
-window.preferences .card {
-    border-radius: 12px;
-    margin: 4px 0;
+.search-button-panel:hover {
+    background-color: rgba(46, 125, 50, 1.0);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
 }
 
-window.preferences .suggested-action {
-    border-radius: 10px;
+.clear-button-panel {
+    background-color: rgba(211, 47, 47, 0.8);
+    border: none;
+    border-radius: 6px;
+    padding: 6px 12px;
+    color: white;
+    font-weight: 600;
+    font-size: 0.85em;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
 }
 
-.search-results-group {
-    border-radius: 10px;
-    margin-top: 8px;
+.clear-button-panel:hover {
+    background-color: rgba(211, 47, 47, 1.0);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+    transform: scale(1.02);
 }
 
-.location-result-row {
-    border-radius: 10px;
-    margin: 3px 0;
+.clear-button-panel:active {
+    background-color: rgba(183, 28, 28, 1.0);
+    transform: scale(0.98);
 }
 
-.search-error-row {
-    border-radius: 10px;
-    margin: 3px 0;
-}
-
-entry.search-location {
-    border-radius: 12px;
-}
-
-/* ====== QR CODE STYLING - MEDIUM SIZE, CENTERED, ROUNDED ====== */
 .qr-code-container {
     padding: 20px;
     text-align: center;
@@ -206,75 +154,53 @@ entry.search-location {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* ====== ANIMATIONS - ROUNDED ====== */
-@keyframes success-pulse {
-    0% {
-        transform: scale(1);
-        border-radius: 10px;
-    }
-    50% {
-        transform: scale(1.02);
-        border-radius: 12px;
-    }
-    100% {
-        transform: scale(1);
-        border-radius: 10px;
-    }
+.weather-alert-severe {
+    border-radius: 10px;
+    padding: 8px 12px;
+    margin: 4px 6px;
 }
 
-.location-selected {
-    animation: success-pulse 0.6s ease-out;
-    border-radius: 10px !important;
+.weather-alert-warning {
+    border-radius: 10px;
+    padding: 8px 12px;
+    margin: 4px 6px;
 }
 
-/* ====== SCROLLBARS - ROUNDED ====== */
-.popup-menu-content::-webkit-scrollbar-thumb {
+.forecast-item-minimal {
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin: 2px 4px;
+}
+
+.insight-item-minimal {
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin: 2px 4px;
+}
+
+/* Search entry styling */
+.search-entry-minimal {
     border-radius: 6px;
+    padding: 6px 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(0, 0, 0, 0.2);
+    color: white;
 }
 
-/* ====== RTL SUPPORT ====== */
-.weather-button-box:dir(rtl) {
-    direction: rtl;
+.search-entry-minimal:focus {
+    border-color: rgba(46, 125, 50, 0.8);
+    box-shadow: 0 0 8px rgba(46, 125, 50, 0.3);
 }
 
-.weather-icon:dir(rtl) {
-    margin: 0 0 0 4px;
+/* Animations */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
 }
 
-.location-mode-label:dir(rtl) {
-    margin-left: 0;
-    margin-right: 2px;
-}
-
-/* ====== ACCESSIBILITY ====== */
-@media (prefers-reduced-motion: reduce) {
-    * {
-        transition: none !important;
-        animation: none !important;
-    }
-}
-
-/* ====== RESPONSIVE DESIGN ====== */
-@media (max-width: 1024px) {
-    .weather-label {
-        font-size: 0.9em;
-    }
-
-    .location-mode-label {
-        font-size: 0.65em;
-    }
-}
-
-@media (max-width: 768px) {
-    .weather-button-box {
-        padding: 0 6px;
-    }
-
-    .weather-icon {
-        icon-size: 14px;
-    }
-
-    .location-icon {
-        icon-size: 10px;
-    }
+@keyframes fade {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
 }
