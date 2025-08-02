@@ -5,6 +5,7 @@ import GObject from "gi://GObject";
 import GLib from "gi://GLib";
 import Soup from "gi://Soup";
 import GdkPixbuf from "gi://GdkPixbuf";
+
 import {
   ExtensionPreferences,
   gettext as _,
@@ -51,6 +52,30 @@ export default class WeatherPreferences extends ExtensionPreferences {
       settings.set_boolean("use-fahrenheit", tempUnitRow.get_active());
     });
 
+    const windSpeedUnitRow = new Adw.ComboRow({
+      title: _("Wind Speed Unit"),
+      subtitle: _("Choose unit for wind speed display"),
+      model: new Gtk.StringList()
+    });
+
+    const windUnits = [
+      { label: _("km/h (Kilometers per hour)"), value: "kmh" },
+      { label: _("mph (Miles per hour)"), value: "mph" },
+      { label: _("m/s (Meters per second)"), value: "ms" },
+      { label: _("knots (Nautical miles per hour)"), value: "knots" }
+    ];
+
+    windUnits.forEach(unit => windSpeedUnitRow.model.append(unit.label));
+    const currentWindUnit = settings.get_string("wind-speed-unit") || "kmh";
+    const windUnitIndex = windUnits.findIndex(u => u.value === currentWindUnit);
+    windSpeedUnitRow.set_selected(windUnitIndex >= 0 ? windUnitIndex : 0);
+    windSpeedUnitRow.connect("notify::selected", () => {
+      const selectedUnit = windUnits[windSpeedUnitRow.get_selected()];
+      if (selectedUnit) {
+        settings.set_string("wind-speed-unit", selectedUnit.value);
+      }
+    });
+
     const timeFormatRow = new Adw.SwitchRow({
       title: _("Use 12-hour Format"),
       subtitle: _("Display time in 12-hour format with AM/PM")
@@ -61,6 +86,7 @@ export default class WeatherPreferences extends ExtensionPreferences {
     });
 
     unitsGroup.add(tempUnitRow);
+    unitsGroup.add(windSpeedUnitRow);
     unitsGroup.add(timeFormatRow);
 
     const updateGroup = new Adw.PreferencesGroup({
@@ -162,7 +188,7 @@ export default class WeatherPreferences extends ExtensionPreferences {
     });
     refreshButton.connect("clicked", () => {
       this._updateCurrentLocationDisplay();
-      console.log("Location display refreshed");
+
     });
     currentLocationRow.add_suffix(refreshButton);
 
@@ -467,15 +493,15 @@ export default class WeatherPreferences extends ExtensionPreferences {
     githubRow.add_suffix(externalIcon);
     githubRow.connect("activated", () => {
       try {
-        Gio.AppInfo.launch_default_for_uri("https://github.com/yourusername/advanced-weather-extension", null);
+        Gio.AppInfo.launch_default_for_uri("https://github.com/Sanjai-Shaarugesh/Advanced-Weather-Companion", null);
       } catch (error) {
         console.error("Could not open GitHub link:", error);
       }
     });
 
     const sponsorRow = new Adw.ActionRow({
-      title: _("Support Development"),
-      subtitle: _("Help keep this extension free and updated"),
+      title: _("🚀 Help the Developer Keep Improving"),
+      subtitle: _("💖 Your support keeps this GNOME Shell extension alive and improving!"),
       activatable: true
     });
     const heartIcon = new Gtk.Image({
@@ -487,7 +513,7 @@ export default class WeatherPreferences extends ExtensionPreferences {
     sponsorRow.add_suffix(sponsorIcon);
     sponsorRow.connect("activated", () => {
       try {
-        Gio.AppInfo.launch_default_for_uri("https://github.com/sponsors/yourusername", null);
+        Gio.AppInfo.launch_default_for_uri("https://buymeacoffee.com/sanjai", null);
       } catch (error) {
         console.error("Could not open sponsor link:", error);
       }
@@ -527,8 +553,8 @@ export default class WeatherPreferences extends ExtensionPreferences {
     qrBox.append(qrLabel);
 
     const qrRow = new Adw.ActionRow({
-      title: _("QR Code"),
-      subtitle: _("Quick access to extension repository"),
+      title: _("Support 🌟"),
+      subtitle: _("☕ Support by buying me a coffee — just scan the QR code!"),
       activatable: false
     });
     qrRow.add_suffix(qrBox);
@@ -540,7 +566,7 @@ export default class WeatherPreferences extends ExtensionPreferences {
 
     const licenseRow = new Adw.ActionRow({
       title: _("Open Source License"),
-      subtitle: _("GPL-3.0 - Free and open source software"),
+      subtitle: _("MIT License - Free and open source software"),
       activatable: false
     });
     const licenseIcon = new Gtk.Image({
@@ -664,14 +690,14 @@ export default class WeatherPreferences extends ExtensionPreferences {
 
         // Validate coordinate ranges
         if (lat >= -90 && lat <= 90 && lon >= -180 && lon <= 180) {
-          console.log(`Searching by coordinates: ${lat}, ${lon}`);
+
           await this._searchByCoordinates(lat, lon);
         } else {
           this._showSearchError(_("Invalid coordinates. Latitude must be between -90 and 90, longitude between -180 and 180."));
         }
       } else {
         // Handle regular location name search
-        console.log(`Searching for location: ${query}`);
+
         await this._searchByName(query);
       }
 
@@ -748,10 +774,10 @@ export default class WeatherPreferences extends ExtensionPreferences {
         }
       }
     } catch (error) {
-      console.log("Reverse geocoding failed, using coordinates only:", error);
+
     }
 
-    console.log("Coordinate result:", coordinateResult);
+
     this._showCoordinateResults([coordinateResult]);
   }
 
@@ -781,10 +807,10 @@ export default class WeatherPreferences extends ExtensionPreferences {
     const response = JSON.parse(responseText);
 
     if (response.results && response.results.length > 0) {
-      console.log(`Found ${response.results.length} results`);
+
       this._showSearchResults(response.results);
     } else {
-      console.log("No results found");
+
       this._showNoResults();
     }
   }
@@ -874,7 +900,7 @@ export default class WeatherPreferences extends ExtensionPreferences {
       this._clearSearchResults();
       this._showSuccessToast(_("Location updated successfully"));
 
-      console.log(`Selected location: ${locationName} (${result.latitude}, ${result.longitude})`);
+
     } catch (error) {
       console.error("Failed to save location:", error);
       this._showSearchError(_("Failed to save location. Please try again."));
@@ -989,7 +1015,7 @@ export default class WeatherPreferences extends ExtensionPreferences {
       });
       widget.add_toast(toast);
     } else {
-      console.log(`Success: ${message}`);
+
     }
   }
 }

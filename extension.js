@@ -20,7 +20,6 @@ const FALLBACK_GEOIP_URLS = [
   "https://freegeoip.app/json/"
 ];
 
-// Weather conditions with native GNOME icons
 const WEATHER_CONDITIONS = {
   0: { name: "Clear Sky", icon: "weather-clear-symbolic", severity: "normal" },
   1: { name: "Mainly Clear", icon: "weather-few-clouds-symbolic", severity: "normal" },
@@ -48,6 +47,22 @@ const WEATHER_CONDITIONS = {
   99: { name: "Heavy Hail", icon: "weather-storm-symbolic", severity: "severe" },
 };
 
+// Wind speed conversion functions
+const WIND_SPEED_UNITS = {
+  kmh: { label: "km/h", multiplier: 1 },
+  mph: { label: "mph", multiplier: 0.621371 },
+  ms: { label: "m/s", multiplier: 0.277778 },
+  knots: { label: "kn", multiplier: 0.539957 }
+};
+
+function convertWindSpeed(speedKmh, unit) {
+  const conversion = WIND_SPEED_UNITS[unit] || WIND_SPEED_UNITS.kmh;
+  return {
+    value: Math.round(speedKmh * conversion.multiplier),
+    unit: conversion.label
+  };
+}
+
 const WeatherPanelButton = GObject.registerClass(
   class WeatherPanelButton extends PanelMenu.Button {
     _init(ext) {
@@ -58,20 +73,20 @@ const WeatherPanelButton = GObject.registerClass(
       this._retryCount = 0;
       this._maxRetries = 3;
 
-      // Create main container with native styling
+
       this._container = new St.BoxLayout({
         vertical: false,
         style_class: "weather-button-box"
       });
 
-      // Weather icon
+
       this._weatherIcon = new St.Icon({
         icon_name: "weather-clear-symbolic",
         icon_size: this._ext._settings.get_int("panel-icon-size") || 16,
         style_class: "weather-icon"
       });
 
-      // Weather text with dynamic sizing
+
       this._weatherLabel = new St.Label({
         text: "…",
         y_align: Clutter.ActorAlign.CENTER,
@@ -85,7 +100,7 @@ const WeatherPanelButton = GObject.registerClass(
               visible: this._ext._settings.get_boolean("show-location-label")
             });
 
-      // Location indicator
+
       this._locationIcon = new St.Icon({
         icon_name: "find-location-symbolic",
         icon_size: 12,
@@ -100,7 +115,7 @@ const WeatherPanelButton = GObject.registerClass(
         visible: this._ext._settings.get_boolean("show-location-label")
       });
 
-      // Add children to container
+
       this._container.add_child(this._weatherIcon);
       if (this._ext._settings.get_boolean("show-text-in-panel")) {
         this._container.add_child(this._weatherLabel);
@@ -154,6 +169,9 @@ const WeatherPanelButton = GObject.registerClass(
         }),
         this._ext._settings.connect("changed::use-12hour-format", () => {
           this._ext._detectLocationAndLoadWeather();
+        }),
+        this._ext._settings.connect("changed::wind-speed-unit", () => {
+          this._ext._detectLocationAndLoadWeather();
         })
       ];
     }
@@ -201,7 +219,7 @@ const WeatherPanelButton = GObject.registerClass(
     }
 
     _setupMenu() {
-      // Current weather section
+
       this._currentSection = new PopupMenu.PopupMenuSection();
       this._currentWeatherItem = new PopupMenu.PopupMenuItem("Loading weather...", {
         reactive: false,
@@ -209,23 +227,23 @@ const WeatherPanelButton = GObject.registerClass(
       });
       this._currentSection.addMenuItem(this._currentWeatherItem);
 
-      // Weather alerts section
+
       this._alertsSection = new PopupMenu.PopupMenuSection();
 
-      // Location info section
+
       this._locationInfoSection = new PopupMenu.PopupSubMenuMenuItem("📍 Location Information", true);
       this._setupLocationInfo();
 
-      // Hourly forecast
+
       this._hourlySection = new PopupMenu.PopupSubMenuMenuItem("⏰ Hourly Forecast", true);
 
-      // Daily forecast
+
       this._dailySection = new PopupMenu.PopupSubMenuMenuItem("📅 7-Day Forecast", true);
 
-      // Weather insights
+
       this._insightsSection = new PopupMenu.PopupSubMenuMenuItem("🔍 Weather Insights", true);
 
-      // Actions
+
       this._refreshItem = new PopupMenu.PopupMenuItem("🔄 Refresh Weather");
       this._refreshItem.style_class = "refresh-button";
       this._refreshItem.connect("activate", () => {
@@ -235,7 +253,7 @@ const WeatherPanelButton = GObject.registerClass(
       this._settingsItem = new PopupMenu.PopupMenuItem("⚙️ Extension Settings");
       this._settingsItem.connect("activate", () => this._ext.openPreferences());
 
-      // Build menu
+
       this.menu.addMenuItem(this._currentSection);
       this.menu.addMenuItem(this._alertsSection);
       this.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
@@ -250,28 +268,28 @@ const WeatherPanelButton = GObject.registerClass(
       this.menu.addMenuItem(this._settingsItem);
     }
 
-    // In the _setupLocationInfo() method, update the search section:
+
 
     _setupLocationInfo() {
-      // Current location display
+
       this._currentLocationItem = new PopupMenu.PopupMenuItem("Current: Loading...", {
         reactive: false,
         style_class: "location-info-item"
       });
 
-      // Location coordinates
+
       this._coordinatesItem = new PopupMenu.PopupMenuItem("Coordinates: Loading...", {
         reactive: false,
         style_class: "location-info-item"
       });
 
-      // Detection method
+
       this._detectionMethodItem = new PopupMenu.PopupMenuItem("Method: Loading...", {
         reactive: false,
         style_class: "location-info-item"
       });
 
-      // Mode switching buttons
+
       const autoItem = new PopupMenu.PopupMenuItem("🌍 Switch to Auto Detection");
       autoItem.style_class = "location-mode-button";
       autoItem.connect("activate", () => {
@@ -284,7 +302,7 @@ const WeatherPanelButton = GObject.registerClass(
         this._ext._settings.set_string("location-mode", "manual");
       });
 
-      // Location search for manual mode
+
       const searchItem = new PopupMenu.PopupBaseMenuItem({ reactive: false });
       const searchBox = new St.BoxLayout({
         vertical: true,
@@ -317,14 +335,14 @@ const WeatherPanelButton = GObject.registerClass(
       searchBox.add_child(inputBox);
       searchItem.add_child(searchBox);
 
-      // Search results container
+
       this._searchResults = new PopupMenu.PopupMenuSection();
 
-      // Connect search functionality
+
       this._searchButton.connect("clicked", () => this._searchLocation());
       this._searchEntry.clutter_text.connect("activate", () => this._searchLocation());
 
-      // Connect clear functionality
+
       this._clearButton.connect("clicked", () => this._clearSearch());
 
       // Add items to location info menu
@@ -337,7 +355,7 @@ const WeatherPanelButton = GObject.registerClass(
       this._locationInfoSection.menu.addMenuItem(this._searchResults);
     }
 
-    // Add this new method to handle clearing the search:
+
 
     _clearSearch() {
       this._searchEntry.set_text("");
@@ -421,7 +439,7 @@ const WeatherPanelButton = GObject.registerClass(
       const mode = this._ext._settings.get_string("location-mode") || "auto";
       const locationName = this._ext._settings.get_string("location-name") || "";
 
-      // Update current location
+
       if (this._currentLocationItem) {
         if (mode === "auto") {
           this._currentLocationItem.label.set_text("Current: 🌍 Auto-detected location");
@@ -430,7 +448,7 @@ const WeatherPanelButton = GObject.registerClass(
         }
       }
 
-      // Update coordinates
+
       if (this._coordinatesItem) {
         if (this._ext._latitude && this._ext._longitude) {
           this._coordinatesItem.label.set_text(
@@ -441,7 +459,7 @@ const WeatherPanelButton = GObject.registerClass(
         }
       }
 
-      // Update detection method
+
       if (this._detectionMethodItem) {
         const methodText = mode === "auto" ?
           "Method: 🌐 IP-based geolocation" :
@@ -488,7 +506,7 @@ const WeatherPanelButton = GObject.registerClass(
       const current = data.current;
       const condition = WEATHER_CONDITIONS[current.weather_code] || WEATHER_CONDITIONS[0];
 
-      // Severe weather alerts
+
       if (condition.severity === "severe") {
         const alertItem = new PopupMenu.PopupMenuItem(
           `⚠️ SEVERE WEATHER: ${condition.name}`,
@@ -498,7 +516,7 @@ const WeatherPanelButton = GObject.registerClass(
         hasAlerts = true;
       }
 
-      // Temperature extremes
+
       const temp = this._ext._settings.get_boolean("use-fahrenheit")
         ? current.temperature_2m * 9/5 + 32
         : current.temperature_2m;
@@ -513,7 +531,7 @@ const WeatherPanelButton = GObject.registerClass(
         hasAlerts = true;
       }
 
-      // Wind alerts
+
       if (current.wind_speed_10m > 50) {
         const windAlert = new PopupMenu.PopupMenuItem(
           "💨 WIND WARNING: Strong winds detected",
@@ -535,17 +553,17 @@ const WeatherPanelButton = GObject.registerClass(
           : Math.round(current.temperature_2m);
         const unit = useFahrenheit ? "°F" : "°C";
 
-        // Update panel
+
         this._weatherIcon.set_icon_name(condition.icon);
         this._weatherLabel.set_text(`${temp}${unit}`);
 
-        // Reset retry count on successful update
+
         this._retryCount = 0;
 
-        // Generate weather alerts
+
         this._generateWeatherAlerts(data);
 
-        // Update sections
+
         this._updateCurrentWeather(data, condition, temp, unit);
         this._updateLocationInfo();
         this._updateHourlyForecast(data);
@@ -561,12 +579,13 @@ const WeatherPanelButton = GObject.registerClass(
 
     _updateCurrentWeather(data, condition, temp, unit) {
       const current = data.current;
-      const windSpeed = Math.round(current.wind_speed_10m);
+      const windSpeedUnit = this._ext._settings.get_string("wind-speed-unit") || "kmh";
+      const windSpeed = convertWindSpeed(current.wind_speed_10m, windSpeedUnit);
 
       let currentText = `🌡️ ${temp}${unit} • ${condition.name}\n`;
-      currentText += `💨 ${windSpeed} km/h`;
+      currentText += `💨 ${windSpeed.value} ${windSpeed.unit}`;
 
-      // Check if humidity should be shown
+
       if (this._ext._settings.get_boolean("show-humidity")) {
         currentText += ` • 💧 ${current.relative_humidity_2m}%`;
       }
@@ -584,7 +603,7 @@ const WeatherPanelButton = GObject.registerClass(
         const now = new Date();
         let startIndex = 0;
 
-        // Find the next hour
+
         for (let i = 0; i < data.hourly.time.length; i++) {
           const hourTime = new Date(data.hourly.time[i]);
           if (hourTime > now) {
@@ -593,7 +612,7 @@ const WeatherPanelButton = GObject.registerClass(
           }
         }
 
-        // Show next 12 hours
+
         for (let i = 0; i < 12 && (startIndex + i) < data.hourly.time.length; i++) {
           const hourIndex = startIndex + i;
           const timeStr = this._formatTime(data.hourly.time[hourIndex]);
@@ -747,6 +766,22 @@ const WeatherPanelButton = GObject.registerClass(
             { reactive: false, style_class: "insight-item-minimal" }
           );
           this._insightsSection.menu.addMenuItem(precipItem);
+        }
+
+        // Wind analysis with unit conversion
+        if (data.current && data.current.wind_speed_10m) {
+          const windSpeedUnit = this._ext._settings.get_string("wind-speed-unit") || "kmh";
+          const windSpeed = convertWindSpeed(data.current.wind_speed_10m, windSpeedUnit);
+
+          let windCondition = "Light";
+          if (windSpeed.value > 50) windCondition = "Strong";
+          else if (windSpeed.value > 25) windCondition = "Moderate";
+
+          const windItem = new PopupMenu.PopupMenuItem(
+            `💨 Wind: ${windSpeed.value} ${windSpeed.unit} (${windCondition})`,
+            { reactive: false, style_class: "insight-item-minimal" }
+          );
+          this._insightsSection.menu.addMenuItem(windItem);
         }
 
         // UV Index estimation
@@ -955,14 +990,14 @@ export default class WeatherExtension extends Extension {
     // Try multiple GEOIP services for better reliability
     for (const url of FALLBACK_GEOIP_URLS) {
       try {
-        console.log(`Trying GeoIP service: ${url}`);
+
         const message = Soup.Message.new("GET", url);
         message.request_headers.append('User-Agent', 'GNOME-Weather-Extension/1.0');
 
         const bytes = await this._session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null);
 
         if (message.status_code !== 200) {
-          console.log(`GeoIP service ${url} returned status ${message.status_code}`);
+
           continue;
         }
 
@@ -998,7 +1033,7 @@ export default class WeatherExtension extends Extension {
           this._latitude = lat;
           this._longitude = lon;
           this._locationName = `${city}, ${country}`;
-          console.log(`Successfully detected location: ${this._locationName}`);
+
           return;
         }
       } catch (error) {
@@ -1011,7 +1046,7 @@ export default class WeatherExtension extends Extension {
   }
 
   _useFallbackLocation() {
-    console.log("Using fallback location: New York, NY");
+
     this._latitude = 40.7128;
     this._longitude = -74.0060;
     this._locationName = "New York, NY (Fallback)";

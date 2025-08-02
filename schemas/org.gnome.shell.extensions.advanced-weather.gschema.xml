@@ -15,6 +15,12 @@
       <description>Display time in 12-hour format with AM/PM.</description>
     </key>
 
+    <key name="wind-speed-unit" type="s">
+      <default>'kmh'</default>
+      <summary>Wind Speed Unit</summary>
+      <description>Unit for wind speed display: 'kmh', 'mph', 'ms', 'knots'.</description>
+    </key>
+
     <key name="update-interval" type="i">
       <default>10</default>
       <summary>Update Interval</summary>
@@ -62,7 +68,6 @@
       </description>
     </key>
 
-
     <key name="show-text-in-panel" type="b">
       <default>true</default>
       <summary>Show Temperature Text</summary>
@@ -86,5 +91,6 @@
       <summary>Panel Text Size</summary>
       <description>Size of the temperature text in the GNOME panel in pixels.</description>
     </key>
- </schema>
+
+  </schema>
 </schemalist>
