@@ -16,6 +16,8 @@ Advanced Weather is a feature-rich GNOME Shell extension that provides detailed 
 - 🌈 Dynamic weather icons
 - 🌐 Multiple weather data providers
 - 🎨 Customizable appearance and units
+- 🗺️ Location search
+- ⚠️ Real-time Weather Alerts
 
 ## Installation
 
@@ -32,14 +34,14 @@ Install from source
 - Open a terminal in the directory containing the downloaded file
 - Install and enable the extension by executing `gnome-extensions install extension.zip --force` in the terminal
 
-> To setup your manual location by giving your location coordinates in the settings in the extension or in the Location settings in the main menu of the extension , you can get you location coordinates from the google map by going to your location and right clink on in it and coping the location coordinates from it by clicking them 
+> To setup your manual location by giving your location coordinates in the settings in the extension or in the Location settings in the main menu of the extension , you can get you location coordinates from the google map by going to your location and right clink on in it and coping the location coordinates from it by clicking them
 
 https://github.com/user-attachments/assets/706925f5-410c-473c-af72-099fc4096503
 
 
 ## Screenshots
 
-### Weather Widget in home screen 
+### Weather Widget in home screen
 ![Weather Widget](images/img1.png)
 
 ### Main Interface
@@ -64,7 +66,7 @@ https://github.com/user-attachments/assets/706925f5-410c-473c-af72-099fc4096503
 
 ## Weather Data Display
 
-- Current weather: Temperature, conditions, wind speed 
+- Current weather: Temperature, conditions, wind speed
 ![Multiple Locations](images/img5.png)
 
 
@@ -99,7 +101,7 @@ Right-click the weather widget to access:
 ### Common Issues
 - No weather data displayed
   - Click the refresh button 🔄
-  - Check your internet connection 
+  - Check your internet connection
   - Restart GNOME Shell (Alt+F2, then type 'r')
 
 [<img src="images/gnome.png" height="100">](https://extensions.gnome.org/extension/7603/advanced-weather-companion/)
@@ -122,7 +124,7 @@ Right-click the weather widget to access:
 3. Commit changes
 4. Push and create Pull Request
 
-## Uses 
+## Uses
 This extension is using `ipapi.co` and `open-meteo.com` services
 
 ## License
@@ -137,7 +139,7 @@ Support the development:
 
 **Thank you for your support!**
 # Please forgive me for my bad documentation 😅
-  
+
 
 
 **Star ⭐ my   repository if you find it useful!**
