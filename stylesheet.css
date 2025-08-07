@@ -139,12 +139,85 @@
     transform: scale(0.98);
 }
 
+/* Enhanced QR Code Styling - Dark Theme */
+.qr-container {
+    background-color: #2d2d2d;
+    border-radius: 12px;
+    border: 1px solid #404040;
+    padding: 24px;
+    margin: 16px 0;
+}
+
+.qr-image-container {
+    background-color: white;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 0 auto;
+    display: inline-block;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.qr-code-image {
+    border-radius: 4px;
+    width: 200px;
+    height: 200px;
+    display: block;
+}
+
+.qr-address {
+    font-family: monospace;
+    font-size: 11px;
+    color: #ffffff;
+    background-color: #1a1a1a;
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #404040;
+    margin: 12px 0;
+    text-align: center;
+    user-select: all;
+    cursor: text;
+}
+
+.qr-address:hover {
+    background-color: #333333;
+    border-color: #555555;
+}
+
+.qr-address:selection {
+    background-color: #3584e4;
+}
+
+.qr-copy-button {
+    background-color: rgba(46, 125, 50, 0.8);
+    border: none;
+    border-radius: 20px;
+    padding: 8px 16px;
+    color: white;
+    font-weight: 600;
+    font-size: 0.85em;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+    margin-top: 8px;
+}
+
+.qr-copy-button:hover {
+    background-color: rgba(46, 125, 50, 1.0);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+    transform: scale(1.02);
+}
+
+.qr-copy-button:active {
+    transform: scale(0.98);
+}
+
+/* Keep existing QR code container styling for compatibility */
 .qr-code-container {
     padding: 20px;
     text-align: center;
     margin: 16px 0;
 }
 
+/* Update the original QR code image styling */
 .qr-code-image {
     border-radius: 20px;
     width: 180px;

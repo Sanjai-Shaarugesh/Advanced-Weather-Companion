@@ -474,11 +474,12 @@ export default class WeatherPreferences extends ExtensionPreferences {
     const headerRow = new Adw.ActionRow({ title: "", activatable: false });
     headerRow.add_suffix(headerBox);
 
-    const qrGroup = new Adw.PreferencesGroup({
+    const linksGroup = new Adw.PreferencesGroup({
       title: _("Extension Links"),
-      description: _("Scan QR code or click links to access extension resources")
+      description: _("Source code, issues, and contributions")
     });
 
+    // GitHub Row - Fixed and restored
     const githubRow = new Adw.ActionRow({
       title: _("View on GitHub"),
       subtitle: _("Source code, issues, and contributions"),
@@ -489,7 +490,10 @@ export default class WeatherPreferences extends ExtensionPreferences {
     const githubIcon = this._createGitHubIcon();
     githubRow.add_prefix(githubIcon);
 
-    const externalIcon = new Gtk.Image({ icon_name: "adw-external-link-symbolic", pixel_size: 16 });
+    const externalIcon = new Gtk.Image({
+      icon_name: "adw-external-link-symbolic",
+      pixel_size: 16
+    });
     githubRow.add_suffix(externalIcon);
     githubRow.connect("activated", () => {
       try {
@@ -499,9 +503,87 @@ export default class WeatherPreferences extends ExtensionPreferences {
       }
     });
 
+    // Enhanced QR Code Support Section
+    const qrGroup = new Adw.PreferencesGroup({
+      title: _("☕ Support by buying me a coffee — just scan the QR code!"),
+      description: _("Preferred Method - Scan QR code to support development")
+    });
+
+    // Create a dark container for the QR code
+    const qrContainer = new Gtk.Box({
+      orientation: Gtk.Orientation.VERTICAL,
+      spacing: 16,
+      halign: Gtk.Align.CENTER,
+      margin_top: 24,
+      margin_bottom: 24,
+      margin_start: 24,
+      margin_end: 24,
+      css_classes: ["qr-container"]
+    });
+
+    // QR Code with enhanced styling
+    const qrImageBox = new Gtk.Box({
+      orientation: Gtk.Orientation.VERTICAL,
+      halign: Gtk.Align.CENTER,
+      css_classes: ["qr-image-container"]
+    });
+
+    const qrPath = `${this.dir.get_path()}/icons/qr.png`;
+    let qrImage;
+    try {
+      qrImage = Gtk.Image.new_from_file(qrPath);
+      qrImage.set_pixel_size(200); // Larger size for better visibility
+      qrImage.set_css_classes(["qr-code-image"]);
+    } catch (e) {
+      // Create a placeholder if QR doesn't exist
+      qrImage = new Gtk.Image({
+        icon_name: "camera-web-symbolic",
+        pixel_size: 200
+      });
+      qrImage.set_css_classes(["qr-code-placeholder"]);
+    }
+
+    qrImageBox.append(qrImage);
+
+    // Address label with monospace font
+    const addressLabel = new Gtk.Label({
+      label: "https://buymeacoffee.com/sanjai", // Replace with your actual Dogecoin address
+      css_classes: ["qr-address"],
+      halign: Gtk.Align.CENTER,
+      selectable: true,
+      wrap: true,
+      max_width_chars: 40
+    });
+
+    // Copy button for the address
+    const copyButton = new Gtk.Button({
+      label: _("Copy Address"),
+      halign: Gtk.Align.CENTER,
+      css_classes: ["qr-copy-button"]
+    });
+
+    copyButton.connect("clicked", () => {
+      const clipboard = Gdk.Display.get_default().get_clipboard();
+      clipboard.set_text("https://buymeacoffee.com/sanjai"); // Replace with your actual address
+      this._showSuccessToast(_("Address copied to clipboard"));
+    });
+
+    // Assemble the QR container
+    qrContainer.append(qrImageBox);
+    qrContainer.append(addressLabel);
+    qrContainer.append(copyButton);
+
+    // Create a row to hold the QR container
+    const qrRow = new Adw.ActionRow({
+      title: "",
+      activatable: false
+    });
+    qrRow.set_child(qrContainer);
+
+    // Alternative sponsor row (buy me a coffee)
     const sponsorRow = new Adw.ActionRow({
-      title: _("🚀 Help the Developer Keep Improving"),
-      subtitle: _("💖 Your support keeps this GNOME Shell extension alive and improving!"),
+      title: _("☕ Buy Me a Coffee"),
+      subtitle: _("Support development with a small donation"),
       activatable: true
     });
     const heartIcon = new Gtk.Image({
@@ -509,7 +591,10 @@ export default class WeatherPreferences extends ExtensionPreferences {
       pixel_size: 20
     });
     sponsorRow.add_prefix(heartIcon);
-    const sponsorIcon = new Gtk.Image({ icon_name: "adw-external-link-symbolic", pixel_size: 16 });
+    const sponsorIcon = new Gtk.Image({
+      icon_name: "adw-external-link-symbolic",
+      pixel_size: 16
+    });
     sponsorRow.add_suffix(sponsorIcon);
     sponsorRow.connect("activated", () => {
       try {
@@ -518,46 +603,6 @@ export default class WeatherPreferences extends ExtensionPreferences {
         console.error("Could not open sponsor link:", error);
       }
     });
-
-    // Enhanced QR Code - Medium size, centered, rounded corners
-    const qrBox = new Gtk.Box({
-      orientation: Gtk.Orientation.VERTICAL,
-      spacing: 12,
-      halign: Gtk.Align.CENTER,
-      margin_top: 20,
-      margin_bottom: 20
-    });
-
-    const qrPath = `${this.dir.get_path()}/icons/qr.png`;
-    let qrImage;
-    try {
-      qrImage = Gtk.Image.new_from_file(qrPath);
-      qrImage.set_pixel_size(180); // Medium size
-      qrImage.set_css_classes(["qr-code-image"]); // For rounded corners
-    } catch (e) {
-      // Create a placeholder if QR doesn't exist
-      qrImage = new Gtk.Image({
-        icon_name: "camera-web-symbolic",
-        pixel_size: 180
-      });
-      qrImage.set_css_classes(["qr-code-image"]);
-    }
-
-    const qrLabel = new Gtk.Label({
-      label: _("Scan to visit GitHub repository"),
-      css_classes: ["caption"],
-      halign: Gtk.Align.CENTER
-    });
-
-    qrBox.append(qrImage);
-    qrBox.append(qrLabel);
-
-    const qrRow = new Adw.ActionRow({
-      title: _("Support 🌟"),
-      subtitle: _("☕ Support by buying me a coffee — just scan the QR code!"),
-      activatable: false
-    });
-    qrRow.add_suffix(qrBox);
 
     const licenseGroup = new Adw.PreferencesGroup({
       title: _("License & Credits"),
@@ -586,14 +631,20 @@ export default class WeatherPreferences extends ExtensionPreferences {
     });
     creditsRow.add_prefix(apiIcon);
 
+    // Add all rows to their respective groups
     infoGroup.add(headerRow);
-    qrGroup.add(githubRow);
-    qrGroup.add(sponsorRow);
+
+    linksGroup.add(githubRow);
+    linksGroup.add(sponsorRow);
+
     qrGroup.add(qrRow);
+
     licenseGroup.add(licenseRow);
     licenseGroup.add(creditsRow);
 
+    // Add all groups to the page
     page.add(infoGroup);
+    page.add(linksGroup);
     page.add(qrGroup);
     page.add(licenseGroup);
 
