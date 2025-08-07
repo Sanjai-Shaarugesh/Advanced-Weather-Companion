@@ -198,12 +198,12 @@ export default class WeatherPreferences extends ExtensionPreferences {
 
   _copyToClipboard(text) {
     try {
-      // Method 1: GTK4 Clipboard API (Primary method for GNOME 43+)
+
       const display = Gdk.Display.get_default();
       if (display) {
         const clipboard = display.get_clipboard();
         if (clipboard) {
-          // Use the correct GTK4 method
+
           clipboard.set_text(text);
           this._showToast(_("✅ Address copied to clipboard!"));
           return;
@@ -214,7 +214,7 @@ export default class WeatherPreferences extends ExtensionPreferences {
     }
 
     try {
-      // Method 2: Legacy GTK3 compatibility
+
       const clipboard = Gtk.Clipboard.get_default(Gdk.Display.get_default());
       if (clipboard) {
         clipboard.set_text(text, -1);
@@ -227,7 +227,7 @@ export default class WeatherPreferences extends ExtensionPreferences {
     }
 
     try {
-      // Method 3: GLib spawn approach (fallback for stubborn systems)
+
       const [success, pid] = GLib.spawn_async(
         null,
         ['bash', '-c', `echo -n "${text}" | xclip -selection clipboard || echo -n "${text}" | wl-copy`],
@@ -237,7 +237,7 @@ export default class WeatherPreferences extends ExtensionPreferences {
       );
 
       if (success) {
-        // Wait for the process to complete
+
         GLib.child_watch_add(GLib.PRIORITY_DEFAULT, pid, (pid, status) => {
           GLib.spawn_close_pid(pid);
           if (status === 0) {
@@ -252,13 +252,13 @@ export default class WeatherPreferences extends ExtensionPreferences {
       console.log("Command line clipboard method failed:", error);
     }
 
-    // Method 4: Last resort - show copy dialog
+
     this._showCopyFallback(text);
   }
 
-  // Add this helper method for fallback copy functionality
+
   _showCopyFallback(text) {
-    // Create a simple dialog with selectable text as fallback
+
     const dialog = new Adw.MessageDialog({
       heading: _("Manual Copy Required"),
       body: _("Automatic clipboard access failed. Please manually copy the address below:"),
@@ -270,7 +270,6 @@ export default class WeatherPreferences extends ExtensionPreferences {
     dialog.add_response("copy", _("Select & Copy"));
     dialog.set_response_appearance("copy", Adw.ResponseAppearance.SUGGESTED);
 
-    // Create a selectable label with the text
     const textView = new Gtk.TextView({
       editable: false,
       cursor_visible: false,
@@ -284,10 +283,10 @@ export default class WeatherPreferences extends ExtensionPreferences {
     const buffer = textView.get_buffer();
     buffer.set_text(text, -1);
 
-    // Make text selectable
+
     textView.set_css_classes(["monospace"]);
 
-    // Add text view to dialog
+
     const contentBox = new Gtk.Box({
       orientation: Gtk.Orientation.VERTICAL,
       spacing: 8
@@ -298,16 +297,16 @@ export default class WeatherPreferences extends ExtensionPreferences {
 
     dialog.connect("response", (dialog, response) => {
       if (response === "copy") {
-        // Select all text in the text view
+
         const buffer = textView.get_buffer();
         const startIter = buffer.get_start_iter();
         const endIter = buffer.get_end_iter();
         buffer.select_range(startIter, endIter);
 
-        // Give focus to text view so user can copy
+
         textView.grab_focus();
 
-        // Try to copy again with selection
+
         try {
           const display = Gdk.Display.get_default();
           const clipboard = display.get_clipboard();
@@ -317,7 +316,7 @@ export default class WeatherPreferences extends ExtensionPreferences {
           this._showToast(_("💡 Text selected! Use Ctrl+C to copy."));
         }
 
-        // Don't close dialog yet, let user copy manually
+
         return;
       }
       dialog.close();
@@ -326,9 +325,9 @@ export default class WeatherPreferences extends ExtensionPreferences {
     dialog.present();
   }
 
-  // Add this helper method to get parent window
+
   _getParentWindow() {
-    // Find the parent window by traversing up the widget hierarchy
+
     let widget = this._searchResultsGroup || this._providerDetailsGroup;
     while (widget && !widget.get_transient_for && !widget.set_transient_for) {
       widget = widget.get_parent();
@@ -497,7 +496,7 @@ export default class WeatherPreferences extends ExtensionPreferences {
       model: new Gtk.StringList()
     });
 
-    // Add providers to dropdown
+
     const providerKeys = Object.keys(WEATHER_PROVIDERS);
     providerKeys.forEach(key => {
       const provider = WEATHER_PROVIDERS[key];
@@ -509,13 +508,13 @@ export default class WeatherPreferences extends ExtensionPreferences {
     const providerIndex = providerKeys.indexOf(currentProvider);
     providerRow.set_selected(providerIndex >= 0 ? providerIndex : 0);
 
-    // Provider details section
+
     this._providerDetailsGroup = new Adw.PreferencesGroup({
       title: _("Provider Configuration"),
       description: _("Configure your selected weather provider")
     });
 
-    // API Key row (shown only for providers that require it)
+
     this._apiKeyRow = new Adw.PasswordEntryRow({
       title: _("API Key"),
       text: settings.get_string("weather-api-key") || ""
@@ -528,19 +527,19 @@ export default class WeatherPreferences extends ExtensionPreferences {
     });
     this._apiKeyRow.add_suffix(getApiKeyButton);
 
-    // Custom URL row (shown only for custom provider)
+
     this._customUrlRow = new Adw.EntryRow({
       title: _("Custom API URL"),
       text: settings.get_string("custom-weather-url") || ""
     });
 
-    // Provider info display
+
     this._providerInfoRow = new Adw.ActionRow({
       title: _("Provider Information"),
       activatable: false
     });
 
-    // Test connection button
+
     const testConnectionRow = new Adw.ActionRow({
       title: _("Test Connection"),
       subtitle: _("Verify your provider settings work correctly"),
@@ -554,7 +553,7 @@ export default class WeatherPreferences extends ExtensionPreferences {
     });
     testConnectionRow.add_suffix(testButton);
 
-    // Connect signals
+
     providerRow.connect("notify::selected", () => {
       const selectedKey = providerKeys[providerRow.get_selected()];
       settings.set_string("weather-provider", selectedKey);
@@ -591,7 +590,7 @@ export default class WeatherPreferences extends ExtensionPreferences {
     page.add(providerGroup);
     page.add(this._providerDetailsGroup);
 
-    // Initialize provider settings display
+
     this._updateProviderSettings(currentProvider);
 
     return page;
@@ -600,13 +599,13 @@ export default class WeatherPreferences extends ExtensionPreferences {
   _updateProviderSettings(providerKey) {
     const provider = WEATHER_PROVIDERS[providerKey];
 
-    // Show/hide API key row
+
     this._apiKeyRow.visible = provider.requiresApiKey;
 
-    // Show/hide custom URL row
+
     this._customUrlRow.visible = (providerKey === "custom");
 
-    // Update provider info
+
     let infoText = `📡 Base URL: ${provider.baseUrl || "Not specified"}\n`;
     infoText += `📊 Rate Limit: ${provider.rateLimit}\n`;
     infoText += `🔑 API Key: ${provider.requiresApiKey ? "Required" : "Not Required"}`;
@@ -649,7 +648,7 @@ export default class WeatherPreferences extends ExtensionPreferences {
       const apiKey = settings.get_string("weather-api-key") || "";
       const customUrl = settings.get_string("custom-weather-url") || "";
 
-      // Test with New York coordinates
+
       const testLat = 40.7128;
       const testLon = -74.0060;
 
@@ -693,7 +692,7 @@ export default class WeatherPreferences extends ExtensionPreferences {
         const responseText = new TextDecoder().decode(bytes.get_data());
         const response = JSON.parse(responseText);
 
-        // Basic validation that we got weather data
+
         let hasValidData = false;
         let temperature = null;
 
@@ -713,7 +712,7 @@ export default class WeatherPreferences extends ExtensionPreferences {
           hasValidData = true;
           temperature = response.current.temp_c;
         } else if (provider === "custom" && response) {
-          hasValidData = true; // Assume valid for custom providers
+          hasValidData = true;
         }
 
         if (hasValidData) {
@@ -800,7 +799,7 @@ export default class WeatherPreferences extends ExtensionPreferences {
       subtitle: _("Display location mode indicator in panel")
     });
     const locationModeIcon = new Gtk.Image({
-      icon_name: "location-services-active-symbolic",
+      icon_name: "find-location-symbolic",
       pixel_size: 16
     });
     showLocationRow.add_prefix(locationModeIcon);
@@ -855,7 +854,7 @@ export default class WeatherPreferences extends ExtensionPreferences {
     });
 
     const infoGroup = new Adw.PreferencesGroup({
-      title: _("Advanced Weather Extension"),
+      title: _("Advanced Weather Companion"),
       description: _("A beautiful, modern weather companion for GNOME Shell")
     });
 
@@ -886,7 +885,7 @@ export default class WeatherPreferences extends ExtensionPreferences {
     });
 
     const titleLabel = new Gtk.Label({
-      label: _("Advanced Weather"),
+      label: _("Advanced Weather Companion"),
       halign: Gtk.Align.START,
       css_classes: ["title-2"]
     });
@@ -998,7 +997,7 @@ export default class WeatherPreferences extends ExtensionPreferences {
     copyButton.connect("clicked", () => {
       const address = "https://buymeacoffee.com/sanjai";
 
-      // Try multiple clipboard methods for maximum compatibility
+
       this._copyToClipboard(address);
     });
 
@@ -1116,7 +1115,7 @@ export default class WeatherPreferences extends ExtensionPreferences {
         try {
           tempFile.delete(null);
         } catch (e) {
-          // Ignore cleanup errors
+
         }
         return GLib.SOURCE_REMOVE;
       });
@@ -1233,7 +1232,7 @@ export default class WeatherPreferences extends ExtensionPreferences {
         }
       }
     } catch (error) {
-      // Continue with basic coordinate result
+
     }
 
     this._showCoordinateResults([coordinateResult]);
@@ -1323,7 +1322,7 @@ export default class WeatherPreferences extends ExtensionPreferences {
       });
 
       const locationIcon = new Gtk.Image({
-        icon_name: "location-services-active-symbolic",
+        icon_name: "find-location-symbolic",
         pixel_size: 16
       });
       resultRow.add_prefix(locationIcon);
@@ -1450,7 +1449,7 @@ export default class WeatherPreferences extends ExtensionPreferences {
   }
 
   _showToast(message) {
-    // Find the window widget to show the toast
+
     let widget = this._searchResultsGroup || this._providerDetailsGroup;
     while (widget && !widget.add_toast) {
       widget = widget.get_parent();

@@ -12,14 +12,14 @@ import * as PopupMenu from "resource:///org/gnome/shell/ui/popupMenu.js";
 const GEOCODING_URL = "https://geocoding-api.open-meteo.com/v1/search";
 const GEOIP_URL = "https://ipapi.co/json/";
 
-// Fallback GEOIP services
+
 const FALLBACK_GEOIP_URLS = [
   "https://ipapi.co/json/",
   "http://ip-api.com/json/",
   "https://freegeoip.app/json/"
 ];
 
-// Weather Provider Configurations - Fixed with proper error handling
+
 const WEATHER_PROVIDERS = {
   openmeteo: {
     name: "Open-Meteo",
@@ -68,7 +68,7 @@ const WEATHER_PROVIDERS = {
           relative_humidity_2m: response.current.humidity,
           surface_pressure: response.current.pressure,
           weather_code: this.convertWeatherCode(response.current.icon_num),
-          wind_speed_10m: response.current.wind.speed * 3.6, // Convert m/s to km/h
+          wind_speed_10m: response.current.wind.speed * 3.6,
           wind_direction_10m: response.current.wind.angle
         },
         hourly: response.hourly ? {
@@ -411,7 +411,7 @@ const WEATHER_PROVIDERS = {
       return url;
     },
     parseResponse: function(response) {
-      // Enhanced auto-detection for different API formats
+
       if (response.current && response.current.temperature_2m) {
         return {
           current: response.current,
@@ -492,7 +492,7 @@ const WEATHER_CONDITIONS = {
   99: { name: "Heavy Hail", icon: "weather-storm-symbolic", severity: "severe" },
 };
 
-// Wind speed conversion functions
+
 const WIND_SPEED_UNITS = {
   kmh: { label: "km/h", multiplier: 1 },
   mph: { label: "mph", multiplier: 0.621371 },
@@ -716,7 +716,7 @@ const WeatherPanelButton = GObject.registerClass(
       this._dailySection = new PopupMenu.PopupSubMenuMenuItem("📅 7-Day Forecast", true);
       this._insightsSection = new PopupMenu.PopupSubMenuMenuItem("🔍 Weather Insights", true);
 
-      // Enhanced weather provider info with status tracking
+
       this._providerSection = new PopupMenu.PopupSubMenuMenuItem("🌐 Weather Provider Status", true);
       this._setupProviderInfo();
 
@@ -753,7 +753,7 @@ const WeatherPanelButton = GObject.registerClass(
     _setupProviderInfo() {
       if (this._destroyed) return;
 
-      // Current active provider info
+
       this._currentProviderItem = new PopupMenu.PopupMenuItem("Active: Loading...", {
         reactive: false,
         style_class: "provider-info-item"
@@ -769,7 +769,7 @@ const WeatherPanelButton = GObject.registerClass(
         style_class: "provider-info-item"
       });
 
-      // Available providers status
+
       this._providersStatusSection = new PopupMenu.PopupMenuSection();
       this._updateProvidersList();
 
@@ -783,10 +783,10 @@ const WeatherPanelButton = GObject.registerClass(
     _updateProvidersList() {
       if (this._destroyed) return;
 
-      // Clear existing items
+
       this._providersStatusSection.removeAll();
 
-      // Add title
+
       const titleItem = new PopupMenu.PopupMenuItem("Available Providers:", {
         reactive: false,
         style_class: "provider-info-item"
@@ -794,10 +794,10 @@ const WeatherPanelButton = GObject.registerClass(
       titleItem.label.style = "font-weight: bold; opacity: 0.8;";
       this._providersStatusSection.addMenuItem(titleItem);
 
-      // Add each provider
+
       Object.keys(WEATHER_PROVIDERS).forEach(key => {
         const provider = WEATHER_PROVIDERS[key];
-        if (key === 'custom') return; // Skip custom for this list
+        if (key === 'custom') return;
 
         const status = this._providerStatus.get(key) || 'unknown';
         const statusIcon = this._getStatusIcon(status);
@@ -809,7 +809,7 @@ const WeatherPanelButton = GObject.registerClass(
           style_class: "provider-info-item"
         });
 
-        // Add click handler to switch provider if working
+
         if (status === 'working' && !this._destroyed) {
           providerItem.reactive = true;
           providerItem.connect('activate', () => {
@@ -823,7 +823,7 @@ const WeatherPanelButton = GObject.registerClass(
         this._providersStatusSection.addMenuItem(providerItem);
       });
 
-      // Add custom provider info
+
       const customProvider = WEATHER_PROVIDERS.custom;
       const customStatus = this._providerStatus.get('custom') || 'inactive';
       const customStatusIcon = this._getStatusIcon(customStatus);
@@ -853,7 +853,7 @@ const WeatherPanelButton = GObject.registerClass(
       this._providerStatus.set(provider, status);
       this._updateProvidersList();
 
-      // Update current provider info if it's the active one
+
       const currentProvider = this._ext._settings.get_string("weather-provider") || "openmeteo";
       if (provider === currentProvider) {
         this._updateCurrentProviderInfo(status, error);
@@ -1222,7 +1222,7 @@ const WeatherPanelButton = GObject.registerClass(
 
         this._retryCount = 0;
 
-        // Update provider status to working
+
         const provider = this._ext._settings.get_string("weather-provider") || "openmeteo";
         this._updateProviderStatus(provider, 'working');
 
@@ -1263,7 +1263,7 @@ const WeatherPanelButton = GObject.registerClass(
       currentText += `\n📊 ${Math.round(current.surface_pressure)} hPa`;
       currentText += `\n📍 ${data.location || "Unknown Location"}`;
 
-      // Add provider info
+
       currentText += `\n🌐 ${data.provider || "Unknown Provider"}`;
 
       this._currentWeatherItem.label.set_text(currentText);
@@ -1583,7 +1583,7 @@ export default class WeatherExtension extends Extension {
       })
     ];
 
-    // Test all providers on startup
+
     this._testAllProviders();
     this._detectLocationAndLoadWeather();
   }
@@ -1620,11 +1620,11 @@ export default class WeatherExtension extends Extension {
   async _testAllProviders() {
     if (!this._enabled) return;
 
-    // Test all free providers to check their status
-    const testLocation = { lat: 40.7128, lon: -74.0060 }; // New York
+
+    const testLocation = { lat: 40.7128, lon: -74.0060 };
 
     for (const [key, provider] of Object.entries(WEATHER_PROVIDERS)) {
-      if (key === 'custom' || !this._enabled) continue; // Skip custom provider
+      if (key === 'custom' || !this._enabled) continue;
 
       try {
         if (this._panelButton && !this._panelButton._destroyed) {
@@ -1641,7 +1641,7 @@ export default class WeatherExtension extends Extension {
           const responseText = new TextDecoder().decode(bytes.get_data());
           const response = JSON.parse(responseText);
 
-          // Try to parse the response to validate format
+
           provider.parseResponse(response);
           if (this._panelButton && !this._panelButton._destroyed) {
             this._panelButton._updateProviderStatus(key, 'working');
@@ -1663,7 +1663,7 @@ export default class WeatherExtension extends Extension {
       }
     }
 
-    // Check custom provider if configured
+
     const customUrl = this._settings.get_string("custom-weather-url");
     const customKey = this._settings.get_string("weather-api-key");
 
@@ -1872,7 +1872,7 @@ export default class WeatherExtension extends Extension {
         throw new Error(`Unknown weather provider: ${provider}`);
       }
 
-      // Update provider status to testing
+
       if (this._panelButton && !this._panelButton._destroyed) {
         this._panelButton._updateProviderStatus(provider, 'testing');
       }
@@ -1920,7 +1920,7 @@ export default class WeatherExtension extends Extension {
         this._panelButton._weatherLabel.set_text("Error");
         this._panelButton._weatherIcon.set_icon_name("dialog-error-symbolic");
 
-        // Update provider status with error
+
         if (error.message.includes('timeout')) {
           this._panelButton._updateProviderStatus(provider, 'timeout');
         } else {
@@ -1928,7 +1928,7 @@ export default class WeatherExtension extends Extension {
         }
       }
 
-      // Try fallback to a working provider
+
       this._tryFallbackProvider();
     }
   }
@@ -1936,7 +1936,7 @@ export default class WeatherExtension extends Extension {
   async _tryFallbackProvider() {
     if (!this._enabled || !this._panelButton || this._panelButton._destroyed) return;
 
-    // Get the working providers from status
+
     const workingProviders = [];
     for (const [key, status] of this._panelButton._providerStatus.entries()) {
       if (status === 'working' && key !== 'custom') {
@@ -1950,16 +1950,16 @@ export default class WeatherExtension extends Extension {
 
       console.log(`Trying fallback provider: ${fallbackProvider}`);
 
-      // Temporarily switch to fallback provider
+
       const originalProvider = currentProvider;
       this._settings.set_string("weather-provider", fallbackProvider);
 
       try {
         await this._loadWeatherData();
-        // If successful, show notification about provider switch
+
         console.log(`Successfully switched to fallback provider: ${fallbackProvider}`);
       } catch (fallbackError) {
-        // Restore original provider if fallback fails
+
         this._settings.set_string("weather-provider", originalProvider);
         console.error("Fallback provider also failed:", fallbackError);
       }
