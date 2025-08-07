@@ -19,7 +19,7 @@ If you discover a security vulnerability in this project:
 
 1. **Do not open a public issue** – to protect users, please report vulnerabilities privately.
 2. Contact me directly via:
-   - **Email**: [sanjai.shaarugesh@gmail.com](mailto:sanjai.shaarugesh@gmail.com)
+   - **Email**: [sanjai.shaarugesh@gmail.com](mailto:shaarugesh@gmail.com)
    - **GitHub**: [@Sanjai-Shaarugesh](https://github.com/Sanjai-Shaarugesh)
 
 3. Include as much detail as possible:
