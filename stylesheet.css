@@ -1,4 +1,3 @@
-/* stylesheet.css */
 
 .weather-button-box,
 .weather-button-box-filled {
@@ -210,14 +209,14 @@
     transform: scale(0.98);
 }
 
-/* Keep existing QR code container styling for compatibility */
+
 .qr-code-container {
     padding: 20px;
     text-align: center;
     margin: 16px 0;
 }
 
-/* Update the original QR code image styling */
+
 .qr-code-image {
     border-radius: 20px;
     width: 180px;
@@ -251,7 +250,7 @@
     margin: 2px 4px;
 }
 
-/* Search entry styling */
+
 .search-entry-minimal {
     border-radius: 6px;
     padding: 6px 10px;

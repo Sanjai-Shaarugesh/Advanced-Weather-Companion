@@ -52,6 +52,57 @@
       <description>Display name of the manually set location.</description>
     </key>
 
+    <!-- Weather Provider Settings - Updated for Multiple Free Providers -->
+    <key name="weather-provider" type="s">
+      <default>'openmeteo'</default>
+      <summary>Weather Provider</summary>
+      <description>Weather API provider: 'openmeteo', 'meteosource', 'wttr', 'openweathermap', 'weatherapi', or 'custom'.</description>
+    </key>
+
+    <key name="weather-api-key" type="s">
+      <default>''</default>
+      <summary>Weather API Key</summary>
+      <description>API key for weather providers that require authentication. Not needed for free providers like Open-Meteo, Meteosource, or Wttr.in.</description>
+    </key>
+
+    <key name="custom-weather-url" type="s">
+      <default>''</default>
+      <summary>Custom Weather API URL</summary>
+      <description>Base URL for custom weather API provider. Use {lat} and {lon} as coordinate placeholders.</description>
+    </key>
+
+    <key name="weather-request-timeout" type="i">
+      <default>15</default>
+      <summary>Weather Request Timeout</summary>
+      <description>Timeout in seconds for weather API requests.</description>
+    </key>
+
+    <!-- Provider Status Tracking -->
+    <key name="provider-status-cache" type="s">
+      <default>'{}'</default>
+      <summary>Provider Status Cache</summary>
+      <description>JSON cache of weather provider availability status.</description>
+    </key>
+
+    <key name="last-provider-test" type="x">
+      <default>0</default>
+      <summary>Last Provider Test Time</summary>
+      <description>Unix timestamp of last provider connectivity test.</description>
+    </key>
+
+    <!-- Auto-fallback Settings -->
+    <key name="enable-provider-fallback" type="b">
+      <default>true</default>
+      <summary>Enable Provider Fallback</summary>
+      <description>Automatically switch to working providers when the current one fails.</description>
+    </key>
+
+    <key name="fallback-provider-order" type="as">
+      <default>['openmeteo', 'meteosource', 'wttr']</default>
+      <summary>Fallback Provider Order</summary>
+      <description>Priority order for automatic provider fallback (free providers first).</description>
+    </key>
+
     <!-- Appearance Settings -->
     <key name="panel-position" type="s">
       <default>'right'</default>
@@ -61,11 +112,8 @@
 
     <key name="panel-position-index" type="i">
       <default>2</default>
-      <summary>Panel position index</summary>
-      <description>
-        An integer index representing the panel position:
-        0 = Left, 1 = Center, 2 = Right.
-      </description>
+      <summary>Panel Position Index</summary>
+      <description>Position index within the selected panel area.</description>
     </key>
 
     <key name="show-text-in-panel" type="b">
@@ -90,6 +138,44 @@
       <default>13</default>
       <summary>Panel Text Size</summary>
       <description>Size of the temperature text in the GNOME panel in pixels.</description>
+    </key>
+
+    <!-- Advanced Settings -->
+    <key name="show-provider-status" type="b">
+      <default>true</default>
+      <summary>Show Provider Status</summary>
+      <description>Display weather provider status information in the dropdown menu.</description>
+    </key>
+
+    <key name="provider-test-interval" type="i">
+      <default>3600</default>
+      <summary>Provider Test Interval</summary>
+      <description>How often to test provider availability, in seconds (default: 1 hour).</description>
+    </key>
+
+    <key name="debug-logging" type="b">
+      <default>false</default>
+      <summary>Debug Logging</summary>
+      <description>Enable detailed logging for troubleshooting weather provider issues.</description>
+    </key>
+
+    <!-- Provider-specific Settings -->
+    <key name="prefer-free-providers" type="b">
+      <default>true</default>
+      <summary>Prefer Free Providers</summary>
+      <description>Prioritize free weather providers (Open-Meteo, Meteosource, Wttr.in) over paid ones.</description>
+    </key>
+
+    <key name="wttr-language" type="s">
+      <default>'en'</default>
+      <summary>Wttr.in Language</summary>
+      <description>Language code for Wttr.in weather service responses.</description>
+    </key>
+
+    <key name="meteosource-units" type="s">
+      <default>'metric'</default>
+      <summary>Meteosource Units</summary>
+      <description>Unit system for Meteosource API: 'metric', 'imperial', or 'uk'.</description>
     </key>
 
   </schema>
