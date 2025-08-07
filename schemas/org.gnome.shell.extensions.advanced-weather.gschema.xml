@@ -1,44 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
   <schema id="org.gnome.shell.extensions.advanced-weather" path="/org/gnome/shell/extensions/advanced-weather/">
-    <key name="location-mode" type="s">
-      <default>'auto'</default>
-      <summary>Location Detection Mode</summary>
-      <description>Choose between automatic location detection or manual setup</description>
-    </key>
-    <key name="location" type="s">
-      <default>''</default>
-      <summary>Manual Location</summary>
-      <description>Manually set location by coordinates or city name</description>
-    </key>
+
+    <!-- General Settings -->
     <key name="use-fahrenheit" type="b">
       <default>false</default>
-      <summary>Temperature Unit</summary>
-      <description>Use Fahrenheit instead of Celsius</description>
+      <summary>Use Fahrenheit</summary>
+      <description>Switch between Celsius and Fahrenheit for temperature display.</description>
     </key>
-    <key name="wind-speed-unit" type="s">
-      <default>'kmh'</default>
-      <summary>Wind speed unit</summary>
-      <description>Unit to display wind speed (kmh, mph, ms, knots)</description>
-    </key>
-    <key name="panel-position" type="s">
-      <default>'right'</default>
-      <summary>Panel position</summary>
-      <description>Position in the panel (left, center, right)</description>
-    </key>
-    <key name="fill-button-background" type="b">
-      <default>true</default>
-      <summary>Draw background in panel</summary>
-      <description>Draw background in panel</description>
-    </key>
-    <key name="show-location-label" type="b">
-      <default>true</default>
-      <summary>Show location mode label</summary>
-      <description>Show AUTO/MANUAL label in the panel</description>
-    </key>
+
     <key name="use-12hour-format" type="b">
       <default>false</default>
-      <summary>Use 12-hour time format</summary>
-      <description>Whether to display time in 12-hour format (AM/PM) instead of 24-hour format</description>
+      <summary>Use 12-Hour Format</summary>
+      <description>Display time in 12-hour format with AM/PM.</description>
     </key>
+
+    <key name="wind-speed-unit" type="s">
+      <default>'kmh'</default>
+      <summary>Wind Speed Unit</summary>
+      <description>Unit for wind speed display: 'kmh', 'mph', 'ms', 'knots'.</description>
+    </key>
+
+    <key name="update-interval" type="i">
+      <default>10</default>
+      <summary>Update Interval</summary>
+      <description>How often to refresh weather data, in minutes.</description>
+    </key>
+
+    <key name="show-humidity" type="b">
+      <default>true</default>
+      <summary>Show Humidity</summary>
+      <description>Display relative humidity in weather details.</description>
+    </key>
+
+    <!-- Location Settings -->
+    <key name="location-mode" type="s">
+      <default>'auto'</default>
+      <summary>Location Mode</summary>
+      <description>How to detect location: 'auto' or 'manual'.</description>
+    </key>
+
+    <key name="location" type="s">
+      <default>''</default>
+      <summary>Manual Location Coordinates</summary>
+      <description>Latitude and longitude (comma separated) when in manual mode.</description>
+    </key>
+
+    <key name="location-name" type="s">
+      <default>''</default>
+      <summary>Manual Location Name</summary>
+      <description>Display name of the manually set location.</description>
+    </key>
+
+    <!-- Weather Provider Settings - Updated for Multiple Free Providers -->
+    <key name="weather-provider" type="s">
+      <default>'openmeteo'</default>
+      <summary>Weather Provider</summary>
+      <description>Weather API provider: 'openmeteo', 'meteosource', 'wttr', 'openweathermap', 'weatherapi', or 'custom'.</description>
+    </key>
+
+    <key name="weather-api-key" type="s">
+      <default>''</default>
+      <summary>Weather API Key</summary>
+      <description>API key for weather providers that require authentication. Not needed for free providers like Open-Meteo, Meteosource, or Wttr.in.</description>
+    </key>
+
+    <key name="custom-weather-url" type="s">
+      <default>''</default>
+      <summary>Custom Weather API URL</summary>
+      <description>Base URL for custom weather API provider. Use {lat} and {lon} as coordinate placeholders.</description>
+    </key>
+
+    <key name="weather-request-timeout" type="i">
+      <default>15</default>
+      <summary>Weather Request Timeout</summary>
+      <description>Timeout in seconds for weather API requests.</description>
+    </key>
+
+    <!-- Provider Status Tracking -->
+    <key name="provider-status-cache" type="s">
+      <default>'{}'</default>
+      <summary>Provider Status Cache</summary>
+      <description>JSON cache of weather provider availability status.</description>
+    </key>
+
+    <key name="last-provider-test" type="x">
+      <default>0</default>
+      <summary>Last Provider Test Time</summary>
+      <description>Unix timestamp of last provider connectivity test.</description>
+    </key>
+
+    <!-- Auto-fallback Settings -->
+    <key name="enable-provider-fallback" type="b">
+      <default>true</default>
+      <summary>Enable Provider Fallback</summary>
+      <description>Automatically switch to working providers when the current one fails.</description>
+    </key>
+
+    <key name="fallback-provider-order" type="as">
+      <default>['openmeteo', 'meteosource', 'wttr']</default>
+      <summary>Fallback Provider Order</summary>
+      <description>Priority order for automatic provider fallback (free providers first).</description>
+    </key>
+
+    <!-- Appearance Settings -->
+    <key name="panel-position" type="s">
+      <default>'right'</default>
+      <summary>Panel Position</summary>
+      <description>Where to place the weather widget on the GNOME panel: 'left', 'center', or 'right'.</description>
+    </key>
+
+    <key name="panel-position-index" type="i">
+      <default>2</default>
+      <summary>Panel Position Index</summary>
+      <description>Position index within the selected panel area.</description>
+    </key>
+
+    <key name="show-text-in-panel" type="b">
+      <default>true</default>
+      <summary>Show Temperature Text</summary>
+      <description>Display the temperature as text next to the icon in the panel.</description>
+    </key>
+
+    <key name="show-location-label" type="b">
+      <default>false</default>
+      <summary>Show Location Indicator</summary>
+      <description>Display location mode indicator with GPS icon in the panel.</description>
+    </key>
+
+    <key name="panel-icon-size" type="i">
+      <default>16</default>
+      <summary>Panel Icon Size</summary>
+      <description>Size of the weather icon in the GNOME panel in pixels.</description>
+    </key>
+
+    <key name="panel-text-size" type="i">
+      <default>13</default>
+      <summary>Panel Text Size</summary>
+      <description>Size of the temperature text in the GNOME panel in pixels.</description>
+    </key>
+
+    <!-- Advanced Settings -->
+    <key name="show-provider-status" type="b">
+      <default>true</default>
+      <summary>Show Provider Status</summary>
+      <description>Display weather provider status information in the dropdown menu.</description>
+    </key>
+
+    <key name="provider-test-interval" type="i">
+      <default>3600</default>
+      <summary>Provider Test Interval</summary>
+      <description>How often to test provider availability, in seconds (default: 1 hour).</description>
+    </key>
+
+    <key name="debug-logging" type="b">
+      <default>false</default>
+      <summary>Debug Logging</summary>
+      <description>Enable detailed logging for troubleshooting weather provider issues.</description>
+    </key>
+
+    <!-- Provider-specific Settings -->
+    <key name="prefer-free-providers" type="b">
+      <default>true</default>
+      <summary>Prefer Free Providers</summary>
+      <description>Prioritize free weather providers (Open-Meteo, Meteosource, Wttr.in) over paid ones.</description>
+    </key>
+
+    <key name="wttr-language" type="s">
+      <default>'en'</default>
+      <summary>Wttr.in Language</summary>
+      <description>Language code for Wttr.in weather service responses.</description>
+    </key>
+
+    <key name="meteosource-units" type="s">
+      <default>'metric'</default>
+      <summary>Meteosource Units</summary>
+      <description>Unit system for Meteosource API: 'metric', 'imperial', or 'uk'.</description>
+    </key>
+
   </schema>
 </schemalist>
