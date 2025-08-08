@@ -1812,21 +1812,29 @@ export default class WeatherExtension extends Extension {
 
         let lat, lon, city, country;
 
-        if (url.includes('ipapi.co')) {
+        let parsedHost;
+        try {
+          parsedHost = new URL(url).host;
+        } catch (e) {
+          // If URL parsing fails, skip this URL
+          continue;
+        }
+
+        if (parsedHost === 'ipapi.co') {
           if (response.latitude && response.longitude) {
             lat = response.latitude;
             lon = response.longitude;
             city = response.city;
             country = response.country_name;
           }
-        } else if (url.includes('ip-api.com')) {
+        } else if (parsedHost === 'ip-api.com') {
           if (response.status === "success" && response.lat && response.lon) {
             lat = response.lat;
             lon = response.lon;
             city = response.city;
             country = response.country;
           }
-        } else if (url.includes('freegeoip.app')) {
+        } else if (parsedHost === 'freegeoip.app') {
           if (response.latitude && response.longitude) {
             lat = response.latitude;
             lon = response.longitude;
