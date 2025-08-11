@@ -198,48 +198,75 @@ export default class WeatherPreferences extends ExtensionPreferences {
 
 
   _copyToClipboard(text, label = null) {
-      // Use GTK4 clipboard API
+      // Use proper GJS clipboard access as per GNOME guidelines
       try {
           const display = Gdk.Display.get_default();
-          if (display) {
-              const clipboard = display.get_clipboard();
-              if (clipboard) {
-                  clipboard.set_text(text);
-                  this._showToast(`✅ ${label || 'Text'} copied to clipboard!`);
-                  return;
-              }
+          if (!display) {
+              throw new Error("No display available");
           }
+
+          const clipboard = display.get_clipboard();
+          if (!clipboard) {
+              throw new Error("No clipboard available");
+          }
+
+          // Use the proper GJS async clipboard API
+          clipboard.set_text_async(text, -1, null, (clipboard, result) => {
+              try {
+                  clipboard.set_text_finish(result);
+                  this._showToast(`✅ ${label || 'Text'} copied to clipboard!`);
+              } catch (error) {
+                  console.log("Async clipboard set failed:", error.message);
+                  // Try synchronous fallback
+                  this._trySync(clipboard, text, label);
+              }
+          });
+          return;
+
       } catch (error) {
-          console.log("GTK4 clipboard method failed:", error);
+          console.log("Async clipboard method failed:", error.message);
       }
 
-      // Final fallback to command line tools
+      // Fallback to synchronous method
       try {
-          const [success, pid] = GLib.spawn_async(
-              null,
-              ['bash', '-c', `echo -n "${text.replace(/"/g, '\\"')}" | xclip -selection clipboard 2>/dev/null || echo -n "${text.replace(/"/g, '\\"')}" | wl-copy 2>/dev/null`],
-              null,
-              GLib.SpawnFlags.SEARCH_PATH | GLib.SpawnFlags.DO_NOT_REAP_CHILD,
-              null
-          );
-
-          if (success) {
-              GLib.child_watch_add(GLib.PRIORITY_DEFAULT, pid, (pid, status) => {
-                  GLib.spawn_close_pid(pid);
-                  if (status === 0) {
-                      this._showToast(`✅ ${label || 'Text'} copied to clipboard!`);
-                  } else {
-                      this._showCopyDialog(text, label);
-                  }
-              });
+          const display = Gdk.Display.get_default();
+          const clipboard = display?.get_clipboard();
+          if (clipboard) {
+              this._trySync(clipboard, text, label);
               return;
           }
       } catch (error) {
-          console.log("Command line clipboard method failed:", error);
+          console.log("Sync clipboard method failed:", error.message);
       }
 
-      // Show manual copy dialog as last resort
+      // If all automatic methods fail, show manual copy dialog
+      console.log("All clipboard methods failed, showing manual copy dialog");
       this._showCopyDialog(text, label);
+  }
+
+  _trySync(clipboard, text, label) {
+      try {
+          // Try the synchronous set_text method
+          clipboard.set_text(text);
+          this._showToast(`✅ ${label || 'Text'} copied to clipboard!`);
+          return true;
+      } catch (error) {
+          console.log("Synchronous clipboard failed:", error.message);
+
+          // Try with content provider approach
+          try {
+              const contentProvider = Gdk.ContentProvider.new_for_value(text);
+              if (contentProvider) {
+                  clipboard.set_content(contentProvider);
+                  this._showToast(`✅ ${label || 'Text'} copied to clipboard!`);
+                  return true;
+              }
+          } catch (providerError) {
+              console.log("Content provider approach failed:", providerError.message);
+          }
+
+          return false;
+      }
   }
 
   _showCopyDialog(text, label = null) {
