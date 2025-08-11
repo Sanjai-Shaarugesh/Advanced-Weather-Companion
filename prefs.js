@@ -196,143 +196,172 @@ export default class WeatherPreferences extends ExtensionPreferences {
     return page;
   }
 
-  _copyToClipboard(text) {
-    try {
 
-      const display = Gdk.Display.get_default();
-      if (display) {
-        const clipboard = display.get_clipboard();
-        if (clipboard) {
-
-          clipboard.set_text(text);
-          this._showToast(_("✅ Address copied to clipboard!"));
-          return;
-        }
-      }
-    } catch (error) {
-      console.log("GTK4 clipboard method failed:", error);
-    }
-
-    try {
-
-      const clipboard = Gtk.Clipboard.get_default(Gdk.Display.get_default());
-      if (clipboard) {
-        clipboard.set_text(text, -1);
-        clipboard.store();
-        this._showToast(_("✅ Address copied to clipboard!"));
-        return;
-      }
-    } catch (error) {
-      console.log("GTK3 clipboard method failed:", error);
-    }
-
-    try {
-
-      const [success, pid] = GLib.spawn_async(
-        null,
-        ['bash', '-c', `echo -n "${text}" | xclip -selection clipboard || echo -n "${text}" | wl-copy`],
-        null,
-        GLib.SpawnFlags.SEARCH_PATH | GLib.SpawnFlags.DO_NOT_REAP_CHILD,
-        null
-      );
-
-      if (success) {
-
-        GLib.child_watch_add(GLib.PRIORITY_DEFAULT, pid, (pid, status) => {
-          GLib.spawn_close_pid(pid);
-          if (status === 0) {
-            this._showToast(_("✅ Address copied to clipboard!"));
-          } else {
-            this._showCopyFallback(text);
-          }
-        });
-        return;
-      }
-    } catch (error) {
-      console.log("Command line clipboard method failed:", error);
-    }
-
-
-    this._showCopyFallback(text);
-  }
-
-
-  _showCopyFallback(text) {
-
-    const dialog = new Adw.MessageDialog({
-      heading: _("Manual Copy Required"),
-      body: _("Automatic clipboard access failed. Please manually copy the address below:"),
-      modal: true,
-      transient_for: this._getParentWindow()
-    });
-
-    dialog.add_response("close", _("Close"));
-    dialog.add_response("copy", _("Select & Copy"));
-    dialog.set_response_appearance("copy", Adw.ResponseAppearance.SUGGESTED);
-
-    const textView = new Gtk.TextView({
-      editable: false,
-      cursor_visible: false,
-      wrap_mode: Gtk.WrapMode.CHAR,
-      margin_top: 12,
-      margin_bottom: 12,
-      margin_start: 12,
-      margin_end: 12
-    });
-
-    const buffer = textView.get_buffer();
-    buffer.set_text(text, -1);
-
-
-    textView.set_css_classes(["monospace"]);
-
-
-    const contentBox = new Gtk.Box({
-      orientation: Gtk.Orientation.VERTICAL,
-      spacing: 8
-    });
-    contentBox.append(textView);
-
-    dialog.set_extra_child(contentBox);
-
-    dialog.connect("response", (dialog, response) => {
-      if (response === "copy") {
-
-        const buffer = textView.get_buffer();
-        const startIter = buffer.get_start_iter();
-        const endIter = buffer.get_end_iter();
-        buffer.select_range(startIter, endIter);
-
-
-        textView.grab_focus();
-
-
-        try {
+  _copyToClipboard(text, label = null) {
+      // Try modern GTK4 clipboard API first
+      try {
           const display = Gdk.Display.get_default();
-          const clipboard = display.get_clipboard();
-          clipboard.set_text(text);
-          this._showToast(_("✅ Text selected! Use Ctrl+C to copy."));
-        } catch (e) {
-          this._showToast(_("💡 Text selected! Use Ctrl+C to copy."));
-        }
-
-
-        return;
+          if (display) {
+              const clipboard = display.get_clipboard();
+              if (clipboard) {
+                  clipboard.set_text(text);
+                  this._showToast(`✅ ${label || 'Text'} copied to clipboard!`);
+                  return;
+              }
+          }
+      } catch (error) {
+          console.log("GTK4 clipboard method failed:", error);
       }
-      dialog.close();
-    });
 
-    dialog.present();
+      // Fallback to GTK3 clipboard API
+      try {
+          const clipboard = Gtk.Clipboard.get_default(Gdk.Display.get_default());
+          if (clipboard) {
+              clipboard.set_text(text, -1);
+              clipboard.store();
+              this._showToast(`✅ ${label || 'Text'} copied to clipboard!`);
+              return;
+          }
+      } catch (error) {
+          console.log("GTK3 clipboard method failed:", error);
+      }
+
+      // Final fallback to command line tools
+      try {
+          const [success, pid] = GLib.spawn_async(
+              null,
+              ['bash', '-c', `echo -n "${text.replace(/"/g, '\\"')}" | xclip -selection clipboard 2>/dev/null || echo -n "${text.replace(/"/g, '\\"')}" | wl-copy 2>/dev/null`],
+              null,
+              GLib.SpawnFlags.SEARCH_PATH | GLib.SpawnFlags.DO_NOT_REAP_CHILD,
+              null
+          );
+
+          if (success) {
+              GLib.child_watch_add(GLib.PRIORITY_DEFAULT, pid, (pid, status) => {
+                  GLib.spawn_close_pid(pid);
+                  if (status === 0) {
+                      this._showToast(`✅ ${label || 'Text'} copied to clipboard!`);
+                  } else {
+                      this._showCopyDialog(text, label);
+                  }
+              });
+              return;
+          }
+      } catch (error) {
+          console.log("Command line clipboard method failed:", error);
+      }
+
+      // Show manual copy dialog as last resort
+      this._showCopyDialog(text, label);
   }
 
+  _showCopyDialog(text, label = null) {
+      const dialog = new Adw.MessageDialog({
+          heading: _("Copy to Clipboard"),
+          body: _(`Unable to automatically copy to clipboard. Please manually copy the ${label || 'text'} below:`),
+          modal: true,
+          transient_for: this._getParentWindow()
+      });
 
+      dialog.add_response("close", _("Close"));
+      dialog.add_response("select", _("Select Text"));
+      dialog.set_response_appearance("select", Adw.ResponseAppearance.SUGGESTED);
+      dialog.set_default_response("select");
+
+      // Create a container for the text display
+      const contentBox = new Gtk.Box({
+          orientation: Gtk.Orientation.VERTICAL,
+          spacing: 12,
+          margin_top: 12,
+          margin_bottom: 12,
+          margin_start: 12,
+          margin_end: 12
+      });
+
+      // Create text view with the content
+      const textView = new Gtk.TextView({
+          editable: false,
+          cursor_visible: true,
+          wrap_mode: Gtk.WrapMode.CHAR,
+          css_classes: ["monospace", "card"],
+          margin_top: 8,
+          margin_bottom: 8,
+          margin_start: 8,
+          margin_end: 8
+      });
+
+      // Create scrolled window for the text view
+      const scrolledWindow = new Gtk.ScrolledWindow({
+          child: textView,
+          height_request: Math.min(120, Math.max(40, text.length / 3)),
+          hscrollbar_policy: Gtk.PolicyType.AUTOMATIC,
+          vscrollbar_policy: Gtk.PolicyType.AUTOMATIC,
+          css_classes: ["view"]
+      });
+
+      const buffer = textView.get_buffer();
+      buffer.set_text(text, -1);
+
+      contentBox.append(scrolledWindow);
+
+      // Add copy instruction
+      const instructionLabel = new Gtk.Label({
+          label: _("💡 Select the text above and press Ctrl+C to copy"),
+          css_classes: ["caption", "dim-label"],
+          halign: Gtk.Align.CENTER,
+          margin_top: 8
+      });
+      contentBox.append(instructionLabel);
+
+      dialog.set_extra_child(contentBox);
+
+      dialog.connect("response", (dialog, response) => {
+          if (response === "select") {
+              // Select all text in the buffer
+              const startIter = buffer.get_start_iter();
+              const endIter = buffer.get_end_iter();
+              buffer.select_range(startIter, endIter);
+
+              // Focus the text view
+              textView.grab_focus();
+
+              // Try one more time to copy to clipboard
+              try {
+                  const display = Gdk.Display.get_default();
+                  if (display) {
+                      const clipboard = display.get_clipboard();
+                      if (clipboard) {
+                          clipboard.set_text(text);
+                          this._showToast(`✅ ${label || 'Text'} copied to clipboard!`);
+                          dialog.close();
+                          return;
+                      }
+                  }
+              } catch (e) {
+                  // If clipboard access still fails, just show the selection
+                  this._showToast(_("💡 Text selected! Press Ctrl+C to copy"));
+              }
+              return; // Keep dialog open for manual copy
+          }
+          dialog.close();
+      });
+
+      dialog.present();
+  }
+
+  // Helper method to get parent window for dialogs
   _getParentWindow() {
-
-    let widget = this._searchResultsGroup || this._providerDetailsGroup;
-    while (widget && !widget.get_transient_for && !widget.set_transient_for) {
-      widget = widget.get_parent();
-    }
-    return widget;
+      let widget = this._searchResultsGroup || this._providerDetailsGroup;
+      while (widget) {
+          if (widget.get_root && widget.get_root()) {
+              return widget.get_root();
+          }
+          if (widget.get_toplevel && widget.get_toplevel()) {
+              return widget.get_toplevel();
+          }
+          widget = widget.get_parent();
+      }
+      return null;
   }
 
   _createLocationPage(settings) {
@@ -848,236 +877,244 @@ export default class WeatherPreferences extends ExtensionPreferences {
   }
 
   _createAboutPage(settings) {
-    const page = new Adw.PreferencesPage({
-      title: _("About"),
-      icon_name: "help-about-symbolic"
-    });
-
-    const infoGroup = new Adw.PreferencesGroup({
-      title: _("Advanced Weather Companion"),
-      description: _("A beautiful, modern weather companion for GNOME Shell")
-    });
-
-    const headerBox = new Gtk.Box({
-      orientation: Gtk.Orientation.HORIZONTAL,
-      spacing: 20,
-      margin_top: 20,
-      margin_bottom: 20,
-      halign: Gtk.Align.CENTER
-    });
-
-    const logoPath = `${this.dir.get_path()}/icons/weather-logo.png`;
-    let logoImage;
-    try {
-      logoImage = Gtk.Image.new_from_file(logoPath);
-      logoImage.set_pixel_size(72);
-    } catch (e) {
-      logoImage = new Gtk.Image({
-        icon_name: "weather-clear-symbolic",
-        pixel_size: 72
+      const page = new Adw.PreferencesPage({
+        title: _("About"),
+        icon_name: "help-about-symbolic"
       });
-    }
 
-    const infoBox = new Gtk.Box({
-      orientation: Gtk.Orientation.VERTICAL,
-      spacing: 6,
-      valign: Gtk.Align.CENTER
-    });
-
-    const titleLabel = new Gtk.Label({
-      label: _("Advanced Weather Companion"),
-      halign: Gtk.Align.START,
-      css_classes: ["title-2"]
-    });
-
-    const versionLabel = new Gtk.Label({
-      label: _("Version 2.0"),
-      halign: Gtk.Align.START,
-      css_classes: ["caption"]
-    });
-
-    const descLabel = new Gtk.Label({
-      label: _("Modern weather extension with native GNOME design"),
-      halign: Gtk.Align.START,
-      wrap: true,
-      max_width_chars: 40,
-      css_classes: ["body"]
-    });
-
-    infoBox.append(titleLabel);
-    infoBox.append(versionLabel);
-    infoBox.append(descLabel);
-    headerBox.append(logoImage);
-    headerBox.append(infoBox);
-
-    const headerRow = new Adw.ActionRow({ title: "", activatable: false });
-    headerRow.add_suffix(headerBox);
-
-    const linksGroup = new Adw.PreferencesGroup({
-      title: _("Extension Links"),
-      description: _("Source code, issues, and contributions")
-    });
-
-    const githubRow = new Adw.ActionRow({
-      title: _("View on GitHub"),
-      subtitle: _("Source code, issues, and contributions"),
-      activatable: true
-    });
-
-    const githubIcon = this._createGitHubIcon();
-    githubRow.add_prefix(githubIcon);
-
-    const externalIcon = new Gtk.Image({
-      icon_name: "adw-external-link-symbolic",
-      pixel_size: 16
-    });
-    githubRow.add_suffix(externalIcon);
-    githubRow.connect("activated", () => {
-      try {
-        Gio.AppInfo.launch_default_for_uri("https://github.com/Sanjai-Shaarugesh/Advanced-Weather-Companion", null);
-      } catch (error) {
-        console.error("Could not open GitHub link:", error);
-      }
-    });
-
-    const qrGroup = new Adw.PreferencesGroup({
-      title: _("☕ Support by buying me a coffee — just scan the QR code!"),
-      description: _("Preferred Method - Scan QR code to support development")
-    });
-
-    const qrContainer = new Gtk.Box({
-      orientation: Gtk.Orientation.VERTICAL,
-      spacing: 16,
-      halign: Gtk.Align.CENTER,
-      margin_top: 24,
-      margin_bottom: 24,
-      margin_start: 24,
-      margin_end: 24,
-      css_classes: ["qr-container"]
-    });
-
-    const qrImageBox = new Gtk.Box({
-      orientation: Gtk.Orientation.VERTICAL,
-      halign: Gtk.Align.CENTER,
-      css_classes: ["qr-image-container"]
-    });
-
-    const qrPath = `${this.dir.get_path()}/icons/qr.png`;
-    let qrImage;
-    try {
-      qrImage = Gtk.Image.new_from_file(qrPath);
-      qrImage.set_pixel_size(200);
-      qrImage.set_css_classes(["qr-code-image"]);
-    } catch (e) {
-      qrImage = new Gtk.Image({
-        icon_name: "camera-web-symbolic",
-        pixel_size: 200
+      const infoGroup = new Adw.PreferencesGroup({
+        title: _("Advanced Weather Companion"),
+        description: _("A beautiful, modern weather companion for GNOME Shell")
       });
-      qrImage.set_css_classes(["qr-code-placeholder"]);
-    }
 
-    qrImageBox.append(qrImage);
+      const headerBox = new Gtk.Box({
+        orientation: Gtk.Orientation.HORIZONTAL,
+        spacing: 20,
+        margin_top: 20,
+        margin_bottom: 20,
+        halign: Gtk.Align.CENTER
+      });
 
-    const addressLabel = new Gtk.Label({
-      label: "https://buymeacoffee.com/sanjai",
-      css_classes: ["qr-address"],
-      halign: Gtk.Align.CENTER,
-      selectable: true,
-      wrap: true,
-      max_width_chars: 40
-    });
-
-
-    const copyButton = new Gtk.Button({
-      label: _("Copy Address"),
-      halign: Gtk.Align.CENTER,
-      css_classes: ["qr-copy-button"]
-    });
-
-    copyButton.connect("clicked", () => {
-      const address = "https://buymeacoffee.com/sanjai";
-
-
-      this._copyToClipboard(address);
-    });
-
-
-
-
-    qrContainer.append(qrImageBox);
-    qrContainer.append(addressLabel);
-    qrContainer.append(copyButton);
-
-    const qrRow = new Adw.ActionRow({
-      title: "",
-      activatable: false
-    });
-    qrRow.set_child(qrContainer);
-
-    const sponsorRow = new Adw.ActionRow({
-      title: _("☕ Buy Me a Coffee"),
-      subtitle: _("Support development with a small donation"),
-      activatable: true
-    });
-    const heartIcon = new Gtk.Image({
-      icon_name: "emblem-favorite-symbolic",
-      pixel_size: 20
-    });
-    sponsorRow.add_prefix(heartIcon);
-    const sponsorIcon = new Gtk.Image({
-      icon_name: "adw-external-link-symbolic",
-      pixel_size: 16
-    });
-    sponsorRow.add_suffix(sponsorIcon);
-    sponsorRow.connect("activated", () => {
+      const logoPath = `${this.dir.get_path()}/icons/weather-logo.png`;
+      let logoImage;
       try {
-        Gio.AppInfo.launch_default_for_uri("https://buymeacoffee.com/sanjai", null);
-      } catch (error) {
-        console.error("Could not open sponsor link:", error);
+        logoImage = Gtk.Image.new_from_file(logoPath);
+        logoImage.set_pixel_size(72);
+      } catch (e) {
+        logoImage = new Gtk.Image({
+          icon_name: "weather-clear-symbolic",
+          pixel_size: 72
+        });
       }
-    });
 
-    const licenseGroup = new Adw.PreferencesGroup({
-      title: _("License & Credits"),
-      description: _("Open source software information")
-    });
+      const infoBox = new Gtk.Box({
+        orientation: Gtk.Orientation.VERTICAL,
+        spacing: 6,
+        valign: Gtk.Align.CENTER
+      });
 
-    const licenseRow = new Adw.ActionRow({
-      title: _("Open Source License"),
-      subtitle: _("MIT License - Free and open source software"),
-      activatable: false
-    });
-    const licenseIcon = new Gtk.Image({
-      icon_name: "security-high-symbolic",
-      pixel_size: 16
-    });
-    licenseRow.add_prefix(licenseIcon);
+      const titleLabel = new Gtk.Label({
+        label: _("Advanced Weather Companion"),
+        halign: Gtk.Align.START,
+        css_classes: ["title-2"]
+      });
 
-    const creditsRow = new Adw.ActionRow({
-      title: _("Weather Data Sources"),
-      subtitle: _("Open-Meteo, Meteosource, Wttr.in - Free weather APIs"),
-      activatable: false
-    });
-    const apiIcon = new Gtk.Image({
-      icon_name: "network-server-symbolic",
-      pixel_size: 16
-    });
-    creditsRow.add_prefix(apiIcon);
+      const versionLabel = new Gtk.Label({
+        label: _("Version 2.0"),
+        halign: Gtk.Align.START,
+        css_classes: ["caption"]
+      });
 
-    infoGroup.add(headerRow);
-    linksGroup.add(githubRow);
-    linksGroup.add(sponsorRow);
-    qrGroup.add(qrRow);
-    licenseGroup.add(licenseRow);
-    licenseGroup.add(creditsRow);
+      const descLabel = new Gtk.Label({
+        label: _("Modern weather extension with native GNOME design"),
+        halign: Gtk.Align.START,
+        wrap: true,
+        max_width_chars: 40,
+        css_classes: ["body"]
+      });
 
-    page.add(infoGroup);
-    page.add(linksGroup);
-    page.add(qrGroup);
-    page.add(licenseGroup);
+      infoBox.append(titleLabel);
+      infoBox.append(versionLabel);
+      infoBox.append(descLabel);
+      headerBox.append(logoImage);
+      headerBox.append(infoBox);
 
-    return page;
-  }
+      const headerRow = new Adw.ActionRow({ title: "", activatable: false });
+      headerRow.add_suffix(headerBox);
+
+      const linksGroup = new Adw.PreferencesGroup({
+        title: _("Extension Links"),
+        description: _("Source code, issues, and contributions")
+      });
+
+      const githubRow = new Adw.ActionRow({
+        title: _("View on GitHub"),
+        subtitle: _("Source code, issues, and contributions"),
+        activatable: true
+      });
+
+      const githubIcon = this._createGitHubIcon();
+      githubRow.add_prefix(githubIcon);
+
+      const externalIcon = new Gtk.Image({
+        icon_name: "adw-external-link-symbolic",
+        pixel_size: 16
+      });
+      githubRow.add_suffix(externalIcon);
+      githubRow.connect("activated", () => {
+        try {
+          Gio.AppInfo.launch_default_for_uri("https://github.com/Sanjai-Shaarugesh/Advanced-Weather-Companion", null);
+        } catch (error) {
+          console.error("Could not open GitHub link:", error);
+        }
+      });
+
+      const qrGroup = new Adw.PreferencesGroup({
+        title: _("☕ Support by buying me a coffee — just scan the QR code!"),
+        description: _("Preferred Method - Scan QR code to support development")
+      });
+
+      const qrContainer = new Gtk.Box({
+        orientation: Gtk.Orientation.VERTICAL,
+        spacing: 16,
+        halign: Gtk.Align.CENTER,
+        margin_top: 24,
+        margin_bottom: 24,
+        margin_start: 24,
+        margin_end: 24,
+        css_classes: ["qr-container"]
+      });
+
+      const qrImageBox = new Gtk.Box({
+        orientation: Gtk.Orientation.VERTICAL,
+        halign: Gtk.Align.CENTER,
+        css_classes: ["qr-image-container"]
+      });
+
+      const qrPath = `${this.dir.get_path()}/icons/qr.png`;
+      let qrImage;
+      try {
+        qrImage = Gtk.Image.new_from_file(qrPath);
+        qrImage.set_pixel_size(200);
+        qrImage.set_css_classes(["qr-code-image"]);
+      } catch (e) {
+        qrImage = new Gtk.Image({
+          icon_name: "camera-web-symbolic",
+          pixel_size: 200
+        });
+        qrImage.set_css_classes(["qr-code-placeholder"]);
+      }
+
+      qrImageBox.append(qrImage);
+      qrContainer.append(qrImageBox);
+
+      const qrRow = new Adw.ActionRow({
+        title: "",
+        activatable: false
+      });
+      qrRow.set_child(qrContainer);
+
+      // Create a separate group for the dogecoin address
+      const addressGroup = new Adw.PreferencesGroup({
+        title: _("Donation Address"),
+        css_classes: ["address-group"]
+      });
+
+      const addressRow = new Adw.ActionRow({
+        title: "https://buymeacoffee.com/sanjai",
+        activatable: true,
+        css_classes: ["address-row"]
+      });
+
+
+      const donationIcon = new Gtk.Image({
+        icon_name: "emote-love-symbolic",
+        pixel_size: 16
+      });
+      addressRow.add_prefix(donationIcon);
+
+
+      const copyIcon = new Gtk.Image({
+        icon_name: "edit-copy-symbolic",
+        pixel_size: 16,
+        css_classes: ["copy-icon"]
+      });
+      addressRow.add_suffix(copyIcon);
+
+      // Make the address copyable when clicked
+      addressRow.connect("activated", () => {
+        const address = "https://buymeacoffee.com/sanjai";
+        this._copyToClipboard(address, "Donation address");
+      });
+
+      const sponsorRow = new Adw.ActionRow({
+        title: _("☕ Buy Me a Coffee"),
+        subtitle: _("Support development with a small donation"),
+        activatable: true
+      });
+      const heartIcon = new Gtk.Image({
+        icon_name: "emblem-favorite-symbolic",
+        pixel_size: 20
+      });
+      sponsorRow.add_prefix(heartIcon);
+      const sponsorIcon = new Gtk.Image({
+        icon_name: "adw-external-link-symbolic",
+        pixel_size: 16
+      });
+      sponsorRow.add_suffix(sponsorIcon);
+      sponsorRow.connect("activated", () => {
+        try {
+          Gio.AppInfo.launch_default_for_uri("https://buymeacoffee.com/sanjai", null);
+        } catch (error) {
+          console.error("Could not open sponsor link:", error);
+        }
+      });
+
+      const licenseGroup = new Adw.PreferencesGroup({
+        title: _("License & Credits"),
+        description: _("Open source software information")
+      });
+
+      const licenseRow = new Adw.ActionRow({
+        title: _("Open Source License"),
+        subtitle: _("MIT License - Free and open source software"),
+        activatable: false
+      });
+      const licenseIcon = new Gtk.Image({
+        icon_name: "security-high-symbolic",
+        pixel_size: 16
+      });
+      licenseRow.add_prefix(licenseIcon);
+
+      const creditsRow = new Adw.ActionRow({
+        title: _("Weather Data Sources"),
+        subtitle: _("Open-Meteo, Meteosource, Wttr.in - Free weather APIs"),
+        activatable: false
+      });
+      const apiIcon = new Gtk.Image({
+        icon_name: "network-server-symbolic",
+        pixel_size: 16
+      });
+      creditsRow.add_prefix(apiIcon);
+
+      // Add all rows to their respective groups
+      infoGroup.add(headerRow);
+      linksGroup.add(githubRow);
+      linksGroup.add(sponsorRow);
+      qrGroup.add(qrRow);
+      addressGroup.add(addressRow);
+      licenseGroup.add(licenseRow);
+      licenseGroup.add(creditsRow);
+
+      // Add all groups to the page
+      page.add(infoGroup);
+      page.add(linksGroup);
+      page.add(qrGroup);
+      page.add(addressGroup);  // Add the new address group
+      page.add(licenseGroup);
+
+      return page;
+    }
 
   _createGitHubIcon() {
     try {
