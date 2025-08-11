@@ -198,7 +198,7 @@ export default class WeatherPreferences extends ExtensionPreferences {
 
 
   _copyToClipboard(text, label = null) {
-      // Try modern GTK4 clipboard API first
+      // Use GTK4 clipboard API
       try {
           const display = Gdk.Display.get_default();
           if (display) {
@@ -211,19 +211,6 @@ export default class WeatherPreferences extends ExtensionPreferences {
           }
       } catch (error) {
           console.log("GTK4 clipboard method failed:", error);
-      }
-
-      // Fallback to GTK3 clipboard API
-      try {
-          const clipboard = Gtk.Clipboard.get_default(Gdk.Display.get_default());
-          if (clipboard) {
-              clipboard.set_text(text, -1);
-              clipboard.store();
-              this._showToast(`✅ ${label || 'Text'} copied to clipboard!`);
-              return;
-          }
-      } catch (error) {
-          console.log("GTK3 clipboard method failed:", error);
       }
 
       // Final fallback to command line tools
@@ -268,7 +255,7 @@ export default class WeatherPreferences extends ExtensionPreferences {
       dialog.set_response_appearance("select", Adw.ResponseAppearance.SUGGESTED);
       dialog.set_default_response("select");
 
-      // Create a container for the text display
+
       const contentBox = new Gtk.Box({
           orientation: Gtk.Orientation.VERTICAL,
           spacing: 12,
@@ -278,7 +265,7 @@ export default class WeatherPreferences extends ExtensionPreferences {
           margin_end: 12
       });
 
-      // Create text view with the content
+
       const textView = new Gtk.TextView({
           editable: false,
           cursor_visible: true,
@@ -290,7 +277,7 @@ export default class WeatherPreferences extends ExtensionPreferences {
           margin_end: 8
       });
 
-      // Create scrolled window for the text view
+
       const scrolledWindow = new Gtk.ScrolledWindow({
           child: textView,
           height_request: Math.min(120, Math.max(40, text.length / 3)),
@@ -317,15 +304,15 @@ export default class WeatherPreferences extends ExtensionPreferences {
 
       dialog.connect("response", (dialog, response) => {
           if (response === "select") {
-              // Select all text in the buffer
+
               const startIter = buffer.get_start_iter();
               const endIter = buffer.get_end_iter();
               buffer.select_range(startIter, endIter);
 
-              // Focus the text view
+
               textView.grab_focus();
 
-              // Try one more time to copy to clipboard
+
               try {
                   const display = Gdk.Display.get_default();
                   if (display) {
@@ -341,7 +328,7 @@ export default class WeatherPreferences extends ExtensionPreferences {
                   // If clipboard access still fails, just show the selection
                   this._showToast(_("💡 Text selected! Press Ctrl+C to copy"));
               }
-              return; // Keep dialog open for manual copy
+              return;
           }
           dialog.close();
       });
@@ -1014,7 +1001,7 @@ export default class WeatherPreferences extends ExtensionPreferences {
       });
       qrRow.set_child(qrContainer);
 
-      // Create a separate group for the dogecoin address
+
       const addressGroup = new Adw.PreferencesGroup({
         title: _("Donation Address"),
         css_classes: ["address-group"]
@@ -1110,7 +1097,7 @@ export default class WeatherPreferences extends ExtensionPreferences {
       page.add(infoGroup);
       page.add(linksGroup);
       page.add(qrGroup);
-      page.add(addressGroup);  // Add the new address group
+      page.add(addressGroup);
       page.add(licenseGroup);
 
       return page;
