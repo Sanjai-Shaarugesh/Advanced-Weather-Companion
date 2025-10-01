@@ -44,7 +44,7 @@ const WEATHER_PROVIDERS = {
   openweathermap: {
     name: "OpenWeatherMap",
     description: "Comprehensive weather data - API key required",
-    baseUrl: "https://api.openweathermap.org/data/3.0/onecall",
+    baseUrl: "https://api.openweathermap.org/data/2.5/weather",
     requiresApiKey: true,
     supportedParams: ["temp", "humidity", "weather", "wind_speed", "pressure"],
     rateLimit: "1,000 requests/day (free tier)"
@@ -538,6 +538,19 @@ export default class WeatherPreferences extends ExtensionPreferences {
       subtitle: _("Select weather API service"),
       model: new Gtk.StringList()
     });
+    
+    
+    providerRow.connect("notify::selected", () => {
+      const selectedKey = providerKeys[providerRow.get_selected()];
+      settings.set_string("weather-provider", selectedKey);
+      this._updateProviderSettings(selectedKey);
+      
+      // Force settings sync
+      settings.sync();
+    });
+
+    
+    
 
 
     const providerKeys = Object.keys(WEATHER_PROVIDERS);
@@ -714,11 +727,12 @@ export default class WeatherPreferences extends ExtensionPreferences {
         testUrl = `${providerConfig.baseUrl}?lat=${testLat}&lon=${testLon}&sections=current&timezone=UTC&language=en&units=metric`;
       } else if (provider === "wttr") {
         testUrl = `${providerConfig.baseUrl}/${testLat},${testLon}?format=j1`;
-      } else if (provider === "openweathermap") {
+      }
+      else if (provider === "openweathermap") {
         if (!apiKey.trim()) {
           throw new Error("API key is required for OpenWeatherMap");
         }
-        testUrl = `${providerConfig.baseUrl}?lat=${testLat}&lon=${testLon}&appid=${apiKey}&units=metric`;
+         testUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${testLat}&lon=${testLon}&appid=${apiKey}&units=metric`;
       } else if (provider === "weatherapi") {
         if (!apiKey.trim()) {
           throw new Error("API key is required for WeatherAPI");

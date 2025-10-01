@@ -207,39 +207,26 @@ const WEATHER_PROVIDERS = {
   openweathermap: {
     name: "OpenWeatherMap",
     description: "Comprehensive weather data - API key required",
-    baseUrl: "https://api.openweathermap.org/data/3.0/onecall",
+    baseUrl: "https://api.openweathermap.org/data/2.5/weather", 
     requiresApiKey: true,
     isFree: false,
     status: "inactive",
     buildUrl: function(lat, lon, apiKey) {
       if (!apiKey) throw new Error("OpenWeatherMap requires an API key");
-      return `${this.baseUrl}?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&exclude=minutely,alerts`;
+      return `${this.baseUrl}?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
     },
     parseResponse: function(response) {
-      if (!response.current) throw new Error("Invalid OpenWeatherMap response");
-
+      if (!response.main) throw new Error("Invalid OpenWeatherMap response");
+  
       return {
         current: {
-          temperature_2m: response.current.temp,
-          relative_humidity_2m: response.current.humidity,
-          surface_pressure: response.current.pressure,
-          weather_code: this.convertWeatherCode(response.current.weather[0].id),
-          wind_speed_10m: (response.current.wind_speed || 0) * 3.6,
-          wind_direction_10m: response.current.wind_deg || 0
-        },
-        hourly: response.hourly ? {
-          time: response.hourly.map(h => new Date(h.dt * 1000).toISOString()),
-          temperature_2m: response.hourly.map(h => h.temp),
-          weather_code: response.hourly.map(h => this.convertWeatherCode(h.weather[0].id)),
-          precipitation_probability: response.hourly.map(h => (h.pop || 0) * 100),
-          wind_speed_10m: response.hourly.map(h => (h.wind_speed || 0) * 3.6)
-        } : null,
-        daily: response.daily ? {
-          time: response.daily.map(d => new Date(d.dt * 1000).toISOString().split('T')[0]),
-          weather_code: response.daily.map(d => this.convertWeatherCode(d.weather[0].id)),
-          temperature_2m_max: response.daily.map(d => d.temp.max),
-          temperature_2m_min: response.daily.map(d => d.temp.min)
-        } : null
+          temperature_2m: response.main.temp,
+          relative_humidity_2m: response.main.humidity,
+          surface_pressure: response.main.pressure,
+          weather_code: this.convertWeatherCode(response.weather[0].id),
+          wind_speed_10m: (response.wind.speed || 0) * 3.6,
+          wind_direction_10m: response.wind.deg || 0
+        }
       };
     },
     convertWeatherCode: function(owmCode) {
@@ -393,11 +380,12 @@ const WEATHER_PROVIDERS = {
     status: "inactive",
     buildUrl: function(lat, lon, apiKey, customUrl) {
       if (!customUrl) throw new Error("Custom URL is required");
-
+    
       let url = customUrl.replace('{lat}', lat).replace('{lon}', lon);
       url = url.replace('{latitude}', lat).replace('{longitude}', lon);
-
-      if (apiKey) {
+    
+      
+      if (apiKey && apiKey.trim()) {
         const separator = url.includes('?') ? '&' : '?';
         if (url.includes('appid=')) {
           url = url.replace('appid=', `appid=${apiKey}`);
@@ -407,7 +395,7 @@ const WEATHER_PROVIDERS = {
           url += `${separator}key=${apiKey}`;
         }
       }
-
+    
       return url;
     },
     parseResponse: function(response) {
@@ -1544,8 +1532,34 @@ export default class WeatherExtension extends Extension {
     this._session = new Soup.Session();
     this._session.timeout = this._settings.get_int("weather-request-timeout") || 15;
     this._enabled = true;
+    
+    this._networkMonitor = Gio.NetworkMonitor.get_default();
+    this._networkConnection = this._networkMonitor.connect('network-changed', (monitor, available) => {
+      if (available && this._enabled) {
+        console.log("Network reconnected, refreshing weather...");
+        GLib.timeout_add_seconds(GLib.PRIORITY_DEFAULT, 2, () => {
+          if (this._enabled) {
+            this._detectLocationAndLoadWeather();
+          }
+          return GLib.SOURCE_REMOVE;
+        });
+      }
+    });
 
     this._panelButton = new WeatherPanelButton(this);
+    
+    this._networkMonitor = Gio.NetworkMonitor.get_default();
+    this._networkConnection = this._networkMonitor.connect('network-changed', (monitor, available) => {
+      if (available && this._enabled) {
+        // Network is back, refresh weather
+        GLib.timeout_add_seconds(GLib.PRIORITY_DEFAULT, 2, () => {
+          if (this._enabled) {
+            this._detectLocationAndLoadWeather();
+          }
+          return GLib.SOURCE_REMOVE;
+        });
+      }
+    });
 
     const position = this._settings.get_string("panel-position") || "right";
     const index = this._settings.get_int("panel-position-index") || 0;
@@ -1568,7 +1582,21 @@ export default class WeatherExtension extends Extension {
         if (this._enabled) this._restartUpdateTimer();
       }),
       this._settings.connect("changed::weather-provider", () => {
-        if (this._enabled) this._detectLocationAndLoadWeather();
+        if (this._enabled) {
+          const newProvider = this._settings.get_string("weather-provider");
+          console.log(`Weather provider changed to: ${newProvider}`);
+          
+          if (this._panelButton && !this._panelButton._destroyed) {
+            this._panelButton._updateProviderStatus(newProvider, 'testing');
+          }
+          
+          GLib.timeout_add_seconds(GLib.PRIORITY_DEFAULT, 1, () => {
+            if (this._enabled) {
+              this._detectLocationAndLoadWeather();
+            }
+            return GLib.SOURCE_REMOVE;
+          });
+        }
       }),
       this._settings.connect("changed::weather-api-key", () => {
         if (this._enabled) this._detectLocationAndLoadWeather();
@@ -1587,10 +1615,19 @@ export default class WeatherExtension extends Extension {
     this._testAllProviders();
     this._detectLocationAndLoadWeather();
   }
+  
+  
 
   disable() {
     this._enabled = false;
 
+    
+    if (this._networkConnection) {
+      this._networkMonitor.disconnect(this._networkConnection);
+      this._networkConnection = null;
+    }
+    this._networkMonitor = null;
+    
     if (this._panelButton) {
       this._panelButton.destroy();
       this._panelButton = null;
@@ -1794,61 +1831,259 @@ export default class WeatherExtension extends Extension {
     }
   }
 
+ 
   async _autoDetectLocation() {
-    for (const url of FALLBACK_GEOIP_URLS) {
-      if (!this._enabled) return;
-
+      
       try {
-        const message = Soup.Message.new("GET", url);
-        message.request_headers.append('User-Agent', 'GNOME-Weather-Extension/1.0');
-
-        const bytes = await this._session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null);
-
-        if (message.status_code !== 200) {
-          continue;
-        }
-
-        const response = JSON.parse(bytes.get_data().toString());
-
-        let lat, lon, city, country;
-
-        if (url.includes('ipapi.co')) {
-          if (response.latitude && response.longitude) {
-            lat = response.latitude;
-            lon = response.longitude;
-            city = response.city;
-            country = response.country_name;
-          }
-        } else if (url.includes('ip-api.com')) {
-          if (response.status === "success" && response.lat && response.lon) {
-            lat = response.lat;
-            lon = response.lon;
-            city = response.city;
-            country = response.country;
-          }
-        } else if (url.includes('freegeoip.app')) {
-          if (response.latitude && response.longitude) {
-            lat = response.latitude;
-            lon = response.longitude;
-            city = response.city;
-            country = response.country_name;
-          }
-        }
-
-        if (lat && lon) {
-          this._latitude = lat;
-          this._longitude = lon;
-          this._locationName = `${city}, ${country}`;
+        const hasGeoclue = await this._tryGeoclue();
+        if (hasGeoclue) {
+          console.log("Using GeoClue2 for precise location");
           return;
         }
       } catch (error) {
-        console.error(`GeoIP service ${url} failed:`, error);
-        continue;
+        console.log("GeoClue2 not available, falling back to IP geolocation:", error);
+      }
+  
+      
+      const geoipServices = [
+        {
+          url: "https://ipapi.co/json/",
+          parse: (r) => ({ 
+            lat: r.latitude, 
+            lon: r.longitude, 
+            city: r.city, 
+            country: r.country_name,
+            accuracy: r.accuracy || 50000 // meters
+          })
+        },
+        {
+          url: "http://ip-api.com/json/?fields=status,lat,lon,city,country,district",
+          parse: (r) => r.status === "success" ? {
+            lat: r.lat,
+            lon: r.lon,
+            city: r.city,
+            country: r.country,
+            accuracy: 5000 // IP-based is ~5km accurate
+          } : null
+        },
+        {
+          url: "https://freegeoip.app/json/",
+          parse: (r) => ({
+            lat: r.latitude,
+            lon: r.longitude,
+            city: r.city,
+            country: r.country_name,
+            accuracy: 10000
+          })
+        }
+      ];
+  
+      let bestLocation = null;
+  
+      for (const service of geoipServices) {
+        if (!this._enabled) return;
+  
+        try {
+          const message = Soup.Message.new("GET", service.url);
+          message.request_headers.append('User-Agent', 'GNOME-Weather-Extension/1.0');
+  
+          const bytes = await this._session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null);
+  
+          if (message.status_code !== 200) {
+            continue;
+          }
+  
+          const response = JSON.parse(bytes.get_data().toString());
+          const location = service.parse(response);
+  
+          if (location && location.lat && location.lon) {
+            // Keep the most accurate location
+            if (!bestLocation || location.accuracy < bestLocation.accuracy) {
+              bestLocation = location;
+            }
+  
+            // If we have a good enough accuracy, use it immediately
+            if (location.accuracy < 1000) {
+              break;
+            }
+          }
+        } catch (error) {
+          console.error(`GeoIP service ${service.url} failed:`, error);
+          continue;
+        }
+      }
+  
+      if (bestLocation) {
+        this._latitude = bestLocation.lat;
+        this._longitude = bestLocation.lon;
+        this._locationName = `${bestLocation.city}, ${bestLocation.country}`;
+        console.log(`Location detected with ~${Math.round(bestLocation.accuracy/1000)}km accuracy: ${this._locationName}`);
+        return;
+      }
+  
+      throw new Error("All GeoIP services failed");
+    }
+  
+    async _tryGeoclue() {
+      try {
+        // Check if GeoClue2 DBus service is available
+        const Gio = imports.gi.Gio;
+        
+        const GeoclueIface = `
+          <node>
+            <interface name="org.freedesktop.GeoClue2.Manager">
+              <method name="GetClient">
+                <arg type="o" direction="out" name="client"/>
+              </method>
+            </interface>
+          </node>`;
+  
+        const GeoclueClientIface = `
+          <node>
+            <interface name="org.freedesktop.GeoClue2.Client">
+              <property name="Location" type="o" access="read"/>
+              <property name="DesktopId" type="s" access="readwrite"/>
+              <property name="DistanceThreshold" type="u" access="readwrite"/>
+              <method name="Start"/>
+              <method name="Stop"/>
+              <signal name="LocationUpdated">
+                <arg type="o" name="old"/>
+                <arg type="o" name="new"/>
+              </signal>
+            </interface>
+          </node>`;
+  
+        const GeoclueLocationIface = `
+          <node>
+            <interface name="org.freedesktop.GeoClue2.Location">
+              <property name="Latitude" type="d" access="read"/>
+              <property name="Longitude" type="d" access="read"/>
+              <property name="Accuracy" type="d" access="read"/>
+            </interface>
+          </node>`;
+  
+        const GeoclueProxy = Gio.DBusProxy.makeProxyWrapper(GeoclueIface);
+        const GeoclueClientProxy = Gio.DBusProxy.makeProxyWrapper(GeoclueClientIface);
+        const GeoclueLocationProxy = Gio.DBusProxy.makeProxyWrapper(GeoclueLocationIface);
+  
+        return new Promise((resolve, reject) => {
+          const manager = new GeoclueProxy(
+            Gio.DBus.system,
+            'org.freedesktop.GeoClue2',
+            '/org/freedesktop/GeoClue2/Manager',
+            (proxy, error) => {
+              if (error) {
+                reject(error);
+                return;
+              }
+  
+              proxy.GetClientRemote((result, error) => {
+                if (error) {
+                  reject(error);
+                  return;
+                }
+  
+                const clientPath = result[0];
+                const client = new GeoclueClientProxy(
+                  Gio.DBus.system,
+                  'org.freedesktop.GeoClue2',
+                  clientPath,
+                  (clientProxy, clientError) => {
+                    if (clientError) {
+                      reject(clientError);
+                      return;
+                    }
+  
+                    
+                    clientProxy.DesktopId = 'org.gnome.shell.extensions.advanced-weather';
+                    clientProxy.DistanceThreshold = 0; 
+  
+                    
+                    const locationUpdatedId = clientProxy.connectSignal('LocationUpdated', 
+                      (proxy, sender, [oldPath, newPath]) => {
+                        const location = new GeoclueLocationProxy(
+                          Gio.DBus.system,
+                          'org.freedesktop.GeoClue2',
+                          newPath,
+                          (locProxy, locError) => {
+                            if (locError) {
+                              reject(locError);
+                              return;
+                            }
+  
+                            this._latitude = locProxy.Latitude;
+                            this._longitude = locProxy.Longitude;
+                            const accuracy = locProxy.Accuracy;
+                            
+                            console.log(`GeoClue2 location: ${this._latitude}, ${this._longitude} (±${Math.round(accuracy)}m)`);
+  
+                            
+                            this._reverseGeocode(this._latitude, this._longitude)
+                              .then(() => {
+                                clientProxy.disconnectSignal(locationUpdatedId);
+                                clientProxy.StopRemote(() => {});
+                                resolve(true);
+                              })
+                              .catch(() => {
+                                this._locationName = `${this._latitude.toFixed(4)}, ${this._longitude.toFixed(4)}`;
+                                clientProxy.disconnectSignal(locationUpdatedId);
+                                clientProxy.StopRemote(() => {});
+                                resolve(true);
+                              });
+                          }
+                        );
+                      }
+                    );
+  
+                    
+                    clientProxy.StartRemote((startResult, startError) => {
+                      if (startError) {
+                        reject(startError);
+                      }
+                    });
+  
+                    
+                    GLib.timeout_add_seconds(GLib.PRIORITY_DEFAULT, 5, () => {
+                      clientProxy.disconnectSignal(locationUpdatedId);
+                      clientProxy.StopRemote(() => {});
+                      reject(new Error("GeoClue2 timeout"));
+                      return GLib.SOURCE_REMOVE;
+                    });
+                  }
+                );
+              });
+            }
+          );
+        });
+      } catch (error) {
+        throw new Error("GeoClue2 not available: " + error.message);
       }
     }
-
-    throw new Error("All GeoIP services failed");
-  }
+  
+    async _reverseGeocode(lat, lon) {
+      try {
+        const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&zoom=10`;
+        const message = Soup.Message.new("GET", url);
+        message.request_headers.append('User-Agent', 'GNOME-Weather-Extension/1.0');
+  
+        const bytes = await this._session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null);
+  
+        if (message.status_code === 200) {
+          const response = JSON.parse(bytes.get_data().toString());
+          const addr = response.address;
+          
+          const city = addr.city || addr.town || addr.village || addr.municipality || addr.county;
+          const country = addr.country;
+          
+          if (city && country) {
+            this._locationName = `${city}, ${country}`;
+          }
+        }
+      } catch (error) {
+        console.error("Reverse geocoding failed:", error);
+        
+      }
+    }
 
   _useFallbackLocation() {
     if (!this._enabled) return;
@@ -1911,26 +2146,35 @@ export default class WeatherExtension extends Extension {
       if (this._panelButton && !this._panelButton._destroyed) {
         this._panelButton.updateWeather(data);
       }
-    } catch (error) {
+    }
+    catch (error) {
       console.error("Weather Extension: Failed to load weather data", error);
-
+    
       const provider = this._settings.get_string("weather-provider") || "openmeteo";
-
+    
       if (this._panelButton && !this._panelButton._destroyed) {
-        this._panelButton._weatherLabel.set_text("Error");
-        this._panelButton._weatherIcon.set_icon_name("dialog-error-symbolic");
-
-
+        const networkAvailable = Gio.NetworkMonitor.get_default().get_network_available();
+        
+        if (!networkAvailable) {
+          this._panelButton._weatherLabel.set_text("Offline");
+          this._panelButton._weatherIcon.set_icon_name("network-offline-symbolic");
+        } else {
+          this._panelButton._weatherLabel.set_text("Error");
+          this._panelButton._weatherIcon.set_icon_name("dialog-error-symbolic");
+        }
+    
         if (error.message.includes('timeout')) {
           this._panelButton._updateProviderStatus(provider, 'timeout');
         } else {
           this._panelButton._updateProviderStatus(provider, 'error', error.message.substring(0, 50));
         }
       }
-
-
-      this._tryFallbackProvider();
+    
+      if (Gio.NetworkMonitor.get_default().get_network_available()) {
+        this._tryFallbackProvider();
+      }
     }
+
   }
 
   async _tryFallbackProvider() {
@@ -1961,7 +2205,7 @@ export default class WeatherExtension extends Extension {
       } catch (fallbackError) {
 
         this._settings.set_string("weather-provider", originalProvider);
-        console.error("Fallback provider also failed:", fallbackError);
+        console.error("Fallback provider also failed:full working code", fallbackError);
       }
     }
   }
