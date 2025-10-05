@@ -30,11 +30,11 @@ Advanced Weather is a feature-rich GNOME Shell extension that provides detailed 
 
 Install from source
 
-- Download archive file from the releases tab
+- Download the archive file from the releases tab
 - Open a terminal in the directory containing the downloaded file
 - Install and enable the extension by executing `gnome-extensions install extension.zip --force` in the terminal
 
-> To setup your manual location by giving your location coordinates in the settings in the extension or in the Location settings in the main menu of the extension , you can get you location coordinates from the google map by going to your location and right clink on in it and coping the location coordinates from it by clicking them
+> To set up your manual location by giving your location coordinates in the settings in the extension or in the Location settings in the main menu of the extension, you can get your location coordinates from Google Maps by going to your location and right-clicking on in it and copying the location coordinates from it by clicking them
 
 https://github.com/user-attachments/assets/706925f5-410c-473c-af72-099fc4096503
 
@@ -114,15 +114,15 @@ Right-click the weather widget to access:
 
 ### Reporting Issues
 - Check existing issues
-- Provide detailed description
+- Provide a detailed description
 - Include GNOME Shell version
 - Attach screenshots if possible
 
 ### Development
-1. Fork repository
-2. Create feature branch
+1. Fork the repository
+2. Create a feature branch
 3. Commit changes
-4. Push and create Pull Request
+4. Push and create a Pull Request
 
 ## Uses
 This extension is using `ipapi.co` and `open-meteo.com` services
