@@ -1,10 +1,20 @@
+/**
+ * Advanced Weather Companion – prefs.js
+ *
+ * Fixes applied vs original:
+ *  1. Provider selection persists across reboots (was saving before providerKeys defined).
+ *  2. Test button gives real visual feedback (spinner + toast).
+ *  3. OpenWeatherMap test validates response.main.temp (not response.current.temp).
+ *  4. Custom/Weather Underground URL: apiKey appended correctly; test uses actual URL.
+ *  5. Provider page properly initialised before connecting notify::selected signal.
+ *  6. i18n: all user-visible strings wrapped with _().
+ */
+
 import Adw from "gi://Adw";
 import Gtk from "gi://Gtk";
 import Gio from "gi://Gio";
-import GObject from "gi://GObject";
 import GLib from "gi://GLib";
 import Soup from "gi://Soup";
-import GdkPixbuf from "gi://GdkPixbuf";
 import Gdk from "gi://Gdk";
 
 import {
@@ -12,1522 +22,962 @@ import {
   gettext as _,
 } from "resource:///org/gnome/Shell/Extensions/js/extensions/prefs.js";
 
-const GEOCODING_URL = "https://geocoding-api.open-meteo.com/v1/search";
-const REVERSE_GEOCODING_URL = "https://api.bigdatacloud.net/data/reverse-geocode-client";
-
-
+// Provider metadata used only in the UI (no network calls here)
 const WEATHER_PROVIDERS = {
   openmeteo: {
     name: "Open-Meteo (Free)",
-    description: "Free weather API - No API key required",
+    description: "Free weather API – No API key required",
     baseUrl: "https://api.open-meteo.com/v1/forecast",
     requiresApiKey: false,
-    supportedParams: ["temperature_2m", "relative_humidity_2m", "weather_code", "wind_speed_10m", "surface_pressure"],
-    rateLimit: "10,000 requests/day"
+    rateLimit: "10,000 requests/day",
+    testUrl: (lat, lon, _key) =>
+      `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code`,
+    validateResponse: r => r?.current?.temperature_2m !== undefined,
+    getTemp: r => r.current.temperature_2m,
   },
   meteosource: {
     name: "Meteosource (Free)",
-    description: "Free tier - 400 calls/day without API key",
+    description: "Free tier – 400 calls/day without API key",
     baseUrl: "https://www.meteosource.com/api/v1/free/point",
     requiresApiKey: false,
-    supportedParams: ["temperature", "humidity", "weather_icon", "wind_speed", "pressure"],
-    rateLimit: "400 requests/day (free tier)"
+    rateLimit: "400 requests/day (free tier)",
+    testUrl: (lat, lon, _key) =>
+      `https://www.meteosource.com/api/v1/free/point?lat=${lat}&lon=${lon}&sections=current&timezone=UTC&language=en&units=metric`,
+    validateResponse: r => r?.current?.temperature !== undefined,
+    getTemp: r => r.current.temperature,
   },
   wttr: {
     name: "Wttr.in (Free)",
-    description: "Free console weather service - No registration, unlimited requests",
+    description: "Free console weather service – No limits",
     baseUrl: "https://wttr.in",
     requiresApiKey: false,
-    supportedParams: ["temp_C", "humidity", "weatherCode", "windspeedKmph", "pressure"],
-    rateLimit: "No limits"
+    rateLimit: "No limits",
+    testUrl: (lat, lon, _key) => `https://wttr.in/${lat},${lon}?format=j1`,
+    validateResponse: r => r?.current_condition?.[0]?.temp_C !== undefined,
+    getTemp: r => r.current_condition[0].temp_C,
   },
   openweathermap: {
     name: "OpenWeatherMap",
-    description: "Comprehensive weather data - API key required",
+    description: "Comprehensive weather data – API key required",
     baseUrl: "https://api.openweathermap.org/data/2.5/weather",
     requiresApiKey: true,
-    supportedParams: ["temp", "humidity", "weather", "wind_speed", "pressure"],
-    rateLimit: "1,000 requests/day (free tier)"
+    rateLimit: "1,000 requests/day (free tier)",
+    apiUrl: "https://openweathermap.org/api",
+    testUrl: (lat, lon, key) =>
+      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${key}&units=metric`,
+    validateResponse: r => r?.main?.temp !== undefined,
+    getTemp: r => r.main.temp,
   },
   weatherapi: {
     name: "WeatherAPI",
-    description: "Real-time weather API - API key required",
+    description: "Real-time weather API – API key required",
     baseUrl: "https://api.weatherapi.com/v1/forecast.json",
     requiresApiKey: true,
-    supportedParams: ["temp_c", "humidity", "condition", "wind_kph", "pressure_mb"],
-    rateLimit: "1 million requests/month (free tier)"
+    rateLimit: "1 million requests/month (free tier)",
+    apiUrl: "https://www.weatherapi.com/",
+    testUrl: (lat, lon, key) =>
+      `https://api.weatherapi.com/v1/forecast.json?key=${key}&q=${lat},${lon}&days=1`,
+    validateResponse: r => r?.current?.temp_c !== undefined,
+    getTemp: r => r.current.temp_c,
   },
   custom: {
-    name: "Custom Provider",
-    description: "Configure your own weather API endpoint",
+    name: "Custom / Weather Underground",
+    description: "Your own API URL or a Weather Underground PWS endpoint",
     baseUrl: "",
-    requiresApiKey: true,
-    supportedParams: [],
-    rateLimit: "Depends on provider"
-  }
+    requiresApiKey: false,
+    rateLimit: "Depends on provider",
+    apiUrl: "https://github.com/Sanjai-Shaarugesh/Advanced-Weather-Companion/wiki/Custom-Weather-Providers",
+    // testUrl is computed dynamically from the user-supplied URL
+    validateResponse: r => r !== null && typeof r === "object",
+    getTemp: _r => null,
+  },
 };
 
+const PROVIDER_KEYS = Object.keys(WEATHER_PROVIDERS);
+const TEST_LAT = 40.7128, TEST_LON = -74.006;
+
+// ─────────────────────────────────────────────────────────────────────────────
+
 export default class WeatherPreferences extends ExtensionPreferences {
+
   fillPreferencesWindow(window) {
-    const settings = this.getSettings("org.gnome.shell.extensions.advanced-weather");
-    this._session = new Soup.Session();
+    this._settings = this.getSettings("org.gnome.shell.extensions.advanced-weather");
+    this._session  = new Soup.Session();
     this._session.timeout = 15;
 
     window.set_title(_("Advanced Weather Companion"));
-    window.set_default_size(700, 650);
+    window.set_default_size(700, 680);
     window.set_resizable(true);
 
-    window.add(this._createGeneralPage(settings));
-    window.add(this._createLocationPage(settings));
-    window.add(this._createWeatherProviderPage(settings));
-    window.add(this._createAppearancePage(settings));
-    window.add(this._createAboutPage(settings));
+    window.add(this._buildGeneralPage());
+    window.add(this._buildLocationPage());
+    window.add(this._buildProviderPage());
+    window.add(this._buildAppearancePage());
+    window.add(this._buildAboutPage());
   }
 
-  _createGeneralPage(settings) {
+  // ══════════════════════════════════════════════════════════════════════════
+  // General page
+  // ══════════════════════════════════════════════════════════════════════════
+
+  _buildGeneralPage() {
     const page = new Adw.PreferencesPage({
       title: _("General"),
-      icon_name: "preferences-other-symbolic"
+      icon_name: "preferences-other-symbolic",
     });
 
+    // ── Units ──────────────────────────────────────────────────────────────
     const unitsGroup = new Adw.PreferencesGroup({
       title: _("Units & Format"),
-      description: _("Configure measurement units and display format")
+      description: _("Configure measurement units and display format"),
     });
 
-    const tempUnitRow = new Adw.SwitchRow({
+    const tempRow = new Adw.SwitchRow({
       title: _("Use Fahrenheit"),
-      subtitle: _("Switch between Celsius and Fahrenheit")
+      subtitle: _("Switch between Celsius and Fahrenheit"),
     });
-    tempUnitRow.set_active(settings.get_boolean("use-fahrenheit"));
-    tempUnitRow.connect("notify::active", () => {
-      settings.set_boolean("use-fahrenheit", tempUnitRow.get_active());
+    tempRow.set_active(this._settings.get_boolean("use-fahrenheit"));
+    tempRow.connect("notify::active", () => {
+      this._settings.set_boolean("use-fahrenheit", tempRow.get_active());
     });
 
-    const windSpeedUnitRow = new Adw.ComboRow({
+    const windRow = new Adw.ComboRow({
       title: _("Wind Speed Unit"),
-      subtitle: _("Choose unit for wind speed display"),
-      model: new Gtk.StringList()
+      subtitle: _("Unit for wind speed display"),
+      model: new Gtk.StringList(),
     });
-
-    const windUnits = [
-      { label: _("km/h (Kilometers per hour)"), value: "kmh" },
-      { label: _("mph (Miles per hour)"), value: "mph" },
-      { label: _("m/s (Meters per second)"), value: "ms" },
-      { label: _("knots (Nautical miles per hour)"), value: "knots" }
+    const windOpts = [
+      {label: _("km/h (Kilometers per hour)"), value: "kmh"},
+      {label: _("mph (Miles per hour)"),       value: "mph"},
+      {label: _("m/s (Meters per second)"),    value: "ms"},
+      {label: _("knots (Nautical miles)"),      value: "knots"},
     ];
-
-    windUnits.forEach(unit => windSpeedUnitRow.model.append(unit.label));
-    const currentWindUnit = settings.get_string("wind-speed-unit") || "kmh";
-    const windUnitIndex = windUnits.findIndex(u => u.value === currentWindUnit);
-    windSpeedUnitRow.set_selected(windUnitIndex >= 0 ? windUnitIndex : 0);
-    windSpeedUnitRow.connect("notify::selected", () => {
-      const selectedUnit = windUnits[windSpeedUnitRow.get_selected()];
-      if (selectedUnit) {
-        settings.set_string("wind-speed-unit", selectedUnit.value);
-      }
+    windOpts.forEach(o => windRow.model.append(o.label));
+    const curWind = this._settings.get_string("wind-speed-unit") || "kmh";
+    windRow.set_selected(Math.max(0, windOpts.findIndex(o => o.value === curWind)));
+    windRow.connect("notify::selected", () => {
+      const o = windOpts[windRow.get_selected()];
+      if (o) this._settings.set_string("wind-speed-unit", o.value);
     });
 
-    const timeFormatRow = new Adw.SwitchRow({
+    const timeRow = new Adw.SwitchRow({
       title: _("Use 12-hour Format"),
-      subtitle: _("Display time in 12-hour format with AM/PM")
+      subtitle: _("Display time in 12-hour format with AM/PM"),
     });
-    timeFormatRow.set_active(settings.get_boolean("use-12hour-format"));
-    timeFormatRow.connect("notify::active", () => {
-      settings.set_boolean("use-12hour-format", timeFormatRow.get_active());
+    timeRow.set_active(this._settings.get_boolean("use-12hour-format"));
+    timeRow.connect("notify::active", () => {
+      this._settings.set_boolean("use-12hour-format", timeRow.get_active());
     });
 
-    unitsGroup.add(tempUnitRow);
-    unitsGroup.add(windSpeedUnitRow);
-    unitsGroup.add(timeFormatRow);
+    unitsGroup.add(tempRow);
+    unitsGroup.add(windRow);
+    unitsGroup.add(timeRow);
 
+    // ── Updates ────────────────────────────────────────────────────────────
     const updateGroup = new Adw.PreferencesGroup({
       title: _("Updates"),
-      description: _("Configure weather data refresh settings")
+      description: _("Configure weather data refresh settings"),
     });
 
     const intervalRow = new Adw.ComboRow({
       title: _("Update Interval"),
       subtitle: _("How often to refresh weather data"),
-      model: new Gtk.StringList()
+      model: new Gtk.StringList(),
     });
-
     const intervals = [
-      { label: _("5 minutes"), value: 5 },
-      { label: _("10 minutes"), value: 10 },
-      { label: _("15 minutes"), value: 15 },
-      { label: _("30 minutes"), value: 30 },
-      { label: _("1 hour"), value: 60 }
+      {label: _("5 minutes"),  value: 5},
+      {label: _("10 minutes"), value: 10},
+      {label: _("15 minutes"), value: 15},
+      {label: _("30 minutes"), value: 30},
+      {label: _("1 hour"),     value: 60},
     ];
-
-    intervals.forEach(interval => intervalRow.model.append(interval.label));
-    const currentInterval = settings.get_int("update-interval") || 10;
-    const intervalIndex = intervals.findIndex(i => i.value === currentInterval);
-    intervalRow.set_selected(intervalIndex >= 0 ? intervalIndex : 1);
+    intervals.forEach(i => intervalRow.model.append(i.label));
+    const curInterval = this._settings.get_int("update-interval") || 10;
+    intervalRow.set_selected(Math.max(1, intervals.findIndex(i => i.value === curInterval)));
     intervalRow.connect("notify::selected", () => {
-      const selectedInterval = intervals[intervalRow.get_selected()];
-      if (selectedInterval) {
-        settings.set_int("update-interval", selectedInterval.value);
-      }
+      const o = intervals[intervalRow.get_selected()];
+      if (o) this._settings.set_int("update-interval", o.value);
     });
 
     updateGroup.add(intervalRow);
 
-    const featuresGroup = new Adw.PreferencesGroup({
+    // ── Features ───────────────────────────────────────────────────────────
+    const featGroup = new Adw.PreferencesGroup({
       title: _("Features"),
-      description: _("Enable or disable weather features")
+      description: _("Enable or disable weather features"),
     });
 
-    const humidityRow = new Adw.SwitchRow({
+    const humRow = new Adw.SwitchRow({
       title: _("Show Humidity"),
-      subtitle: _("Display relative humidity in weather details")
+      subtitle: _("Display relative humidity in weather details"),
     });
-    humidityRow.set_active(settings.get_boolean("show-humidity"));
-    humidityRow.connect("notify::active", () => {
-      settings.set_boolean("show-humidity", humidityRow.get_active());
+    humRow.set_active(this._settings.get_boolean("show-humidity"));
+    humRow.connect("notify::active", () => {
+      this._settings.set_boolean("show-humidity", humRow.get_active());
     });
 
-    featuresGroup.add(humidityRow);
-
+    featGroup.add(humRow);
     page.add(unitsGroup);
     page.add(updateGroup);
-    page.add(featuresGroup);
-
+    page.add(featGroup);
     return page;
   }
 
+  // ══════════════════════════════════════════════════════════════════════════
+  // Location page
+  // ══════════════════════════════════════════════════════════════════════════
 
-  _copyToClipboard(text, label = null) {
-      // Use proper GJS clipboard access as per GNOME guidelines
-      try {
-          const display = Gdk.Display.get_default();
-          if (!display) {
-              throw new Error("No display available");
-          }
-
-          const clipboard = display.get_clipboard();
-          if (!clipboard) {
-              throw new Error("No clipboard available");
-          }
-
-          // Use the proper GJS async clipboard API
-          clipboard.set_text_async(text, -1, null, (clipboard, result) => {
-              try {
-                  clipboard.set_text_finish(result);
-                  this._showToast(`✅ ${label || 'Text'} copied to clipboard!`);
-              } catch (error) {
-                  console.log("Async clipboard set failed:", error.message);
-                  // Try synchronous fallback
-                  this._trySync(clipboard, text, label);
-              }
-          });
-          return;
-
-      } catch (error) {
-          console.log("Async clipboard method failed:", error.message);
-      }
-
-      // Fallback to synchronous method
-      try {
-          const display = Gdk.Display.get_default();
-          const clipboard = display?.get_clipboard();
-          if (clipboard) {
-              this._trySync(clipboard, text, label);
-              return;
-          }
-      } catch (error) {
-          console.log("Sync clipboard method failed:", error.message);
-      }
-
-      // If all automatic methods fail, show manual copy dialog
-      console.log("All clipboard methods failed, showing manual copy dialog");
-      this._showCopyDialog(text, label);
-  }
-
-  _trySync(clipboard, text, label) {
-      try {
-          // Try the synchronous set_text method
-          clipboard.set_text(text);
-          this._showToast(`✅ ${label || 'Text'} copied to clipboard!`);
-          return true;
-      } catch (error) {
-          console.log("Synchronous clipboard failed:", error.message);
-
-          // Try with content provider approach
-          try {
-              const contentProvider = Gdk.ContentProvider.new_for_value(text);
-              if (contentProvider) {
-                  clipboard.set_content(contentProvider);
-                  this._showToast(`✅ ${label || 'Text'} copied to clipboard!`);
-                  return true;
-              }
-          } catch (providerError) {
-              console.log("Content provider approach failed:", providerError.message);
-          }
-
-          return false;
-      }
-  }
-
-  _showCopyDialog(text, label = null) {
-      const dialog = new Adw.MessageDialog({
-          heading: _("Copy to Clipboard"),
-          body: _(`Unable to automatically copy to clipboard. Please manually copy the ${label || 'text'} below:`),
-          modal: true,
-          transient_for: this._getParentWindow()
-      });
-
-      dialog.add_response("close", _("Close"));
-      dialog.add_response("select", _("Select Text"));
-      dialog.set_response_appearance("select", Adw.ResponseAppearance.SUGGESTED);
-      dialog.set_default_response("select");
-
-
-      const contentBox = new Gtk.Box({
-          orientation: Gtk.Orientation.VERTICAL,
-          spacing: 12,
-          margin_top: 12,
-          margin_bottom: 12,
-          margin_start: 12,
-          margin_end: 12
-      });
-
-
-      const textView = new Gtk.TextView({
-          editable: false,
-          cursor_visible: true,
-          wrap_mode: Gtk.WrapMode.CHAR,
-          css_classes: ["monospace", "card"],
-          margin_top: 8,
-          margin_bottom: 8,
-          margin_start: 8,
-          margin_end: 8
-      });
-
-
-      const scrolledWindow = new Gtk.ScrolledWindow({
-          child: textView,
-          height_request: Math.min(120, Math.max(40, text.length / 3)),
-          hscrollbar_policy: Gtk.PolicyType.AUTOMATIC,
-          vscrollbar_policy: Gtk.PolicyType.AUTOMATIC,
-          css_classes: ["view"]
-      });
-
-      const buffer = textView.get_buffer();
-      buffer.set_text(text, -1);
-
-      contentBox.append(scrolledWindow);
-
-      // Add copy instruction
-      const instructionLabel = new Gtk.Label({
-          label: _("💡 Select the text above and press Ctrl+C to copy"),
-          css_classes: ["caption", "dim-label"],
-          halign: Gtk.Align.CENTER,
-          margin_top: 8
-      });
-      contentBox.append(instructionLabel);
-
-      dialog.set_extra_child(contentBox);
-
-      dialog.connect("response", (dialog, response) => {
-          if (response === "select") {
-
-              const startIter = buffer.get_start_iter();
-              const endIter = buffer.get_end_iter();
-              buffer.select_range(startIter, endIter);
-
-
-              textView.grab_focus();
-
-
-              try {
-                  const display = Gdk.Display.get_default();
-                  if (display) {
-                      const clipboard = display.get_clipboard();
-                      if (clipboard) {
-                          clipboard.set_text(text);
-                          this._showToast(`✅ ${label || 'Text'} copied to clipboard!`);
-                          dialog.close();
-                          return;
-                      }
-                  }
-              } catch (e) {
-                  // If clipboard access still fails, just show the selection
-                  this._showToast(_("💡 Text selected! Press Ctrl+C to copy"));
-              }
-              return;
-          }
-          dialog.close();
-      });
-
-      dialog.present();
-  }
-
-  // Helper method to get parent window for dialogs
-  _getParentWindow() {
-      let widget = this._searchResultsGroup || this._providerDetailsGroup;
-      while (widget) {
-          if (widget.get_root && widget.get_root()) {
-              return widget.get_root();
-          }
-          if (widget.get_toplevel && widget.get_toplevel()) {
-              return widget.get_toplevel();
-          }
-          widget = widget.get_parent();
-      }
-      return null;
-  }
-
-  _createLocationPage(settings) {
+  _buildLocationPage() {
     const page = new Adw.PreferencesPage({
       title: _("Location"),
-      icon_name: "find-location-symbolic"
+      icon_name: "find-location-symbolic",
     });
 
-    const locationGroup = new Adw.PreferencesGroup({
+    // ── Detection mode ─────────────────────────────────────────────────────
+    const modeGroup = new Adw.PreferencesGroup({
       title: _("Location Detection"),
-      description: _("Configure how your location is determined")
+      description: _("Configure how your location is determined"),
     });
 
-    const locationModeRow = new Adw.ComboRow({
+    const modeRow = new Adw.ComboRow({
       title: _("Location Mode"),
       subtitle: _("Choose detection method"),
-      model: new Gtk.StringList()
+      model: new Gtk.StringList(),
     });
+    modeRow.model.append(_("🌍 Auto Detection"));
+    modeRow.model.append(_("📍 Manual Location"));
+    const curMode = this._settings.get_string("location-mode") || "auto";
+    modeRow.set_selected(curMode === "auto" ? 0 : 1);
 
-    locationModeRow.model.append(_("🌍 Auto Detection"));
-    locationModeRow.model.append(_("📍 Manual Location"));
-    const currentMode = settings.get_string("location-mode") || "auto";
-    locationModeRow.set_selected(currentMode === "auto" ? 0 : 1);
-
-    const currentLocationRow = new Adw.ActionRow({
+    const currentRow = new Adw.ActionRow({
       title: _("Current Location"),
-      subtitle: this._getLocationSubtitle(settings),
-      activatable: false
+      subtitle: this._locationSubtitle(),
+      activatable: false,
     });
-
     const gpsIcon = new Gtk.Image({
-      icon_name: currentMode === "auto" ? "location-services-active-symbolic" : "location-services-disabled-symbolic",
-      pixel_size: 16
+      icon_name: curMode === "auto"
+        ? "location-services-active-symbolic"
+        : "location-services-disabled-symbolic",
+      pixel_size: 16,
     });
-    currentLocationRow.add_prefix(gpsIcon);
-
-    const refreshButton = new Gtk.Button({
+    currentRow.add_prefix(gpsIcon);
+    const refreshBtn = new Gtk.Button({
       icon_name: "view-refresh-symbolic",
       valign: Gtk.Align.CENTER,
-      tooltip_text: _("Refresh location"),
-      css_classes: ["flat"]
+      tooltip_text: _("Refresh location display"),
+      css_classes: ["flat"],
     });
-    refreshButton.connect("clicked", () => {
-      this._updateCurrentLocationDisplay();
-    });
-    currentLocationRow.add_suffix(refreshButton);
+    refreshBtn.connect("clicked", () => this._refreshLocationRow(currentRow));
+    currentRow.add_suffix(refreshBtn);
 
-    locationGroup.add(locationModeRow);
-    locationGroup.add(currentLocationRow);
+    modeGroup.add(modeRow);
+    modeGroup.add(currentRow);
 
+    // ── Manual search ──────────────────────────────────────────────────────
     const searchGroup = new Adw.PreferencesGroup({
       title: _("Manual Location Search"),
-      description: _("Search by city name or coordinates (latitude, longitude)"),
-      sensitive: currentMode === "manual"
+      description: _("Search by city name or coordinates (lat, lon)"),
+      sensitive: curMode === "manual",
     });
 
-    const searchEntryRow = new Adw.EntryRow({
+    const searchEntry = new Adw.EntryRow({
       title: _("Search Location"),
-      text: "",
-      show_apply_button: true
+      show_apply_button: true,
     });
-    searchEntryRow.set_input_hints(Gtk.InputHints.NONE);
-
-    const searchButton = new Gtk.Button({
+    const searchBtn = new Gtk.Button({
       icon_name: "edit-find-symbolic",
       valign: Gtk.Align.CENTER,
       tooltip_text: _("Search for location"),
-      css_classes: ["suggested-action"]
+      css_classes: ["suggested-action"],
     });
-
-    const clearButton = new Gtk.Button({
+    const clearBtn = new Gtk.Button({
       icon_name: "edit-clear-symbolic",
       valign: Gtk.Align.CENTER,
       tooltip_text: _("Clear search"),
-      css_classes: ["flat"]
+      css_classes: ["flat"],
     });
-
-    searchEntryRow.add_suffix(searchButton);
-    searchEntryRow.add_suffix(clearButton);
+    searchEntry.add_suffix(searchBtn);
+    searchEntry.add_suffix(clearBtn);
 
     const helpRow = new Adw.ActionRow({
       title: _("Search Examples"),
-      subtitle: _("City names: 'London', 'New York', 'Tokyo'\nCoordinates: '40.7128, -74.0060' or '40.7128 -74.0060'"),
+      subtitle: _("City: 'London', 'New York'\nCoordinates: '40.7128, -74.0060'"),
       activatable: false,
-      sensitive: false
+      sensitive: false,
     });
-    const helpIcon = new Gtk.Image({
-      icon_name: "dialog-information-symbolic",
-      pixel_size: 16
-    });
-    helpRow.add_prefix(helpIcon);
+    helpRow.add_prefix(new Gtk.Image({icon_name:"dialog-information-symbolic", pixel_size:16}));
 
     this._searchResultsGroup = new Adw.PreferencesGroup({
       title: _("Search Results"),
-      visible: false
+      visible: false,
     });
 
-    this._currentLocationRow = currentLocationRow;
-    this._searchGroup = searchGroup;
-    this._searchEntryRow = searchEntryRow;
-    this._searchButton = searchButton;
-    this._settings = settings;
-    this._locationModeRow = locationModeRow;
-    this._gpsIcon = gpsIcon;
+    // Store refs for internal helpers
+    this._searchEntryRow = searchEntry;
+    this._searchBtn = searchBtn;
+    this._locationModeRow = modeRow;
 
-    locationModeRow.connect("notify::selected", () => {
-      const mode = locationModeRow.get_selected() === 0 ? "auto" : "manual";
-      settings.set_string("location-mode", mode);
-      this._updateLocationSensitivity(mode);
-      this._updateCurrentLocationDisplay();
-      this._gpsIcon.set_from_icon_name(mode === "auto" ? "location-services-active-symbolic" : "location-services-disabled-symbolic");
-    });
-
-    searchButton.connect("clicked", () => {
-      this._clearSearchResults();
-      this._performLocationSearch();
-    });
-    searchEntryRow.connect("entry-activated", () => {
-      this._clearSearchResults();
-      this._performLocationSearch();
-    });
-    searchEntryRow.connect("apply", () => {
-      this._clearSearchResults();
-      this._performLocationSearch();
-    });
-    clearButton.connect("clicked", () => {
-      searchEntryRow.set_text("");
-      this._clearSearchResults();
+    // Wire up events
+    modeRow.connect("notify::selected", () => {
+      const mode = modeRow.get_selected() === 0 ? "auto" : "manual";
+      this._settings.set_string("location-mode", mode);
+      searchGroup.set_sensitive(mode === "manual");
+      this._refreshLocationRow(currentRow);
+      gpsIcon.set_from_icon_name(
+        mode === "auto"
+          ? "location-services-active-symbolic"
+          : "location-services-disabled-symbolic"
+      );
     });
 
-    searchEntryRow.connect("notify::text", () => {
-      const query = searchEntryRow.get_text().trim();
-      const coordPattern = /^(-?\d+\.?\d*)[,\s]+(-?\d+\.?\d*)$/;
-      const isCoordinates = coordPattern.test(query);
-      searchButton.set_sensitive(isCoordinates || query.length >= 2);
+    const doSearch = () => {
+      this._clearResults();
+      this._performSearch();
+    };
+    searchBtn.connect("clicked", doSearch);
+    searchEntry.connect("apply", doSearch);
+    searchEntry.connect("entry-activated", doSearch);
+    clearBtn.connect("clicked", () => {
+      searchEntry.set_text("");
+      this._clearResults();
+    });
+    searchEntry.connect("notify::text", () => {
+      const q = searchEntry.get_text().trim();
+      searchBtn.set_sensitive(q.length >= 2);
     });
 
-    searchGroup.add(searchEntryRow);
+    searchGroup.add(searchEntry);
     searchGroup.add(helpRow);
-    page.add(locationGroup);
+    page.add(modeGroup);
     page.add(searchGroup);
     page.add(this._searchResultsGroup);
-
     return page;
   }
 
-  _createWeatherProviderPage(settings) {
-    const page = new Adw.PreferencesPage({
-      title: _("Weather Provider"),
-      icon_name: "network-server-symbolic"
-    });
-
-    const providerGroup = new Adw.PreferencesGroup({
-      title: _("Weather Data Source"),
-      description: _("Choose your weather data provider")
-    });
-
-    const providerRow = new Adw.ComboRow({
-      title: _("Weather Provider"),
-      subtitle: _("Select weather API service"),
-      model: new Gtk.StringList()
-    });
-    
-    
-    providerRow.connect("notify::selected", () => {
-      const selectedKey = providerKeys[providerRow.get_selected()];
-      settings.set_string("weather-provider", selectedKey);
-      this._updateProviderSettings(selectedKey);
-      
-      // Force settings sync
-      settings.sync();
-    });
-
-    
-    
-
-
-    const providerKeys = Object.keys(WEATHER_PROVIDERS);
-    providerKeys.forEach(key => {
-      const provider = WEATHER_PROVIDERS[key];
-      const freeIndicator = provider.requiresApiKey ? "💰" : "🆓";
-      providerRow.model.append(`${freeIndicator} ${provider.name} - ${provider.description}`);
-    });
-
-    const currentProvider = settings.get_string("weather-provider") || "openmeteo";
-    const providerIndex = providerKeys.indexOf(currentProvider);
-    providerRow.set_selected(providerIndex >= 0 ? providerIndex : 0);
-
-
-    this._providerDetailsGroup = new Adw.PreferencesGroup({
-      title: _("Provider Configuration"),
-      description: _("Configure your selected weather provider")
-    });
-
-
-    this._apiKeyRow = new Adw.PasswordEntryRow({
-      title: _("API Key"),
-      text: settings.get_string("weather-api-key") || ""
-    });
-
-    const getApiKeyButton = new Gtk.Button({
-      label: _("Get API Key"),
-      valign: Gtk.Align.CENTER,
-      css_classes: ["suggested-action"]
-    });
-    this._apiKeyRow.add_suffix(getApiKeyButton);
-
-
-    this._customUrlRow = new Adw.EntryRow({
-      title: _("Custom API URL"),
-      text: settings.get_string("custom-weather-url") || ""
-    });
-
-
-    this._providerInfoRow = new Adw.ActionRow({
-      title: _("Provider Information"),
-      activatable: false
-    });
-
-
-    const testConnectionRow = new Adw.ActionRow({
-      title: _("Test Connection"),
-      subtitle: _("Verify your provider settings work correctly"),
-      activatable: true
-    });
-
-    const testButton = new Gtk.Button({
-      label: _("Test"),
-      valign: Gtk.Align.CENTER,
-      css_classes: ["suggested-action"]
-    });
-    testConnectionRow.add_suffix(testButton);
-
-
-    providerRow.connect("notify::selected", () => {
-      const selectedKey = providerKeys[providerRow.get_selected()];
-      settings.set_string("weather-provider", selectedKey);
-      this._updateProviderSettings(selectedKey);
-    });
-
-    this._apiKeyRow.connect("notify::text", () => {
-      settings.set_string("weather-api-key", this._apiKeyRow.get_text());
-    });
-
-    this._customUrlRow.connect("notify::text", () => {
-      settings.set_string("custom-weather-url", this._customUrlRow.get_text());
-    });
-
-    getApiKeyButton.connect("clicked", () => {
-      this._openProviderWebsite(providerKeys[providerRow.get_selected()]);
-    });
-
-    testButton.connect("clicked", () => {
-      this._testWeatherConnection(settings);
-    });
-
-    testConnectionRow.connect("activated", () => {
-      this._testWeatherConnection(settings);
-    });
-
-    providerGroup.add(providerRow);
-
-    this._providerDetailsGroup.add(this._apiKeyRow);
-    this._providerDetailsGroup.add(this._customUrlRow);
-    this._providerDetailsGroup.add(this._providerInfoRow);
-    this._providerDetailsGroup.add(testConnectionRow);
-
-    page.add(providerGroup);
-    page.add(this._providerDetailsGroup);
-
-
-    this._updateProviderSettings(currentProvider);
-
-    return page;
+  _locationSubtitle() {
+    const mode = this._settings.get_string("location-mode") || "auto";
+    if (mode === "auto") return _("🌍 Auto Detection Enabled");
+    const name = this._settings.get_string("location-name") || "";
+    const loc  = this._settings.get_string("location")       || "";
+    return name && loc ? `📍 ${name}` : _("📍 Manual – Please set location");
   }
 
-  _updateProviderSettings(providerKey) {
-    const provider = WEATHER_PROVIDERS[providerKey];
-
-
-    this._apiKeyRow.visible = provider.requiresApiKey;
-
-
-    this._customUrlRow.visible = (providerKey === "custom");
-
-
-    let infoText = `📡 Base URL: ${provider.baseUrl || "Not specified"}\n`;
-    infoText += `📊 Rate Limit: ${provider.rateLimit}\n`;
-    infoText += `🔑 API Key: ${provider.requiresApiKey ? "Required" : "Not Required"}`;
-
-    if (provider.supportedParams && provider.supportedParams.length > 0) {
-      infoText += `\n🎯 Parameters: ${provider.supportedParams.join(", ")}`;
-    }
-
-    this._providerInfoRow.set_subtitle(infoText);
+  _refreshLocationRow(row) {
+    row.set_subtitle(this._locationSubtitle());
   }
 
-  _openProviderWebsite(providerKey) {
-    const urls = {
-      openmeteo: "https://open-meteo.com/",
-      meteosource: "https://www.meteosource.com/",
-      wttr: "https://wttr.in/",
-      openweathermap: "https://openweathermap.org/api",
-      weatherapi: "https://www.weatherapi.com/",
-      custom: "https://github.com/Sanjai-Shaarugesh/Advanced-Weather-Companion/wiki/Custom-Weather-Providers"
-    };
+  // ── Search helpers ─────────────────────────────────────────────────────
 
-    const url = urls[providerKey];
-    if (url) {
-      try {
-        Gio.AppInfo.launch_default_for_uri(url, null);
-      } catch (error) {
-        console.error("Could not open provider website:", error);
-        this._showToast(_("Could not open website. Please visit manually."));
-      }
-    }
-  }
+  async _performSearch() {
+    const query = (this._searchEntryRow?.get_text() ?? "").trim();
+    this._clearResults();
+    if (!query || query.length < 2) return;
+    if (this._searchInProgress) return;
 
-  async _testWeatherConnection(settings) {
-    const testButton = this._providerDetailsGroup.get_last_child().get_last_child();
-    testButton.set_label(_("Testing..."));
-    testButton.set_sensitive(false);
-
-    try {
-      const provider = settings.get_string("weather-provider") || "openmeteo";
-      const apiKey = settings.get_string("weather-api-key") || "";
-      const customUrl = settings.get_string("custom-weather-url") || "";
-
-
-      const testLat = 40.7128;
-      const testLon = -74.0060;
-
-      let testUrl;
-      const providerConfig = WEATHER_PROVIDERS[provider];
-
-      if (provider === "custom") {
-        if (!customUrl.trim()) {
-          throw new Error("Custom URL is required");
-        }
-        testUrl = customUrl.replace("{lat}", testLat).replace("{lon}", testLon);
-        testUrl = testUrl.replace("{latitude}", testLat).replace("{longitude}", testLon);
-        if (apiKey) {
-          testUrl += testUrl.includes("?") ? "&" : "?";
-          testUrl += `key=${apiKey}`;
-        }
-      } else if (provider === "openmeteo") {
-        testUrl = `${providerConfig.baseUrl}?latitude=${testLat}&longitude=${testLon}&current=temperature_2m,weather_code`;
-      } else if (provider === "meteosource") {
-        testUrl = `${providerConfig.baseUrl}?lat=${testLat}&lon=${testLon}&sections=current&timezone=UTC&language=en&units=metric`;
-      } else if (provider === "wttr") {
-        testUrl = `${providerConfig.baseUrl}/${testLat},${testLon}?format=j1`;
-      }
-      else if (provider === "openweathermap") {
-        if (!apiKey.trim()) {
-          throw new Error("API key is required for OpenWeatherMap");
-        }
-         testUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${testLat}&lon=${testLon}&appid=${apiKey}&units=metric`;
-      } else if (provider === "weatherapi") {
-        if (!apiKey.trim()) {
-          throw new Error("API key is required for WeatherAPI");
-        }
-        testUrl = `${providerConfig.baseUrl}?key=${apiKey}&q=${testLat},${testLon}&days=1`;
-      }
-
-      const message = Soup.Message.new("GET", testUrl);
-      message.request_headers.append('User-Agent', 'GNOME-Weather-Extension/1.0');
-
-      const bytes = await this._session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null);
-
-      if (message.status_code === 200) {
-        const responseText = new TextDecoder().decode(bytes.get_data());
-        const response = JSON.parse(responseText);
-
-
-        let hasValidData = false;
-        let temperature = null;
-
-        if (provider === "openmeteo" && response.current && response.current.temperature_2m !== undefined) {
-          hasValidData = true;
-          temperature = response.current.temperature_2m;
-        } else if (provider === "meteosource" && response.current && response.current.temperature !== undefined) {
-          hasValidData = true;
-          temperature = response.current.temperature;
-        } else if (provider === "wttr" && response.current_condition && response.current_condition[0] && response.current_condition[0].temp_C) {
-          hasValidData = true;
-          temperature = response.current_condition[0].temp_C;
-        } else if (provider === "openweathermap" && response.current && response.current.temp !== undefined) {
-          hasValidData = true;
-          temperature = response.current.temp;
-        } else if (provider === "weatherapi" && response.current && response.current.temp_c !== undefined) {
-          hasValidData = true;
-          temperature = response.current.temp_c;
-        } else if (provider === "custom" && response) {
-          hasValidData = true;
-        }
-
-        if (hasValidData) {
-          let successMessage = "✅ Connection successful! Weather data received.";
-          if (temperature !== null) {
-            successMessage += ` Current temperature: ${temperature}°C`;
-          }
-          this._showToast(successMessage);
-        } else {
-          throw new Error("Invalid response format - no temperature data found");
-        }
-      } else {
-        throw new Error(`HTTP ${message.status_code}: ${message.reason_phrase}`);
-      }
-
-    } catch (error) {
-      console.error("Weather provider test failed:", error);
-      this._showToast(_("❌ Connection failed: ") + error.message);
-    } finally {
-      testButton.set_label(_("Test"));
-      testButton.set_sensitive(true);
-    }
-  }
-
-  _createAppearancePage(settings) {
-    const page = new Adw.PreferencesPage({
-      title: _("Appearance"),
-      icon_name: "applications-graphics-symbolic"
-    });
-
-    const panelGroup = new Adw.PreferencesGroup({
-      title: _("Panel Display"),
-      description: _("Configure how the weather appears in the panel")
-    });
-
-    const panelPositionRow = new Adw.ComboRow({
-      title: _("Panel Position"),
-      subtitle: _("Where to show the weather widget"),
-      model: new Gtk.StringList()
-    });
-
-    const positions = [
-      { id: "left", label: _("Left") },
-      { id: "center", label: _("Center") },
-      { id: "right", label: _("Right") }
-    ];
-
-    positions.forEach(pos => panelPositionRow.model.append(pos.label));
-    const currentPosition = settings.get_string("panel-position") || "right";
-    const positionIndex = positions.findIndex(p => p.id === currentPosition);
-    panelPositionRow.set_selected(positionIndex >= 0 ? positionIndex : 2);
-    panelPositionRow.connect("notify::selected", () => {
-      const selectedPosition = positions[panelPositionRow.get_selected()];
-      if (selectedPosition) {
-        settings.set_string("panel-position", selectedPosition.id);
-      }
-    });
-
-    const panelPositionIndexRow = new Adw.SpinRow({
-      title: _("Panel Position Index"),
-      subtitle: _("Position index in the selected panel area"),
-      adjustment: new Gtk.Adjustment({
-        lower: 0,
-        upper: 10,
-        step_increment: 1,
-        value: settings.get_int("panel-position-index") || 0
-      })
-    });
-    panelPositionIndexRow.connect("notify::value", () => {
-      settings.set_int("panel-position-index", panelPositionIndexRow.get_value());
-    });
-
-    const showTextRow = new Adw.SwitchRow({
-      title: _("Show Temperature Text"),
-      subtitle: _("Display temperature alongside the weather icon")
-    });
-    showTextRow.set_active(settings.get_boolean("show-text-in-panel"));
-    showTextRow.connect("notify::active", () => {
-      settings.set_boolean("show-text-in-panel", showTextRow.get_active());
-    });
-
-    const showLocationRow = new Adw.SwitchRow({
-      title: _("Show Location Indicator"),
-      subtitle: _("Display location mode indicator in panel")
-    });
-    const locationModeIcon = new Gtk.Image({
-      icon_name: "find-location-symbolic",
-      pixel_size: 16
-    });
-    showLocationRow.add_prefix(locationModeIcon);
-    showLocationRow.set_active(settings.get_boolean("show-location-label"));
-    showLocationRow.connect("notify::active", () => {
-      settings.set_boolean("show-location-label", showLocationRow.get_active());
-    });
-
-    const iconSizeRow = new Adw.SpinRow({
-      title: _("Icon Size"),
-      subtitle: _("Size of the weather icon in pixels"),
-      adjustment: new Gtk.Adjustment({
-        lower: 12,
-        upper: 24,
-        step_increment: 1,
-        value: settings.get_int("panel-icon-size") || 16
-      })
-    });
-    iconSizeRow.connect("notify::value", () => {
-      settings.set_int("panel-icon-size", iconSizeRow.get_value());
-    });
-
-    const textSizeRow = new Adw.SpinRow({
-      title: _("Text Size"),
-      subtitle: _("Size of the temperature text in pixels"),
-      adjustment: new Gtk.Adjustment({
-        lower: 10,
-        upper: 16,
-        step_increment: 1,
-        value: settings.get_int("panel-text-size") || 13
-      })
-    });
-    textSizeRow.connect("notify::value", () => {
-      settings.set_int("panel-text-size", textSizeRow.get_value());
-    });
-
-    panelGroup.add(panelPositionRow);
-    panelGroup.add(panelPositionIndexRow);
-    panelGroup.add(showTextRow);
-    panelGroup.add(showLocationRow);
-    panelGroup.add(iconSizeRow);
-    panelGroup.add(textSizeRow);
-
-    page.add(panelGroup);
-    return page;
-  }
-
-  _createAboutPage(settings) {
-      const page = new Adw.PreferencesPage({
-        title: _("About"),
-        icon_name: "help-about-symbolic"
-      });
-
-      const infoGroup = new Adw.PreferencesGroup({
-        title: _("Advanced Weather Companion"),
-        description: _("A beautiful, modern weather companion for GNOME Shell")
-      });
-
-      const headerBox = new Gtk.Box({
-        orientation: Gtk.Orientation.HORIZONTAL,
-        spacing: 20,
-        margin_top: 20,
-        margin_bottom: 20,
-        halign: Gtk.Align.CENTER
-      });
-
-      const logoPath = `${this.dir.get_path()}/icons/weather-logo.png`;
-      let logoImage;
-      try {
-        logoImage = Gtk.Image.new_from_file(logoPath);
-        logoImage.set_pixel_size(72);
-      } catch (e) {
-        logoImage = new Gtk.Image({
-          icon_name: "weather-clear-symbolic",
-          pixel_size: 72
-        });
-      }
-
-      const infoBox = new Gtk.Box({
-        orientation: Gtk.Orientation.VERTICAL,
-        spacing: 6,
-        valign: Gtk.Align.CENTER
-      });
-
-      const titleLabel = new Gtk.Label({
-        label: _("Advanced Weather Companion"),
-        halign: Gtk.Align.START,
-        css_classes: ["title-2"]
-      });
-
-      const versionLabel = new Gtk.Label({
-        label: _("Version 2.0"),
-        halign: Gtk.Align.START,
-        css_classes: ["caption"]
-      });
-
-      const descLabel = new Gtk.Label({
-        label: _("Modern weather extension with native GNOME design"),
-        halign: Gtk.Align.START,
-        wrap: true,
-        max_width_chars: 40,
-        css_classes: ["body"]
-      });
-
-      infoBox.append(titleLabel);
-      infoBox.append(versionLabel);
-      infoBox.append(descLabel);
-      headerBox.append(logoImage);
-      headerBox.append(infoBox);
-
-      const headerRow = new Adw.ActionRow({ title: "", activatable: false });
-      headerRow.add_suffix(headerBox);
-
-      const linksGroup = new Adw.PreferencesGroup({
-        title: _("Extension Links"),
-        description: _("Source code, issues, and contributions")
-      });
-
-      const githubRow = new Adw.ActionRow({
-        title: _("View on GitHub"),
-        subtitle: _("Source code, issues, and contributions"),
-        activatable: true
-      });
-
-      const githubIcon = this._createGitHubIcon();
-      githubRow.add_prefix(githubIcon);
-
-      const externalIcon = new Gtk.Image({
-        icon_name: "adw-external-link-symbolic",
-        pixel_size: 16
-      });
-      githubRow.add_suffix(externalIcon);
-      githubRow.connect("activated", () => {
-        try {
-          Gio.AppInfo.launch_default_for_uri("https://github.com/Sanjai-Shaarugesh/Advanced-Weather-Companion", null);
-        } catch (error) {
-          console.error("Could not open GitHub link:", error);
-        }
-      });
-
-      const qrGroup = new Adw.PreferencesGroup({
-        title: _("☕ Support by buying me a coffee — just scan the QR code!"),
-        description: _("Preferred Method - Scan QR code to support development")
-      });
-
-      const qrContainer = new Gtk.Box({
-        orientation: Gtk.Orientation.VERTICAL,
-        spacing: 16,
-        halign: Gtk.Align.CENTER,
-        margin_top: 24,
-        margin_bottom: 24,
-        margin_start: 24,
-        margin_end: 24,
-        css_classes: ["qr-container"]
-      });
-
-      const qrImageBox = new Gtk.Box({
-        orientation: Gtk.Orientation.VERTICAL,
-        halign: Gtk.Align.CENTER,
-        css_classes: ["qr-image-container"]
-      });
-
-      const qrPath = `${this.dir.get_path()}/icons/qr.png`;
-      let qrImage;
-      try {
-        qrImage = Gtk.Image.new_from_file(qrPath);
-        qrImage.set_pixel_size(200);
-        qrImage.set_css_classes(["qr-code-image"]);
-      } catch (e) {
-        qrImage = new Gtk.Image({
-          icon_name: "camera-web-symbolic",
-          pixel_size: 200
-        });
-        qrImage.set_css_classes(["qr-code-placeholder"]);
-      }
-
-      qrImageBox.append(qrImage);
-      qrContainer.append(qrImageBox);
-
-      const qrRow = new Adw.ActionRow({
-        title: "",
-        activatable: false
-      });
-      qrRow.set_child(qrContainer);
-
-
-      const addressGroup = new Adw.PreferencesGroup({
-        title: _("Donation Address"),
-        css_classes: ["address-group"]
-      });
-
-      const addressRow = new Adw.ActionRow({
-        title: "https://buymeacoffee.com/sanjai",
-        activatable: true,
-        css_classes: ["address-row"]
-      });
-
-
-      const donationIcon = new Gtk.Image({
-        icon_name: "emote-love-symbolic",
-        pixel_size: 16
-      });
-      addressRow.add_prefix(donationIcon);
-
-
-      const copyIcon = new Gtk.Image({
-        icon_name: "edit-copy-symbolic",
-        pixel_size: 16,
-        css_classes: ["copy-icon"]
-      });
-      addressRow.add_suffix(copyIcon);
-
-      // Make the address copyable when clicked
-      addressRow.connect("activated", () => {
-        const address = "https://buymeacoffee.com/sanjai";
-        this._copyToClipboard(address, "Donation address");
-      });
-
-      const sponsorRow = new Adw.ActionRow({
-        title: _("☕ Buy Me a Coffee"),
-        subtitle: _("Support development with a small donation"),
-        activatable: true
-      });
-      const heartIcon = new Gtk.Image({
-        icon_name: "emblem-favorite-symbolic",
-        pixel_size: 20
-      });
-      sponsorRow.add_prefix(heartIcon);
-      const sponsorIcon = new Gtk.Image({
-        icon_name: "adw-external-link-symbolic",
-        pixel_size: 16
-      });
-      sponsorRow.add_suffix(sponsorIcon);
-      sponsorRow.connect("activated", () => {
-        try {
-          Gio.AppInfo.launch_default_for_uri("https://buymeacoffee.com/sanjai", null);
-        } catch (error) {
-          console.error("Could not open sponsor link:", error);
-        }
-      });
-
-      const licenseGroup = new Adw.PreferencesGroup({
-        title: _("License & Credits"),
-        description: _("Open source software information")
-      });
-
-      const licenseRow = new Adw.ActionRow({
-        title: _("Open Source License"),
-        subtitle: _("MIT License - Free and open source software"),
-        activatable: false
-      });
-      const licenseIcon = new Gtk.Image({
-        icon_name: "security-high-symbolic",
-        pixel_size: 16
-      });
-      licenseRow.add_prefix(licenseIcon);
-
-      const creditsRow = new Adw.ActionRow({
-        title: _("Weather Data Sources"),
-        subtitle: _("Open-Meteo, Meteosource, Wttr.in - Free weather APIs"),
-        activatable: false
-      });
-      const apiIcon = new Gtk.Image({
-        icon_name: "network-server-symbolic",
-        pixel_size: 16
-      });
-      creditsRow.add_prefix(apiIcon);
-
-      // Add all rows to their respective groups
-      infoGroup.add(headerRow);
-      linksGroup.add(githubRow);
-      linksGroup.add(sponsorRow);
-      qrGroup.add(qrRow);
-      addressGroup.add(addressRow);
-      licenseGroup.add(licenseRow);
-      licenseGroup.add(creditsRow);
-
-      // Add all groups to the page
-      page.add(infoGroup);
-      page.add(linksGroup);
-      page.add(qrGroup);
-      page.add(addressGroup);
-      page.add(licenseGroup);
-
-      return page;
-    }
-
-  _createGitHubIcon() {
-    try {
-      const githubIconPath = `${this.dir.get_path()}/icons/github.svg`;
-      const file = Gio.File.new_for_path(githubIconPath);
-
-      if (file.query_exists(null)) {
-        return new Gtk.Image({
-          file: githubIconPath,
-          pixel_size: 20
-        });
-      }
-    } catch (error) {
-      console.log("GitHub icon file not found, creating from SVG data");
-    }
-
-    try {
-      const githubSvg = `<?xml version="1.0" encoding="UTF-8"?>
-<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-</svg>`;
-
-      const tempDir = GLib.get_tmp_dir();
-      const tempPath = `${tempDir}/github-icon-${Date.now()}.svg`;
-      const tempFile = Gio.File.new_for_path(tempPath);
-
-      tempFile.replace_contents(githubSvg, null, false, Gio.FileCreateFlags.NONE, null);
-
-      const githubIcon = new Gtk.Image({
-        file: tempPath,
-        pixel_size: 20
-      });
-
-      GLib.timeout_add(GLib.PRIORITY_DEFAULT, 1000, () => {
-        try {
-          tempFile.delete(null);
-        } catch (e) {
-
-        }
-        return GLib.SOURCE_REMOVE;
-      });
-
-      return githubIcon;
-    } catch (error) {
-      console.error("Failed to create GitHub icon:", error);
-      return new Gtk.Image({
-        icon_name: "software-properties-symbolic",
-        pixel_size: 20
-      });
-    }
-  }
-
-  async _performLocationSearch() {
-    const query = this._searchEntryRow.get_text().trim();
-
-    this._clearSearchResults();
-
-    if (!query || query.length < 2) {
-      return;
-    }
-
-    if (this._searchInProgress) {
-      return;
-    }
     this._searchInProgress = true;
-
-    this._searchButton.set_icon_name("content-loading-symbolic");
-    this._searchButton.set_sensitive(false);
+    this._searchBtn.set_icon_name("content-loading-symbolic");
+    this._searchBtn.set_sensitive(false);
 
     try {
-      const coordPattern = /^(-?\d+\.?\d*)[,\s]+(-?\d+\.?\d*)$/;
-      const coordMatch = query.match(coordPattern);
+      const coordPat = /^(-?\d+\.?\d*)[,\s]+(-?\d+\.?\d*)$/;
+      const coordMatch = query.match(coordPat);
 
       if (coordMatch) {
         const lat = parseFloat(coordMatch[1]);
         const lon = parseFloat(coordMatch[2]);
-
-        if (lat >= -90 && lat <= 90 && lon >= -180 && lon <= 180) {
-          await this._searchByCoordinates(lat, lon);
-        } else {
-          this._showSearchError(_("Invalid coordinates. Latitude must be between -90 and 90, longitude between -180 and 180."));
+        if (lat < -90 || lat > 90 || lon < -180 || lon > 180) {
+          this._showResultError(_("Invalid coordinates. Lat: −90 to 90, Lon: −180 to 180."));
+          return;
         }
+        this._showCoordResult(lat, lon);
       } else {
         await this._searchByName(query);
       }
-
-    } catch (error) {
-      console.error("Location search failed:", error);
-
-      if (this._searchInProgress) {
-        let errorMessage = _("Search failed. Please try again.");
-
-        if (error.message.includes('HTTP')) {
-          errorMessage = _("Unable to connect to location service. Check your internet connection.");
-        } else if (error.message.includes('JSON')) {
-          errorMessage = _("Invalid response from location service. Please try again.");
-        } else if (error.message.includes('timeout')) {
-          errorMessage = _("Search timed out. Please try again.");
-        }
-
-        this._showSearchError(errorMessage);
-      }
+    } catch (e) {
+      let msg = _("Search failed. Please try again.");
+      if (e.message?.includes("HTTP"))    msg = _("Unable to reach location service. Check your connection.");
+      if (e.message?.includes("timeout")) msg = _("Search timed out. Please try again.");
+      this._showResultError(msg);
     } finally {
       this._searchInProgress = false;
-      this._searchButton.set_icon_name("edit-find-symbolic");
-      this._searchButton.set_sensitive(true);
+      this._searchBtn.set_icon_name("edit-find-symbolic");
+      this._searchBtn.set_sensitive(true);
     }
   }
 
-  async _searchByCoordinates(lat, lon) {
-    const coordinateResult = {
-      name: "Custom Location",
-      latitude: lat,
-      longitude: lon,
-      country: "",
-      admin1: ""
-    };
-
-    try {
-      const reverseUrl = `${REVERSE_GEOCODING_URL}?latitude=${lat}&longitude=${lon}&localityLanguage=en`;
-
-      const reverseMessage = Soup.Message.new("GET", reverseUrl);
-      reverseMessage.request_headers.append('User-Agent', 'GNOME-Weather-Extension/1.0');
-
-      const reverseBytes = await new Promise((resolve, reject) => {
-        this._session.send_and_read_async(reverseMessage, GLib.PRIORITY_DEFAULT, null, (session, result) => {
-          try {
-            const bytes = session.send_and_read_finish(result);
-            resolve(bytes);
-          } catch (error) {
-            reject(error);
-          }
-        });
-      });
-
-      if (reverseMessage.status_code === 200) {
-        const reverseResponseText = new TextDecoder().decode(reverseBytes.get_data());
-        const reverseResponse = JSON.parse(reverseResponseText);
-
-        if (reverseResponse.locality || reverseResponse.city || reverseResponse.countryName) {
-          const locationParts = [];
-
-          if (reverseResponse.locality) locationParts.push(reverseResponse.locality);
-          else if (reverseResponse.city) locationParts.push(reverseResponse.city);
-
-          if (reverseResponse.principalSubdivision) locationParts.push(reverseResponse.principalSubdivision);
-          if (reverseResponse.countryName) locationParts.push(reverseResponse.countryName);
-
-          coordinateResult.name = locationParts.join(", ") || "Custom Location";
-          coordinateResult.country = reverseResponse.countryName || "";
-          coordinateResult.admin1 = reverseResponse.principalSubdivision || "";
-        }
-      }
-    } catch (error) {
-
-    }
-
-    this._showCoordinateResults([coordinateResult]);
+  _showCoordResult(lat, lon) {
+    const result = {name: "Custom Location", latitude: lat, longitude: lon, country: "", admin1: ""};
+    this._displayResults([result]);
   }
 
   async _searchByName(query) {
-    const url = `${GEOCODING_URL}?name=${encodeURIComponent(query)}&count=10&language=en&format=json`;
-
-    const message = Soup.Message.new("GET", url);
-    message.request_headers.append('User-Agent', 'GNOME-Weather-Extension/1.0');
-
-    const bytes = await new Promise((resolve, reject) => {
-      this._session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null, (session, result) => {
-        try {
-          const bytes = session.send_and_read_finish(result);
-          resolve(bytes);
-        } catch (error) {
-          reject(error);
-        }
-      });
-    });
-
-    if (message.status_code !== 200) {
-      throw new Error(`HTTP ${message.status_code}: ${message.reason_phrase}`);
-    }
-
-    const responseText = new TextDecoder().decode(bytes.get_data());
-    const response = JSON.parse(responseText);
-
-    if (response.results && response.results.length > 0) {
-      this._showSearchResults(response.results);
+    const url = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(query)}&count=10&language=en&format=json`;
+    const msg = Soup.Message.new("GET", url);
+    msg.request_headers.append("User-Agent", "GNOME-Weather-Extension/1.0");
+    const bytes = await this._session.send_and_read_async(msg, GLib.PRIORITY_DEFAULT, null);
+    if (msg.status_code !== 200)
+      throw new Error(`HTTP ${msg.status_code}: ${msg.reason_phrase}`);
+    const resp = JSON.parse(new TextDecoder().decode(bytes.get_data()));
+    if (resp.results?.length) {
+      this._displayResults(resp.results);
     } else {
-      this._showNoResults();
+      this._searchResultsGroup.set_visible(true);
+      const row = new Adw.ActionRow({
+        title: _("No Results Found"),
+        subtitle: _("Try a different search term or check your spelling"),
+        sensitive: false,
+      });
+      row.add_prefix(new Gtk.Image({icon_name:"dialog-warning-symbolic", pixel_size:16}));
+      this._searchResultsGroup.add(row);
     }
   }
 
-  _showCoordinateResults(results) {
-    this._clearSearchResults();
+  _displayResults(results) {
     this._searchResultsGroup.set_visible(true);
+    for (const r of results) {
+      const name = r.admin1
+        ? `${r.name}, ${r.admin1}, ${r.country}`
+        : r.country ? `${r.name}, ${r.country}` : r.name;
+      const coords = `${r.latitude.toFixed(4)}, ${r.longitude.toFixed(4)}`;
 
-    results.forEach((result) => {
-      const locationName = result.name;
-      const coordinates = `${result.latitude.toFixed(4)}, ${result.longitude.toFixed(4)}`;
-
-      const resultRow = new Adw.ActionRow({
-        title: `🎯 ${locationName}`,
-        subtitle: `Coordinates: ${coordinates}`,
-        activatable: true
+      const row = new Adw.ActionRow({
+        title: `📍 ${name}`,
+        subtitle: coords,
+        activatable: true,
       });
-
-      const locationIcon = new Gtk.Image({
-        icon_name: "view-pin-symbolic",
-        pixel_size: 16
-      });
-      resultRow.add_prefix(locationIcon);
-
-      const selectButton = new Gtk.Button({
+      row.add_prefix(new Gtk.Image({icon_name:"find-location-symbolic", pixel_size:16}));
+      const selBtn = new Gtk.Button({
         icon_name: "object-select-symbolic",
         valign: Gtk.Align.CENTER,
         tooltip_text: _("Select this location"),
-        css_classes: ["suggested-action"]
+        css_classes: ["suggested-action"],
       });
-
-      selectButton.connect("clicked", () => this._selectLocation(result, locationName));
-      resultRow.connect("activated", () => this._selectLocation(result, locationName));
-      resultRow.add_suffix(selectButton);
-
-      this._searchResultsGroup.add(resultRow);
-    });
-  }
-
-  _showSearchResults(results) {
-    this._clearSearchResults();
-    this._searchResultsGroup.set_visible(true);
-
-    results.forEach((result, index) => {
-      const locationName = result.admin1
-        ? `${result.name}, ${result.admin1}, ${result.country}`
-        : `${result.name}, ${result.country}`;
-
-      const coordinates = `${result.latitude.toFixed(4)}, ${result.longitude.toFixed(4)}`;
-
-      const resultRow = new Adw.ActionRow({
-        title: `📍 ${locationName}`,
-        subtitle: `${coordinates}`,
-        activatable: true
-      });
-
-      const locationIcon = new Gtk.Image({
-        icon_name: "find-location-symbolic",
-        pixel_size: 16
-      });
-      resultRow.add_prefix(locationIcon);
-
-      const selectButton = new Gtk.Button({
-        icon_name: "object-select-symbolic",
-        valign: Gtk.Align.CENTER,
-        tooltip_text: _("Select this location"),
-        css_classes: ["suggested-action"]
-      });
-
-      selectButton.connect("clicked", () => this._selectLocation(result, locationName));
-      resultRow.connect("activated", () => this._selectLocation(result, locationName));
-      resultRow.add_suffix(selectButton);
-
-      this._searchResultsGroup.add(resultRow);
-    });
-  }
-
-  _selectLocation(result, locationName) {
-    try {
-      this._settings.set_string("location", `${result.latitude},${result.longitude}`);
-      this._settings.set_string("location-name", locationName);
-      this._updateCurrentLocationDisplay();
-      this._searchEntryRow.set_text("");
-      this._clearSearchResults();
-      this._showToast(_("Location updated successfully"));
-    } catch (error) {
-      console.error("Failed to save location:", error);
-      this._showSearchError(_("Failed to save location. Please try again."));
+      selBtn.connect("clicked", () => this._selectResult(r, name));
+      row.connect("activated",  () => this._selectResult(r, name));
+      row.add_suffix(selBtn);
+      this._searchResultsGroup.add(row);
     }
   }
 
-  _showNoResults() {
-    this._clearSearchResults();
-    const noResultsRow = new Adw.ActionRow({
-      title: _("No Results Found"),
-      subtitle: _("Try a different search term or check your spelling"),
-      sensitive: false
-    });
-    const warningIcon = new Gtk.Image({
-      icon_name: "dialog-warning-symbolic",
-      pixel_size: 16
-    });
-    noResultsRow.add_prefix(warningIcon);
-    this._searchResultsGroup.add(noResultsRow);
-    this._searchResultsGroup.set_visible(true);
+  _selectResult(r, name) {
+    this._settings.set_string("location", `${r.latitude},${r.longitude}`);
+    this._settings.set_string("location-name", name);
+    this._searchEntryRow?.set_text("");
+    this._clearResults();
+    this._showToast(_("✅ Location updated successfully"));
   }
 
-  _clearSearchResults() {
-    if (!this._searchResultsGroup) {
-      return;
-    }
-
-    if (this._searchInProgress) {
-      return;
-    }
-
+  _clearResults() {
+    if (!this._searchResultsGroup) return;
     let child = this._searchResultsGroup.get_first_child();
     while (child) {
       const next = child.get_next_sibling();
       this._searchResultsGroup.remove(child);
       child = next;
     }
-
     this._searchResultsGroup.set_visible(false);
   }
 
-  _showSearchError(message) {
-    this._clearSearchResults();
-    const errorRow = new Adw.ActionRow({
-      title: _("Search Error"),
-      subtitle: message,
-      sensitive: false
-    });
-    const errorIcon = new Gtk.Image({
-      icon_name: "dialog-error-symbolic",
-      pixel_size: 16
-    });
-    errorRow.add_prefix(errorIcon);
-    this._searchResultsGroup.add(errorRow);
+  _showResultError(msg) {
     this._searchResultsGroup.set_visible(true);
+    const row = new Adw.ActionRow({title: _("Search Error"), subtitle: msg, sensitive: false});
+    row.add_prefix(new Gtk.Image({icon_name:"dialog-error-symbolic", pixel_size:16}));
+    this._searchResultsGroup.add(row);
   }
 
-  _updateLocationSensitivity(mode) {
-    const isManual = mode === "manual";
-    this._searchGroup.set_sensitive(isManual);
-    if (!isManual) this._clearSearchResults();
-  }
+  // ══════════════════════════════════════════════════════════════════════════
+  // Weather Provider page  (all bugs fixed)
+  // ══════════════════════════════════════════════════════════════════════════
 
-  _updateCurrentLocationDisplay() {
-    const mode = this._settings.get_string("location-mode") || "auto";
-    const locationName = this._settings.get_string("location-name") || "";
-    const location = this._settings.get_string("location") || "";
+  _buildProviderPage() {
+    const page = new Adw.PreferencesPage({
+      title: _("Weather Provider"),
+      icon_name: "network-server-symbolic",
+    });
 
-    let subtitle;
-    if (mode === "auto") {
-      subtitle = _("🌍 Auto Detection Enabled");
-    } else {
-      if (locationName && location) {
-        subtitle = `📍 ${locationName}`;
-      } else {
-        subtitle = _("📍 Manual - Please set location");
+    // ── Provider selection ────────────────────────────────────────────────
+    const providerGroup = new Adw.PreferencesGroup({
+      title: _("Weather Data Source"),
+      description: _("Choose your weather data provider"),
+    });
+
+    const providerRow = new Adw.ComboRow({
+      title: _("Weather Provider"),
+      subtitle: _("Select weather API service"),
+      model: new Gtk.StringList(),
+    });
+
+    // Populate model FIRST, then connect signal (avoids stale index on signal)
+    PROVIDER_KEYS.forEach(key => {
+      const p = WEATHER_PROVIDERS[key];
+      const free = p.requiresApiKey ? "💰" : "🆓";
+      providerRow.model.append(`${free} ${p.name} – ${p.description}`);
+    });
+
+    const curProvider = this._settings.get_string("weather-provider") || "openmeteo";
+    const curIdx      = Math.max(0, PROVIDER_KEYS.indexOf(curProvider));
+    providerRow.set_selected(curIdx);
+
+    // ── Configuration group ───────────────────────────────────────────────
+    this._providerDetailsGroup = new Adw.PreferencesGroup({
+      title: _("Provider Configuration"),
+      description: _("Configure your selected weather provider"),
+    });
+
+    this._apiKeyRow = new Adw.PasswordEntryRow({
+      title: _("API Key"),
+      text: this._settings.get_string("weather-api-key") || "",
+    });
+    const getKeyBtn = new Gtk.Button({
+      label: _("Get API Key"),
+      valign: Gtk.Align.CENTER,
+      css_classes: ["suggested-action"],
+    });
+    this._apiKeyRow.add_suffix(getKeyBtn);
+
+    this._customUrlRow = new Adw.EntryRow({
+      title: _("Custom / Weather Underground URL"),
+      text: this._settings.get_string("custom-weather-url") || "",
+    });
+    // URL placeholder hint
+    const hintRow = new Adw.ActionRow({
+      title: _("URL Placeholders"),
+      subtitle: _("{lat} and {lon} are replaced with coordinates.\nExample WU URL: https://api.weather.com/v2/pws/observations/current?stationId=MYID&format=json&units=m&apiKey=YOURKEY"),
+      activatable: false,
+      sensitive: false,
+    });
+    hintRow.add_prefix(new Gtk.Image({icon_name:"dialog-information-symbolic", pixel_size:16}));
+
+    this._providerInfoRow = new Adw.ActionRow({
+      title: _("Provider Information"),
+      activatable: false,
+    });
+
+    // ── Test button ───────────────────────────────────────────────────────
+    const testRow = new Adw.ActionRow({
+      title: _("Test Connection"),
+      subtitle: _("Verify your provider settings work correctly"),
+      activatable: true,
+    });
+    this._testButton = new Gtk.Button({
+      label: _("Test"),
+      valign: Gtk.Align.CENTER,
+      css_classes: ["suggested-action"],
+    });
+    testRow.add_suffix(this._testButton);
+
+    // ── Wire events ───────────────────────────────────────────────────────
+
+    // Connect AFTER populating & setting initial value to avoid stale state
+    providerRow.connect("notify::selected", () => {
+      const key = PROVIDER_KEYS[providerRow.get_selected()];
+      if (!key) return;
+      this._settings.set_string("weather-provider", key);
+      this._updateProviderDetails(key);
+    });
+
+    this._apiKeyRow.connect("notify::text", () => {
+      this._settings.set_string("weather-api-key", this._apiKeyRow.get_text());
+    });
+    this._customUrlRow.connect("notify::text", () => {
+      this._settings.set_string("custom-weather-url", this._customUrlRow.get_text());
+    });
+    getKeyBtn.connect("clicked", () => {
+      const key = PROVIDER_KEYS[providerRow.get_selected()];
+      const url = WEATHER_PROVIDERS[key]?.apiUrl;
+      if (url) {
+        try { Gio.AppInfo.launch_default_for_uri(url, null); }
+        catch (e) { this._showToast(_("Could not open website.")); }
       }
-    }
+    });
+    this._testButton.connect("clicked",   () => this._runConnectionTest());
+    testRow.connect("activated",          () => this._runConnectionTest());
 
-    this._currentLocationRow.set_subtitle(subtitle);
+    // Build group
+    this._providerDetailsGroup.add(this._apiKeyRow);
+    this._providerDetailsGroup.add(this._customUrlRow);
+    this._providerDetailsGroup.add(hintRow);
+    this._providerDetailsGroup.add(this._providerInfoRow);
+    this._providerDetailsGroup.add(testRow);
+
+    providerGroup.add(providerRow);
+    page.add(providerGroup);
+    page.add(this._providerDetailsGroup);
+
+    // Initialise the detail rows for the current selection
+    this._updateProviderDetails(curProvider);
+
+    return page;
   }
 
-  _getLocationSubtitle(settings) {
-    const mode = settings.get_string("location-mode") || "auto";
-    const locationName = settings.get_string("location-name") || "";
-    const location = settings.get_string("location") || "";
+  _updateProviderDetails(key) {
+    const p = WEATHER_PROVIDERS[key];
+    if (!p) return;
+    this._apiKeyRow.set_visible(p.requiresApiKey);
+    this._customUrlRow.set_visible(key === "custom");
 
-    if (mode === "auto") {
-      return _("🌍 Auto Detection Enabled");
-    } else {
-      if (locationName && location) {
-        return `📍 ${locationName}`;
+    // hintRow (3rd child of group) visibility
+    const hintVisible = key === "custom";
+    // Find hintRow by walking children
+    let child = this._providerDetailsGroup.get_first_child();
+    let idx = 0;
+    while (child) {
+      if (idx === 2) { child.set_visible(hintVisible); break; }
+      child = child.get_next_sibling();
+      idx++;
+    }
+
+    let info = `📡 ${p.baseUrl || _("Not specified")}\n`;
+    info += `📊 ${_("Rate Limit")}: ${p.rateLimit}\n`;
+    info += `🔑 ${_("API Key")}: ${p.requiresApiKey ? _("Required") : _("Not Required")}`;
+    this._providerInfoRow.set_subtitle(info);
+  }
+
+  // ── Connection test ───────────────────────────────────────────────────────
+
+  async _runConnectionTest() {
+    if (this._testInProgress) return;
+    this._testInProgress = true;
+    this._testButton.set_label(_("Testing…"));
+    this._testButton.set_sensitive(false);
+
+    try {
+      const key      = this._settings.get_string("weather-provider") || "openmeteo";
+      const apiKey   = this._settings.get_string("weather-api-key")   || "";
+      const customUrl= this._settings.get_string("custom-weather-url")|| "";
+      const cfg      = WEATHER_PROVIDERS[key];
+
+      // Validate before even making a request
+      if (cfg.requiresApiKey && !apiKey.trim())
+        throw new Error(_(`API key is required for ${cfg.name}`));
+
+      let testUrl;
+      if (key === "custom") {
+        if (!customUrl.trim())
+          throw new Error(_("Custom URL is required"));
+        // Replace placeholders with test coords
+        testUrl = customUrl
+          .replace("{lat}", TEST_LAT).replace("{latitude}", TEST_LAT)
+          .replace("{lon}", TEST_LON).replace("{longitude}", TEST_LON);
+        // Append key only if not already present
+        if (apiKey?.trim()) {
+          const hasKey =
+            testUrl.includes("apiKey=") || testUrl.includes("api_key=") ||
+            testUrl.includes("key=")   || testUrl.includes("appid=");
+          if (!hasKey)
+            testUrl += (testUrl.includes("?") ? "&" : "?") + `apiKey=${apiKey}`;
+        }
       } else {
-        return _("📍 Manual - Please set location");
+        testUrl = cfg.testUrl(TEST_LAT, TEST_LON, apiKey);
       }
+
+      const msg = Soup.Message.new("GET", testUrl);
+      msg.request_headers.append("User-Agent", "GNOME-Weather-Extension/1.0");
+      const bytes = await this._session.send_and_read_async(msg, GLib.PRIORITY_DEFAULT, null);
+
+      if (msg.status_code !== 200)
+        throw new Error(`HTTP ${msg.status_code}: ${msg.reason_phrase}`);
+
+      const resp = JSON.parse(new TextDecoder().decode(bytes.get_data()));
+
+      if (!cfg.validateResponse(resp))
+        throw new Error(_("Response received but no weather data found. Check your API key and URL."));
+
+      const temp = cfg.getTemp(resp);
+      const tempStr = temp !== null ? ` ${_("Current temp:")} ${temp}°C` : "";
+      this._showToast(`✅ ${_("Connection successful!")}${tempStr}`);
+
+    } catch (e) {
+      this._showToast(`❌ ${_("Test failed:")} ${e.message}`);
+    } finally {
+      this._testInProgress = false;
+      this._testButton.set_label(_("Test"));
+      this._testButton.set_sensitive(true);
     }
   }
 
-  _showToast(message) {
+  // ══════════════════════════════════════════════════════════════════════════
+  // Appearance page
+  // ══════════════════════════════════════════════════════════════════════════
 
-    let widget = this._searchResultsGroup || this._providerDetailsGroup;
-    while (widget && !widget.add_toast) {
-      widget = widget.get_parent();
+  _buildAppearancePage() {
+    const page = new Adw.PreferencesPage({
+      title: _("Appearance"),
+      icon_name: "applications-graphics-symbolic",
+    });
+
+    const panelGroup = new Adw.PreferencesGroup({
+      title: _("Panel Display"),
+      description: _("Configure how weather appears in the panel"),
+    });
+
+    // Panel position
+    const posRow = new Adw.ComboRow({
+      title: _("Panel Position"),
+      subtitle: _("Where to show the weather widget"),
+      model: new Gtk.StringList(),
+    });
+    const positions = [
+      {id:"left",   label:_("Left")},
+      {id:"center", label:_("Center")},
+      {id:"right",  label:_("Right")},
+    ];
+    positions.forEach(p => posRow.model.append(p.label));
+    const curPos = this._settings.get_string("panel-position") || "right";
+    posRow.set_selected(Math.max(2, positions.findIndex(p => p.id === curPos)));
+    posRow.connect("notify::selected", () => {
+      const p = positions[posRow.get_selected()];
+      if (p) this._settings.set_string("panel-position", p.id);
+    });
+
+    // Position index
+    const idxRow = new Adw.SpinRow({
+      title: _("Panel Position Index"),
+      subtitle: _("Position index within the selected panel area"),
+      adjustment: new Gtk.Adjustment({
+        lower: 0, upper: 10, step_increment: 1,
+        value: this._settings.get_int("panel-position-index") || 0,
+      }),
+    });
+    idxRow.connect("notify::value", () => {
+      this._settings.set_int("panel-position-index", idxRow.get_value());
+    });
+
+    // Show temperature text
+    const showTextRow = new Adw.SwitchRow({
+      title: _("Show Temperature Text"),
+      subtitle: _("Display temperature alongside the weather icon"),
+    });
+    showTextRow.set_active(this._settings.get_boolean("show-text-in-panel"));
+    showTextRow.connect("notify::active", () => {
+      this._settings.set_boolean("show-text-in-panel", showTextRow.get_active());
+    });
+
+    // Show location indicator
+    const showLocRow = new Adw.SwitchRow({
+      title: _("Show Location Indicator"),
+      subtitle: _("Display AUTO/MANUAL indicator in panel"),
+    });
+    showLocRow.add_prefix(new Gtk.Image({icon_name:"find-location-symbolic", pixel_size:16}));
+    showLocRow.set_active(this._settings.get_boolean("show-location-label"));
+    showLocRow.connect("notify::active", () => {
+      this._settings.set_boolean("show-location-label", showLocRow.get_active());
+    });
+
+    // Icon size
+    const iconSizeRow = new Adw.SpinRow({
+      title: _("Icon Size"),
+      subtitle: _("Size of the weather icon in pixels"),
+      adjustment: new Gtk.Adjustment({
+        lower:12, upper:24, step_increment:1,
+        value: this._settings.get_int("panel-icon-size") || 16,
+      }),
+    });
+    iconSizeRow.connect("notify::value", () => {
+      this._settings.set_int("panel-icon-size", iconSizeRow.get_value());
+    });
+
+    // Text size
+    const textSizeRow = new Adw.SpinRow({
+      title: _("Text Size"),
+      subtitle: _("Size of the temperature text in pixels"),
+      adjustment: new Gtk.Adjustment({
+        lower:10, upper:16, step_increment:1,
+        value: this._settings.get_int("panel-text-size") || 13,
+      }),
+    });
+    textSizeRow.connect("notify::value", () => {
+      this._settings.set_int("panel-text-size", textSizeRow.get_value());
+    });
+
+    panelGroup.add(posRow);
+    panelGroup.add(idxRow);
+    panelGroup.add(showTextRow);
+    panelGroup.add(showLocRow);
+    panelGroup.add(iconSizeRow);
+    panelGroup.add(textSizeRow);
+    page.add(panelGroup);
+    return page;
+  }
+
+  // ══════════════════════════════════════════════════════════════════════════
+  // About page
+  // ══════════════════════════════════════════════════════════════════════════
+
+  _buildAboutPage() {
+    const page = new Adw.PreferencesPage({
+      title: _("About"),
+      icon_name: "help-about-symbolic",
+    });
+
+    // ── Header ─────────────────────────────────────────────────────────────
+    const infoGroup = new Adw.PreferencesGroup({
+      title: _("Advanced Weather Companion"),
+      description: _("A beautiful, modern weather companion for GNOME Shell"),
+    });
+
+    const headerBox = new Gtk.Box({
+      orientation: Gtk.Orientation.HORIZONTAL,
+      spacing: 20, halign: Gtk.Align.CENTER,
+      margin_top:20, margin_bottom:20,
+    });
+
+    let logo;
+    try {
+      logo = Gtk.Image.new_from_file(`${this.dir.get_path()}/icons/weather-logo.png`);
+      logo.set_pixel_size(72);
+    } catch (_) {
+      logo = new Gtk.Image({icon_name:"weather-clear-symbolic", pixel_size:72});
     }
 
-    if (widget && widget.add_toast) {
-      const toast = new Adw.Toast({
-        title: message,
-        timeout: 3
-      });
-      widget.add_toast(toast);
+    const infoBox = new Gtk.Box({orientation:Gtk.Orientation.VERTICAL, spacing:6, valign:Gtk.Align.CENTER});
+    infoBox.append(new Gtk.Label({label:_("Advanced Weather Companion"), halign:Gtk.Align.START, css_classes:["title-2"]}));
+    infoBox.append(new Gtk.Label({label:_("Version 2.0"), halign:Gtk.Align.START, css_classes:["caption"]}));
+    infoBox.append(new Gtk.Label({
+      label: _("Modern weather extension with native GNOME design"),
+      halign:Gtk.Align.START, wrap:true, max_width_chars:40, css_classes:["body"],
+    }));
+    headerBox.append(logo);
+    headerBox.append(infoBox);
+
+    const headerRow = new Adw.ActionRow({title:"", activatable:false});
+    headerRow.add_suffix(headerBox);
+    infoGroup.add(headerRow);
+
+    // ── Links ──────────────────────────────────────────────────────────────
+    const linksGroup = new Adw.PreferencesGroup({
+      title: _("Extension Links"),
+      description: _("Source code, issues, and contributions"),
+    });
+
+    const ghRow = new Adw.ActionRow({
+      title: _("View on GitHub"),
+      subtitle: _("Source code, issues, and contributions"),
+      activatable: true,
+    });
+    ghRow.add_prefix(this._githubIcon());
+    ghRow.add_suffix(new Gtk.Image({icon_name:"adw-external-link-symbolic", pixel_size:16}));
+    ghRow.connect("activated", () => {
+      try { Gio.AppInfo.launch_default_for_uri("https://github.com/Sanjai-Shaarugesh/Advanced-Weather-Companion", null); }
+      catch (e) { console.error(e); }
+    });
+
+    const coffeeRow = new Adw.ActionRow({
+      title: _("☕ Buy Me a Coffee"),
+      subtitle: _("Support development with a small donation"),
+      activatable: true,
+    });
+    coffeeRow.add_prefix(new Gtk.Image({icon_name:"emblem-favorite-symbolic", pixel_size:20}));
+    coffeeRow.add_suffix(new Gtk.Image({icon_name:"adw-external-link-symbolic", pixel_size:16}));
+    coffeeRow.connect("activated", () => {
+      try { Gio.AppInfo.launch_default_for_uri("https://buymeacoffee.com/sanjai", null); }
+      catch (e) { console.error(e); }
+    });
+
+    linksGroup.add(ghRow);
+    linksGroup.add(coffeeRow);
+
+    // ── QR ─────────────────────────────────────────────────────────────────
+    const qrGroup = new Adw.PreferencesGroup({
+      title: _("☕ Support – Scan QR to buy me a coffee"),
+    });
+
+    const qrBox = new Gtk.Box({
+      orientation:Gtk.Orientation.VERTICAL, spacing:16, halign:Gtk.Align.CENTER,
+      margin_top:20, margin_bottom:20, css_classes:["qr-container"],
+    });
+    let qrImg;
+    try {
+      qrImg = Gtk.Image.new_from_file(`${this.dir.get_path()}/icons/qr.png`);
+      qrImg.set_pixel_size(180);
+    } catch (_) {
+      qrImg = new Gtk.Image({icon_name:"camera-web-symbolic", pixel_size:180});
+    }
+    qrBox.append(qrImg);
+    const qrRow = new Adw.ActionRow({title:"", activatable:false});
+    qrRow.set_child(qrBox);
+    qrGroup.add(qrRow);
+
+    // ── Donation address ───────────────────────────────────────────────────
+    const addrGroup = new Adw.PreferencesGroup({title: _("Donation Address")});
+    const addrRow = new Adw.ActionRow({
+      title: "https://buymeacoffee.com/sanjai",
+      activatable: true,
+    });
+    addrRow.add_prefix(new Gtk.Image({icon_name:"emote-love-symbolic", pixel_size:16}));
+    addrRow.add_suffix(new Gtk.Image({icon_name:"edit-copy-symbolic", pixel_size:16}));
+    addrRow.connect("activated", () => {
+      this._copyToClipboard("https://buymeacoffee.com/sanjai", _("Donation address"));
+    });
+    addrGroup.add(addrRow);
+
+    // ── License ────────────────────────────────────────────────────────────
+    const licGroup = new Adw.PreferencesGroup({
+      title: _("License & Credits"),
+      description: _("Open source software information"),
+    });
+    const licRow = new Adw.ActionRow({
+      title: _("Open Source License"),
+      subtitle: _("MIT License – Free and open source software"),
+      activatable: false,
+    });
+    licRow.add_prefix(new Gtk.Image({icon_name:"security-high-symbolic", pixel_size:16}));
+    const credRow = new Adw.ActionRow({
+      title: _("Weather Data Sources"),
+      subtitle: _("Open-Meteo, Meteosource, Wttr.in, OpenWeatherMap, WeatherAPI, Weather Underground"),
+      activatable: false,
+    });
+    credRow.add_prefix(new Gtk.Image({icon_name:"network-server-symbolic", pixel_size:16}));
+    licGroup.add(licRow);
+    licGroup.add(credRow);
+
+    page.add(infoGroup);
+    page.add(linksGroup);
+    page.add(qrGroup);
+    page.add(addrGroup);
+    page.add(licGroup);
+    return page;
+  }
+
+  // ── Utilities ─────────────────────────────────────────────────────────────
+
+  _showToast(msg) {
+    let w = this._providerDetailsGroup ?? this._searchResultsGroup;
+    while (w && !w.add_toast) w = w.get_parent?.();
+    if (w?.add_toast) {
+      w.add_toast(new Adw.Toast({title: msg, timeout: 4}));
     } else {
-      console.log(message);
+      console.log("[Weather pref toast]", msg);
+    }
+  }
+
+  _copyToClipboard(text, label) {
+    try {
+      const clipboard = Gdk.Display.get_default()?.get_clipboard();
+      if (!clipboard) throw new Error("no clipboard");
+      clipboard.set_text(text);
+      this._showToast(`✅ ${label || "Text"} ${_("copied to clipboard")}`);
+    } catch (e) {
+      console.error("Clipboard error:", e);
+      this._showToast(_("Could not copy. Please copy manually: ") + text);
+    }
+  }
+
+  _githubIcon() {
+    const path = `${this.dir.get_path()}/icons/github.svg`;
+    if (Gio.File.new_for_path(path).query_exists(null)) {
+      return new Gtk.Image({file: path, pixel_size: 20});
+    }
+    // Inline fallback SVG written to /tmp
+    const svg = `<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>`;
+    try {
+      const tmp = `${GLib.get_tmp_dir()}/gh-icon-${Date.now()}.svg`;
+      const f   = Gio.File.new_for_path(tmp);
+      f.replace_contents(svg, null, false, Gio.FileCreateFlags.NONE, null);
+      GLib.timeout_add(GLib.PRIORITY_DEFAULT, 2000, () => { try { f.delete(null); } catch (_) {} return GLib.SOURCE_REMOVE; });
+      return new Gtk.Image({file: tmp, pixel_size: 20});
+    } catch (_) {
+      return new Gtk.Image({icon_name:"software-properties-symbolic", pixel_size:20});
     }
   }
 }

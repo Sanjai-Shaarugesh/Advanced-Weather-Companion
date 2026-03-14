@@ -1,0 +1,382 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: advanced-weather 2.0\n"
+"Report-Msgid-Bugs-To: https://github.com/Sanjai-Shaarugesh/Advanced-Weather-Companion/issues\n"
+"POT-Creation-Date: 2026-03-14 17:23+0000\n"
+"PO-Revision-Date: 2026-03-14 17:23+0000\n"
+"Last-Translator: Advanced Weather Team\n"
+"Language-Team: French\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "1 hour"
+msgstr "1 heure"
+
+msgid "10 minutes"
+msgstr "10 minutes"
+
+msgid "15 minutes"
+msgstr "15 minutes"
+
+msgid "30 minutes"
+msgstr "30 minutes"
+
+msgid "5 minutes"
+msgstr "5 minutes"
+
+msgid "A beautiful, modern weather companion for GNOME Shell"
+msgstr "Un beau compagnon météo moderne pour GNOME Shell"
+
+msgid "API Key"
+msgstr "Clé API"
+
+msgid "About"
+msgstr "À propos"
+
+msgid "Advanced Weather Companion"
+msgstr "Compagnon Météo Avancé"
+
+msgid "Appearance"
+msgstr "Apparence"
+
+msgid "Center"
+msgstr "Centre"
+
+msgid "Choose detection method"
+msgstr "Choisir la méthode de détection"
+
+msgid "Choose your weather data provider"
+msgstr "Choisir votre fournisseur météo"
+
+msgid "City: 'London', 'New York'\\nCoordinates: '40.7128, -74.0060'"
+msgstr ""
+
+msgid "Clear search"
+msgstr "Effacer la recherche"
+
+msgid "Configure how weather appears in the panel"
+msgstr "Configurer l'affichage météo dans le panneau"
+
+msgid "Configure how your location is determined"
+msgstr "Configurer la détection de votre position"
+
+msgid "Configure measurement units and display format"
+msgstr "Configurer les unités de mesure et le format d'affichage"
+
+msgid "Configure weather data refresh settings"
+msgstr "Configurer la fréquence d'actualisation des données météo"
+
+msgid "Configure your selected weather provider"
+msgstr "Configurer le fournisseur météo sélectionné"
+
+msgid "Connection successful!"
+msgstr "Connexion réussie !"
+
+msgid "Could not copy. Please copy manually: "
+msgstr "Impossible de copier. Veuillez copier manuellement : "
+
+msgid "Could not open website."
+msgstr "Impossible d'ouvrir le site web."
+
+msgid "Current Location"
+msgstr "Position actuelle"
+
+msgid "Current temp:"
+msgstr "Température actuelle :"
+
+msgid "Custom / Weather Underground URL"
+msgstr "URL personnalisée / Weather Underground"
+
+msgid "Custom URL is required"
+msgstr "L'URL personnalisée est requise"
+
+msgid "Display AUTO/MANUAL indicator in panel"
+msgstr "Afficher l'indicateur AUTO/MANUEL dans le panneau"
+
+msgid "Display relative humidity in weather details"
+msgstr "Afficher l'humidité relative dans les détails météo"
+
+msgid "Display temperature alongside the weather icon"
+msgstr "Afficher la température à côté de l'icône météo"
+
+msgid "Display time in 12-hour format with AM/PM"
+msgstr "Afficher l'heure au format 12h avec AM/PM"
+
+msgid "Donation Address"
+msgstr "Adresse de don"
+
+msgid "Donation address"
+msgstr "adresse de don"
+
+msgid "Enable or disable weather features"
+msgstr "Activer ou désactiver les fonctionnalités météo"
+
+msgid "Extension Links"
+msgstr "Liens de l'extension"
+
+msgid "Features"
+msgstr "Fonctionnalités"
+
+msgid "General"
+msgstr "Général"
+
+msgid "Get API Key"
+msgstr "Obtenir une clé API"
+
+msgid "How often to refresh weather data"
+msgstr "Fréquence d'actualisation des données météo"
+
+msgid "Icon Size"
+msgstr "Taille de l'icône"
+
+msgid "Invalid coordinates. Lat: −90 to 90, Lon: −180 to 180."
+msgstr ""
+
+msgid "Left"
+msgstr "Gauche"
+
+msgid "License & Credits"
+msgstr "Licence & Crédits"
+
+msgid "Location"
+msgstr "Localisation"
+
+msgid "Location Detection"
+msgstr "Détection de position"
+
+msgid "Location Mode"
+msgstr "Mode de localisation"
+
+msgid "MIT License – Free and open source software"
+msgstr "Licence MIT – Logiciel libre et open source"
+
+msgid "Manual Location Search"
+msgstr "Recherche manuelle de position"
+
+msgid "Modern weather extension with native GNOME design"
+msgstr "Extension météo moderne au design GNOME natif"
+
+msgid "No Results Found"
+msgstr "Aucun résultat"
+
+msgid "Not Required"
+msgstr "Non requis"
+
+msgid "Not specified"
+msgstr "Non spécifié"
+
+msgid "Open Source License"
+msgstr "Licence open source"
+
+msgid "Open source software information"
+msgstr "Informations sur le logiciel open source"
+
+msgid ""
+"Open-Meteo, Meteosource, Wttr.in, OpenWeatherMap, WeatherAPI, Weather "
+"Underground"
+msgstr ""
+
+msgid "Panel Display"
+msgstr "Affichage du panneau"
+
+msgid "Panel Position"
+msgstr "Position du panneau"
+
+msgid "Panel Position Index"
+msgstr "Indice de position du panneau"
+
+msgid "Position index within the selected panel area"
+msgstr "Indice de position dans la zone de panneau sélectionnée"
+
+msgid "Provider Configuration"
+msgstr "Configuration du fournisseur"
+
+msgid "Provider Information"
+msgstr "Informations sur le fournisseur"
+
+msgid "Rate Limit"
+msgstr "Limite de requêtes"
+
+msgid "Refresh location display"
+msgstr "Actualiser l'affichage de la position"
+
+msgid "Required"
+msgstr "Requis"
+
+msgid ""
+"Response received but no weather data found. Check your API key and URL."
+msgstr ""
+"Réponse reçue mais aucune donnée météo trouvée. Vérifiez votre clé API et "
+"votre URL."
+
+msgid "Right"
+msgstr "Droite"
+
+msgid "Search Error"
+msgstr "Erreur de recherche"
+
+msgid "Search Examples"
+msgstr "Exemples de recherche"
+
+msgid "Search Location"
+msgstr "Rechercher une position"
+
+msgid "Search Results"
+msgstr "Résultats de recherche"
+
+msgid "Search by city name or coordinates (lat, lon)"
+msgstr "Rechercher par nom de ville ou coordonnées (lat, lon)"
+
+msgid "Search failed. Please try again."
+msgstr "Recherche échouée. Veuillez réessayer."
+
+msgid "Search for location"
+msgstr "Rechercher une position"
+
+msgid "Search timed out. Please try again."
+msgstr "La recherche a expiré. Veuillez réessayer."
+
+msgid "Select this location"
+msgstr "Sélectionner cette position"
+
+msgid "Select weather API service"
+msgstr "Sélectionner le service météo"
+
+msgid "Show Humidity"
+msgstr "Afficher l'humidité"
+
+msgid "Show Location Indicator"
+msgstr "Afficher l'indicateur de position"
+
+msgid "Show Temperature Text"
+msgstr "Afficher la température"
+
+msgid "Size of the temperature text in pixels"
+msgstr "Taille du texte de température en pixels"
+
+msgid "Size of the weather icon in pixels"
+msgstr "Taille de l'icône météo en pixels"
+
+msgid "Source code, issues, and contributions"
+msgstr "Code source, problèmes et contributions"
+
+msgid "Support development with a small donation"
+msgstr "Soutenir le développement avec un petit don"
+
+msgid "Switch between Celsius and Fahrenheit"
+msgstr "Basculer entre Celsius et Fahrenheit"
+
+msgid "Test"
+msgstr "Tester"
+
+msgid "Test Connection"
+msgstr "Tester la connexion"
+
+msgid "Test failed:"
+msgstr "Échec du test :"
+
+msgid "Testing…"
+msgstr "Test en cours…"
+
+msgid "Text Size"
+msgstr "Taille du texte"
+
+msgid "Try a different search term or check your spelling"
+msgstr "Essayez un autre terme ou vérifiez l'orthographe"
+
+msgid "URL Placeholders"
+msgstr "Espaces réservés URL"
+
+msgid "Unable to reach location service. Check your connection."
+msgstr ""
+"Impossible d'atteindre le service de localisation. Vérifiez votre connexion."
+
+msgid "Unit for wind speed display"
+msgstr "Unité d'affichage de la vitesse du vent"
+
+msgid "Units & Format"
+msgstr "Unités & Format"
+
+msgid "Update Interval"
+msgstr "Intervalle de mise à jour"
+
+msgid "Updates"
+msgstr "Mises à jour"
+
+msgid "Use 12-hour Format"
+msgstr "Utiliser le format 12h"
+
+msgid "Use Fahrenheit"
+msgstr "Utiliser Fahrenheit"
+
+msgid "Verify your provider settings work correctly"
+msgstr "Vérifier que les paramètres du fournisseur fonctionnent"
+
+msgid "Version 2.0"
+msgstr "Version 2.0"
+
+msgid "View on GitHub"
+msgstr "Voir sur GitHub"
+
+msgid "Weather Data Source"
+msgstr "Source de données météo"
+
+msgid "Weather Data Sources"
+msgstr "Sources de données météo"
+
+msgid "Weather Provider"
+msgstr "Fournisseur météo"
+
+msgid "Where to show the weather widget"
+msgstr "Où afficher le widget météo"
+
+msgid "Wind Speed Unit"
+msgstr "Unité de vitesse du vent"
+
+msgid "copied to clipboard"
+msgstr "copié dans le presse-papiers"
+
+msgid "km/h (Kilometers per hour)"
+msgstr "km/h (Kilomètres par heure)"
+
+msgid "knots (Nautical miles)"
+msgstr "Nœuds (Milles nautiques)"
+
+msgid "m/s (Meters per second)"
+msgstr "m/s (Mètres par seconde)"
+
+msgid "mph (Miles per hour)"
+msgstr "mph (Miles par heure)"
+
+msgid ""
+"{lat} and {lon} are replaced with coordinates.\\nExample WU URL: "
+"https://api.weather.com/v2/pws/observations/current?stationId=MYID&format=json&units=m&apiKey=YOURKEY"
+msgstr ""
+
+msgid "☕ Buy Me a Coffee"
+msgstr "☕ Offrez-moi un café"
+
+msgid "☕ Support – Scan QR to buy me a coffee"
+msgstr "☕ Soutenir – Scannez le QR pour m'offrir un café"
+
+msgid "✅ Location updated successfully"
+msgstr "✅ Position mise à jour avec succès"
+
+msgid "🌍 Auto Detection"
+msgstr "🌍 Détection automatique"
+
+msgid "🌍 Auto Detection Enabled"
+msgstr "🌍 Détection automatique activée"
+
+msgid "📍 Manual Location"
+msgstr "📍 Position manuelle"
+
+msgid "📍 Manual – Please set location"
+msgstr "📍 Manuel – Veuillez définir une position"
+
+msgid "API key is required for "
+msgstr ""
