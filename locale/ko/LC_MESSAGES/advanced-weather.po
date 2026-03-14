@@ -1,0 +1,677 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: advanced-weather 2.0\n"
+"Report-Msgid-Bugs-To: https://github.com/Sanjai-Shaarugesh/Advanced-Weather-Companion/issues\n"
+"POT-Creation-Date: 2026-03-15 00:00+0000\n"
+"PO-Revision-Date: 2026-03-15 00:00+0000\n"
+"Last-Translator: Advanced Weather Team\n"
+"Language-Team: Korean\n"
+"Language: ko\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "1 hour"
+msgstr "1시간"
+
+msgid "10 minutes"
+msgstr "10분"
+
+msgid "15 minutes"
+msgstr "15분"
+
+msgid "30 minutes"
+msgstr "30분"
+
+msgid "5 minutes"
+msgstr "5분"
+
+msgid "A beautiful, modern weather companion for GNOME Shell"
+msgstr "GNOME Shell을 위한 아름답고 현대적인 날씨 앱"
+
+msgid "API Key"
+msgstr "API 키"
+
+msgid "About"
+msgstr "정보"
+
+msgid "Advanced Weather Companion"
+msgstr "고급 날씨 위젯"
+
+msgid "Appearance"
+msgstr "외관"
+
+msgid "Center"
+msgstr "가운데"
+
+msgid "Choose detection method"
+msgstr "감지 방법 선택"
+
+msgid "Choose your weather data provider"
+msgstr "날씨 데이터 제공자 선택"
+
+msgid "Clear search"
+msgstr "검색 초기화"
+
+msgid "Configure how weather appears in the panel"
+msgstr "패널에 날씨 표시 방법 구성"
+
+msgid "Configure how your location is determined"
+msgstr "위치 결정 방법 구성"
+
+msgid "Configure measurement units and display format"
+msgstr "측정 단위 및 표시 형식 구성"
+
+msgid "Configure weather data refresh settings"
+msgstr "날씨 데이터 새로 고침 설정 구성"
+
+msgid "Configure your selected weather provider"
+msgstr "선택한 날씨 제공자 구성"
+
+msgid "Connection successful!"
+msgstr "연결 성공!"
+
+msgid "Could not copy. Please copy manually: "
+msgstr "복사 실패. 수동으로 복사하세요: "
+
+msgid "Could not open website."
+msgstr "웹사이트를 열 수 없습니다."
+
+msgid "Current Location"
+msgstr "현재 위치"
+
+msgid "Current temp:"
+msgstr "현재 온도:"
+
+msgid "Custom / Weather Underground URL"
+msgstr "사용자 정의 / Weather Underground URL"
+
+msgid "Custom URL is required"
+msgstr "사용자 정의 URL이 필요합니다"
+
+msgid "Display AUTO/MANUAL indicator in panel"
+msgstr "패널에 자동/수동 표시기 표시"
+
+msgid "Display relative humidity in weather details"
+msgstr "날씨 세부 정보에 상대 습도 표시"
+
+msgid "Display temperature alongside the weather icon"
+msgstr "날씨 아이콘 옆에 온도 표시"
+
+msgid "Display time in 12-hour format with AM/PM"
+msgstr "AM/PM 포함 12시간 형식으로 시간 표시"
+
+msgid "Donation Address"
+msgstr "기부 주소"
+
+msgid "Donation address"
+msgstr "기부 주소"
+
+msgid "Enable or disable weather features"
+msgstr "날씨 기능 활성화 또는 비활성화"
+
+msgid "Extension Links"
+msgstr "확장 링크"
+
+msgid "Features"
+msgstr "기능"
+
+msgid "General"
+msgstr "일반"
+
+msgid "Get API Key"
+msgstr "API 키 받기"
+
+msgid "How often to refresh weather data"
+msgstr "날씨 데이터 새로 고침 빈도"
+
+msgid "Icon Size"
+msgstr "아이콘 크기"
+
+msgid "Invalid coordinates. Lat: −90 to 90, Lon: −180 to 180."
+msgstr "잘못된 좌표. 위도: −90~90, 경도: −180~180."
+
+msgid "Left"
+msgstr "왼쪽"
+
+msgid "License & Credits"
+msgstr "라이선스 및 크레딧"
+
+msgid "Location"
+msgstr "위치"
+
+msgid "Location Detection"
+msgstr "위치 감지"
+
+msgid "Location Mode"
+msgstr "위치 모드"
+
+msgid "MIT License – Free and open source software"
+msgstr "MIT 라이선스 – 자유 오픈소스 소프트웨어"
+
+msgid "Manual Location Search"
+msgstr "수동 위치 검색"
+
+msgid "Modern weather extension with native GNOME design"
+msgstr "네이티브 GNOME 디자인의 현대적 날씨 확장"
+
+msgid "No Results Found"
+msgstr "결과 없음"
+
+msgid "Not Required"
+msgstr "필요 없음"
+
+msgid "Not specified"
+msgstr "지정되지 않음"
+
+msgid "Open Source License"
+msgstr "오픈소스 라이선스"
+
+msgid "Open source software information"
+msgstr "오픈소스 소프트웨어 정보"
+
+msgid "Panel Display"
+msgstr "패널 표시"
+
+msgid "Panel Position"
+msgstr "패널 위치"
+
+msgid "Panel Position Index"
+msgstr "패널 위치 인덱스"
+
+msgid "Position index within the selected panel area"
+msgstr "선택한 패널 영역의 위치 인덱스"
+
+msgid "Provider Configuration"
+msgstr "제공자 구성"
+
+msgid "Provider Information"
+msgstr "제공자 정보"
+
+msgid "Rate Limit"
+msgstr "요청 제한"
+
+msgid "Refresh location display"
+msgstr "위치 표시 새로 고침"
+
+msgid "Required"
+msgstr "필수"
+
+msgid "Response received but no weather data found. Check your API key and URL."
+msgstr "응답을 받았지만 날씨 데이터가 없습니다. API 키와 URL을 확인하세요."
+
+msgid "Right"
+msgstr "오른쪽"
+
+msgid "Search Error"
+msgstr "검색 오류"
+
+msgid "Search Examples"
+msgstr "검색 예시"
+
+msgid "Search Location"
+msgstr "위치 검색"
+
+msgid "Search Results"
+msgstr "검색 결과"
+
+msgid "Search by city name or coordinates (lat, lon)"
+msgstr "도시 이름 또는 좌표로 검색"
+
+msgid "Search failed. Please try again."
+msgstr "검색 실패. 다시 시도하세요."
+
+msgid "Search for location"
+msgstr "위치 검색"
+
+msgid "Search timed out. Please try again."
+msgstr "검색 시간이 초과되었습니다. 다시 시도하세요."
+
+msgid "Select this location"
+msgstr "이 위치 선택"
+
+msgid "Select weather API service"
+msgstr "날씨 API 서비스 선택"
+
+msgid "Show Humidity"
+msgstr "습도 표시"
+
+msgid "Show Location Indicator"
+msgstr "위치 표시기 표시"
+
+msgid "Show Temperature Text"
+msgstr "온도 텍스트 표시"
+
+msgid "Size of the temperature text in pixels"
+msgstr "온도 텍스트 크기(픽셀)"
+
+msgid "Size of the weather icon in pixels"
+msgstr "날씨 아이콘 크기(픽셀)"
+
+msgid "Source code, issues, and contributions"
+msgstr "소스 코드, 이슈 및 기여"
+
+msgid "Support development with a small donation"
+msgstr "소액 기부로 개발을 지원하세요"
+
+msgid "Switch between Celsius and Fahrenheit"
+msgstr "섭씨와 화씨 전환"
+
+msgid "Test"
+msgstr "테스트"
+
+msgid "Test Connection"
+msgstr "연결 테스트"
+
+msgid "Test failed:"
+msgstr "테스트 실패:"
+
+msgid "Testing…"
+msgstr "테스트 중…"
+
+msgid "Text Size"
+msgstr "텍스트 크기"
+
+msgid "Try a different search term or check your spelling"
+msgstr "다른 검색어를 사용하거나 철자를 확인하세요"
+
+msgid "URL Placeholders"
+msgstr "URL 자리 표시자"
+
+msgid "Unable to reach location service. Check your connection."
+msgstr "위치 서비스에 연결할 수 없습니다. 인터넷 연결을 확인하세요."
+
+msgid "Unit for wind speed display"
+msgstr "풍속 표시 단위"
+
+msgid "Units & Format"
+msgstr "단위 및 형식"
+
+msgid "Update Interval"
+msgstr "업데이트 간격"
+
+msgid "Updates"
+msgstr "업데이트"
+
+msgid "Use 12-hour Format"
+msgstr "12시간 형식 사용"
+
+msgid "Use Fahrenheit"
+msgstr "화씨 사용"
+
+msgid "Verify your provider settings work correctly"
+msgstr "제공자 설정이 올바른지 확인"
+
+msgid "Version 2.0"
+msgstr "버전 2.0"
+
+msgid "View on GitHub"
+msgstr "GitHub에서 보기"
+
+msgid "Weather Data Source"
+msgstr "날씨 데이터 소스"
+
+msgid "Weather Data Sources"
+msgstr "날씨 데이터 소스"
+
+msgid "Weather Provider"
+msgstr "날씨 제공자"
+
+msgid "Where to show the weather widget"
+msgstr "날씨 위젯 표시 위치"
+
+msgid "Wind Speed Unit"
+msgstr "풍속 단위"
+
+msgid "copied to clipboard"
+msgstr "클립보드에 복사됨"
+
+msgid "km/h (Kilometers per hour)"
+msgstr "km/h (시간당 킬로미터)"
+
+msgid "knots (Nautical miles)"
+msgstr "노트 (해리)"
+
+msgid "m/s (Meters per second)"
+msgstr "m/s (초당 미터)"
+
+msgid "mph (Miles per hour)"
+msgstr "mph (시간당 마일)"
+
+msgid "☕ Buy Me a Coffee"
+msgstr "☕ 커피 한 잔 사주세요"
+
+msgid "☕ Support – Scan QR to buy me a coffee"
+msgstr "☕ 후원 – QR 스캔으로 커피 한 잔"
+
+msgid "✅ Location updated successfully"
+msgstr "✅ 위치가 성공적으로 업데이트되었습니다"
+
+msgid "🌍 Auto Detection"
+msgstr "🌍 자동 감지"
+
+msgid "🌍 Auto Detection Enabled"
+msgstr "🌍 자동 감지 활성화됨"
+
+msgid "📍 Manual Location"
+msgstr "📍 수동 위치"
+
+msgid "📍 Manual – Please set location"
+msgstr "📍 수동 – 위치를 설정하세요"
+
+msgid "API key is required for "
+msgstr "API 키가 필요합니다: "
+
+msgid "Enable Weather Alerts"
+msgstr "날씨 경보 활성화"
+
+msgid "Send desktop notifications for dangerous weather"
+msgstr "위험한 날씨에 대한 데스크톱 알림 보내기"
+
+msgid "Weather Alerts"
+msgstr "날씨 경보"
+
+msgid "⚠️ Severe Weather Alert"
+msgstr "⚠️ 심각한 날씨 경보"
+
+msgid "🌡️ Heat Warning"
+msgstr "🌡️ 폭염 경보"
+
+msgid "🥶 Cold Warning"
+msgstr "🥶 한파 경보"
+
+msgid "💨 Wind Warning"
+msgstr "💨 강풍 경보"
+
+msgid "🌀 Storm Warning"
+msgstr "🌀 태풍 경보"
+
+msgid "Extreme high temperature detected"
+msgstr "극도로 높은 기온 감지"
+
+msgid "Extreme low temperature detected"
+msgstr "극도로 낮은 기온 감지"
+
+msgid "Dangerous wind speed"
+msgstr "위험한 풍속"
+
+msgid "Strong winds detected"
+msgstr "강풍 감지"
+
+msgid "Advanced Weather"
+msgstr "고급 날씨"
+
+msgid "Loading weather…"
+msgstr "날씨 불러오는 중…"
+
+msgid "Location Information"
+msgstr "위치 정보"
+
+msgid "Weather Provider Status"
+msgstr "날씨 제공자 상태"
+
+msgid "Hourly Forecast"
+msgstr "시간별 예보"
+
+msgid "7-Day Forecast"
+msgstr "7일 예보"
+
+msgid "Weather Insights"
+msgstr "날씨 분석"
+
+msgid "Refresh Weather"
+msgstr "날씨 새로 고침"
+
+msgid "Extension Settings"
+msgstr "확장 설정"
+
+msgid "Active"
+msgstr "활성"
+
+msgid "Loading…"
+msgstr "불러오는 중…"
+
+msgid "Status"
+msgstr "상태"
+
+msgid "Checking…"
+msgstr "확인 중…"
+
+msgid "Last Update"
+msgstr "마지막 업데이트"
+
+msgid "Never"
+msgstr "없음"
+
+msgid "Available Providers"
+msgstr "사용 가능한 제공자"
+
+msgid "Free"
+msgstr "무료"
+
+msgid "Custom Provider"
+msgstr "사용자 정의 제공자"
+
+msgid "Working"
+msgstr "작동 중"
+
+msgid "Error"
+msgstr "오류"
+
+msgid "Connection Timeout"
+msgstr "연결 시간 초과"
+
+msgid "Not Configured"
+msgstr "구성되지 않음"
+
+msgid "Testing Connection…"
+msgstr "연결 테스트 중…"
+
+msgid "Unknown"
+msgstr "알 수 없음"
+
+msgid "Current"
+msgstr "현재"
+
+msgid "Auto-detected"
+msgstr "자동 감지됨"
+
+msgid "Not set"
+msgstr "설정되지 않음"
+
+msgid "Coordinates"
+msgstr "좌표"
+
+msgid "Not available"
+msgstr "사용 불가"
+
+msgid "Method"
+msgstr "방법"
+
+msgid "IP-based geolocation"
+msgstr "IP 기반 위치 감지"
+
+msgid "Manually configured"
+msgstr "수동으로 구성됨"
+
+msgid "Switch to Auto Detection"
+msgstr "자동 감지로 전환"
+
+msgid "Switch to Manual Location"
+msgstr "수동 위치로 전환"
+
+msgid "Enter city name…"
+msgstr "도시 이름 입력…"
+
+msgid "Search"
+msgstr "검색"
+
+msgid "Clear"
+msgstr "지우기"
+
+msgid "Searching…"
+msgstr "검색 중…"
+
+msgid "No locations found"
+msgstr "위치를 찾을 수 없음"
+
+msgid "Unknown Location"
+msgstr "알 수 없는 위치"
+
+msgid "Unknown Provider"
+msgstr "알 수 없는 제공자"
+
+msgid "SEVERE WEATHER"
+msgstr "심각한 날씨"
+
+msgid "HEAT WARNING"
+msgstr "폭염 경보"
+
+msgid "Extreme temperatures"
+msgstr "극단적인 기온"
+
+msgid "COLD WARNING"
+msgstr "한파 경보"
+
+msgid "Extreme low temperatures"
+msgstr "극도로 낮은 기온"
+
+msgid "STORM WARNING"
+msgstr "폭풍 경보"
+
+msgid "Dangerous winds detected"
+msgstr "위험한 강풍 감지"
+
+msgid "WIND WARNING"
+msgstr "강풍 경보"
+
+msgid "Temperature Trend"
+msgstr "기온 추이"
+
+msgid "Precipitation (24h)"
+msgstr "강수량 (24시간)"
+
+msgid "Wind"
+msgstr "바람"
+
+msgid "Strong"
+msgstr "강함"
+
+msgid "Moderate"
+msgstr "보통"
+
+msgid "Light"
+msgstr "약함"
+
+msgid "UV Index"
+msgstr "자외선 지수"
+
+msgid "High"
+msgstr "높음"
+
+msgid "Low"
+msgstr "낮음"
+
+msgid "Insufficient data"
+msgstr "데이터 부족"
+
+msgid "Warming"
+msgstr "온도 상승"
+
+msgid "Cooling"
+msgstr "온도 하강"
+
+msgid "Stable"
+msgstr "안정"
+
+msgid "Today"
+msgstr "오늘"
+
+msgid "Tomorrow"
+msgstr "내일"
+
+msgid "AUTO"
+msgstr "자동"
+
+msgid "MANUAL"
+msgstr "수동"
+
+msgid "Offline"
+msgstr "오프라인"
+
+msgid "No Key"
+msgstr "키 없음"
+
+msgid "fallback"
+msgstr "대체"
+
+msgid "Clear Sky"
+msgstr "맑음"
+
+msgid "Mainly Clear"
+msgstr "대체로 맑음"
+
+msgid "Partly Cloudy"
+msgstr "구름 조금"
+
+msgid "Overcast"
+msgstr "흐림"
+
+msgid "Fog"
+msgstr "안개"
+
+msgid "Rime Fog"
+msgstr "서리 안개"
+
+msgid "Light Drizzle"
+msgstr "가벼운 이슬비"
+
+msgid "Drizzle"
+msgstr "이슬비"
+
+msgid "Heavy Drizzle"
+msgstr "강한 이슬비"
+
+msgid "Light Rain"
+msgstr "가벼운 비"
+
+msgid "Rain"
+msgstr "비"
+
+msgid "Heavy Rain"
+msgstr "폭우"
+
+msgid "Light Snow"
+msgstr "가벼운 눈"
+
+msgid "Snow"
+msgstr "눈"
+
+msgid "Heavy Snow"
+msgstr "폭설"
+
+msgid "Snow Grains"
+msgstr "싸락눈"
+
+msgid "Rain Showers"
+msgstr "소나기"
+
+msgid "Heavy Showers"
+msgstr "강한 소나기"
+
+msgid "Snow Showers"
+msgstr "눈 소나기"
+
+msgid "Heavy Snow Showers"
+msgstr "강한 눈 소나기"
+
+msgid "Thunderstorm"
+msgstr "뇌우"
+
+msgid "Hail Storm"
+msgstr "우박 폭풍"
+
+msgid "Heavy Hail"
+msgstr "강한 우박"

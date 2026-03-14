@@ -1,0 +1,677 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: advanced-weather 2.0\n"
+"Report-Msgid-Bugs-To: https://github.com/Sanjai-Shaarugesh/Advanced-Weather-Companion/issues\n"
+"POT-Creation-Date: 2026-03-15 00:00+0000\n"
+"PO-Revision-Date: 2026-03-15 00:00+0000\n"
+"Last-Translator: Advanced Weather Team\n"
+"Language-Team: Chinese Simplified\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "1 hour"
+msgstr "1小时"
+
+msgid "10 minutes"
+msgstr "10分钟"
+
+msgid "15 minutes"
+msgstr "15分钟"
+
+msgid "30 minutes"
+msgstr "30分钟"
+
+msgid "5 minutes"
+msgstr "5分钟"
+
+msgid "A beautiful, modern weather companion for GNOME Shell"
+msgstr "GNOME Shell 的美观现代天气助手"
+
+msgid "API Key"
+msgstr "API 密钥"
+
+msgid "About"
+msgstr "关于"
+
+msgid "Advanced Weather Companion"
+msgstr "高级天气助手"
+
+msgid "Appearance"
+msgstr "外观"
+
+msgid "Center"
+msgstr "居中"
+
+msgid "Choose detection method"
+msgstr "选择检测方式"
+
+msgid "Choose your weather data provider"
+msgstr "选择天气数据提供商"
+
+msgid "Clear search"
+msgstr "清除搜索"
+
+msgid "Configure how weather appears in the panel"
+msgstr "配置天气在面板中的显示方式"
+
+msgid "Configure how your location is determined"
+msgstr "配置位置确定方式"
+
+msgid "Configure measurement units and display format"
+msgstr "配置测量单位和显示格式"
+
+msgid "Configure weather data refresh settings"
+msgstr "配置天气数据刷新设置"
+
+msgid "Configure your selected weather provider"
+msgstr "配置所选天气提供商"
+
+msgid "Connection successful!"
+msgstr "连接成功！"
+
+msgid "Could not copy. Please copy manually: "
+msgstr "无法复制，请手动复制："
+
+msgid "Could not open website."
+msgstr "无法打开网站。"
+
+msgid "Current Location"
+msgstr "当前位置"
+
+msgid "Current temp:"
+msgstr "当前温度："
+
+msgid "Custom / Weather Underground URL"
+msgstr "自定义 / Weather Underground URL"
+
+msgid "Custom URL is required"
+msgstr "需要自定义 URL"
+
+msgid "Display AUTO/MANUAL indicator in panel"
+msgstr "在面板中显示自动/手动指示器"
+
+msgid "Display relative humidity in weather details"
+msgstr "在天气详情中显示相对湿度"
+
+msgid "Display temperature alongside the weather icon"
+msgstr "在天气图标旁显示温度"
+
+msgid "Display time in 12-hour format with AM/PM"
+msgstr "以带 AM/PM 的12小时格式显示时间"
+
+msgid "Donation Address"
+msgstr "捐款地址"
+
+msgid "Donation address"
+msgstr "捐款地址"
+
+msgid "Enable or disable weather features"
+msgstr "启用或禁用天气功能"
+
+msgid "Extension Links"
+msgstr "扩展链接"
+
+msgid "Features"
+msgstr "功能"
+
+msgid "General"
+msgstr "常规"
+
+msgid "Get API Key"
+msgstr "获取 API 密钥"
+
+msgid "How often to refresh weather data"
+msgstr "天气数据刷新频率"
+
+msgid "Icon Size"
+msgstr "图标大小"
+
+msgid "Invalid coordinates. Lat: −90 to 90, Lon: −180 to 180."
+msgstr "坐标无效。纬度：−90 至 90，经度：−180 至 180。"
+
+msgid "Left"
+msgstr "左侧"
+
+msgid "License & Credits"
+msgstr "许可证和致谢"
+
+msgid "Location"
+msgstr "位置"
+
+msgid "Location Detection"
+msgstr "位置检测"
+
+msgid "Location Mode"
+msgstr "位置模式"
+
+msgid "MIT License – Free and open source software"
+msgstr "MIT 许可证 – 免费开源软件"
+
+msgid "Manual Location Search"
+msgstr "手动位置搜索"
+
+msgid "Modern weather extension with native GNOME design"
+msgstr "采用原生 GNOME 设计的现代天气扩展"
+
+msgid "No Results Found"
+msgstr "未找到结果"
+
+msgid "Not Required"
+msgstr "不需要"
+
+msgid "Not specified"
+msgstr "未指定"
+
+msgid "Open Source License"
+msgstr "开源许可证"
+
+msgid "Open source software information"
+msgstr "开源软件信息"
+
+msgid "Panel Display"
+msgstr "面板显示"
+
+msgid "Panel Position"
+msgstr "面板位置"
+
+msgid "Panel Position Index"
+msgstr "面板位置索引"
+
+msgid "Position index within the selected panel area"
+msgstr "所选面板区域中的位置索引"
+
+msgid "Provider Configuration"
+msgstr "提供商配置"
+
+msgid "Provider Information"
+msgstr "提供商信息"
+
+msgid "Rate Limit"
+msgstr "请求限制"
+
+msgid "Refresh location display"
+msgstr "刷新位置显示"
+
+msgid "Required"
+msgstr "必填"
+
+msgid "Response received but no weather data found. Check your API key and URL."
+msgstr "收到响应但未找到天气数据，请检查 API 密钥和 URL。"
+
+msgid "Right"
+msgstr "右侧"
+
+msgid "Search Error"
+msgstr "搜索错误"
+
+msgid "Search Examples"
+msgstr "搜索示例"
+
+msgid "Search Location"
+msgstr "搜索位置"
+
+msgid "Search Results"
+msgstr "搜索结果"
+
+msgid "Search by city name or coordinates (lat, lon)"
+msgstr "按城市名称或坐标搜索"
+
+msgid "Search failed. Please try again."
+msgstr "搜索失败，请重试。"
+
+msgid "Search for location"
+msgstr "搜索位置"
+
+msgid "Search timed out. Please try again."
+msgstr "搜索超时，请重试。"
+
+msgid "Select this location"
+msgstr "选择此位置"
+
+msgid "Select weather API service"
+msgstr "选择天气 API 服务"
+
+msgid "Show Humidity"
+msgstr "显示湿度"
+
+msgid "Show Location Indicator"
+msgstr "显示位置指示器"
+
+msgid "Show Temperature Text"
+msgstr "显示温度文字"
+
+msgid "Size of the temperature text in pixels"
+msgstr "温度文字大小（像素）"
+
+msgid "Size of the weather icon in pixels"
+msgstr "天气图标大小（像素）"
+
+msgid "Source code, issues, and contributions"
+msgstr "源代码、问题和贡献"
+
+msgid "Support development with a small donation"
+msgstr "通过小额捐款支持开发"
+
+msgid "Switch between Celsius and Fahrenheit"
+msgstr "切换摄氏度和华氏度"
+
+msgid "Test"
+msgstr "测试"
+
+msgid "Test Connection"
+msgstr "测试连接"
+
+msgid "Test failed:"
+msgstr "测试失败："
+
+msgid "Testing…"
+msgstr "测试中…"
+
+msgid "Text Size"
+msgstr "文字大小"
+
+msgid "Try a different search term or check your spelling"
+msgstr "尝试其他搜索词或检查拼写"
+
+msgid "URL Placeholders"
+msgstr "URL 占位符"
+
+msgid "Unable to reach location service. Check your connection."
+msgstr "无法连接位置服务，请检查网络连接。"
+
+msgid "Unit for wind speed display"
+msgstr "风速显示单位"
+
+msgid "Units & Format"
+msgstr "单位和格式"
+
+msgid "Update Interval"
+msgstr "更新间隔"
+
+msgid "Updates"
+msgstr "更新"
+
+msgid "Use 12-hour Format"
+msgstr "使用12小时格式"
+
+msgid "Use Fahrenheit"
+msgstr "使用华氏度"
+
+msgid "Verify your provider settings work correctly"
+msgstr "验证提供商设置是否正确"
+
+msgid "Version 2.0"
+msgstr "版本 2.0"
+
+msgid "View on GitHub"
+msgstr "在 GitHub 上查看"
+
+msgid "Weather Data Source"
+msgstr "天气数据来源"
+
+msgid "Weather Data Sources"
+msgstr "天气数据来源"
+
+msgid "Weather Provider"
+msgstr "天气提供商"
+
+msgid "Where to show the weather widget"
+msgstr "天气小部件显示位置"
+
+msgid "Wind Speed Unit"
+msgstr "风速单位"
+
+msgid "copied to clipboard"
+msgstr "已复制到剪贴板"
+
+msgid "km/h (Kilometers per hour)"
+msgstr "km/h（千米/小时）"
+
+msgid "knots (Nautical miles)"
+msgstr "节（海里）"
+
+msgid "m/s (Meters per second)"
+msgstr "m/s（米/秒）"
+
+msgid "mph (Miles per hour)"
+msgstr "mph（英里/小时）"
+
+msgid "☕ Buy Me a Coffee"
+msgstr "☕ 请我喝杯咖啡"
+
+msgid "☕ Support – Scan QR to buy me a coffee"
+msgstr "☕ 支持 – 扫描二维码请我喝咖啡"
+
+msgid "✅ Location updated successfully"
+msgstr "✅ 位置更新成功"
+
+msgid "🌍 Auto Detection"
+msgstr "🌍 自动检测"
+
+msgid "🌍 Auto Detection Enabled"
+msgstr "🌍 已启用自动检测"
+
+msgid "📍 Manual Location"
+msgstr "📍 手动位置"
+
+msgid "📍 Manual – Please set location"
+msgstr "📍 手动 – 请设置位置"
+
+msgid "API key is required for "
+msgstr "需要 API 密钥："
+
+msgid "Enable Weather Alerts"
+msgstr "启用天气警报"
+
+msgid "Send desktop notifications for dangerous weather"
+msgstr "危险天气时发送桌面通知"
+
+msgid "Weather Alerts"
+msgstr "天气警报"
+
+msgid "⚠️ Severe Weather Alert"
+msgstr "⚠️ 严重天气警报"
+
+msgid "🌡️ Heat Warning"
+msgstr "🌡️ 高温警告"
+
+msgid "🥶 Cold Warning"
+msgstr "🥶 低温警告"
+
+msgid "💨 Wind Warning"
+msgstr "💨 大风警告"
+
+msgid "🌀 Storm Warning"
+msgstr "🌀 暴风警告"
+
+msgid "Extreme high temperature detected"
+msgstr "检测到极端高温"
+
+msgid "Extreme low temperature detected"
+msgstr "检测到极端低温"
+
+msgid "Dangerous wind speed"
+msgstr "危险风速"
+
+msgid "Strong winds detected"
+msgstr "检测到强风"
+
+msgid "Advanced Weather"
+msgstr "高级天气"
+
+msgid "Loading weather…"
+msgstr "正在加载天气…"
+
+msgid "Location Information"
+msgstr "位置信息"
+
+msgid "Weather Provider Status"
+msgstr "天气提供商状态"
+
+msgid "Hourly Forecast"
+msgstr "逐小时预报"
+
+msgid "7-Day Forecast"
+msgstr "7天预报"
+
+msgid "Weather Insights"
+msgstr "天气分析"
+
+msgid "Refresh Weather"
+msgstr "刷新天气"
+
+msgid "Extension Settings"
+msgstr "扩展设置"
+
+msgid "Active"
+msgstr "活跃"
+
+msgid "Loading…"
+msgstr "加载中…"
+
+msgid "Status"
+msgstr "状态"
+
+msgid "Checking…"
+msgstr "检查中…"
+
+msgid "Last Update"
+msgstr "上次更新"
+
+msgid "Never"
+msgstr "从未"
+
+msgid "Available Providers"
+msgstr "可用提供商"
+
+msgid "Free"
+msgstr "免费"
+
+msgid "Custom Provider"
+msgstr "自定义提供商"
+
+msgid "Working"
+msgstr "正常"
+
+msgid "Error"
+msgstr "错误"
+
+msgid "Connection Timeout"
+msgstr "连接超时"
+
+msgid "Not Configured"
+msgstr "未配置"
+
+msgid "Testing Connection…"
+msgstr "测试连接中…"
+
+msgid "Unknown"
+msgstr "未知"
+
+msgid "Current"
+msgstr "当前"
+
+msgid "Auto-detected"
+msgstr "自动检测"
+
+msgid "Not set"
+msgstr "未设置"
+
+msgid "Coordinates"
+msgstr "坐标"
+
+msgid "Not available"
+msgstr "不可用"
+
+msgid "Method"
+msgstr "方式"
+
+msgid "IP-based geolocation"
+msgstr "基于IP的地理定位"
+
+msgid "Manually configured"
+msgstr "手动配置"
+
+msgid "Switch to Auto Detection"
+msgstr "切换到自动检测"
+
+msgid "Switch to Manual Location"
+msgstr "切换到手动位置"
+
+msgid "Enter city name…"
+msgstr "输入城市名称…"
+
+msgid "Search"
+msgstr "搜索"
+
+msgid "Clear"
+msgstr "清除"
+
+msgid "Searching…"
+msgstr "搜索中…"
+
+msgid "No locations found"
+msgstr "未找到位置"
+
+msgid "Unknown Location"
+msgstr "未知位置"
+
+msgid "Unknown Provider"
+msgstr "未知提供商"
+
+msgid "SEVERE WEATHER"
+msgstr "严重天气"
+
+msgid "HEAT WARNING"
+msgstr "高温警告"
+
+msgid "Extreme temperatures"
+msgstr "极端温度"
+
+msgid "COLD WARNING"
+msgstr "低温警告"
+
+msgid "Extreme low temperatures"
+msgstr "极端低温"
+
+msgid "STORM WARNING"
+msgstr "暴风警告"
+
+msgid "Dangerous winds detected"
+msgstr "检测到危险风速"
+
+msgid "WIND WARNING"
+msgstr "大风警告"
+
+msgid "Temperature Trend"
+msgstr "气温趋势"
+
+msgid "Precipitation (24h)"
+msgstr "降水量（24小时）"
+
+msgid "Wind"
+msgstr "风速"
+
+msgid "Strong"
+msgstr "强"
+
+msgid "Moderate"
+msgstr "中等"
+
+msgid "Light"
+msgstr "弱"
+
+msgid "UV Index"
+msgstr "紫外线指数"
+
+msgid "High"
+msgstr "高"
+
+msgid "Low"
+msgstr "低"
+
+msgid "Insufficient data"
+msgstr "数据不足"
+
+msgid "Warming"
+msgstr "升温"
+
+msgid "Cooling"
+msgstr "降温"
+
+msgid "Stable"
+msgstr "稳定"
+
+msgid "Today"
+msgstr "今天"
+
+msgid "Tomorrow"
+msgstr "明天"
+
+msgid "AUTO"
+msgstr "自动"
+
+msgid "MANUAL"
+msgstr "手动"
+
+msgid "Offline"
+msgstr "离线"
+
+msgid "No Key"
+msgstr "无密钥"
+
+msgid "fallback"
+msgstr "备用"
+
+msgid "Clear Sky"
+msgstr "晴天"
+
+msgid "Mainly Clear"
+msgstr "大体晴天"
+
+msgid "Partly Cloudy"
+msgstr "局部多云"
+
+msgid "Overcast"
+msgstr "阴天"
+
+msgid "Fog"
+msgstr "雾"
+
+msgid "Rime Fog"
+msgstr "雾凇"
+
+msgid "Light Drizzle"
+msgstr "小毛毛雨"
+
+msgid "Drizzle"
+msgstr "毛毛雨"
+
+msgid "Heavy Drizzle"
+msgstr "大毛毛雨"
+
+msgid "Light Rain"
+msgstr "小雨"
+
+msgid "Rain"
+msgstr "雨"
+
+msgid "Heavy Rain"
+msgstr "大雨"
+
+msgid "Light Snow"
+msgstr "小雪"
+
+msgid "Snow"
+msgstr "雪"
+
+msgid "Heavy Snow"
+msgstr "大雪"
+
+msgid "Snow Grains"
+msgstr "米雪"
+
+msgid "Rain Showers"
+msgstr "阵雨"
+
+msgid "Heavy Showers"
+msgstr "强阵雨"
+
+msgid "Snow Showers"
+msgstr "阵雪"
+
+msgid "Heavy Snow Showers"
+msgstr "强阵雪"
+
+msgid "Thunderstorm"
+msgstr "雷暴"
+
+msgid "Hail Storm"
+msgstr "冰雹风暴"
+
+msgid "Heavy Hail"
+msgstr "大冰雹"

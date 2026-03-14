@@ -1,0 +1,677 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: advanced-weather 2.0\n"
+"Report-Msgid-Bugs-To: https://github.com/Sanjai-Shaarugesh/Advanced-Weather-Companion/issues\n"
+"POT-Creation-Date: 2026-03-15 00:00+0000\n"
+"PO-Revision-Date: 2026-03-15 00:00+0000\n"
+"Last-Translator: Advanced Weather Team\n"
+"Language-Team: Japanese\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "1 hour"
+msgstr "1時間"
+
+msgid "10 minutes"
+msgstr "10分"
+
+msgid "15 minutes"
+msgstr "15分"
+
+msgid "30 minutes"
+msgstr "30分"
+
+msgid "5 minutes"
+msgstr "5分"
+
+msgid "A beautiful, modern weather companion for GNOME Shell"
+msgstr "GNOME Shell 向けの美しくモダンな天気アプリ"
+
+msgid "API Key"
+msgstr "APIキー"
+
+msgid "About"
+msgstr "このアプリについて"
+
+msgid "Advanced Weather Companion"
+msgstr "高度天気ウィジェット"
+
+msgid "Appearance"
+msgstr "外観"
+
+msgid "Center"
+msgstr "中央"
+
+msgid "Choose detection method"
+msgstr "検出方法を選択"
+
+msgid "Choose your weather data provider"
+msgstr "天気データプロバイダーを選択"
+
+msgid "Clear search"
+msgstr "検索をクリア"
+
+msgid "Configure how weather appears in the panel"
+msgstr "パネルの天気表示を設定"
+
+msgid "Configure how your location is determined"
+msgstr "位置情報の取得方法を設定"
+
+msgid "Configure measurement units and display format"
+msgstr "単位と表示形式を設定"
+
+msgid "Configure weather data refresh settings"
+msgstr "天気データの更新設定"
+
+msgid "Configure your selected weather provider"
+msgstr "選択したプロバイダーを設定"
+
+msgid "Connection successful!"
+msgstr "接続成功！"
+
+msgid "Could not copy. Please copy manually: "
+msgstr "コピーできません。手動でコピーしてください: "
+
+msgid "Could not open website."
+msgstr "ウェブサイトを開けませんでした。"
+
+msgid "Current Location"
+msgstr "現在地"
+
+msgid "Current temp:"
+msgstr "現在の気温:"
+
+msgid "Custom / Weather Underground URL"
+msgstr "カスタム / Weather Underground URL"
+
+msgid "Custom URL is required"
+msgstr "カスタム URL が必要です"
+
+msgid "Display AUTO/MANUAL indicator in panel"
+msgstr "パネルに AUTO/MANUAL インジケーターを表示"
+
+msgid "Display relative humidity in weather details"
+msgstr "天気の詳細に相対湿度を表示"
+
+msgid "Display temperature alongside the weather icon"
+msgstr "天気アイコンの横に気温を表示"
+
+msgid "Display time in 12-hour format with AM/PM"
+msgstr "AM/PM 付き 12 時間形式で時刻を表示"
+
+msgid "Donation Address"
+msgstr "寄付先アドレス"
+
+msgid "Donation address"
+msgstr "寄付先アドレス"
+
+msgid "Enable or disable weather features"
+msgstr "天気機能を有効/無効にする"
+
+msgid "Extension Links"
+msgstr "拡張機能リンク"
+
+msgid "Features"
+msgstr "機能"
+
+msgid "General"
+msgstr "一般"
+
+msgid "Get API Key"
+msgstr "APIキーを取得"
+
+msgid "How often to refresh weather data"
+msgstr "天気データの更新頻度"
+
+msgid "Icon Size"
+msgstr "アイコンサイズ"
+
+msgid "Invalid coordinates. Lat: −90 to 90, Lon: −180 to 180."
+msgstr "無効な座標です。緯度: −90〜90、経度: −180〜180。"
+
+msgid "Left"
+msgstr "左"
+
+msgid "License & Credits"
+msgstr "ライセンスとクレジット"
+
+msgid "Location"
+msgstr "場所"
+
+msgid "Location Detection"
+msgstr "位置情報検出"
+
+msgid "Location Mode"
+msgstr "位置情報モード"
+
+msgid "MIT License – Free and open source software"
+msgstr "MIT ライセンス – 無料のオープンソースソフトウェア"
+
+msgid "Manual Location Search"
+msgstr "手動位置情報検索"
+
+msgid "Modern weather extension with native GNOME design"
+msgstr "ネイティブ GNOME デザインのモダンな天気拡張"
+
+msgid "No Results Found"
+msgstr "結果が見つかりません"
+
+msgid "Not Required"
+msgstr "不要"
+
+msgid "Not specified"
+msgstr "未指定"
+
+msgid "Open Source License"
+msgstr "オープンソースライセンス"
+
+msgid "Open source software information"
+msgstr "オープンソースソフトウェア情報"
+
+msgid "Panel Display"
+msgstr "パネル表示"
+
+msgid "Panel Position"
+msgstr "パネル位置"
+
+msgid "Panel Position Index"
+msgstr "パネル位置インデックス"
+
+msgid "Position index within the selected panel area"
+msgstr "選択したパネルエリア内の位置インデックス"
+
+msgid "Provider Configuration"
+msgstr "プロバイダー設定"
+
+msgid "Provider Information"
+msgstr "プロバイダー情報"
+
+msgid "Rate Limit"
+msgstr "リクエスト制限"
+
+msgid "Refresh location display"
+msgstr "位置情報表示を更新"
+
+msgid "Required"
+msgstr "必須"
+
+msgid "Response received but no weather data found. Check your API key and URL."
+msgstr "応答を受信しましたが天気データが見つかりません。APIキーと URL を確認してください。"
+
+msgid "Right"
+msgstr "右"
+
+msgid "Search Error"
+msgstr "検索エラー"
+
+msgid "Search Examples"
+msgstr "検索例"
+
+msgid "Search Location"
+msgstr "場所を検索"
+
+msgid "Search Results"
+msgstr "検索結果"
+
+msgid "Search by city name or coordinates (lat, lon)"
+msgstr "都市名または座標で検索"
+
+msgid "Search failed. Please try again."
+msgstr "検索に失敗しました。もう一度お試しください。"
+
+msgid "Search for location"
+msgstr "場所を検索"
+
+msgid "Search timed out. Please try again."
+msgstr "検索がタイムアウトしました。もう一度お試しください。"
+
+msgid "Select this location"
+msgstr "この場所を選択"
+
+msgid "Select weather API service"
+msgstr "天気 API サービスを選択"
+
+msgid "Show Humidity"
+msgstr "湿度を表示"
+
+msgid "Show Location Indicator"
+msgstr "位置情報インジケーターを表示"
+
+msgid "Show Temperature Text"
+msgstr "気温テキストを表示"
+
+msgid "Size of the temperature text in pixels"
+msgstr "気温テキストのサイズ（ピクセル）"
+
+msgid "Size of the weather icon in pixels"
+msgstr "天気アイコンのサイズ（ピクセル）"
+
+msgid "Source code, issues, and contributions"
+msgstr "ソースコード、問題、貢献"
+
+msgid "Support development with a small donation"
+msgstr "少額の寄付で開発を支援してください"
+
+msgid "Switch between Celsius and Fahrenheit"
+msgstr "摂氏と華氏を切り替え"
+
+msgid "Test"
+msgstr "テスト"
+
+msgid "Test Connection"
+msgstr "接続テスト"
+
+msgid "Test failed:"
+msgstr "テスト失敗:"
+
+msgid "Testing…"
+msgstr "テスト中…"
+
+msgid "Text Size"
+msgstr "テキストサイズ"
+
+msgid "Try a different search term or check your spelling"
+msgstr "別の検索ワードを試すか、スペルを確認してください"
+
+msgid "URL Placeholders"
+msgstr "URL プレースホルダー"
+
+msgid "Unable to reach location service. Check your connection."
+msgstr "位置情報サービスに接続できません。接続を確認してください。"
+
+msgid "Unit for wind speed display"
+msgstr "風速の表示単位"
+
+msgid "Units & Format"
+msgstr "単位と形式"
+
+msgid "Update Interval"
+msgstr "更新間隔"
+
+msgid "Updates"
+msgstr "更新"
+
+msgid "Use 12-hour Format"
+msgstr "12時間形式を使用"
+
+msgid "Use Fahrenheit"
+msgstr "華氏を使用"
+
+msgid "Verify your provider settings work correctly"
+msgstr "プロバイダー設定が正しく機能しているか確認"
+
+msgid "Version 2.0"
+msgstr "バージョン 2.0"
+
+msgid "View on GitHub"
+msgstr "GitHub で見る"
+
+msgid "Weather Data Source"
+msgstr "天気データソース"
+
+msgid "Weather Data Sources"
+msgstr "天気データソース"
+
+msgid "Weather Provider"
+msgstr "天気プロバイダー"
+
+msgid "Where to show the weather widget"
+msgstr "天気ウィジェットの表示場所"
+
+msgid "Wind Speed Unit"
+msgstr "風速単位"
+
+msgid "copied to clipboard"
+msgstr "クリップボードにコピーされました"
+
+msgid "km/h (Kilometers per hour)"
+msgstr "km/h（時速キロメートル）"
+
+msgid "knots (Nautical miles)"
+msgstr "ノット（海里）"
+
+msgid "m/s (Meters per second)"
+msgstr "m/s（毎秒メートル）"
+
+msgid "mph (Miles per hour)"
+msgstr "mph（時速マイル）"
+
+msgid "☕ Buy Me a Coffee"
+msgstr "☕ コーヒーをおごってください"
+
+msgid "☕ Support – Scan QR to buy me a coffee"
+msgstr "☕ サポート – QR をスキャンしてコーヒーを"
+
+msgid "✅ Location updated successfully"
+msgstr "✅ 位置情報が正常に更新されました"
+
+msgid "🌍 Auto Detection"
+msgstr "🌍 自動検出"
+
+msgid "🌍 Auto Detection Enabled"
+msgstr "🌍 自動検出が有効"
+
+msgid "📍 Manual Location"
+msgstr "📍 手動位置情報"
+
+msgid "📍 Manual – Please set location"
+msgstr "📍 手動 – 場所を設定してください"
+
+msgid "API key is required for "
+msgstr "API キーが必要です: "
+
+msgid "Enable Weather Alerts"
+msgstr "天気警報を有効にする"
+
+msgid "Send desktop notifications for dangerous weather"
+msgstr "危険な天気のデスクトップ通知を送信"
+
+msgid "Weather Alerts"
+msgstr "天気警報"
+
+msgid "⚠️ Severe Weather Alert"
+msgstr "⚠️ 荒天警報"
+
+msgid "🌡️ Heat Warning"
+msgstr "🌡️ 熱中症警戒アラート"
+
+msgid "🥶 Cold Warning"
+msgstr "🥶 寒波警報"
+
+msgid "💨 Wind Warning"
+msgstr "💨 強風警報"
+
+msgid "🌀 Storm Warning"
+msgstr "🌀 暴風警報"
+
+msgid "Extreme high temperature detected"
+msgstr "極端な高温が検出されました"
+
+msgid "Extreme low temperature detected"
+msgstr "極端な低温が検出されました"
+
+msgid "Dangerous wind speed"
+msgstr "危険な風速"
+
+msgid "Strong winds detected"
+msgstr "強風が検出されました"
+
+msgid "Advanced Weather"
+msgstr "高度天気"
+
+msgid "Loading weather…"
+msgstr "天気を読み込み中…"
+
+msgid "Location Information"
+msgstr "位置情報"
+
+msgid "Weather Provider Status"
+msgstr "天気プロバイダーの状態"
+
+msgid "Hourly Forecast"
+msgstr "時間別予報"
+
+msgid "7-Day Forecast"
+msgstr "7日間予報"
+
+msgid "Weather Insights"
+msgstr "天気分析"
+
+msgid "Refresh Weather"
+msgstr "天気を更新"
+
+msgid "Extension Settings"
+msgstr "拡張機能の設定"
+
+msgid "Active"
+msgstr "有効"
+
+msgid "Loading…"
+msgstr "読み込み中…"
+
+msgid "Status"
+msgstr "状態"
+
+msgid "Checking…"
+msgstr "確認中…"
+
+msgid "Last Update"
+msgstr "最終更新"
+
+msgid "Never"
+msgstr "なし"
+
+msgid "Available Providers"
+msgstr "利用可能なプロバイダー"
+
+msgid "Free"
+msgstr "無料"
+
+msgid "Custom Provider"
+msgstr "カスタムプロバイダー"
+
+msgid "Working"
+msgstr "動作中"
+
+msgid "Error"
+msgstr "エラー"
+
+msgid "Connection Timeout"
+msgstr "接続タイムアウト"
+
+msgid "Not Configured"
+msgstr "未設定"
+
+msgid "Testing Connection…"
+msgstr "接続テスト中…"
+
+msgid "Unknown"
+msgstr "不明"
+
+msgid "Current"
+msgstr "現在"
+
+msgid "Auto-detected"
+msgstr "自動検出"
+
+msgid "Not set"
+msgstr "未設定"
+
+msgid "Coordinates"
+msgstr "座標"
+
+msgid "Not available"
+msgstr "利用不可"
+
+msgid "Method"
+msgstr "方法"
+
+msgid "IP-based geolocation"
+msgstr "IP ベースの位置情報"
+
+msgid "Manually configured"
+msgstr "手動設定"
+
+msgid "Switch to Auto Detection"
+msgstr "自動検出に切り替え"
+
+msgid "Switch to Manual Location"
+msgstr "手動位置情報に切り替え"
+
+msgid "Enter city name…"
+msgstr "都市名を入力…"
+
+msgid "Search"
+msgstr "検索"
+
+msgid "Clear"
+msgstr "クリア"
+
+msgid "Searching…"
+msgstr "検索中…"
+
+msgid "No locations found"
+msgstr "場所が見つかりません"
+
+msgid "Unknown Location"
+msgstr "不明な場所"
+
+msgid "Unknown Provider"
+msgstr "不明なプロバイダー"
+
+msgid "SEVERE WEATHER"
+msgstr "荒天"
+
+msgid "HEAT WARNING"
+msgstr "高温警報"
+
+msgid "Extreme temperatures"
+msgstr "極端な気温"
+
+msgid "COLD WARNING"
+msgstr "低温警報"
+
+msgid "Extreme low temperatures"
+msgstr "極端な低温"
+
+msgid "STORM WARNING"
+msgstr "暴風警報"
+
+msgid "Dangerous winds detected"
+msgstr "危険な強風が検出されました"
+
+msgid "WIND WARNING"
+msgstr "強風警報"
+
+msgid "Temperature Trend"
+msgstr "気温の傾向"
+
+msgid "Precipitation (24h)"
+msgstr "降水量（24時間）"
+
+msgid "Wind"
+msgstr "風"
+
+msgid "Strong"
+msgstr "強い"
+
+msgid "Moderate"
+msgstr "普通"
+
+msgid "Light"
+msgstr "弱い"
+
+msgid "UV Index"
+msgstr "紫外線指数"
+
+msgid "High"
+msgstr "高い"
+
+msgid "Low"
+msgstr "低い"
+
+msgid "Insufficient data"
+msgstr "データ不足"
+
+msgid "Warming"
+msgstr "気温上昇"
+
+msgid "Cooling"
+msgstr "気温低下"
+
+msgid "Stable"
+msgstr "安定"
+
+msgid "Today"
+msgstr "今日"
+
+msgid "Tomorrow"
+msgstr "明日"
+
+msgid "AUTO"
+msgstr "自動"
+
+msgid "MANUAL"
+msgstr "手動"
+
+msgid "Offline"
+msgstr "オフライン"
+
+msgid "No Key"
+msgstr "キーなし"
+
+msgid "fallback"
+msgstr "代替"
+
+msgid "Clear Sky"
+msgstr "快晴"
+
+msgid "Mainly Clear"
+msgstr "おおむね晴れ"
+
+msgid "Partly Cloudy"
+msgstr "一部曇り"
+
+msgid "Overcast"
+msgstr "曇り"
+
+msgid "Fog"
+msgstr "霧"
+
+msgid "Rime Fog"
+msgstr "霧氷霧"
+
+msgid "Light Drizzle"
+msgstr "小雨"
+
+msgid "Drizzle"
+msgstr "霧雨"
+
+msgid "Heavy Drizzle"
+msgstr "強い霧雨"
+
+msgid "Light Rain"
+msgstr "弱い雨"
+
+msgid "Rain"
+msgstr "雨"
+
+msgid "Heavy Rain"
+msgstr "大雨"
+
+msgid "Light Snow"
+msgstr "小雪"
+
+msgid "Snow"
+msgstr "雪"
+
+msgid "Heavy Snow"
+msgstr "大雪"
+
+msgid "Snow Grains"
+msgstr "霰"
+
+msgid "Rain Showers"
+msgstr "にわか雨"
+
+msgid "Heavy Showers"
+msgstr "強いにわか雨"
+
+msgid "Snow Showers"
+msgstr "雪のにわか降り"
+
+msgid "Heavy Snow Showers"
+msgstr "強い雪のにわか降り"
+
+msgid "Thunderstorm"
+msgstr "雷雨"
+
+msgid "Hail Storm"
+msgstr "雹嵐"
+
+msgid "Heavy Hail"
+msgstr "大粒の雹"

@@ -1,0 +1,677 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: advanced-weather 2.0\n"
+"Report-Msgid-Bugs-To: https://github.com/Sanjai-Shaarugesh/Advanced-Weather-Companion/issues\n"
+"POT-Creation-Date: 2026-03-15 00:00+0000\n"
+"PO-Revision-Date: 2026-03-15 00:00+0000\n"
+"Last-Translator: Advanced Weather Team\n"
+"Language-Team: Russian\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+msgid "1 hour"
+msgstr "1 час"
+
+msgid "10 minutes"
+msgstr "10 минут"
+
+msgid "15 minutes"
+msgstr "15 минут"
+
+msgid "30 minutes"
+msgstr "30 минут"
+
+msgid "5 minutes"
+msgstr "5 минут"
+
+msgid "A beautiful, modern weather companion for GNOME Shell"
+msgstr "Красивый современный погодный виджет для GNOME Shell"
+
+msgid "API Key"
+msgstr "API-ключ"
+
+msgid "About"
+msgstr "О расширении"
+
+msgid "Advanced Weather Companion"
+msgstr "Расширенный погодный виджет"
+
+msgid "Appearance"
+msgstr "Внешний вид"
+
+msgid "Center"
+msgstr "По центру"
+
+msgid "Choose detection method"
+msgstr "Выбрать метод определения"
+
+msgid "Choose your weather data provider"
+msgstr "Выбрать поставщика погодных данных"
+
+msgid "Clear search"
+msgstr "Очистить поиск"
+
+msgid "Configure how weather appears in the panel"
+msgstr "Настроить отображение погоды на панели"
+
+msgid "Configure how your location is determined"
+msgstr "Настроить определение местоположения"
+
+msgid "Configure measurement units and display format"
+msgstr "Настроить единицы измерения и формат отображения"
+
+msgid "Configure weather data refresh settings"
+msgstr "Настроить интервал обновления"
+
+msgid "Configure your selected weather provider"
+msgstr "Настроить выбранный поставщик погоды"
+
+msgid "Connection successful!"
+msgstr "Соединение установлено!"
+
+msgid "Could not copy. Please copy manually: "
+msgstr "Не удалось скопировать. Скопируйте вручную: "
+
+msgid "Could not open website."
+msgstr "Не удалось открыть сайт."
+
+msgid "Current Location"
+msgstr "Текущее местоположение"
+
+msgid "Current temp:"
+msgstr "Текущая температура:"
+
+msgid "Custom / Weather Underground URL"
+msgstr "Пользовательский URL / Weather Underground"
+
+msgid "Custom URL is required"
+msgstr "Требуется пользовательский URL"
+
+msgid "Display AUTO/MANUAL indicator in panel"
+msgstr "Показывать индикатор АВТО/ВРУЧНУЮ на панели"
+
+msgid "Display relative humidity in weather details"
+msgstr "Показывать относительную влажность"
+
+msgid "Display temperature alongside the weather icon"
+msgstr "Показывать температуру рядом со значком погоды"
+
+msgid "Display time in 12-hour format with AM/PM"
+msgstr "Отображать время в 12-часовом формате с AM/PM"
+
+msgid "Donation Address"
+msgstr "Адрес для пожертвований"
+
+msgid "Donation address"
+msgstr "Адрес для пожертвований"
+
+msgid "Enable or disable weather features"
+msgstr "Включить или отключить функции погоды"
+
+msgid "Extension Links"
+msgstr "Ссылки расширения"
+
+msgid "Features"
+msgstr "Функции"
+
+msgid "General"
+msgstr "Общие"
+
+msgid "Get API Key"
+msgstr "Получить API-ключ"
+
+msgid "How often to refresh weather data"
+msgstr "Как часто обновлять погодные данные"
+
+msgid "Icon Size"
+msgstr "Размер значка"
+
+msgid "Invalid coordinates. Lat: −90 to 90, Lon: −180 to 180."
+msgstr "Неверные координаты. Шир.: −90 до 90, Дол.: −180 до 180."
+
+msgid "Left"
+msgstr "Слева"
+
+msgid "License & Credits"
+msgstr "Лицензия и благодарности"
+
+msgid "Location"
+msgstr "Местоположение"
+
+msgid "Location Detection"
+msgstr "Определение местоположения"
+
+msgid "Location Mode"
+msgstr "Режим местоположения"
+
+msgid "MIT License – Free and open source software"
+msgstr "Лицензия MIT – Свободное программное обеспечение"
+
+msgid "Manual Location Search"
+msgstr "Поиск местоположения вручную"
+
+msgid "Modern weather extension with native GNOME design"
+msgstr "Современное погодное расширение в стиле GNOME"
+
+msgid "No Results Found"
+msgstr "Результатов не найдено"
+
+msgid "Not Required"
+msgstr "Не требуется"
+
+msgid "Not specified"
+msgstr "Не указано"
+
+msgid "Open Source License"
+msgstr "Лицензия с открытым исходным кодом"
+
+msgid "Open source software information"
+msgstr "Информация о программном обеспечении с открытым кодом"
+
+msgid "Panel Display"
+msgstr "Отображение на панели"
+
+msgid "Panel Position"
+msgstr "Положение на панели"
+
+msgid "Panel Position Index"
+msgstr "Индекс положения на панели"
+
+msgid "Position index within the selected panel area"
+msgstr "Индекс позиции в выбранной области панели"
+
+msgid "Provider Configuration"
+msgstr "Настройка поставщика"
+
+msgid "Provider Information"
+msgstr "Информация о поставщике"
+
+msgid "Rate Limit"
+msgstr "Ограничение запросов"
+
+msgid "Refresh location display"
+msgstr "Обновить отображение местоположения"
+
+msgid "Required"
+msgstr "Обязательно"
+
+msgid "Response received but no weather data found. Check your API key and URL."
+msgstr "Ответ получен, но данные о погоде не найдены. Проверьте API-ключ и URL."
+
+msgid "Right"
+msgstr "Справа"
+
+msgid "Search Error"
+msgstr "Ошибка поиска"
+
+msgid "Search Examples"
+msgstr "Примеры поиска"
+
+msgid "Search Location"
+msgstr "Поиск местоположения"
+
+msgid "Search Results"
+msgstr "Результаты поиска"
+
+msgid "Search by city name or coordinates (lat, lon)"
+msgstr "Поиск по названию города или координатам"
+
+msgid "Search failed. Please try again."
+msgstr "Поиск не удался. Попробуйте ещё раз."
+
+msgid "Search for location"
+msgstr "Найти местоположение"
+
+msgid "Search timed out. Please try again."
+msgstr "Время поиска истекло. Попробуйте ещё раз."
+
+msgid "Select this location"
+msgstr "Выбрать это местоположение"
+
+msgid "Select weather API service"
+msgstr "Выбрать сервис погодного API"
+
+msgid "Show Humidity"
+msgstr "Показывать влажность"
+
+msgid "Show Location Indicator"
+msgstr "Показывать индикатор местоположения"
+
+msgid "Show Temperature Text"
+msgstr "Показывать температуру текстом"
+
+msgid "Size of the temperature text in pixels"
+msgstr "Размер текста температуры в пикселях"
+
+msgid "Size of the weather icon in pixels"
+msgstr "Размер значка погоды в пикселях"
+
+msgid "Source code, issues, and contributions"
+msgstr "Исходный код, проблемы и вклад"
+
+msgid "Support development with a small donation"
+msgstr "Поддержите разработку небольшим пожертвованием"
+
+msgid "Switch between Celsius and Fahrenheit"
+msgstr "Переключение между Цельсием и Фаренгейтом"
+
+msgid "Test"
+msgstr "Тест"
+
+msgid "Test Connection"
+msgstr "Проверить соединение"
+
+msgid "Test failed:"
+msgstr "Тест не пройден:"
+
+msgid "Testing…"
+msgstr "Проверка…"
+
+msgid "Text Size"
+msgstr "Размер текста"
+
+msgid "Try a different search term or check your spelling"
+msgstr "Попробуйте другой запрос или проверьте правописание"
+
+msgid "URL Placeholders"
+msgstr "Заполнители URL"
+
+msgid "Unable to reach location service. Check your connection."
+msgstr "Не удаётся связаться со службой местоположения. Проверьте соединение."
+
+msgid "Unit for wind speed display"
+msgstr "Единица отображения скорости ветра"
+
+msgid "Units & Format"
+msgstr "Единицы и формат"
+
+msgid "Update Interval"
+msgstr "Интервал обновления"
+
+msgid "Updates"
+msgstr "Обновления"
+
+msgid "Use 12-hour Format"
+msgstr "Использовать 12-часовой формат"
+
+msgid "Use Fahrenheit"
+msgstr "Использовать Фаренгейты"
+
+msgid "Verify your provider settings work correctly"
+msgstr "Проверьте настройки поставщика"
+
+msgid "Version 2.0"
+msgstr "Версия 2.0"
+
+msgid "View on GitHub"
+msgstr "Посмотреть на GitHub"
+
+msgid "Weather Data Source"
+msgstr "Источник погодных данных"
+
+msgid "Weather Data Sources"
+msgstr "Источники погодных данных"
+
+msgid "Weather Provider"
+msgstr "Поставщик погоды"
+
+msgid "Where to show the weather widget"
+msgstr "Где отображать виджет погоды"
+
+msgid "Wind Speed Unit"
+msgstr "Единица скорости ветра"
+
+msgid "copied to clipboard"
+msgstr "скопировано в буфер обмена"
+
+msgid "km/h (Kilometers per hour)"
+msgstr "км/ч (километры в час)"
+
+msgid "knots (Nautical miles)"
+msgstr "узлы (морские мили)"
+
+msgid "m/s (Meters per second)"
+msgstr "м/с (метры в секунду)"
+
+msgid "mph (Miles per hour)"
+msgstr "миль/ч (мили в час)"
+
+msgid "☕ Buy Me a Coffee"
+msgstr "☕ Угостите меня кофе"
+
+msgid "☕ Support – Scan QR to buy me a coffee"
+msgstr "☕ Поддержка – отсканируйте QR для угощения кофе"
+
+msgid "✅ Location updated successfully"
+msgstr "✅ Местоположение успешно обновлено"
+
+msgid "🌍 Auto Detection"
+msgstr "🌍 Автоопределение"
+
+msgid "🌍 Auto Detection Enabled"
+msgstr "🌍 Автоопределение включено"
+
+msgid "📍 Manual Location"
+msgstr "📍 Ручное местоположение"
+
+msgid "📍 Manual – Please set location"
+msgstr "📍 Вручную – задайте местоположение"
+
+msgid "API key is required for "
+msgstr "Требуется API-ключ для "
+
+msgid "Enable Weather Alerts"
+msgstr "Включить погодные оповещения"
+
+msgid "Send desktop notifications for dangerous weather"
+msgstr "Отправлять уведомления рабочего стола при опасной погоде"
+
+msgid "Weather Alerts"
+msgstr "Погодные оповещения"
+
+msgid "⚠️ Severe Weather Alert"
+msgstr "⚠️ Предупреждение об опасной погоде"
+
+msgid "🌡️ Heat Warning"
+msgstr "🌡️ Предупреждение о жаре"
+
+msgid "🥶 Cold Warning"
+msgstr "🥶 Предупреждение о морозе"
+
+msgid "💨 Wind Warning"
+msgstr "💨 Предупреждение о ветре"
+
+msgid "🌀 Storm Warning"
+msgstr "🌀 Штормовое предупреждение"
+
+msgid "Extreme high temperature detected"
+msgstr "Обнаружена экстремально высокая температура"
+
+msgid "Extreme low temperature detected"
+msgstr "Обнаружена экстремально низкая температура"
+
+msgid "Dangerous wind speed"
+msgstr "Опасная скорость ветра"
+
+msgid "Strong winds detected"
+msgstr "Обнаружен сильный ветер"
+
+msgid "Advanced Weather"
+msgstr "Расширенная погода"
+
+msgid "Loading weather…"
+msgstr "Загрузка погоды…"
+
+msgid "Location Information"
+msgstr "Сведения о местоположении"
+
+msgid "Weather Provider Status"
+msgstr "Статус поставщика погоды"
+
+msgid "Hourly Forecast"
+msgstr "Почасовой прогноз"
+
+msgid "7-Day Forecast"
+msgstr "Прогноз на 7 дней"
+
+msgid "Weather Insights"
+msgstr "Анализ погоды"
+
+msgid "Refresh Weather"
+msgstr "Обновить погоду"
+
+msgid "Extension Settings"
+msgstr "Настройки расширения"
+
+msgid "Active"
+msgstr "Активен"
+
+msgid "Loading…"
+msgstr "Загрузка…"
+
+msgid "Status"
+msgstr "Статус"
+
+msgid "Checking…"
+msgstr "Проверка…"
+
+msgid "Last Update"
+msgstr "Последнее обновление"
+
+msgid "Never"
+msgstr "Никогда"
+
+msgid "Available Providers"
+msgstr "Доступные поставщики"
+
+msgid "Free"
+msgstr "Бесплатно"
+
+msgid "Custom Provider"
+msgstr "Пользовательский поставщик"
+
+msgid "Working"
+msgstr "Работает"
+
+msgid "Error"
+msgstr "Ошибка"
+
+msgid "Connection Timeout"
+msgstr "Тайм-аут соединения"
+
+msgid "Not Configured"
+msgstr "Не настроен"
+
+msgid "Testing Connection…"
+msgstr "Проверка соединения…"
+
+msgid "Unknown"
+msgstr "Неизвестно"
+
+msgid "Current"
+msgstr "Текущий"
+
+msgid "Auto-detected"
+msgstr "Определено автоматически"
+
+msgid "Not set"
+msgstr "Не задано"
+
+msgid "Coordinates"
+msgstr "Координаты"
+
+msgid "Not available"
+msgstr "Недоступно"
+
+msgid "Method"
+msgstr "Метод"
+
+msgid "IP-based geolocation"
+msgstr "Геолокация по IP"
+
+msgid "Manually configured"
+msgstr "Настроено вручную"
+
+msgid "Switch to Auto Detection"
+msgstr "Переключиться на автоопределение"
+
+msgid "Switch to Manual Location"
+msgstr "Переключиться на ручное местоположение"
+
+msgid "Enter city name…"
+msgstr "Введите название города…"
+
+msgid "Search"
+msgstr "Поиск"
+
+msgid "Clear"
+msgstr "Очистить"
+
+msgid "Searching…"
+msgstr "Поиск…"
+
+msgid "No locations found"
+msgstr "Местоположений не найдено"
+
+msgid "Unknown Location"
+msgstr "Неизвестное местоположение"
+
+msgid "Unknown Provider"
+msgstr "Неизвестный поставщик"
+
+msgid "SEVERE WEATHER"
+msgstr "ОПАСНАЯ ПОГОДА"
+
+msgid "HEAT WARNING"
+msgstr "ПРЕДУПРЕЖДЕНИЕ О ЖАРЕ"
+
+msgid "Extreme temperatures"
+msgstr "Экстремальные температуры"
+
+msgid "COLD WARNING"
+msgstr "ПРЕДУПРЕЖДЕНИЕ О МОРОЗЕ"
+
+msgid "Extreme low temperatures"
+msgstr "Экстремально низкие температуры"
+
+msgid "STORM WARNING"
+msgstr "ШТОРМОВОЕ ПРЕДУПРЕЖДЕНИЕ"
+
+msgid "Dangerous winds detected"
+msgstr "Обнаружен опасный ветер"
+
+msgid "WIND WARNING"
+msgstr "ПРЕДУПРЕЖДЕНИЕ О ВЕТРЕ"
+
+msgid "Temperature Trend"
+msgstr "Тенденция температуры"
+
+msgid "Precipitation (24h)"
+msgstr "Осадки (24ч)"
+
+msgid "Wind"
+msgstr "Ветер"
+
+msgid "Strong"
+msgstr "Сильный"
+
+msgid "Moderate"
+msgstr "Умеренный"
+
+msgid "Light"
+msgstr "Слабый"
+
+msgid "UV Index"
+msgstr "УФ-индекс"
+
+msgid "High"
+msgstr "Высокий"
+
+msgid "Low"
+msgstr "Низкий"
+
+msgid "Insufficient data"
+msgstr "Недостаточно данных"
+
+msgid "Warming"
+msgstr "Потепление"
+
+msgid "Cooling"
+msgstr "Похолодание"
+
+msgid "Stable"
+msgstr "Стабильно"
+
+msgid "Today"
+msgstr "Сегодня"
+
+msgid "Tomorrow"
+msgstr "Завтра"
+
+msgid "AUTO"
+msgstr "АВТО"
+
+msgid "MANUAL"
+msgstr "ВРУЧНУЮ"
+
+msgid "Offline"
+msgstr "Нет сети"
+
+msgid "No Key"
+msgstr "Нет ключа"
+
+msgid "fallback"
+msgstr "резервный"
+
+msgid "Clear Sky"
+msgstr "Ясное небо"
+
+msgid "Mainly Clear"
+msgstr "Преимущественно ясно"
+
+msgid "Partly Cloudy"
+msgstr "Переменная облачность"
+
+msgid "Overcast"
+msgstr "Пасмурно"
+
+msgid "Fog"
+msgstr "Туман"
+
+msgid "Rime Fog"
+msgstr "Туман с изморозью"
+
+msgid "Light Drizzle"
+msgstr "Лёгкая морось"
+
+msgid "Drizzle"
+msgstr "Морось"
+
+msgid "Heavy Drizzle"
+msgstr "Сильная морось"
+
+msgid "Light Rain"
+msgstr "Лёгкий дождь"
+
+msgid "Rain"
+msgstr "Дождь"
+
+msgid "Heavy Rain"
+msgstr "Сильный дождь"
+
+msgid "Light Snow"
+msgstr "Лёгкий снег"
+
+msgid "Snow"
+msgstr "Снег"
+
+msgid "Heavy Snow"
+msgstr "Сильный снег"
+
+msgid "Snow Grains"
+msgstr "Снежная крупа"
+
+msgid "Rain Showers"
+msgstr "Ливневый дождь"
+
+msgid "Heavy Showers"
+msgstr "Сильные ливни"
+
+msgid "Snow Showers"
+msgstr "Снежные ливни"
+
+msgid "Heavy Snow Showers"
+msgstr "Сильные снежные ливни"
+
+msgid "Thunderstorm"
+msgstr "Гроза"
+
+msgid "Hail Storm"
+msgstr "Град"
+
+msgid "Heavy Hail"
+msgstr "Сильный град"

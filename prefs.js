@@ -216,7 +216,17 @@ export default class WeatherPreferences extends ExtensionPreferences {
       this._settings.set_boolean("show-humidity", humRow.get_active());
     });
 
+    const alertsRow = new Adw.SwitchRow({
+      title: _("Enable Weather Alerts"),
+      subtitle: _("Send desktop notifications for dangerous weather"),
+    });
+    alertsRow.set_active(this._settings.get_boolean("enable-weather-alerts"));
+    alertsRow.connect("notify::active", () => {
+      this._settings.set_boolean("enable-weather-alerts", alertsRow.get_active());
+    });
+
     featGroup.add(humRow);
+    featGroup.add(alertsRow);
     page.add(unitsGroup);
     page.add(updateGroup);
     page.add(featGroup);

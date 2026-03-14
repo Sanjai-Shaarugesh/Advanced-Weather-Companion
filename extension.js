@@ -6,6 +6,7 @@
  *   • Fetch weather data from the selected provider
  *   • Coordinate location detection ↔ weather load
  *   • Manage periodic refresh and network-change reactions
+ *   • Send system desktop notifications for severe weather alerts
  *
  * All provider logic  → lib/providers.js
  * All location logic  → lib/location.js
@@ -17,14 +18,18 @@ import Gio from "gi://Gio";
 import Soup from "gi://Soup";
 import GLib from "gi://GLib";
 import * as Main from "resource:///org/gnome/shell/ui/main.js";
-import {Extension} from "resource:///org/gnome/shell/extensions/extension.js";
+import {Extension, gettext as getText} from "resource:///org/gnome/shell/extensions/extension.js";
+import * as MessageTray from "resource:///org/gnome/shell/ui/messageTray.js";
 
-import {WEATHER_PROVIDERS} from "./lib/providers.js";
+import {WEATHER_PROVIDERS, setGettext, getWeatherConditions} from "./lib/providers.js";
 import {LocationManager}   from "./lib/location.js";
 import {WeatherPanelButton}from "./lib/panelMenu.js";
 
 // Fallback location when everything else fails
 const FALLBACK = {lat: 40.7128, lon: -74.006, name: "New York, NY (Fallback)"};
+
+// Severity levels that trigger a desktop notification
+const ALERT_SEVERITIES = new Set(["warning", "severe"]);
 
 export default class WeatherExtension extends Extension {
 
@@ -39,12 +44,20 @@ export default class WeatherExtension extends Extension {
     this._latitude  = null;
     this._longitude = null;
 
+    // Wire gettext into providers so condition names translate
+    setGettext(s => this.gettext(s));
+
     this._locationManager = new LocationManager(this._session);
 
     this._panelButton = new WeatherPanelButton(this);
     const pos   = this._settings.get_string("panel-position")   || "right";
     const index = this._settings.get_int("panel-position-index")  || 0;
     Main.panel.addToStatusArea("weather-extension", this._panelButton, index, pos);
+
+    // Notification source (created once, re-used for all alerts)
+    this._notifSource = null;
+    // Track last-notified alert key to avoid spam on every refresh
+    this._lastAlertKey = null;
 
     // React to settings that require a UI rebuild
     this._settingsConns = [
@@ -60,6 +73,10 @@ export default class WeatherExtension extends Extension {
       this._settings.connect("changed::custom-weather-url",() => this._debouncedReload()),
       this._settings.connect("changed::location-mode",     () => { if (this._enabled) this._detectLocationAndLoadWeather(); }),
       this._settings.connect("changed::location",          () => { if (this._enabled) this._detectLocationAndLoadWeather(); }),
+      // Reset alert dedupe key when notifications are re-enabled
+      this._settings.connect("changed::enable-weather-alerts", () => {
+        this._lastAlertKey = null;
+      }),
     ];
 
     // React to network reconnection
@@ -96,11 +113,18 @@ export default class WeatherExtension extends Extension {
       this._session = null;
     }
 
+    this._notifSource  = null;
+    this._lastAlertKey = null;
     this._settings        = null;
     this._locationManager = null;
     this._latitude        = null;
     this._longitude       = null;
   }
+
+  // ── i18n helper ───────────────────────────────────────────────────────────
+
+  // Expose gettext to UI modules that receive the extension object
+  _(s) { return this.gettext(s); }
 
   // ── Location resolution ───────────────────────────────────────────────────
 
@@ -114,13 +138,12 @@ export default class WeatherExtension extends Extension {
       this._locationName= loc.name;
     } catch (e) {
       console.error("[Weather] Location detection failed:", e.message);
-      // Use fallback coords so we still get a weather reading
       this._latitude    = FALLBACK.lat;
       this._longitude   = FALLBACK.lon;
       this._locationName= FALLBACK.name;
 
       if (this._panelButton && !this._panelButton._destroyed) {
-        this._panelButton._weatherLabel.set_text("Offline");
+        this._panelButton._weatherLabel.set_text(this._("Offline"));
         this._panelButton._weatherIcon.set_icon_name("network-offline-symbolic");
       }
     }
@@ -152,10 +175,9 @@ export default class WeatherExtension extends Extension {
         ? cfg.buildUrl(this._latitude, this._longitude, apiKey, customUrl)
         : cfg.buildUrl(this._latitude, this._longitude, apiKey);
     } catch (e) {
-      // buildUrl throws when a required API key is missing
       console.error(`[Weather] ${cfg.name} URL build error:`, e.message);
       if (this._panelButton && !this._panelButton._destroyed) {
-        this._panelButton._weatherLabel.set_text("No Key");
+        this._panelButton._weatherLabel.set_text(this._("No Key"));
         this._panelButton._weatherIcon.set_icon_name("dialog-warning-symbolic");
         this._panelButton.updateProviderStatus(providerKey, "error", e.message.substring(0, 60));
       }
@@ -185,12 +207,16 @@ export default class WeatherExtension extends Extension {
           provider: cfg.name,
         });
       }
+
+      // Check for dangerous conditions and notify if enabled
+      this._maybeNotifyAlerts(parsed.current, this._locationName);
+
     } catch (e) {
       console.error(`[Weather] ${cfg.name} fetch failed:`, e.message);
 
       if (this._panelButton && !this._panelButton._destroyed) {
         const offline = !Gio.NetworkMonitor.get_default().get_network_available();
-        this._panelButton._weatherLabel.set_text(offline ? "Offline" : "Error");
+        this._panelButton._weatherLabel.set_text(offline ? this._("Offline") : this._("Error"));
         this._panelButton._weatherIcon.set_icon_name(
           offline ? "network-offline-symbolic" : "dialog-error-symbolic"
         );
@@ -201,7 +227,6 @@ export default class WeatherExtension extends Extension {
         );
       }
 
-      // Attempt a free fallback when provider key is wrong or provider is down
       if (providerKey !== "openmeteo" && Gio.NetworkMonitor.get_default().get_network_available()) {
         this._tryFallback(providerKey);
       }
@@ -210,7 +235,6 @@ export default class WeatherExtension extends Extension {
 
   async _tryFallback(failedKey) {
     if (!this._enabled) return;
-    // Try the free providers in order; skip the one that just failed
     const order = ["openmeteo", "wttr", "meteosource"];
     for (const key of order) {
       if (key === failedKey) continue;
@@ -228,12 +252,93 @@ export default class WeatherExtension extends Extension {
             current:  parsed.current,
             hourly:   parsed.hourly ?? null,
             daily:    parsed.daily  ?? null,
-            provider: `${cfg.name} (fallback)`,
+            provider: `${cfg.name} (${this._("fallback")})`,
           });
         }
+        this._maybeNotifyAlerts(parsed.current, this._locationName);
         console.log(`[Weather] Fell back to ${cfg.name}`);
         return;
       } catch (_) { /* try next */ }
+    }
+  }
+
+  // ── Desktop alert notifications ───────────────────────────────────────────
+
+  /**
+   * Evaluate current weather data and send a desktop notification when the
+   * conditions are dangerous, but only if the user has enabled alerts in
+   * settings and the alert hasn't already been shown this cycle.
+   */
+  _maybeNotifyAlerts(current, location) {
+    if (!this._enabled) return;
+    if (!this._settings.get_boolean("enable-weather-alerts")) return;
+
+    const conditions = getWeatherConditions();
+    const cond = conditions[current.weather_code] ?? conditions[0];
+
+    const useFahr = this._settings.get_boolean("use-fahrenheit");
+    const tempVal = useFahr ? current.temperature_2m * 9/5 + 32 : current.temperature_2m;
+    const heatLim = useFahr ? 95 : 35;
+    const coldLim = useFahr ? 14 : -10;
+
+    // Build a sorted list of active alert descriptors
+    const alerts = [];
+
+    if (ALERT_SEVERITIES.has(cond.severity))
+      alerts.push({key: `cond:${current.weather_code}`, title: this._("⚠️ Severe Weather Alert"), body: `${cond.name} — ${location}`});
+
+    if (tempVal > heatLim)
+      alerts.push({key: `heat:${Math.round(tempVal)}`, title: this._("🌡️ Heat Warning"), body: this._("Extreme high temperature detected") + ` (${Math.round(tempVal)}${useFahr ? "°F" : "°C"}) — ${location}`});
+
+    if (tempVal < coldLim)
+      alerts.push({key: `cold:${Math.round(tempVal)}`, title: this._("🥶 Cold Warning"), body: this._("Extreme low temperature detected") + ` (${Math.round(tempVal)}${useFahr ? "°F" : "°C"}) — ${location}`});
+
+    if (current.wind_speed_10m > 80)
+      alerts.push({key: `wind:severe:${Math.round(current.wind_speed_10m)}`, title: this._("🌀 Storm Warning"), body: this._("Dangerous wind speed") + ` (${Math.round(current.wind_speed_10m)} km/h) — ${location}`});
+    else if (current.wind_speed_10m > 50)
+      alerts.push({key: `wind:strong:${Math.round(current.wind_speed_10m)}`, title: this._("💨 Wind Warning"), body: this._("Strong winds detected") + ` (${Math.round(current.wind_speed_10m)} km/h) — ${location}`});
+
+    if (alerts.length === 0) {
+      // Conditions are safe – reset dedupe so a future alert shows
+      this._lastAlertKey = null;
+      return;
+    }
+
+    // Deduplicate: build a compound key from all active alerts
+    const alertKey = alerts.map(a => a.key).join("|");
+    if (alertKey === this._lastAlertKey) return;
+    this._lastAlertKey = alertKey;
+
+    // Send one notification per alert type
+    for (const alert of alerts)
+      this._sendNotification(alert.title, alert.body);
+  }
+
+  _sendNotification(title, body) {
+    if (!this._enabled) return;
+
+    try {
+      // Lazily create and register the notification source
+      if (!this._notifSource) {
+        this._notifSource = new MessageTray.Source({
+          title: this._("Advanced Weather"),
+          iconName: "weather-storm-symbolic",
+        });
+        Main.messageTray.add(this._notifSource);
+      }
+
+      const notification = new MessageTray.Notification({
+        source:  this._notifSource,
+        title,
+        body,
+        iconName: "weather-storm-symbolic",
+        urgency:  MessageTray.Urgency.HIGH,
+        isTransient: false,
+      });
+
+      this._notifSource.addNotification(notification);
+    } catch (e) {
+      console.error("[Weather] Failed to send notification:", e.message);
     }
   }
 
@@ -247,7 +352,6 @@ export default class WeatherExtension extends Extension {
       if (!this._enabled) return;
       if (key === "custom") continue;
       if (cfg.requiresApiKey) {
-        // Don't test paid providers without a key – just mark inactive
         if (this._panelButton && !this._panelButton._destroyed)
           this._panelButton.updateProviderStatus(key, "inactive");
         continue;
@@ -280,7 +384,6 @@ export default class WeatherExtension extends Extension {
       }
     }
 
-    // Test custom if URL is configured
     if (!this._enabled) return;
     const customUrl = this._settings.get_string("custom-weather-url") || "";
     const customKey = this._settings.get_string("weather-api-key")    || "";
@@ -322,7 +425,7 @@ export default class WeatherExtension extends Extension {
     this._detectLocationAndLoadWeather();
   }
 
-  // ── Debounced reload (avoids double-fetch while user edits settings) ───────
+  // ── Debounced reload ───────────────────────────────────────────────────────
 
   _debouncedReload() {
     if (!this._enabled) return;

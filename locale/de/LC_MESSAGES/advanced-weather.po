@@ -175,11 +175,6 @@ msgstr "Open-Source-Lizenz"
 msgid "Open source software information"
 msgstr "Informationen zur Open-Source-Software"
 
-msgid ""
-"Open-Meteo, Meteosource, Wttr.in, OpenWeatherMap, WeatherAPI, Weather "
-"Underground"
-msgstr ""
-
 msgid "Panel Display"
 msgstr "Panel-Anzeige"
 
@@ -206,12 +201,6 @@ msgstr "Standortanzeige aktualisieren"
 
 msgid "Required"
 msgstr "Erforderlich"
-
-msgid ""
-"Response received but no weather data found. Check your API key and URL."
-msgstr ""
-"Antwort empfangen, aber keine Wetterdaten gefunden. API-Schlüssel und URL "
-"prüfen."
 
 msgid "Right"
 msgstr "Rechts"
@@ -351,11 +340,6 @@ msgstr "m/s (Meter pro Sekunde)"
 msgid "mph (Miles per hour)"
 msgstr "mph (Meilen pro Stunde)"
 
-msgid ""
-"{lat} and {lon} are replaced with coordinates.\\nExample WU URL: "
-"https://api.weather.com/v2/pws/observations/current?stationId=MYID&format=json&units=m&apiKey=YOURKEY"
-msgstr ""
-
 msgid "☕ Buy Me a Coffee"
 msgstr "☕ Kauf mir einen Kaffee"
 
@@ -379,3 +363,315 @@ msgstr "📍 Manuell – Bitte Standort festlegen"
 
 msgid "API key is required for "
 msgstr ""
+
+msgid "Enable Weather Alerts"
+msgstr "Wetterwarnungen aktivieren"
+
+msgid "Send desktop notifications for dangerous weather"
+msgstr "Desktop-Benachrichtigungen bei gefährlichem Wetter senden"
+
+msgid "Weather Alerts"
+msgstr "Wetterwarnungen"
+
+msgid "⚠️ Severe Weather Alert"
+msgstr "⚠️ Unwetterwarnung"
+
+msgid "🌡️ Heat Warning"
+msgstr "🌡️ Hitzewarnung"
+
+msgid "🥶 Cold Warning"
+msgstr "🥶 Kältewarnung"
+
+msgid "💨 Wind Warning"
+msgstr "💨 Windwarnung"
+
+msgid "🌀 Storm Warning"
+msgstr "🌀 Sturmwarnung"
+
+msgid "Extreme high temperature detected"
+msgstr "Extreme Hitze erkannt"
+
+msgid "Extreme low temperature detected"
+msgstr "Extreme Kälte erkannt"
+
+msgid "Dangerous wind speed"
+msgstr "Gefährliche Windgeschwindigkeit"
+
+msgid "Strong winds detected"
+msgstr "Starke Winde erkannt"
+
+msgid "Advanced Weather"
+msgstr "Erweiterter Wetterdienst"
+
+msgid "Loading weather…"
+msgstr "Wetter wird geladen…"
+
+msgid "Location Information"
+msgstr "Standortinformationen"
+
+msgid "Weather Provider Status"
+msgstr "Anbieter-Status"
+
+msgid "Hourly Forecast"
+msgstr "Stundenvorhersage"
+
+msgid "7-Day Forecast"
+msgstr "7-Tage-Vorhersage"
+
+msgid "Weather Insights"
+msgstr "Wetter-Einblicke"
+
+msgid "Refresh Weather"
+msgstr "Wetter aktualisieren"
+
+msgid "Extension Settings"
+msgstr "Erweiterungseinstellungen"
+
+msgid "Active"
+msgstr "Aktiv"
+
+msgid "Loading…"
+msgstr "Wird geladen…"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Checking…"
+msgstr "Wird überprüft…"
+
+msgid "Last Update"
+msgstr "Letzte Aktualisierung"
+
+msgid "Never"
+msgstr "Nie"
+
+msgid "Available Providers"
+msgstr "Verfügbare Anbieter"
+
+msgid "Free"
+msgstr "Kostenlos"
+
+msgid "Custom Provider"
+msgstr "Benutzerdefinierter Anbieter"
+
+msgid "Working"
+msgstr "Funktioniert"
+
+msgid "Error"
+msgstr "Fehler"
+
+msgid "Connection Timeout"
+msgstr "Verbindungsabbruch"
+
+msgid "Not Configured"
+msgstr "Nicht konfiguriert"
+
+msgid "Testing Connection…"
+msgstr "Verbindung wird getestet…"
+
+msgid "Unknown"
+msgstr "Unbekannt"
+
+msgid "Current"
+msgstr "Aktuell"
+
+msgid "Auto-detected"
+msgstr "Automatisch erkannt"
+
+msgid "Not set"
+msgstr "Nicht festgelegt"
+
+msgid "Coordinates"
+msgstr "Koordinaten"
+
+msgid "Not available"
+msgstr "Nicht verfügbar"
+
+msgid "Method"
+msgstr "Methode"
+
+msgid "IP-based geolocation"
+msgstr "IP-basierte Geolokalisierung"
+
+msgid "Manually configured"
+msgstr "Manuell konfiguriert"
+
+msgid "Switch to Auto Detection"
+msgstr "Zur automatischen Erkennung wechseln"
+
+msgid "Switch to Manual Location"
+msgstr "Zum manuellen Standort wechseln"
+
+msgid "Enter city name…"
+msgstr "Stadtname eingeben…"
+
+msgid "Search"
+msgstr "Suchen"
+
+msgid "Clear"
+msgstr "Löschen"
+
+msgid "Searching…"
+msgstr "Suche läuft…"
+
+msgid "No locations found"
+msgstr "Keine Standorte gefunden"
+
+msgid "Unknown Location"
+msgstr "Unbekannter Standort"
+
+msgid "Unknown Provider"
+msgstr "Unbekannter Anbieter"
+
+msgid "SEVERE WEATHER"
+msgstr "UNWETTER"
+
+msgid "HEAT WARNING"
+msgstr "HITZEWARNUNG"
+
+msgid "Extreme temperatures"
+msgstr "Extreme Temperaturen"
+
+msgid "COLD WARNING"
+msgstr "KÄLTEWARNUNG"
+
+msgid "Extreme low temperatures"
+msgstr "Extreme Kälttemperaturen"
+
+msgid "STORM WARNING"
+msgstr "STURMWARNUNG"
+
+msgid "Dangerous winds detected"
+msgstr "Gefährliche Winde erkannt"
+
+msgid "WIND WARNING"
+msgstr "WINDWARNUNG"
+
+msgid "Temperature Trend"
+msgstr "Temperaturtrend"
+
+msgid "Precipitation (24h)"
+msgstr "Niederschlag (24h)"
+
+msgid "Wind"
+msgstr "Wind"
+
+msgid "Strong"
+msgstr "Stark"
+
+msgid "Moderate"
+msgstr "Mäßig"
+
+msgid "Light"
+msgstr "Leicht"
+
+msgid "UV Index"
+msgstr "UV-Index"
+
+msgid "High"
+msgstr "Hoch"
+
+msgid "Low"
+msgstr "Niedrig"
+
+msgid "Insufficient data"
+msgstr "Unzureichende Daten"
+
+msgid "Warming"
+msgstr "Wärmer werdend"
+
+msgid "Cooling"
+msgstr "Kühler werdend"
+
+msgid "Stable"
+msgstr "Stabil"
+
+msgid "Today"
+msgstr "Heute"
+
+msgid "Tomorrow"
+msgstr "Morgen"
+
+msgid "AUTO"
+msgstr "AUTO"
+
+msgid "MANUAL"
+msgstr "MANUELL"
+
+msgid "Offline"
+msgstr "Offline"
+
+msgid "No Key"
+msgstr "Kein Schlüssel"
+
+msgid "fallback"
+msgstr "Fallback"
+
+msgid "Clear Sky"
+msgstr "Klarer Himmel"
+
+msgid "Mainly Clear"
+msgstr "Überwiegend klar"
+
+msgid "Partly Cloudy"
+msgstr "Teilweise bewölkt"
+
+msgid "Overcast"
+msgstr "Bedeckt"
+
+msgid "Fog"
+msgstr "Nebel"
+
+msgid "Rime Fog"
+msgstr "Raureifnebel"
+
+msgid "Light Drizzle"
+msgstr "Leichter Nieselregen"
+
+msgid "Drizzle"
+msgstr "Nieselregen"
+
+msgid "Heavy Drizzle"
+msgstr "Starker Nieselregen"
+
+msgid "Light Rain"
+msgstr "Leichter Regen"
+
+msgid "Rain"
+msgstr "Regen"
+
+msgid "Heavy Rain"
+msgstr "Starker Regen"
+
+msgid "Light Snow"
+msgstr "Leichter Schneefall"
+
+msgid "Snow"
+msgstr "Schnee"
+
+msgid "Heavy Snow"
+msgstr "Starker Schneefall"
+
+msgid "Snow Grains"
+msgstr "Schneegriesel"
+
+msgid "Rain Showers"
+msgstr "Regenschauer"
+
+msgid "Heavy Showers"
+msgstr "Starke Schauer"
+
+msgid "Snow Showers"
+msgstr "Schneeschauer"
+
+msgid "Heavy Snow Showers"
+msgstr "Starke Schneeschauer"
+
+msgid "Thunderstorm"
+msgstr "Gewitter"
+
+msgid "Hail Storm"
+msgstr "Hagelgewitter"
+
+msgid "Heavy Hail"
+msgstr "Starker Hagel"
