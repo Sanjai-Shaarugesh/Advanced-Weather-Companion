@@ -1,0 +1,677 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: advanced-weather 2.0\n"
+"Report-Msgid-Bugs-To: https://github.com/Sanjai-Shaarugesh/Advanced-Weather-Companion/issues\n"
+"POT-Creation-Date: 2026-03-15 00:00+0000\n"
+"PO-Revision-Date: 2026-03-15 00:00+0000\n"
+"Last-Translator: Advanced Weather Team\n"
+"Language-Team: Tamil\n"
+"Language: ta\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "1 hour"
+msgstr "1 மணி நேரம்"
+
+msgid "10 minutes"
+msgstr "10 நிமிடங்கள்"
+
+msgid "15 minutes"
+msgstr "15 நிமிடங்கள்"
+
+msgid "30 minutes"
+msgstr "30 நிமிடங்கள்"
+
+msgid "5 minutes"
+msgstr "5 நிமிடங்கள்"
+
+msgid "A beautiful, modern weather companion for GNOME Shell"
+msgstr "GNOME Shell-க்கான அழகான நவீன வானிலை நண்பன்"
+
+msgid "API Key"
+msgstr "API திறவுகோல்"
+
+msgid "About"
+msgstr "பற்றி"
+
+msgid "Advanced Weather Companion"
+msgstr "மேம்பட்ட வானிலை துணை"
+
+msgid "Appearance"
+msgstr "தோற்றம்"
+
+msgid "Center"
+msgstr "மையம்"
+
+msgid "Choose detection method"
+msgstr "கண்டறியும் முறையை தேர்ந்தெடுக்கவும்"
+
+msgid "Choose your weather data provider"
+msgstr "வானிலை தரவு வழங்குநரை தேர்ந்தெடுக்கவும்"
+
+msgid "Clear search"
+msgstr "தேடலை அழிக்கவும்"
+
+msgid "Configure how weather appears in the panel"
+msgstr "பலகத்தில் வானிலை எவ்வாறு தோன்றும் என்பதை அமைக்கவும்"
+
+msgid "Configure how your location is determined"
+msgstr "இருப்பிடம் எவ்வாறு தீர்மானிக்கப்படுகிறது என்பதை அமைக்கவும்"
+
+msgid "Configure measurement units and display format"
+msgstr "அளவீட்டு அலகுகள் மற்றும் காட்சி வடிவமைப்பை அமைக்கவும்"
+
+msgid "Configure weather data refresh settings"
+msgstr "வானிலை தரவு புதுப்பிப்பு அமைப்புகளை கட்டமைக்கவும்"
+
+msgid "Configure your selected weather provider"
+msgstr "தேர்ந்தெடுத்த வானிலை வழங்குநரை கட்டமைக்கவும்"
+
+msgid "Connection successful!"
+msgstr "இணைப்பு வெற்றிகரமாக உள்ளது!"
+
+msgid "Could not copy. Please copy manually: "
+msgstr "நகலெடுக்க முடியவில்லை. கைமுறையாக நகலெடுக்கவும்: "
+
+msgid "Could not open website."
+msgstr "இணையதளத்தை திறக்க முடியவில்லை."
+
+msgid "Current Location"
+msgstr "தற்போதைய இருப்பிடம்"
+
+msgid "Current temp:"
+msgstr "தற்போதைய வெப்பநிலை:"
+
+msgid "Custom / Weather Underground URL"
+msgstr "தனிப்பயன் / Weather Underground URL"
+
+msgid "Custom URL is required"
+msgstr "தனிப்பயன் URL தேவை"
+
+msgid "Display AUTO/MANUAL indicator in panel"
+msgstr "பலகத்தில் AUTO/MANUAL குறிகாட்டியை காட்டு"
+
+msgid "Display relative humidity in weather details"
+msgstr "வானிலை விவரங்களில் ஈரப்பதத்தை காட்டு"
+
+msgid "Display temperature alongside the weather icon"
+msgstr "வானிலை ஐகானுக்கு அருகில் வெப்பநிலையை காட்டு"
+
+msgid "Display time in 12-hour format with AM/PM"
+msgstr "AM/PM உடன் 12 மணி நேர வடிவத்தில் காட்டு"
+
+msgid "Donation Address"
+msgstr "நன்கொடை முகவரி"
+
+msgid "Donation address"
+msgstr "நன்கொடை முகவரி"
+
+msgid "Enable or disable weather features"
+msgstr "வானிலை அம்சங்களை இயக்கு அல்லது முடக்கு"
+
+msgid "Extension Links"
+msgstr "நீட்டிப்பு இணைப்புகள்"
+
+msgid "Features"
+msgstr "அம்சங்கள்"
+
+msgid "General"
+msgstr "பொது"
+
+msgid "Get API Key"
+msgstr "API திறவுகோல் பெறுக"
+
+msgid "How often to refresh weather data"
+msgstr "வானிலை தரவை எத்தனை அடிக்கடி புதுப்பிக்கவும்"
+
+msgid "Icon Size"
+msgstr "ஐகான் அளவு"
+
+msgid "Invalid coordinates. Lat: −90 to 90, Lon: −180 to 180."
+msgstr "தவறான ஆயங்கள். அட்சரேகை: −90 முதல் 90, தீர்க்கரேகை: −180 முதல் 180."
+
+msgid "Left"
+msgstr "இடது"
+
+msgid "License & Credits"
+msgstr "உரிமம் மற்றும் நன்றிகள்"
+
+msgid "Location"
+msgstr "இருப்பிடம்"
+
+msgid "Location Detection"
+msgstr "இருப்பிட கண்டறிதல்"
+
+msgid "Location Mode"
+msgstr "இருப்பிட முறை"
+
+msgid "MIT License – Free and open source software"
+msgstr "MIT உரிமம் – இலவச திறந்த மூல மென்பொருள்"
+
+msgid "Manual Location Search"
+msgstr "கைமுறை இருப்பிட தேடல்"
+
+msgid "Modern weather extension with native GNOME design"
+msgstr "GNOME வடிவமைப்பில் நவீன வானிலை நீட்டிப்பு"
+
+msgid "No Results Found"
+msgstr "முடிவுகள் எதுவும் இல்லை"
+
+msgid "Not Required"
+msgstr "தேவையில்லை"
+
+msgid "Not specified"
+msgstr "குறிப்பிடப்படவில்லை"
+
+msgid "Open Source License"
+msgstr "திறந்த மூல உரிமம்"
+
+msgid "Open source software information"
+msgstr "திறந்த மூல மென்பொருள் தகவல்"
+
+msgid "Panel Display"
+msgstr "பலக காட்சி"
+
+msgid "Panel Position"
+msgstr "பலக நிலை"
+
+msgid "Panel Position Index"
+msgstr "பலக நிலை குறியீடு"
+
+msgid "Position index within the selected panel area"
+msgstr "தேர்ந்தெடுத்த பலக பகுதியில் நிலை குறியீடு"
+
+msgid "Provider Configuration"
+msgstr "வழங்குநர் கட்டமைப்பு"
+
+msgid "Provider Information"
+msgstr "வழங்குநர் தகவல்"
+
+msgid "Rate Limit"
+msgstr "கோரிக்கை வரம்பு"
+
+msgid "Refresh location display"
+msgstr "இருப்பிட காட்சியை புதுப்பி"
+
+msgid "Required"
+msgstr "தேவையானது"
+
+msgid "Response received but no weather data found. Check your API key and URL."
+msgstr "பதில் கிடைத்தது ஆனால் வானிலை தரவு இல்லை. API திறவுகோல் மற்றும் URL சரிபார்க்கவும்."
+
+msgid "Right"
+msgstr "வலது"
+
+msgid "Search Error"
+msgstr "தேடல் பிழை"
+
+msgid "Search Examples"
+msgstr "தேடல் எடுத்துக்காட்டுகள்"
+
+msgid "Search Location"
+msgstr "இருப்பிடம் தேடு"
+
+msgid "Search Results"
+msgstr "தேடல் முடிவுகள்"
+
+msgid "Search by city name or coordinates (lat, lon)"
+msgstr "நகர பெயர் அல்லது ஆயங்கள் மூலம் தேடு"
+
+msgid "Search failed. Please try again."
+msgstr "தேடல் தோல்வியடைந்தது. மீண்டும் முயற்சிக்கவும்."
+
+msgid "Search for location"
+msgstr "இருப்பிடம் தேடு"
+
+msgid "Search timed out. Please try again."
+msgstr "தேடல் நேர முடிவு. மீண்டும் முயற்சிக்கவும்."
+
+msgid "Select this location"
+msgstr "இந்த இருப்பிடத்தை தேர்ந்தெடு"
+
+msgid "Select weather API service"
+msgstr "வானிலை API சேவையை தேர்ந்தெடு"
+
+msgid "Show Humidity"
+msgstr "ஈரப்பதம் காட்டு"
+
+msgid "Show Location Indicator"
+msgstr "இருப்பிட குறிகாட்டி காட்டு"
+
+msgid "Show Temperature Text"
+msgstr "வெப்பநிலை உரை காட்டு"
+
+msgid "Size of the temperature text in pixels"
+msgstr "வெப்பநிலை உரையின் அளவு (பிக்சல்)"
+
+msgid "Size of the weather icon in pixels"
+msgstr "வானிலை ஐகானின் அளவு (பிக்சல்)"
+
+msgid "Source code, issues, and contributions"
+msgstr "மூல குறியீடு, சிக்கல்கள் மற்றும் பங்களிப்புகள்"
+
+msgid "Support development with a small donation"
+msgstr "சிறு நன்கொடையுடன் வளர்ச்சியை ஆதரிக்கவும்"
+
+msgid "Switch between Celsius and Fahrenheit"
+msgstr "செல்சியஸ் மற்றும் ஃபாரன்ஹீட்டுக்கு மாறு"
+
+msgid "Test"
+msgstr "சோதனை"
+
+msgid "Test Connection"
+msgstr "இணைப்பை சோதி"
+
+msgid "Test failed:"
+msgstr "சோதனை தோல்வியடைந்தது:"
+
+msgid "Testing…"
+msgstr "சோதிக்கிறது…"
+
+msgid "Text Size"
+msgstr "உரை அளவு"
+
+msgid "Try a different search term or check your spelling"
+msgstr "வேறு தேடல் சொல்லை முயற்சிக்கவும் அல்லது உங்கள் எழுத்துப்பிழையை சரிபார்க்கவும்"
+
+msgid "URL Placeholders"
+msgstr "URL இடம்பிடிகள்"
+
+msgid "Unable to reach location service. Check your connection."
+msgstr "இருப்பிட சேவையை அடைய முடியவில்லை. இணைப்பை சரிபார்க்கவும்."
+
+msgid "Unit for wind speed display"
+msgstr "காற்று வேக காட்சிக்கான அலகு"
+
+msgid "Units & Format"
+msgstr "அலகுகள் மற்றும் வடிவம்"
+
+msgid "Update Interval"
+msgstr "புதுப்பிப்பு இடைவெளி"
+
+msgid "Updates"
+msgstr "புதுப்பிப்புகள்"
+
+msgid "Use 12-hour Format"
+msgstr "12 மணி நேர வடிவம் பயன்படுத்து"
+
+msgid "Use Fahrenheit"
+msgstr "ஃபாரன்ஹீட் பயன்படுத்து"
+
+msgid "Verify your provider settings work correctly"
+msgstr "வழங்குநர் அமைப்புகள் சரியாக செயல்படுகின்றனவா என சரிபார்க்கவும்"
+
+msgid "Version 2.0"
+msgstr "பதிப்பு 2.0"
+
+msgid "View on GitHub"
+msgstr "GitHub-ல் பார்க்கவும்"
+
+msgid "Weather Data Source"
+msgstr "வானிலை தரவு மூலம்"
+
+msgid "Weather Data Sources"
+msgstr "வானிலை தரவு மூலங்கள்"
+
+msgid "Weather Provider"
+msgstr "வானிலை வழங்குநர்"
+
+msgid "Where to show the weather widget"
+msgstr "வானிலை விட்ஜெட்டை எங்கு காட்ட வேண்டும்"
+
+msgid "Wind Speed Unit"
+msgstr "காற்று வேக அலகு"
+
+msgid "copied to clipboard"
+msgstr "இடைக்கணினி கணினியில் நகலெடுக்கப்பட்டது"
+
+msgid "km/h (Kilometers per hour)"
+msgstr "கி.மீ/மணி (மணிக்கு கிலோமீட்டர்)"
+
+msgid "knots (Nautical miles)"
+msgstr "நாட்ஸ் (கடல் மைல்கள்)"
+
+msgid "m/s (Meters per second)"
+msgstr "மீ/வி (வினாடிக்கு மீட்டர்)"
+
+msgid "mph (Miles per hour)"
+msgstr "மைல்/மணி (மணிக்கு மைல்)"
+
+msgid "☕ Buy Me a Coffee"
+msgstr "☕ எனக்கு ஒரு காபி வாங்கிப் போடுங்கள்"
+
+msgid "☕ Support – Scan QR to buy me a coffee"
+msgstr "☕ ஆதரவு – காபி வாங்க QR ஸ்கேன் செய்யவும்"
+
+msgid "✅ Location updated successfully"
+msgstr "✅ இருப்பிடம் வெற்றிகரமாக புதுப்பிக்கப்பட்டது"
+
+msgid "🌍 Auto Detection"
+msgstr "🌍 தானியங்கி கண்டறிதல்"
+
+msgid "🌍 Auto Detection Enabled"
+msgstr "🌍 தானியங்கி கண்டறிதல் இயக்கப்பட்டது"
+
+msgid "📍 Manual Location"
+msgstr "📍 கைமுறை இருப்பிடம்"
+
+msgid "📍 Manual – Please set location"
+msgstr "📍 கைமுறை – இருப்பிடம் அமைக்கவும்"
+
+msgid "API key is required for "
+msgstr "API திறவுகோல் தேவை: "
+
+msgid "Enable Weather Alerts"
+msgstr "வானிலை எச்சரிக்கைகளை இயக்கு"
+
+msgid "Send desktop notifications for dangerous weather"
+msgstr "ஆபத்தான வானிலைக்கு டெஸ்க்டாப் அறிவிப்புகள் அனுப்பு"
+
+msgid "Weather Alerts"
+msgstr "வானிலை எச்சரிக்கைகள்"
+
+msgid "⚠️ Severe Weather Alert"
+msgstr "⚠️ கடுமையான வானிலை எச்சரிக்கை"
+
+msgid "🌡️ Heat Warning"
+msgstr "🌡️ வெப்ப எச்சரிக்கை"
+
+msgid "🥶 Cold Warning"
+msgstr "🥶 குளிர் எச்சரிக்கை"
+
+msgid "💨 Wind Warning"
+msgstr "💨 காற்று எச்சரிக்கை"
+
+msgid "🌀 Storm Warning"
+msgstr "🌀 புயல் எச்சரிக்கை"
+
+msgid "Extreme high temperature detected"
+msgstr "அதிக வெப்பநிலை கண்டறியப்பட்டது"
+
+msgid "Extreme low temperature detected"
+msgstr "மிகக் குறைந்த வெப்பநிலை கண்டறியப்பட்டது"
+
+msgid "Dangerous wind speed"
+msgstr "ஆபத்தான காற்று வேகம்"
+
+msgid "Strong winds detected"
+msgstr "வலிமையான காற்று கண்டறியப்பட்டது"
+
+msgid "Advanced Weather"
+msgstr "மேம்பட்ட வானிலை"
+
+msgid "Loading weather…"
+msgstr "வானிலை ஏற்றுகிறது…"
+
+msgid "Location Information"
+msgstr "இருப்பிட தகவல்"
+
+msgid "Weather Provider Status"
+msgstr "வானிலை வழங்குநர் நிலை"
+
+msgid "Hourly Forecast"
+msgstr "மணிக்கணக்கான வானிலை அறிக்கை"
+
+msgid "7-Day Forecast"
+msgstr "7 நாள் வானிலை அறிக்கை"
+
+msgid "Weather Insights"
+msgstr "வானிலை பகுப்பாய்வு"
+
+msgid "Refresh Weather"
+msgstr "வானிலை புதுப்பி"
+
+msgid "Extension Settings"
+msgstr "நீட்டிப்பு அமைப்புகள்"
+
+msgid "Active"
+msgstr "செயலில்"
+
+msgid "Loading…"
+msgstr "ஏற்றுகிறது…"
+
+msgid "Status"
+msgstr "நிலை"
+
+msgid "Checking…"
+msgstr "சரிபார்க்கிறது…"
+
+msgid "Last Update"
+msgstr "கடைசி புதுப்பிப்பு"
+
+msgid "Never"
+msgstr "ஒருபோதும் இல்லை"
+
+msgid "Available Providers"
+msgstr "கிடைக்கக்கூடிய வழங்குநர்கள்"
+
+msgid "Free"
+msgstr "இலவசம்"
+
+msgid "Custom Provider"
+msgstr "தனிப்பயன் வழங்குநர்"
+
+msgid "Working"
+msgstr "செயல்படுகிறது"
+
+msgid "Error"
+msgstr "பிழை"
+
+msgid "Connection Timeout"
+msgstr "இணைப்பு நேர முடிவு"
+
+msgid "Not Configured"
+msgstr "கட்டமைக்கப்படவில்லை"
+
+msgid "Testing Connection…"
+msgstr "இணைப்பை சோதிக்கிறது…"
+
+msgid "Unknown"
+msgstr "தெரியாத"
+
+msgid "Current"
+msgstr "தற்போதைய"
+
+msgid "Auto-detected"
+msgstr "தானியங்கி கண்டறியப்பட்டது"
+
+msgid "Not set"
+msgstr "அமைக்கப்படவில்லை"
+
+msgid "Coordinates"
+msgstr "ஆயங்கள்"
+
+msgid "Not available"
+msgstr "கிடைக்கவில்லை"
+
+msgid "Method"
+msgstr "முறை"
+
+msgid "IP-based geolocation"
+msgstr "IP அடிப்படையிலான புவி இருப்பிடம்"
+
+msgid "Manually configured"
+msgstr "கைமுறையாக கட்டமைக்கப்பட்டது"
+
+msgid "Switch to Auto Detection"
+msgstr "தானியங்கி கண்டறிதலுக்கு மாறு"
+
+msgid "Switch to Manual Location"
+msgstr "கைமுறை இருப்பிடத்திற்கு மாறு"
+
+msgid "Enter city name…"
+msgstr "நகர பெயரை உள்ளிடுக…"
+
+msgid "Search"
+msgstr "தேடு"
+
+msgid "Clear"
+msgstr "அழி"
+
+msgid "Searching…"
+msgstr "தேடுகிறது…"
+
+msgid "No locations found"
+msgstr "இருப்பிடங்கள் எதுவும் இல்லை"
+
+msgid "Unknown Location"
+msgstr "தெரியாத இருப்பிடம்"
+
+msgid "Unknown Provider"
+msgstr "தெரியாத வழங்குநர்"
+
+msgid "SEVERE WEATHER"
+msgstr "கடுமையான வானிலை"
+
+msgid "HEAT WARNING"
+msgstr "வெப்ப எச்சரிக்கை"
+
+msgid "Extreme temperatures"
+msgstr "தீவிர வெப்பநிலை"
+
+msgid "COLD WARNING"
+msgstr "குளிர் எச்சரிக்கை"
+
+msgid "Extreme low temperatures"
+msgstr "மிகக் குறைந்த வெப்பநிலை"
+
+msgid "STORM WARNING"
+msgstr "புயல் எச்சரிக்கை"
+
+msgid "Dangerous winds detected"
+msgstr "ஆபத்தான காற்று கண்டறியப்பட்டது"
+
+msgid "WIND WARNING"
+msgstr "காற்று எச்சரிக்கை"
+
+msgid "Temperature Trend"
+msgstr "வெப்பநிலை போக்கு"
+
+msgid "Precipitation (24h)"
+msgstr "மழை (24 மணி நேரம்)"
+
+msgid "Wind"
+msgstr "காற்று"
+
+msgid "Strong"
+msgstr "வலிமையான"
+
+msgid "Moderate"
+msgstr "மிதமான"
+
+msgid "Light"
+msgstr "மெல்லிய"
+
+msgid "UV Index"
+msgstr "UV குறியீடு"
+
+msgid "High"
+msgstr "அதிகம்"
+
+msgid "Low"
+msgstr "குறைவு"
+
+msgid "Insufficient data"
+msgstr "போதுமான தரவு இல்லை"
+
+msgid "Warming"
+msgstr "வெப்பமாகிறது"
+
+msgid "Cooling"
+msgstr "குளிர்கிறது"
+
+msgid "Stable"
+msgstr "நிலையான"
+
+msgid "Today"
+msgstr "இன்று"
+
+msgid "Tomorrow"
+msgstr "நாளை"
+
+msgid "AUTO"
+msgstr "தானியங்கி"
+
+msgid "MANUAL"
+msgstr "கைமுறை"
+
+msgid "Offline"
+msgstr "இணைப்பில்லை"
+
+msgid "No Key"
+msgstr "திறவுகோல் இல்லை"
+
+msgid "fallback"
+msgstr "மாற்று"
+
+msgid "Clear Sky"
+msgstr "தெளிவான வானம்"
+
+msgid "Mainly Clear"
+msgstr "பெரும்பாலும் தெளிவு"
+
+msgid "Partly Cloudy"
+msgstr "ஓரளவு மேகமூட்டம்"
+
+msgid "Overcast"
+msgstr "முழு மேகமூட்டம்"
+
+msgid "Fog"
+msgstr "மூடுபனி"
+
+msgid "Rime Fog"
+msgstr "பனி மூடுபனி"
+
+msgid "Light Drizzle"
+msgstr "லேசான தூறல்"
+
+msgid "Drizzle"
+msgstr "தூறல்"
+
+msgid "Heavy Drizzle"
+msgstr "கனமான தூறல்"
+
+msgid "Light Rain"
+msgstr "லேசான மழை"
+
+msgid "Rain"
+msgstr "மழை"
+
+msgid "Heavy Rain"
+msgstr "கனமழை"
+
+msgid "Light Snow"
+msgstr "லேசான பனிப்பொழிவு"
+
+msgid "Snow"
+msgstr "பனிப்பொழிவு"
+
+msgid "Heavy Snow"
+msgstr "கனமான பனிப்பொழிவு"
+
+msgid "Snow Grains"
+msgstr "பனி தானியங்கள்"
+
+msgid "Rain Showers"
+msgstr "மழை தூறல்"
+
+msgid "Heavy Showers"
+msgstr "கனமான மழைத் தூறல்"
+
+msgid "Snow Showers"
+msgstr "பனி தூறல்"
+
+msgid "Heavy Snow Showers"
+msgstr "கனமான பனி தூறல்"
+
+msgid "Thunderstorm"
+msgstr "இடிமழை"
+
+msgid "Hail Storm"
+msgstr "ஆலங்கட்டி மழை"
+
+msgid "Heavy Hail"
+msgstr "கனமான ஆலங்கட்டி"

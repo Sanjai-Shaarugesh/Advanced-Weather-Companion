@@ -1,10 +1,10 @@
 import Adw from "gi://Adw";
 import Gtk from "gi://Gtk";
 import Gio from "gi://Gio";
-import GObject from "gi://GObject";
+
 import GLib from "gi://GLib";
 import Soup from "gi://Soup";
-import GdkPixbuf from "gi://GdkPixbuf";
+
 import Gdk from "gi://Gdk";
 
 import {
@@ -695,105 +695,72 @@ export default class WeatherPreferences extends ExtensionPreferences {
   }
 
   async _testWeatherConnection(settings) {
-    const testButton = this._providerDetailsGroup.get_last_child().get_last_child();
-    testButton.set_label(_("Testing..."));
-    testButton.set_sensitive(false);
+    if (this._testInProgress) return;
+    this._testInProgress = true;
+    this._testButton.set_label(_("Testing…"));
+    this._testButton.set_sensitive(false);
 
     try {
-      const provider = settings.get_string("weather-provider") || "openmeteo";
-      const apiKey = settings.get_string("weather-api-key") || "";
-      const customUrl = settings.get_string("custom-weather-url") || "";
+      const key       = this._settings.get_string("weather-provider") || "openmeteo";
+      const apiKey    = this._settings.get_string("weather-api-key")   || "";
+      const customUrl = this._settings.get_string("custom-weather-url") || "";
+      const cfg       = WEATHER_PROVIDERS[key];
 
-
-      const testLat = 40.7128;
-      const testLon = -74.0060;
+      if (cfg.requiresApiKey && !apiKey.trim())
+        throw new Error(_("API key is required for") + " " + cfg.name);
 
       let testUrl;
-      const providerConfig = WEATHER_PROVIDERS[provider];
+      if (key === "custom") {
+        if (!customUrl.trim())
+          throw new Error(_("Custom URL is required"));
 
-      if (provider === "custom") {
-        if (!customUrl.trim()) {
-          throw new Error("Custom URL is required");
-        }
-        testUrl = customUrl.replace("{lat}", testLat).replace("{lon}", testLon);
-        testUrl = testUrl.replace("{latitude}", testLat).replace("{longitude}", testLon);
-        if (apiKey) {
-          testUrl += testUrl.includes("?") ? "&" : "?";
-          testUrl += `key=${apiKey}`;
-        }
-      } else if (provider === "openmeteo") {
-        testUrl = `${providerConfig.baseUrl}?latitude=${testLat}&longitude=${testLon}&current=temperature_2m,weather_code`;
-      } else if (provider === "meteosource") {
-        testUrl = `${providerConfig.baseUrl}?lat=${testLat}&lon=${testLon}&sections=current&timezone=UTC&language=en&units=metric`;
-      } else if (provider === "wttr") {
-        testUrl = `${providerConfig.baseUrl}/${testLat},${testLon}?format=j1`;
-      }
-      else if (provider === "openweathermap") {
-        if (!apiKey.trim()) {
-          throw new Error("API key is required for OpenWeatherMap");
-        }
-         testUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${testLat}&lon=${testLon}&appid=${apiKey}&units=metric`;
-      } else if (provider === "weatherapi") {
-        if (!apiKey.trim()) {
-          throw new Error("API key is required for WeatherAPI");
-        }
-        testUrl = `${providerConfig.baseUrl}?key=${apiKey}&q=${testLat},${testLon}&days=1`;
-      }
+        testUrl = customUrl
+          .replace("{lat}",       TEST_LAT).replace("{latitude}",  TEST_LAT)
+          .replace("{lon}",       TEST_LON).replace("{longitude}", TEST_LON);
 
-      const message = Soup.Message.new("GET", testUrl);
-      message.request_headers.append('User-Agent', 'GNOME-Weather-Extension/1.0');
-
-      const bytes = await this._session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null);
-
-      if (message.status_code === 200) {
-        const responseText = new TextDecoder().decode(bytes.get_data());
-        const response = JSON.parse(responseText);
-
-
-        let hasValidData = false;
-        let temperature = null;
-
-        if (provider === "openmeteo" && response.current && response.current.temperature_2m !== undefined) {
-          hasValidData = true;
-          temperature = response.current.temperature_2m;
-        } else if (provider === "meteosource" && response.current && response.current.temperature !== undefined) {
-          hasValidData = true;
-          temperature = response.current.temperature;
-        } else if (provider === "wttr" && response.current_condition && response.current_condition[0] && response.current_condition[0].temp_C) {
-          hasValidData = true;
-          temperature = response.current_condition[0].temp_C;
-        } else if (provider === "openweathermap" && response.current && response.current.temp !== undefined) {
-          hasValidData = true;
-          temperature = response.current.temp;
-        } else if (provider === "weatherapi" && response.current && response.current.temp_c !== undefined) {
-          hasValidData = true;
-          temperature = response.current.temp_c;
-        } else if (provider === "custom" && response) {
-          hasValidData = true;
-        }
-
-        if (hasValidData) {
-          let successMessage = "✅ Connection successful! Weather data received.";
-          if (temperature !== null) {
-            successMessage += ` Current temperature: ${temperature}°C`;
-          }
-          this._showToast(successMessage);
-        } else {
-          throw new Error("Invalid response format - no temperature data found");
+        if (apiKey?.trim()) {
+          const hasKey =
+            testUrl.includes("apiKey=") || testUrl.includes("api_key=") ||
+            testUrl.includes("key=")    || testUrl.includes("appid=");
+          if (!hasKey)
+            testUrl += (testUrl.includes("?") ? "&" : "?") + `apiKey=${apiKey}`;
         }
       } else {
-        throw new Error(`HTTP ${message.status_code}: ${message.reason_phrase}`);
+        testUrl = cfg.testUrl(TEST_LAT, TEST_LON, apiKey);
       }
 
-    } catch (error) {
-      console.error("Weather provider test failed:", error);
-      this._showToast(_("❌ Connection failed: ") + error.message);
+      const msg = Soup.Message.new("GET", testUrl);
+      msg.request_headers.append("User-Agent", "GNOME-Weather-Extension/1.0");
+
+      const bytes = await this._session.send_and_read_async(
+        msg, GLib.PRIORITY_DEFAULT, this._cancellable);
+
+      if (msg.status_code !== 200)
+        throw new Error(`HTTP ${msg.status_code}: ${msg.reason_phrase}`);
+
+      const resp = JSON.parse(new TextDecoder().decode(bytes.get_data()));
+
+      if (!cfg.validateResponse(resp))
+        throw new Error(
+          _("Response received but no weather data found. Check your API key and URL."));
+
+      const raw     = cfg.getTemp(resp);
+      const temp    = raw !== null ? Math.round(parseFloat(raw)) : null;
+      const tempStr = temp !== null
+        ? " " + _("Current temp:") + ` ${temp}°C`
+        : "";
+      this._showToast("✅ " + _("Connection successful!") + tempStr);
+
+    } catch (e) {
+      if (e.matches?.(Gio.IOErrorEnum, Gio.IOErrorEnum.CANCELLED)) return;
+      this._showToast("❌ " + _("Connection failed:") + " " + e.message);
     } finally {
-      testButton.set_label(_("Test"));
-      testButton.set_sensitive(true);
+      this._testInProgress = false;
+      this._testButton.set_label(_("Test"));
+      this._testButton.set_sensitive(true);
     }
   }
-
+  
   _createAppearancePage(settings) {
     const page = new Adw.PreferencesPage({
       title: _("Appearance"),

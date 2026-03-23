@@ -1,0 +1,677 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: advanced-weather 2.0\n"
+"Report-Msgid-Bugs-To: https://github.com/Sanjai-Shaarugesh/Advanced-Weather-Companion/issues\n"
+"POT-Creation-Date: 2026-03-15 00:00+0000\n"
+"PO-Revision-Date: 2026-03-15 00:00+0000\n"
+"Last-Translator: Advanced Weather Team\n"
+"Language-Team: Thai\n"
+"Language: th\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "1 hour"
+msgstr "1 ชั่วโมง"
+
+msgid "10 minutes"
+msgstr "10 นาที"
+
+msgid "15 minutes"
+msgstr "15 นาที"
+
+msgid "30 minutes"
+msgstr "30 นาที"
+
+msgid "5 minutes"
+msgstr "5 นาที"
+
+msgid "A beautiful, modern weather companion for GNOME Shell"
+msgstr "ผู้ช่วยสภาพอากาศที่สวยงามและทันสมัยสำหรับ GNOME Shell"
+
+msgid "API Key"
+msgstr "คีย์ API"
+
+msgid "About"
+msgstr "เกี่ยวกับ"
+
+msgid "Advanced Weather Companion"
+msgstr "ผู้ช่วยสภาพอากาศขั้นสูง"
+
+msgid "Appearance"
+msgstr "รูปลักษณ์"
+
+msgid "Center"
+msgstr "ตรงกลาง"
+
+msgid "Choose detection method"
+msgstr "เลือกวิธีตรวจจับ"
+
+msgid "Choose your weather data provider"
+msgstr "เลือกผู้ให้บริการข้อมูลสภาพอากาศ"
+
+msgid "Clear search"
+msgstr "ล้างการค้นหา"
+
+msgid "Configure how weather appears in the panel"
+msgstr "ตั้งค่าการแสดงสภาพอากาศบนแผง"
+
+msgid "Configure how your location is determined"
+msgstr "ตั้งค่าวิธีระบุตำแหน่ง"
+
+msgid "Configure measurement units and display format"
+msgstr "ตั้งค่าหน่วยวัดและรูปแบบแสดงผล"
+
+msgid "Configure weather data refresh settings"
+msgstr "ตั้งค่าการรีเฟรชข้อมูลสภาพอากาศ"
+
+msgid "Configure your selected weather provider"
+msgstr "ตั้งค่าผู้ให้บริการสภาพอากาศที่เลือก"
+
+msgid "Connection successful!"
+msgstr "เชื่อมต่อสำเร็จ!"
+
+msgid "Could not copy. Please copy manually: "
+msgstr "ไม่สามารถคัดลอกได้ กรุณาคัดลอกด้วยตนเอง: "
+
+msgid "Could not open website."
+msgstr "ไม่สามารถเปิดเว็บไซต์ได้"
+
+msgid "Current Location"
+msgstr "ตำแหน่งปัจจุบัน"
+
+msgid "Current temp:"
+msgstr "อุณหภูมิปัจจุบัน:"
+
+msgid "Custom / Weather Underground URL"
+msgstr "URL แบบกำหนดเอง / Weather Underground"
+
+msgid "Custom URL is required"
+msgstr "จำเป็นต้องระบุ URL แบบกำหนดเอง"
+
+msgid "Display AUTO/MANUAL indicator in panel"
+msgstr "แสดงตัวบ่งชี้ AUTO/MANUAL บนแผง"
+
+msgid "Display relative humidity in weather details"
+msgstr "แสดงความชื้นสัมพัทธ์ในรายละเอียดสภาพอากาศ"
+
+msgid "Display temperature alongside the weather icon"
+msgstr "แสดงอุณหภูมิข้างไอคอนสภาพอากาศ"
+
+msgid "Display time in 12-hour format with AM/PM"
+msgstr "แสดงเวลาในรูปแบบ 12 ชั่วโมง พร้อม AM/PM"
+
+msgid "Donation Address"
+msgstr "ที่อยู่รับบริจาค"
+
+msgid "Donation address"
+msgstr "ที่อยู่รับบริจาค"
+
+msgid "Enable or disable weather features"
+msgstr "เปิดหรือปิดฟีเจอร์สภาพอากาศ"
+
+msgid "Extension Links"
+msgstr "ลิงก์ส่วนขยาย"
+
+msgid "Features"
+msgstr "ฟีเจอร์"
+
+msgid "General"
+msgstr "ทั่วไป"
+
+msgid "Get API Key"
+msgstr "รับคีย์ API"
+
+msgid "How often to refresh weather data"
+msgstr "ความถี่ในการรีเฟรชข้อมูลสภาพอากาศ"
+
+msgid "Icon Size"
+msgstr "ขนาดไอคอน"
+
+msgid "Invalid coordinates. Lat: −90 to 90, Lon: −180 to 180."
+msgstr "พิกัดไม่ถูกต้อง ละติจูด: −90 ถึง 90, ลองจิจูด: −180 ถึง 180"
+
+msgid "Left"
+msgstr "ซ้าย"
+
+msgid "License & Credits"
+msgstr "ใบอนุญาตและเครดิต"
+
+msgid "Location"
+msgstr "ตำแหน่ง"
+
+msgid "Location Detection"
+msgstr "การตรวจจับตำแหน่ง"
+
+msgid "Location Mode"
+msgstr "โหมดตำแหน่ง"
+
+msgid "MIT License – Free and open source software"
+msgstr "ใบอนุญาต MIT – ซอฟต์แวร์โอเพนซอร์สฟรี"
+
+msgid "Manual Location Search"
+msgstr "ค้นหาตำแหน่งด้วยตนเอง"
+
+msgid "Modern weather extension with native GNOME design"
+msgstr "ส่วนขยายสภาพอากาศสมัยใหม่ในสไตล์ GNOME"
+
+msgid "No Results Found"
+msgstr "ไม่พบผลลัพธ์"
+
+msgid "Not Required"
+msgstr "ไม่จำเป็น"
+
+msgid "Not specified"
+msgstr "ไม่ระบุ"
+
+msgid "Open Source License"
+msgstr "ใบอนุญาตโอเพนซอร์ส"
+
+msgid "Open source software information"
+msgstr "ข้อมูลซอฟต์แวร์โอเพนซอร์ส"
+
+msgid "Panel Display"
+msgstr "การแสดงผลบนแผง"
+
+msgid "Panel Position"
+msgstr "ตำแหน่งบนแผง"
+
+msgid "Panel Position Index"
+msgstr "ดัชนีตำแหน่งบนแผง"
+
+msgid "Position index within the selected panel area"
+msgstr "ดัชนีตำแหน่งในพื้นที่แผงที่เลือก"
+
+msgid "Provider Configuration"
+msgstr "การตั้งค่าผู้ให้บริการ"
+
+msgid "Provider Information"
+msgstr "ข้อมูลผู้ให้บริการ"
+
+msgid "Rate Limit"
+msgstr "ขีดจำกัดคำขอ"
+
+msgid "Refresh location display"
+msgstr "รีเฟรชการแสดงตำแหน่ง"
+
+msgid "Required"
+msgstr "จำเป็น"
+
+msgid "Response received but no weather data found. Check your API key and URL."
+msgstr "ได้รับการตอบกลับแต่ไม่พบข้อมูลสภาพอากาศ โปรดตรวจสอบคีย์ API และ URL"
+
+msgid "Right"
+msgstr "ขวา"
+
+msgid "Search Error"
+msgstr "ข้อผิดพลาดในการค้นหา"
+
+msgid "Search Examples"
+msgstr "ตัวอย่างการค้นหา"
+
+msgid "Search Location"
+msgstr "ค้นหาตำแหน่ง"
+
+msgid "Search Results"
+msgstr "ผลการค้นหา"
+
+msgid "Search by city name or coordinates (lat, lon)"
+msgstr "ค้นหาตามชื่อเมืองหรือพิกัด"
+
+msgid "Search failed. Please try again."
+msgstr "การค้นหาล้มเหลว กรุณาลองใหม่"
+
+msgid "Search for location"
+msgstr "ค้นหาตำแหน่ง"
+
+msgid "Search timed out. Please try again."
+msgstr "การค้นหาหมดเวลา กรุณาลองใหม่"
+
+msgid "Select this location"
+msgstr "เลือกตำแหน่งนี้"
+
+msgid "Select weather API service"
+msgstr "เลือกบริการ API สภาพอากาศ"
+
+msgid "Show Humidity"
+msgstr "แสดงความชื้น"
+
+msgid "Show Location Indicator"
+msgstr "แสดงตัวบ่งชี้ตำแหน่ง"
+
+msgid "Show Temperature Text"
+msgstr "แสดงข้อความอุณหภูมิ"
+
+msgid "Size of the temperature text in pixels"
+msgstr "ขนาดข้อความอุณหภูมิ (พิกเซล)"
+
+msgid "Size of the weather icon in pixels"
+msgstr "ขนาดไอคอนสภาพอากาศ (พิกเซล)"
+
+msgid "Source code, issues, and contributions"
+msgstr "โค้ดต้นฉบับ ปัญหา และการมีส่วนร่วม"
+
+msgid "Support development with a small donation"
+msgstr "สนับสนุนการพัฒนาด้วยการบริจาคเล็กน้อย"
+
+msgid "Switch between Celsius and Fahrenheit"
+msgstr "สลับระหว่างเซลเซียสและฟาเรนไฮต์"
+
+msgid "Test"
+msgstr "ทดสอบ"
+
+msgid "Test Connection"
+msgstr "ทดสอบการเชื่อมต่อ"
+
+msgid "Test failed:"
+msgstr "การทดสอบล้มเหลว:"
+
+msgid "Testing…"
+msgstr "กำลังทดสอบ…"
+
+msgid "Text Size"
+msgstr "ขนาดตัวอักษร"
+
+msgid "Try a different search term or check your spelling"
+msgstr "ลองคำค้นหาอื่นหรือตรวจสอบการสะกด"
+
+msgid "URL Placeholders"
+msgstr "ตัวแทนใน URL"
+
+msgid "Unable to reach location service. Check your connection."
+msgstr "ไม่สามารถเข้าถึงบริการตำแหน่ง โปรดตรวจสอบการเชื่อมต่อ"
+
+msgid "Unit for wind speed display"
+msgstr "หน่วยแสดงความเร็วลม"
+
+msgid "Units & Format"
+msgstr "หน่วยและรูปแบบ"
+
+msgid "Update Interval"
+msgstr "ช่วงเวลาอัปเดต"
+
+msgid "Updates"
+msgstr "อัปเดต"
+
+msgid "Use 12-hour Format"
+msgstr "ใช้รูปแบบ 12 ชั่วโมง"
+
+msgid "Use Fahrenheit"
+msgstr "ใช้ฟาเรนไฮต์"
+
+msgid "Verify your provider settings work correctly"
+msgstr "ตรวจสอบว่าการตั้งค่าผู้ให้บริการทำงานถูกต้อง"
+
+msgid "Version 2.0"
+msgstr "เวอร์ชัน 2.0"
+
+msgid "View on GitHub"
+msgstr "ดูบน GitHub"
+
+msgid "Weather Data Source"
+msgstr "แหล่งข้อมูลสภาพอากาศ"
+
+msgid "Weather Data Sources"
+msgstr "แหล่งข้อมูลสภาพอากาศ"
+
+msgid "Weather Provider"
+msgstr "ผู้ให้บริการสภาพอากาศ"
+
+msgid "Where to show the weather widget"
+msgstr "ตำแหน่งแสดงวิดเจ็ตสภาพอากาศ"
+
+msgid "Wind Speed Unit"
+msgstr "หน่วยความเร็วลม"
+
+msgid "copied to clipboard"
+msgstr "คัดลอกไปยังคลิปบอร์ดแล้ว"
+
+msgid "km/h (Kilometers per hour)"
+msgstr "km/h (กิโลเมตร/ชั่วโมง)"
+
+msgid "knots (Nautical miles)"
+msgstr "นอต (ไมล์ทะเล)"
+
+msgid "m/s (Meters per second)"
+msgstr "m/s (เมตร/วินาที)"
+
+msgid "mph (Miles per hour)"
+msgstr "mph (ไมล์/ชั่วโมง)"
+
+msgid "☕ Buy Me a Coffee"
+msgstr "☕ ซื้อกาแฟให้ฉันหน่อย"
+
+msgid "☕ Support – Scan QR to buy me a coffee"
+msgstr "☕ สนับสนุน – สแกน QR เพื่อซื้อกาแฟ"
+
+msgid "✅ Location updated successfully"
+msgstr "✅ อัปเดตตำแหน่งสำเร็จ"
+
+msgid "🌍 Auto Detection"
+msgstr "🌍 ตรวจจับอัตโนมัติ"
+
+msgid "🌍 Auto Detection Enabled"
+msgstr "🌍 เปิดใช้การตรวจจับอัตโนมัติ"
+
+msgid "📍 Manual Location"
+msgstr "📍 ตำแหน่งด้วยตนเอง"
+
+msgid "📍 Manual – Please set location"
+msgstr "📍 ด้วยตนเอง – กรุณาตั้งค่าตำแหน่ง"
+
+msgid "API key is required for "
+msgstr "ต้องการคีย์ API สำหรับ "
+
+msgid "Enable Weather Alerts"
+msgstr "เปิดใช้การแจ้งเตือนสภาพอากาศ"
+
+msgid "Send desktop notifications for dangerous weather"
+msgstr "ส่งการแจ้งเตือนเดสก์ท็อปสำหรับสภาพอากาศอันตราย"
+
+msgid "Weather Alerts"
+msgstr "การแจ้งเตือนสภาพอากาศ"
+
+msgid "⚠️ Severe Weather Alert"
+msgstr "⚠️ แจ้งเตือนสภาพอากาศรุนแรง"
+
+msgid "🌡️ Heat Warning"
+msgstr "🌡️ คำเตือนคลื่นความร้อน"
+
+msgid "🥶 Cold Warning"
+msgstr "🥶 คำเตือนอากาศหนาวจัด"
+
+msgid "💨 Wind Warning"
+msgstr "💨 คำเตือนลมแรง"
+
+msgid "🌀 Storm Warning"
+msgstr "🌀 คำเตือนพายุ"
+
+msgid "Extreme high temperature detected"
+msgstr "ตรวจพบอุณหภูมิสูงมาก"
+
+msgid "Extreme low temperature detected"
+msgstr "ตรวจพบอุณหภูมิต่ำมาก"
+
+msgid "Dangerous wind speed"
+msgstr "ความเร็วลมอันตราย"
+
+msgid "Strong winds detected"
+msgstr "ตรวจพบลมแรง"
+
+msgid "Advanced Weather"
+msgstr "สภาพอากาศขั้นสูง"
+
+msgid "Loading weather…"
+msgstr "กำลังโหลดสภาพอากาศ…"
+
+msgid "Location Information"
+msgstr "ข้อมูลตำแหน่ง"
+
+msgid "Weather Provider Status"
+msgstr "สถานะผู้ให้บริการสภาพอากาศ"
+
+msgid "Hourly Forecast"
+msgstr "พยากรณ์รายชั่วโมง"
+
+msgid "7-Day Forecast"
+msgstr "พยากรณ์ 7 วัน"
+
+msgid "Weather Insights"
+msgstr "การวิเคราะห์สภาพอากาศ"
+
+msgid "Refresh Weather"
+msgstr "รีเฟรชสภาพอากาศ"
+
+msgid "Extension Settings"
+msgstr "การตั้งค่าส่วนขยาย"
+
+msgid "Active"
+msgstr "ใช้งานอยู่"
+
+msgid "Loading…"
+msgstr "กำลังโหลด…"
+
+msgid "Status"
+msgstr "สถานะ"
+
+msgid "Checking…"
+msgstr "กำลังตรวจสอบ…"
+
+msgid "Last Update"
+msgstr "อัปเดตล่าสุด"
+
+msgid "Never"
+msgstr "ไม่เคย"
+
+msgid "Available Providers"
+msgstr "ผู้ให้บริการที่พร้อมใช้"
+
+msgid "Free"
+msgstr "ฟรี"
+
+msgid "Custom Provider"
+msgstr "ผู้ให้บริการกำหนดเอง"
+
+msgid "Working"
+msgstr "ทำงานอยู่"
+
+msgid "Error"
+msgstr "ข้อผิดพลาด"
+
+msgid "Connection Timeout"
+msgstr "หมดเวลาการเชื่อมต่อ"
+
+msgid "Not Configured"
+msgstr "ยังไม่ได้ตั้งค่า"
+
+msgid "Testing Connection…"
+msgstr "กำลังทดสอบการเชื่อมต่อ…"
+
+msgid "Unknown"
+msgstr "ไม่ทราบ"
+
+msgid "Current"
+msgstr "ปัจจุบัน"
+
+msgid "Auto-detected"
+msgstr "ตรวจจับอัตโนมัติ"
+
+msgid "Not set"
+msgstr "ยังไม่ได้ตั้งค่า"
+
+msgid "Coordinates"
+msgstr "พิกัด"
+
+msgid "Not available"
+msgstr "ไม่พร้อมใช้งาน"
+
+msgid "Method"
+msgstr "วิธีการ"
+
+msgid "IP-based geolocation"
+msgstr "การระบุตำแหน่งจาก IP"
+
+msgid "Manually configured"
+msgstr "ตั้งค่าด้วยตนเอง"
+
+msgid "Switch to Auto Detection"
+msgstr "เปลี่ยนเป็นตรวจจับอัตโนมัติ"
+
+msgid "Switch to Manual Location"
+msgstr "เปลี่ยนเป็นตำแหน่งด้วยตนเอง"
+
+msgid "Enter city name…"
+msgstr "ป้อนชื่อเมือง…"
+
+msgid "Search"
+msgstr "ค้นหา"
+
+msgid "Clear"
+msgstr "ล้าง"
+
+msgid "Searching…"
+msgstr "กำลังค้นหา…"
+
+msgid "No locations found"
+msgstr "ไม่พบตำแหน่ง"
+
+msgid "Unknown Location"
+msgstr "ตำแหน่งที่ไม่รู้จัก"
+
+msgid "Unknown Provider"
+msgstr "ผู้ให้บริการที่ไม่รู้จัก"
+
+msgid "SEVERE WEATHER"
+msgstr "สภาพอากาศรุนแรง"
+
+msgid "HEAT WARNING"
+msgstr "คำเตือนคลื่นความร้อน"
+
+msgid "Extreme temperatures"
+msgstr "อุณหภูมิสุดขีด"
+
+msgid "COLD WARNING"
+msgstr "คำเตือนอากาศหนาวจัด"
+
+msgid "Extreme low temperatures"
+msgstr "อุณหภูมิต่ำสุดขีด"
+
+msgid "STORM WARNING"
+msgstr "คำเตือนพายุ"
+
+msgid "Dangerous winds detected"
+msgstr "ตรวจพบลมอันตราย"
+
+msgid "WIND WARNING"
+msgstr "คำเตือนลมแรง"
+
+msgid "Temperature Trend"
+msgstr "แนวโน้มอุณหภูมิ"
+
+msgid "Precipitation (24h)"
+msgstr "ปริมาณน้ำฝน (24 ชม.)"
+
+msgid "Wind"
+msgstr "ลม"
+
+msgid "Strong"
+msgstr "แรง"
+
+msgid "Moderate"
+msgstr "ปานกลาง"
+
+msgid "Light"
+msgstr "เบา"
+
+msgid "UV Index"
+msgstr "ดัชนี UV"
+
+msgid "High"
+msgstr "สูง"
+
+msgid "Low"
+msgstr "ต่ำ"
+
+msgid "Insufficient data"
+msgstr "ข้อมูลไม่เพียงพอ"
+
+msgid "Warming"
+msgstr "อุณหภูมิสูงขึ้น"
+
+msgid "Cooling"
+msgstr "อุณหภูมิต่ำลง"
+
+msgid "Stable"
+msgstr "คงที่"
+
+msgid "Today"
+msgstr "วันนี้"
+
+msgid "Tomorrow"
+msgstr "พรุ่งนี้"
+
+msgid "AUTO"
+msgstr "อัตโนมัติ"
+
+msgid "MANUAL"
+msgstr "ด้วยตนเอง"
+
+msgid "Offline"
+msgstr "ออฟไลน์"
+
+msgid "No Key"
+msgstr "ไม่มีคีย์"
+
+msgid "fallback"
+msgstr "สำรอง"
+
+msgid "Clear Sky"
+msgstr "ท้องฟ้าแจ่มใส"
+
+msgid "Mainly Clear"
+msgstr "ส่วนใหญ่แจ่มใส"
+
+msgid "Partly Cloudy"
+msgstr "มีเมฆบางส่วน"
+
+msgid "Overcast"
+msgstr "มีเมฆมาก"
+
+msgid "Fog"
+msgstr "หมอก"
+
+msgid "Rime Fog"
+msgstr "หมอกน้ำค้างแข็ง"
+
+msgid "Light Drizzle"
+msgstr "ฝนปรอยเบา"
+
+msgid "Drizzle"
+msgstr "ฝนปรอย"
+
+msgid "Heavy Drizzle"
+msgstr "ฝนปรอยหนัก"
+
+msgid "Light Rain"
+msgstr "ฝนเบา"
+
+msgid "Rain"
+msgstr "ฝน"
+
+msgid "Heavy Rain"
+msgstr "ฝนหนัก"
+
+msgid "Light Snow"
+msgstr "หิมะเบา"
+
+msgid "Snow"
+msgstr "หิมะ"
+
+msgid "Heavy Snow"
+msgstr "หิมะหนัก"
+
+msgid "Snow Grains"
+msgstr "เม็ดหิมะ"
+
+msgid "Rain Showers"
+msgstr "ฝนตกเป็นพักๆ"
+
+msgid "Heavy Showers"
+msgstr "ฝนตกหนักเป็นพักๆ"
+
+msgid "Snow Showers"
+msgstr "หิมะตกเป็นพักๆ"
+
+msgid "Heavy Snow Showers"
+msgstr "หิมะตกหนักเป็นพักๆ"
+
+msgid "Thunderstorm"
+msgstr "พายุฝนฟ้าคะนอง"
+
+msgid "Hail Storm"
+msgstr "พายุลูกเห็บ"
+
+msgid "Heavy Hail"
+msgstr "ลูกเห็บขนาดใหญ่"

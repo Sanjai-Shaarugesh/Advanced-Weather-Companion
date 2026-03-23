@@ -140,6 +140,19 @@
       <description>Size of the temperature text in the GNOME panel in pixels.</description>
     </key>
 
+    <!-- Weather Alert Notifications -->
+    <key name="enable-weather-alerts" type="b">
+      <default>true</default>
+      <summary>Enable Weather Alert Notifications</summary>
+      <description>Send desktop notifications when dangerous weather conditions are detected (severe storms, extreme temperatures, strong winds).</description>
+    </key>
+    
+    <key name="show-alerts-in-panel" type="b">
+         <default>true</default>
+         <summary>Show Weather Alerts in Panel Menu</summary>
+         <description>Display active weather alerts with descriptions and safety advice inside the panel dropdown menu.</description>
+       </key>
+
     <!-- Advanced Settings -->
     <key name="show-provider-status" type="b">
       <default>true</default>
