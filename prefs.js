@@ -16,6 +16,11 @@ const GEOCODING_URL = "https://geocoding-api.open-meteo.com/v1/search";
 const REVERSE_GEOCODING_URL = "https://api.bigdatacloud.net/data/reverse-geocode-client";
 
 
+const DEBUG = false;
+function _log(...args)  { if (DEBUG) console.log(...args); }
+function _warn(...args) { if (DEBUG) console.error(...args); }
+
+
 const WEATHER_PROVIDERS = {
   openmeteo: {
     name: "Open-Meteo (Free)",
@@ -72,6 +77,19 @@ export default class WeatherPreferences extends ExtensionPreferences {
     const settings = this.getSettings("org.gnome.shell.extensions.advanced-weather");
     this._session = new Soup.Session();
     this._session.timeout = 15;
+
+    // EGO033: destroy all window-scoped objects when the prefs window closes
+    window.connect('close-request', () => {
+      if (this._session) {
+        this._session.abort();
+        this._session = null;
+      }
+      this._providerDetailsGroup = null;
+      this._apiKeyRow = null;
+      this._customUrlRow = null;
+      this._providerInfoRow = null;
+      this._searchResultsGroup = null;
+    });
 
     window.set_title(_("Advanced Weather Companion"));
     window.set_default_size(700, 650);
@@ -216,7 +234,7 @@ export default class WeatherPreferences extends ExtensionPreferences {
                   clipboard.set_text_finish(result);
                   this._showToast(`✅ ${label || 'Text'} copied to clipboard!`);
               } catch (error) {
-                  console.log("Async clipboard set failed:", error.message);
+                  _log("Async clipboard set failed:", error.message);
                   // Try synchronous fallback
                   this._trySync(clipboard, text, label);
               }
@@ -224,7 +242,7 @@ export default class WeatherPreferences extends ExtensionPreferences {
           return;
 
       } catch (error) {
-          console.log("Async clipboard method failed:", error.message);
+          _log("Async clipboard method failed:", error.message);
       }
 
       // Fallback to synchronous method
@@ -236,11 +254,11 @@ export default class WeatherPreferences extends ExtensionPreferences {
               return;
           }
       } catch (error) {
-          console.log("Sync clipboard method failed:", error.message);
+          _log("Sync clipboard method failed:", error.message);
       }
 
       // If all automatic methods fail, show manual copy dialog
-      console.log("All clipboard methods failed, showing manual copy dialog");
+      _log("All clipboard methods failed, showing manual copy dialog");
       this._showCopyDialog(text, label);
   }
 
@@ -251,7 +269,7 @@ export default class WeatherPreferences extends ExtensionPreferences {
           this._showToast(`✅ ${label || 'Text'} copied to clipboard!`);
           return true;
       } catch (error) {
-          console.log("Synchronous clipboard failed:", error.message);
+          _log("Synchronous clipboard failed:", error.message);
 
           // Try with content provider approach
           try {
@@ -262,7 +280,7 @@ export default class WeatherPreferences extends ExtensionPreferences {
                   return true;
               }
           } catch (providerError) {
-              console.log("Content provider approach failed:", providerError.message);
+              _log("Content provider approach failed:", providerError.message);
           }
 
           return false;
@@ -688,7 +706,7 @@ export default class WeatherPreferences extends ExtensionPreferences {
       try {
         Gio.AppInfo.launch_default_for_uri(url, null);
       } catch (error) {
-        console.error("Could not open provider website:", error);
+        _warn("Could not open provider website:", error);
         this._showToast(_("Could not open website. Please visit manually."));
       }
     }
@@ -960,7 +978,7 @@ export default class WeatherPreferences extends ExtensionPreferences {
         try {
           Gio.AppInfo.launch_default_for_uri("https://github.com/Sanjai-Shaarugesh/Advanced-Weather-Companion", null);
         } catch (error) {
-          console.error("Could not open GitHub link:", error);
+          _warn("Could not open GitHub link:", error);
         }
       });
 
@@ -1061,7 +1079,7 @@ export default class WeatherPreferences extends ExtensionPreferences {
         try {
           Gio.AppInfo.launch_default_for_uri("https://buymeacoffee.com/sanjai", null);
         } catch (error) {
-          console.error("Could not open sponsor link:", error);
+          _warn("Could not open sponsor link:", error);
         }
       });
 
@@ -1123,7 +1141,7 @@ export default class WeatherPreferences extends ExtensionPreferences {
         });
       }
     } catch (error) {
-      console.log("GitHub icon file not found, creating from SVG data");
+      _log("GitHub icon file not found, creating from SVG data");
     }
 
     try {
@@ -1143,18 +1161,15 @@ export default class WeatherPreferences extends ExtensionPreferences {
         pixel_size: 20
       });
 
-      GLib.timeout_add(GLib.PRIORITY_DEFAULT, 1000, () => {
-        try {
-          tempFile.delete(null);
-        } catch (e) {
-
-        }
-        return GLib.SOURCE_REMOVE;
-      });
+      try {
+        tempFile.delete(null);
+      } catch (_e) {
+        // Best-effort cleanup; ignore if already gone
+      }
 
       return githubIcon;
     } catch (error) {
-      console.error("Failed to create GitHub icon:", error);
+      _warn("Failed to create GitHub icon:", error);
       return new Gtk.Image({
         icon_name: "software-properties-symbolic",
         pixel_size: 20
@@ -1197,7 +1212,7 @@ export default class WeatherPreferences extends ExtensionPreferences {
       }
 
     } catch (error) {
-      console.error("Location search failed:", error);
+      _warn("Location search failed:", error);
 
       if (this._searchInProgress) {
         let errorMessage = _("Search failed. Please try again.");
@@ -1383,7 +1398,7 @@ export default class WeatherPreferences extends ExtensionPreferences {
       this._clearSearchResults();
       this._showToast(_("Location updated successfully"));
     } catch (error) {
-      console.error("Failed to save location:", error);
+      _warn("Failed to save location:", error);
       this._showSearchError(_("Failed to save location. Please try again."));
     }
   }
@@ -1494,7 +1509,7 @@ export default class WeatherPreferences extends ExtensionPreferences {
       });
       widget.add_toast(toast);
     } else {
-      console.log(message);
+      _log(message);
     }
   }
 }

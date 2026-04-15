@@ -21,6 +21,11 @@ import {
   NOTIFIABLE_SEVERITIES,
 } from "./lib/alerts.js";
 
+
+const DEBUG = false;
+function _log(...args) { if (DEBUG) console.log(...args); }
+function _warn(...args) { if (DEBUG) console.error(...args); }
+
 // Fallback location used when all location services fail
 const FALLBACK = {
   lat: 40.7128,
@@ -39,6 +44,9 @@ export default class WeatherExtension extends Extension {
       this._settings.get_int("weather-request-timeout") || 15;
 
     this._cancellable = new Gio.Cancellable();
+
+    this._debounceTimeoutId = null;
+    this._networkReloadId = null;
 
     this._latitude = null;
     this._longitude = null;
@@ -133,7 +141,15 @@ export default class WeatherExtension extends Extension {
       this._networkConnId = null;
     }
 
-    this._cancelPendingTimers();
+    if (this._debounceTimeoutId) {
+      GLib.source_remove(this._debounceTimeoutId);
+      this._debounceTimeoutId = null;
+    }
+
+    if (this._networkReloadId) {
+      GLib.source_remove(this._networkReloadId);
+      this._networkReloadId = null;
+    }
 
     if (this._panelButton) {
       this._panelButton.destroy();
@@ -178,7 +194,7 @@ export default class WeatherExtension extends Extension {
       this._locationName = loc.name;
     } catch (e) {
       if (this._isCancelled(e)) return;
-      console.error("[Weather] Location detection failed:", e.message);
+      _warn("[Weather] Location detection failed:", e.message);
       this._latitude = FALLBACK.lat;
       this._longitude = FALLBACK.lon;
       this._locationName = FALLBACK.name;
@@ -204,7 +220,7 @@ export default class WeatherExtension extends Extension {
     const cfg = WEATHER_PROVIDERS[providerKey];
 
     if (!cfg) {
-      console.error("[Weather] Unknown provider:", providerKey);
+      _warn("[Weather] Unknown provider:", providerKey);
       return;
     }
 
@@ -218,7 +234,7 @@ export default class WeatherExtension extends Extension {
           ? cfg.buildUrl(this._latitude, this._longitude, apiKey, customUrl)
           : cfg.buildUrl(this._latitude, this._longitude, apiKey);
     } catch (e) {
-      console.error("[Weather] URL build error:", e.message);
+      _warn("[Weather] URL build error:", e.message);
       if (this._panelButton && !this._panelButton._destroyed) {
         this._panelButton._weatherLabel.set_text(this._("No Key"));
         this._panelButton._weatherIcon.set_icon_name("dialog-warning-symbolic");
@@ -231,7 +247,7 @@ export default class WeatherExtension extends Extension {
       return;
     }
 
-    console.log(
+    _log(
       "[Weather] Fetching from",
       cfg.name,
       url.replace(apiKey || "NOKEY", "***"),
@@ -267,7 +283,7 @@ export default class WeatherExtension extends Extension {
       this._processAlerts(parsed.current, this._locationName);
     } catch (e) {
       if (this._isCancelled(e)) return;
-      console.error("[Weather]", cfg.name, "fetch failed:", e.message);
+      _warn("[Weather]", cfg.name, "fetch failed:", e.message);
 
       if (this._panelButton && !this._panelButton._destroyed) {
         const offline =
@@ -321,7 +337,7 @@ export default class WeatherExtension extends Extension {
           });
         }
         this._processAlerts(parsed.current, this._locationName);
-        console.log("[Weather] Fell back to", cfg.name);
+        _log("[Weather] Fell back to", cfg.name);
         return;
       } catch (e) {
         if (this._isCancelled(e)) return;
@@ -387,7 +403,7 @@ export default class WeatherExtension extends Extension {
 
       this._notifSource.addNotification(notification);
     } catch (e) {
-      console.error("[Weather] Failed to send notification:", e.message);
+      _warn("[Weather] Failed to send notification:", e.message);
     }
   }
 
@@ -504,7 +520,7 @@ export default class WeatherExtension extends Extension {
     this._detectLocationAndLoadWeather();
   }
 
-  // ── Timer helpers ─────────────────────────────────────────────────────────
+  
 
   _debouncedReload() {
     if (!this._enabled) return;
@@ -538,15 +554,6 @@ export default class WeatherExtension extends Extension {
         return GLib.SOURCE_REMOVE;
       },
     );
-  }
-
-  _cancelPendingTimers() {
-    for (const prop of ["_debounceTimeoutId", "_networkReloadId"]) {
-      if (this[prop]) {
-        GLib.source_remove(this[prop]);
-        this[prop] = null;
-      }
-    }
   }
 
   _isCancelled(e) {
