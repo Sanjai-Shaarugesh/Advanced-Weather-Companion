@@ -71,15 +71,6 @@
     margin-top: 8px;
 }
 
-.popup-menu-item {
-    font-size: 0.9em;
-    transition: all 0.2s ease;
-}
-
-.popup-menu-item:hover {
-    background-color: rgba(70, 70, 70, 0.8);
-}
-
 .popup-menu-item-warning {
     color: #ff4c4c;
     font-weight: bold;
