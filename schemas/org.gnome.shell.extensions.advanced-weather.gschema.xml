@@ -103,6 +103,25 @@
       <description>Priority order for automatic provider fallback (free providers first).</description>
     </key>
 
+    <!-- Offline Cache: last successful weather payload (current + hourly + daily) -->
+    <key name="cached-weather-data" type="s">
+      <default>'{}'</default>
+      <summary>Cached Weather Data</summary>
+      <description>JSON payload of the last successful weather fetch, including hourly and daily forecasts. Used when every provider fails.</description>
+    </key>
+
+    <key name="weather-cached-at" type="x">
+      <default>0</default>
+      <summary>Weather Cache Time</summary>
+      <description>Unix timestamp (seconds) when the weather cache was written.</description>
+    </key>
+
+    <key name="weather-cache-max-age-days" type="i">
+      <default>7</default>
+      <summary>Weather Cache Maximum Age</summary>
+      <description>Reuse the cached forecast instead of showing an error while it is younger than this many days and its daily forecast still covers today.</description>
+    </key>
+
     <!-- Appearance Settings -->
     <key name="panel-position" type="s">
       <default>'right'</default>
