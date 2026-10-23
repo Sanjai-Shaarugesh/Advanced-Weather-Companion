@@ -12,69 +12,26 @@ import {
   gettext as _,
 } from "resource:///org/gnome/Shell/Extensions/js/extensions/prefs.js";
 
+// One provider table for the whole extension: lib/providers.js is where the
+// request URL, the payload parser and the UI metadata live. A copy here drifts
+// (it used to advertise methods the provider does not have), so it is imported.
+import { WEATHER_PROVIDERS } from "./lib/providers.js";
+
 const GEOCODING_URL = "https://geocoding-api.open-meteo.com/v1/search";
 const REVERSE_GEOCODING_URL = "https://api.bigdatacloud.net/data/reverse-geocode-client";
 
 
-const DEBUG = false;
+// Follows the debug-logging gsetting so the prefs dialog logs the same
+// provider diagnostics as the extension itself.
+let DEBUG = false;
 function _log(...args)  { if (DEBUG) console.log(...args); }
 function _warn(...args) { if (DEBUG) console.error(...args); }
 
 
-const WEATHER_PROVIDERS = {
-  openmeteo: {
-    name: "Open-Meteo (Free)",
-    description: "Free weather API - No API key required",
-    baseUrl: "https://api.open-meteo.com/v1/forecast",
-    requiresApiKey: false,
-    supportedParams: ["temperature_2m", "relative_humidity_2m", "weather_code", "wind_speed_10m", "surface_pressure"],
-    rateLimit: "10,000 requests/day"
-  },
-  meteosource: {
-    name: "Meteosource (Free)",
-    description: "Free tier - 400 calls/day without API key",
-    baseUrl: "https://www.meteosource.com/api/v1/free/point",
-    requiresApiKey: false,
-    supportedParams: ["temperature", "humidity", "weather_icon", "wind_speed", "pressure"],
-    rateLimit: "400 requests/day (free tier)"
-  },
-  wttr: {
-    name: "Wttr.in (Free)",
-    description: "Free console weather service - No registration, unlimited requests",
-    baseUrl: "https://wttr.in",
-    requiresApiKey: false,
-    supportedParams: ["temp_C", "humidity", "weatherCode", "windspeedKmph", "pressure"],
-    rateLimit: "No limits"
-  },
-  openweathermap: {
-    name: "OpenWeatherMap",
-    description: "Comprehensive weather data - API key required",
-    baseUrl: "https://api.openweathermap.org/data/2.5/weather",
-    requiresApiKey: true,
-    supportedParams: ["temp", "humidity", "weather", "wind_speed", "pressure"],
-    rateLimit: "1,000 requests/day (free tier)"
-  },
-  weatherapi: {
-    name: "WeatherAPI",
-    description: "Real-time weather API - API key required",
-    baseUrl: "https://api.weatherapi.com/v1/forecast.json",
-    requiresApiKey: true,
-    supportedParams: ["temp_c", "humidity", "condition", "wind_kph", "pressure_mb"],
-    rateLimit: "1 million requests/month (free tier)"
-  },
-  custom: {
-    name: "Custom Provider",
-    description: "Configure your own weather API endpoint",
-    baseUrl: "",
-    requiresApiKey: true,
-    supportedParams: [],
-    rateLimit: "Depends on provider"
-  }
-};
-
 export default class WeatherPreferences extends ExtensionPreferences {
   fillPreferencesWindow(window) {
     const settings = this.getSettings("org.gnome.shell.extensions.advanced-weather");
+    DEBUG = settings.get_boolean("debug-logging");
     this._session = new Soup.Session();
     this._session.timeout = 15;
 
@@ -562,9 +519,9 @@ export default class WeatherPreferences extends ExtensionPreferences {
       const selectedKey = providerKeys[providerRow.get_selected()];
       settings.set_string("weather-provider", selectedKey);
       this._updateProviderSettings(selectedKey);
-      
-      // Force settings sync
-      settings.sync();
+      // no settings.sync() here: GSettings writes are flushed immediately, and
+      // GSettings.sync() no longer exists in the GLib shipped with GNOME 50,
+      // so calling it killed the whole preferences window.
     });
 
     
@@ -712,40 +669,56 @@ export default class WeatherPreferences extends ExtensionPreferences {
     }
   }
 
+  /**
+   * Coordinates for the "Test" request: the location the panel will actually
+   * ask for, so the test answers "will my weather work", not "is the API up
+   * somewhere". Falls back to a fixed point when the location is automatic and
+   * has not been resolved yet.
+   */
+  _testCoordinates() {
+    // Ask for the place the panel actually shows: the manual coordinates, else
+    // the ones the last successful fetch cached (an auto-detected location only
+    // lives in the panel process), else a fixed probe point.
+    const parts = (this._settings.get_string("location") || "").split(",");
+    const lat = parseFloat(parts[0]);
+    const lon = parseFloat(parts[1]);
+    if (isFinite(lat) && isFinite(lon)) return [lat, lon];
+
+    try {
+      const cached = JSON.parse(this._settings.get_string("cached-weather-data") || "{}");
+      if ((isFinite(cached.lat) && isFinite(cached.lon)) && (cached.lat || cached.lon))
+        return [cached.lat, cached.lon];
+    } catch {
+      // a cache we cannot read says nothing about where we are
+    }
+    return [52.52, 13.405];
+  }
+
   async _testWeatherConnection(settings) {
     if (this._testInProgress) return;
     this._testInProgress = true;
     this._testButton.set_label(_("Testing…"));
     this._testButton.set_sensitive(false);
 
+    let key = "";
     try {
-      const key       = this._settings.get_string("weather-provider") || "openmeteo";
-      const apiKey    = this._settings.get_string("weather-api-key")   || "";
-      const customUrl = this._settings.get_string("custom-weather-url") || "";
-      const cfg       = WEATHER_PROVIDERS[key];
+      key           = this._settings.get_string("weather-provider") || "openmeteo";
+      const apiKey  = this._settings.get_string("weather-api-key")  || "";
+      const cfg     = WEATHER_PROVIDERS[key];
+
+      if (!cfg)
+        throw new Error(`no adapter for provider "${key}"`);
+
+      if (key === "custom" && !(this._settings.get_string("custom-weather-url") || "").trim())
+        throw new Error(_("Custom URL is required"));
 
       if (cfg.requiresApiKey && !apiKey.trim())
         throw new Error(_("API key is required for") + " " + cfg.name);
 
-      let testUrl;
-      if (key === "custom") {
-        if (!customUrl.trim())
-          throw new Error(_("Custom URL is required"));
-
-        testUrl = customUrl
-          .replace("{lat}",       TEST_LAT).replace("{latitude}",  TEST_LAT)
-          .replace("{lon}",       TEST_LON).replace("{longitude}", TEST_LON);
-
-        if (apiKey?.trim()) {
-          const hasKey =
-            testUrl.includes("apiKey=") || testUrl.includes("api_key=") ||
-            testUrl.includes("key=")    || testUrl.includes("appid=");
-          if (!hasKey)
-            testUrl += (testUrl.includes("?") ? "&" : "?") + `apiKey=${apiKey}`;
-        }
-      } else {
-        testUrl = cfg.testUrl(TEST_LAT, TEST_LON, apiKey);
-      }
+      // The same adapter the panel uses, so a passing test means the panel will
+      // be able to read this endpoint too, not merely that it answers.
+      const [lat, lon] = this._testCoordinates();
+      const testUrl = cfg.buildUrl(lat, lon, apiKey);
 
       const msg = Soup.Message.new("GET", testUrl);
       msg.request_headers.append("User-Agent", "GNOME-Weather-Extension/1.0");
@@ -756,29 +729,35 @@ export default class WeatherPreferences extends ExtensionPreferences {
       if (msg.status_code !== 200)
         throw new Error(`HTTP ${msg.status_code}: ${msg.reason_phrase}`);
 
-      const resp = JSON.parse(new TextDecoder().decode(bytes.get_data()));
+      // An adapter that rejects the body usually means a wrong key or URL, so
+      // the toast keeps the actionable wording while the journal keeps the reason.
+      let parsed = null;
+      try {
+        parsed = cfg.parseResponse(JSON.parse(new TextDecoder().decode(bytes.get_data())));
+      } catch (parseError) {
+        _warn(`provider ${key} rejected its response:`, parseError?.message ?? parseError);
+      }
 
-      if (!cfg.validateResponse(resp))
+      const raw = parsed?.current?.temperature_2m;
+
+      if (raw === undefined || raw === null || !isFinite(parseFloat(raw)))
         throw new Error(
           _("Response received but no weather data found. Check your API key and URL."));
 
-      const raw     = cfg.getTemp(resp);
-      const temp    = raw !== null ? Math.round(parseFloat(raw)) : null;
-      const tempStr = temp !== null
-        ? " " + _("Current temp:") + ` ${temp}°C`
-        : "";
-      this._showToast("✅ " + _("Connection successful!") + tempStr);
+      this._showToast("✅ " + _("Connection successful!") + " " +
+        _("Current temp:") + ` ${Math.round(parseFloat(raw))}°C`);
 
     } catch (e) {
       if (e.matches?.(Gio.IOErrorEnum, Gio.IOErrorEnum.CANCELLED)) return;
-      this._showToast("❌ " + _("Connection failed:") + " " + e.message);
+      _warn(`provider test failed for ${key || "unknown"}:`, e?.message ?? e);
+      this._showToast("❌ " + _("Connection failed:") + " " + (e?.message ?? e));
     } finally {
       this._testInProgress = false;
       this._testButton.set_label(_("Test"));
       this._testButton.set_sensitive(true);
     }
   }
-  
+
   _createAppearancePage(settings) {
     const page = new Adw.PreferencesPage({
       title: _("Appearance"),
