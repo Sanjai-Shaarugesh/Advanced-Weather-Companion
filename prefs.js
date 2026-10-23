@@ -46,6 +46,10 @@ export default class WeatherPreferences extends ExtensionPreferences {
       this._customUrlRow = null;
       this._providerInfoRow = null;
       this._searchResultsGroup = null;
+      this._fallbackOrderGroup = null;
+      this._fallbackRowRefs = [];
+      this._rerenderFallbackRows = null;
+      this._cacheStatusRow = null;
     });
 
     window.set_title(_("Advanced Weather Companion"));
@@ -618,8 +622,129 @@ export default class WeatherPreferences extends ExtensionPreferences {
     this._providerDetailsGroup.add(this._providerInfoRow);
     this._providerDetailsGroup.add(testConnectionRow);
 
+    // ── Automatic provider fallback ──────────────────────────────────────────
+    const fallbackGroup = new Adw.PreferencesGroup({
+      title: _("Automatic Provider Fallback"),
+      description: _("When a provider fails, the next one is tried. Every provider is used at most once per refresh.")
+    });
+
+    const fallbackSwitchRow = new Adw.SwitchRow({
+      title: _("Try Other Providers On Failure"),
+      subtitle: _("Turn off to use only the selected provider")
+    });
+    fallbackSwitchRow.set_active(settings.get_boolean("enable-provider-fallback"));
+
+    this._fallbackOrderGroup = new Adw.PreferencesGroup({
+      title: _("Fallback Priority"),
+      description: _("Providers are tried in this order. The selected provider is always tried first.")
+    });
+    this._fallbackRowRefs = [];
+
+    const renderFallbackRows = () => {
+      if (!this._fallbackOrderGroup) return;
+      for (const row of this._fallbackRowRefs) this._fallbackOrderGroup.remove(row);
+      this._fallbackRowRefs = [];
+
+      const keys = this._getFallbackKeys(settings);
+      keys.forEach((key, index) => {
+        const provider = WEATHER_PROVIDERS[key];
+        const row = new Adw.ActionRow({
+          title: `${index + 1}. ${provider.name}`,
+          subtitle: provider.requiresApiKey
+            ? _("API key required")
+            : _("Free, no API key"),
+          activatable: false
+        });
+
+        const upButton = new Gtk.Button({
+          icon_name: "go-up-symbolic",
+          valign: Gtk.Align.CENTER
+        });
+        upButton.add_css_class("flat");
+        upButton.set_sensitive(index > 0);
+        upButton.connect("clicked", () => this._moveFallbackProvider(settings, index, -1));
+
+        const downButton = new Gtk.Button({
+          icon_name: "go-down-symbolic",
+          valign: Gtk.Align.CENTER
+        });
+        downButton.add_css_class("flat");
+        downButton.set_sensitive(index < keys.length - 1);
+        downButton.connect("clicked", () => this._moveFallbackProvider(settings, index, 1));
+
+        row.add_suffix(downButton);
+        row.add_suffix(upButton);
+
+        this._fallbackRowRefs.push(row);
+        this._fallbackOrderGroup.add(row);
+      });
+    };
+
+    this._rerenderFallbackRows = renderFallbackRows;
+
+    fallbackSwitchRow.connect("notify::active", () => {
+      const enabled = fallbackSwitchRow.get_active();
+      settings.set_boolean("enable-provider-fallback", enabled);
+      this._fallbackOrderGroup.visible = enabled;
+    });
+    this._fallbackOrderGroup.visible = fallbackSwitchRow.get_active();
+
+    renderFallbackRows();
+    // A custom endpoint only joins the fallback list once a URL is configured.
+    settings.connect("changed::custom-weather-url", renderFallbackRows);
+
+    fallbackGroup.add(fallbackSwitchRow);
+
+    // ── Offline data ────────────────────────────────────────────────────────
+    const cacheGroup = new Adw.PreferencesGroup({
+      title: _("Offline Weather Data"),
+      description: _("The last successful fetch, including the hourly and 7-day forecasts, is kept and shown instead of an error when every provider fails.")
+    });
+
+    const cacheAgeRow = new Adw.SpinRow({
+      title: _("Use Cached Data Up To"),
+      subtitle: _("Maximum age of the cached forecast, in days"),
+      adjustment: new Gtk.Adjustment({
+        lower: 1,
+        upper: 14,
+        step_increment: 1,
+        page_increment: 1,
+        value: settings.get_int("weather-cache-max-age-days") || 7
+      })
+    });
+    cacheAgeRow.connect("notify::value", () => {
+      settings.set_int("weather-cache-max-age-days", Math.round(cacheAgeRow.get_value()));
+    });
+
+    this._cacheStatusRow = new Adw.ActionRow({
+      title: _("Cached Forecast"),
+      activatable: false
+    });
+
+    const clearCacheButton = new Gtk.Button({
+      label: _("Clear"),
+      valign: Gtk.Align.CENTER
+    });
+    clearCacheButton.add_css_class("flat");
+    clearCacheButton.connect("clicked", () => {
+      settings.set_string("cached-weather-data", "{}");
+      settings.set_int64("weather-cached-at", 0);
+      this._updateCacheStatusRow(settings);
+      this._showToast(_("Cached weather data cleared"));
+    });
+    this._cacheStatusRow.add_suffix(clearCacheButton);
+    this._updateCacheStatusRow(settings);
+    // Keep the row live while the panel writes new cache entries in the background.
+    settings.connect("changed::cached-weather-data", () => this._updateCacheStatusRow(settings));
+
+    cacheGroup.add(cacheAgeRow);
+    cacheGroup.add(this._cacheStatusRow);
+
     page.add(providerGroup);
     page.add(this._providerDetailsGroup);
+    page.add(fallbackGroup);
+    page.add(this._fallbackOrderGroup);
+    page.add(cacheGroup);
 
 
     this._updateProviderSettings(currentProvider);
@@ -627,9 +752,79 @@ export default class WeatherPreferences extends ExtensionPreferences {
     return page;
   }
 
+  /**
+   * Fallback priority list: stored order first, then any provider that is not
+   * listed yet. A custom endpoint counts only when a URL is configured.
+   */
+  _getFallbackKeys(settings) {
+    const available = Object.keys(WEATHER_PROVIDERS).filter(key =>
+      key !== "custom" || (settings.get_string("custom-weather-url") || "").trim()
+    );
+    const stored = settings.get_strv("fallback-provider-order") ?? [];
+    return [
+      ...stored.filter(key => available.includes(key)),
+      ...available.filter(key => !stored.includes(key))
+    ];
+  }
+
+  _updateCacheStatusRow(settings) {
+    if (!this._cacheStatusRow) return;
+
+    let raw = "{}";
+    try {
+      raw = settings.get_string("cached-weather-data") || "{}";
+    } catch (error) {
+      _warn("Could not read the weather cache:", error);
+    }
+
+    if (raw.length < 3) {
+      this._cacheStatusRow.set_subtitle(_("No cached data yet"));
+      return;
+    }
+
+    try {
+      const data = JSON.parse(raw);
+      const savedAt = Number(data.fetchedAt ?? 0) || Number(settings.get_int64("weather-cached-at") ?? 0);
+      const ageMinutes = Math.max(0, Math.round((GLib.get_real_time() / 1000000 - savedAt) / 60));
+
+      let ageText;
+      if (ageMinutes < 60) ageText = `${ageMinutes} ${_("min ago")}`;
+      else if (ageMinutes < 1440) ageText = `${Math.round(ageMinutes / 60)} ${_("h ago")}`;
+      else ageText = `${Math.round(ageMinutes / 1440)} ${_("days ago")}`;
+
+      const source = data.provider ?? WEATHER_PROVIDERS[data.providerKey]?.name ?? _("unknown provider");
+      const temp = typeof data.current?.temperature_2m === "number"
+        ? ` • ${Math.round(data.current.temperature_2m)}°C`
+        : "";
+      const hourly = data.hourly?.time?.length ? ` • ⏰ ${data.hourly.time.length}` : "";
+      const daily = data.daily?.time?.length ? ` • 📅 ${data.daily.time.length}` : "";
+
+      this._cacheStatusRow.set_subtitle(`♻️ ${source}${temp} • ${ageText}${hourly}${daily}`);
+    } catch (error) {
+      _warn("Could not parse the weather cache:", error);
+      this._cacheStatusRow.set_subtitle(_("Cached data is unreadable"));
+    }
+  }
+
+  _moveFallbackProvider(settings, index, delta) {
+    const order = this._getFallbackKeys(settings);
+    const target = index + delta;
+    if (target < 0 || target >= order.length) return;
+
+    [order[index], order[target]] = [order[target], order[index]];
+    settings.set_strv("fallback-provider-order", order);
+
+    this._rerenderFallbackRows?.();
+  }
+
   _updateProviderSettings(providerKey) {
     const provider = WEATHER_PROVIDERS[providerKey];
 
+    // The provider combo reports its selection while the page is still being
+    // built, before the detail rows exist. They are refreshed right after they
+    // are created, so there is nothing to update yet.
+    if (!provider || !this._apiKeyRow || !this._customUrlRow || !this._providerInfoRow)
+      return;
 
     this._apiKeyRow.visible = provider.requiresApiKey;
 
