@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: advanced-weather 2.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Sanjai-Shaarugesh/Advanced-Weather-Companion/issues\n"
-"POT-Creation-Date: 2026-03-15 00:00+0000\n"
-"PO-Revision-Date: 2026-03-15 00:00+0000\n"
+"POT-Creation-Date: 2026-10-22 19:18+0800\n"
+"PO-Revision-Date: 2026-10-22 12:00+0000\n"
 "Last-Translator: Advanced Weather Team\n"
 "Language-Team: Tamil\n"
 "Language: ta\n"
@@ -13,665 +13,1247 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "1 hour"
-msgstr "1 மணி நேரம்"
-
-msgid "10 minutes"
-msgstr "10 நிமிடங்கள்"
-
-msgid "15 minutes"
-msgstr "15 நிமிடங்கள்"
-
-msgid "30 minutes"
-msgstr "30 நிமிடங்கள்"
-
-msgid "5 minutes"
-msgstr "5 நிமிடங்கள்"
-
-msgid "A beautiful, modern weather companion for GNOME Shell"
-msgstr "GNOME Shell-க்கான அழகான நவீன வானிலை நண்பன்"
-
-msgid "API Key"
-msgstr "API திறவுகோல்"
-
-msgid "About"
-msgstr "பற்றி"
-
-msgid "Advanced Weather Companion"
-msgstr "மேம்பட்ட வானிலை துணை"
-
-msgid "Appearance"
-msgstr "தோற்றம்"
-
-msgid "Center"
-msgstr "மையம்"
-
-msgid "Choose detection method"
-msgstr "கண்டறியும் முறையை தேர்ந்தெடுக்கவும்"
-
-msgid "Choose your weather data provider"
-msgstr "வானிலை தரவு வழங்குநரை தேர்ந்தெடுக்கவும்"
-
-msgid "Clear search"
-msgstr "தேடலை அழிக்கவும்"
-
-msgid "Configure how weather appears in the panel"
-msgstr "பலகத்தில் வானிலை எவ்வாறு தோன்றும் என்பதை அமைக்கவும்"
-
-msgid "Configure how your location is determined"
-msgstr "இருப்பிடம் எவ்வாறு தீர்மானிக்கப்படுகிறது என்பதை அமைக்கவும்"
-
-msgid "Configure measurement units and display format"
-msgstr "அளவீட்டு அலகுகள் மற்றும் காட்சி வடிவமைப்பை அமைக்கவும்"
-
-msgid "Configure weather data refresh settings"
-msgstr "வானிலை தரவு புதுப்பிப்பு அமைப்புகளை கட்டமைக்கவும்"
-
-msgid "Configure your selected weather provider"
-msgstr "தேர்ந்தெடுத்த வானிலை வழங்குநரை கட்டமைக்கவும்"
-
-msgid "Connection successful!"
-msgstr "இணைப்பு வெற்றிகரமாக உள்ளது!"
-
-msgid "Could not copy. Please copy manually: "
-msgstr "நகலெடுக்க முடியவில்லை. கைமுறையாக நகலெடுக்கவும்: "
-
-msgid "Could not open website."
-msgstr "இணையதளத்தை திறக்க முடியவில்லை."
-
-msgid "Current Location"
-msgstr "தற்போதைய இருப்பிடம்"
-
-msgid "Current temp:"
-msgstr "தற்போதைய வெப்பநிலை:"
-
-msgid "Custom / Weather Underground URL"
-msgstr "தனிப்பயன் / Weather Underground URL"
-
-msgid "Custom URL is required"
-msgstr "தனிப்பயன் URL தேவை"
-
-msgid "Display AUTO/MANUAL indicator in panel"
-msgstr "பலகத்தில் AUTO/MANUAL குறிகாட்டியை காட்டு"
-
-msgid "Display relative humidity in weather details"
-msgstr "வானிலை விவரங்களில் ஈரப்பதத்தை காட்டு"
-
-msgid "Display temperature alongside the weather icon"
-msgstr "வானிலை ஐகானுக்கு அருகில் வெப்பநிலையை காட்டு"
-
-msgid "Display time in 12-hour format with AM/PM"
-msgstr "AM/PM உடன் 12 மணி நேர வடிவத்தில் காட்டு"
-
-msgid "Donation Address"
-msgstr "நன்கொடை முகவரி"
-
-msgid "Donation address"
-msgstr "நன்கொடை முகவரி"
-
-msgid "Enable or disable weather features"
-msgstr "வானிலை அம்சங்களை இயக்கு அல்லது முடக்கு"
-
-msgid "Extension Links"
-msgstr "நீட்டிப்பு இணைப்புகள்"
-
-msgid "Features"
-msgstr "அம்சங்கள்"
-
-msgid "General"
-msgstr "பொது"
-
-msgid "Get API Key"
-msgstr "API திறவுகோல் பெறுக"
-
-msgid "How often to refresh weather data"
-msgstr "வானிலை தரவை எத்தனை அடிக்கடி புதுப்பிக்கவும்"
-
-msgid "Icon Size"
-msgstr "ஐகான் அளவு"
-
-msgid "Invalid coordinates. Lat: −90 to 90, Lon: −180 to 180."
-msgstr "தவறான ஆயங்கள். அட்சரேகை: −90 முதல் 90, தீர்க்கரேகை: −180 முதல் 180."
-
-msgid "Left"
-msgstr "இடது"
-
-msgid "License & Credits"
-msgstr "உரிமம் மற்றும் நன்றிகள்"
-
-msgid "Location"
-msgstr "இருப்பிடம்"
-
-msgid "Location Detection"
-msgstr "இருப்பிட கண்டறிதல்"
-
-msgid "Location Mode"
-msgstr "இருப்பிட முறை"
-
-msgid "MIT License – Free and open source software"
-msgstr "MIT உரிமம் – இலவச திறந்த மூல மென்பொருள்"
-
-msgid "Manual Location Search"
-msgstr "கைமுறை இருப்பிட தேடல்"
-
-msgid "Modern weather extension with native GNOME design"
-msgstr "GNOME வடிவமைப்பில் நவீன வானிலை நீட்டிப்பு"
-
-msgid "No Results Found"
-msgstr "முடிவுகள் எதுவும் இல்லை"
-
-msgid "Not Required"
-msgstr "தேவையில்லை"
-
-msgid "Not specified"
-msgstr "குறிப்பிடப்படவில்லை"
-
-msgid "Open Source License"
-msgstr "திறந்த மூல உரிமம்"
-
-msgid "Open source software information"
-msgstr "திறந்த மூல மென்பொருள் தகவல்"
-
-msgid "Panel Display"
-msgstr "பலக காட்சி"
-
-msgid "Panel Position"
-msgstr "பலக நிலை"
-
-msgid "Panel Position Index"
-msgstr "பலக நிலை குறியீடு"
-
-msgid "Position index within the selected panel area"
-msgstr "தேர்ந்தெடுத்த பலக பகுதியில் நிலை குறியீடு"
-
-msgid "Provider Configuration"
-msgstr "வழங்குநர் கட்டமைப்பு"
-
-msgid "Provider Information"
-msgstr "வழங்குநர் தகவல்"
-
-msgid "Rate Limit"
-msgstr "கோரிக்கை வரம்பு"
-
-msgid "Refresh location display"
-msgstr "இருப்பிட காட்சியை புதுப்பி"
-
-msgid "Required"
-msgstr "தேவையானது"
-
-msgid "Response received but no weather data found. Check your API key and URL."
-msgstr "பதில் கிடைத்தது ஆனால் வானிலை தரவு இல்லை. API திறவுகோல் மற்றும் URL சரிபார்க்கவும்."
-
-msgid "Right"
-msgstr "வலது"
-
-msgid "Search Error"
-msgstr "தேடல் பிழை"
-
-msgid "Search Examples"
-msgstr "தேடல் எடுத்துக்காட்டுகள்"
-
-msgid "Search Location"
-msgstr "இருப்பிடம் தேடு"
-
-msgid "Search Results"
-msgstr "தேடல் முடிவுகள்"
-
-msgid "Search by city name or coordinates (lat, lon)"
-msgstr "நகர பெயர் அல்லது ஆயங்கள் மூலம் தேடு"
-
-msgid "Search failed. Please try again."
-msgstr "தேடல் தோல்வியடைந்தது. மீண்டும் முயற்சிக்கவும்."
-
-msgid "Search for location"
-msgstr "இருப்பிடம் தேடு"
-
-msgid "Search timed out. Please try again."
-msgstr "தேடல் நேர முடிவு. மீண்டும் முயற்சிக்கவும்."
-
-msgid "Select this location"
-msgstr "இந்த இருப்பிடத்தை தேர்ந்தெடு"
-
-msgid "Select weather API service"
-msgstr "வானிலை API சேவையை தேர்ந்தெடு"
-
-msgid "Show Humidity"
-msgstr "ஈரப்பதம் காட்டு"
-
-msgid "Show Location Indicator"
-msgstr "இருப்பிட குறிகாட்டி காட்டு"
-
-msgid "Show Temperature Text"
-msgstr "வெப்பநிலை உரை காட்டு"
-
-msgid "Size of the temperature text in pixels"
-msgstr "வெப்பநிலை உரையின் அளவு (பிக்சல்)"
-
-msgid "Size of the weather icon in pixels"
-msgstr "வானிலை ஐகானின் அளவு (பிக்சல்)"
-
-msgid "Source code, issues, and contributions"
-msgstr "மூல குறியீடு, சிக்கல்கள் மற்றும் பங்களிப்புகள்"
-
-msgid "Support development with a small donation"
-msgstr "சிறு நன்கொடையுடன் வளர்ச்சியை ஆதரிக்கவும்"
-
-msgid "Switch between Celsius and Fahrenheit"
-msgstr "செல்சியஸ் மற்றும் ஃபாரன்ஹீட்டுக்கு மாறு"
-
-msgid "Test"
-msgstr "சோதனை"
-
-msgid "Test Connection"
-msgstr "இணைப்பை சோதி"
-
-msgid "Test failed:"
-msgstr "சோதனை தோல்வியடைந்தது:"
-
-msgid "Testing…"
-msgstr "சோதிக்கிறது…"
-
-msgid "Text Size"
-msgstr "உரை அளவு"
-
-msgid "Try a different search term or check your spelling"
-msgstr "வேறு தேடல் சொல்லை முயற்சிக்கவும் அல்லது உங்கள் எழுத்துப்பிழையை சரிபார்க்கவும்"
-
-msgid "URL Placeholders"
-msgstr "URL இடம்பிடிகள்"
-
-msgid "Unable to reach location service. Check your connection."
-msgstr "இருப்பிட சேவையை அடைய முடியவில்லை. இணைப்பை சரிபார்க்கவும்."
-
-msgid "Unit for wind speed display"
-msgstr "காற்று வேக காட்சிக்கான அலகு"
-
-msgid "Units & Format"
-msgstr "அலகுகள் மற்றும் வடிவம்"
-
-msgid "Update Interval"
-msgstr "புதுப்பிப்பு இடைவெளி"
-
-msgid "Updates"
-msgstr "புதுப்பிப்புகள்"
-
-msgid "Use 12-hour Format"
-msgstr "12 மணி நேர வடிவம் பயன்படுத்து"
-
-msgid "Use Fahrenheit"
-msgstr "ஃபாரன்ஹீட் பயன்படுத்து"
-
-msgid "Verify your provider settings work correctly"
-msgstr "வழங்குநர் அமைப்புகள் சரியாக செயல்படுகின்றனவா என சரிபார்க்கவும்"
-
-msgid "Version 2.0"
-msgstr "பதிப்பு 2.0"
-
-msgid "View on GitHub"
-msgstr "GitHub-ல் பார்க்கவும்"
-
-msgid "Weather Data Source"
-msgstr "வானிலை தரவு மூலம்"
-
-msgid "Weather Data Sources"
-msgstr "வானிலை தரவு மூலங்கள்"
-
-msgid "Weather Provider"
-msgstr "வானிலை வழங்குநர்"
-
-msgid "Where to show the weather widget"
-msgstr "வானிலை விட்ஜெட்டை எங்கு காட்ட வேண்டும்"
-
-msgid "Wind Speed Unit"
-msgstr "காற்று வேக அலகு"
-
-msgid "copied to clipboard"
-msgstr "இடைக்கணினி கணினியில் நகலெடுக்கப்பட்டது"
-
-msgid "km/h (Kilometers per hour)"
-msgstr "கி.மீ/மணி (மணிக்கு கிலோமீட்டர்)"
-
-msgid "knots (Nautical miles)"
-msgstr "நாட்ஸ் (கடல் மைல்கள்)"
-
-msgid "m/s (Meters per second)"
-msgstr "மீ/வி (வினாடிக்கு மீட்டர்)"
-
-msgid "mph (Miles per hour)"
-msgstr "மைல்/மணி (மணிக்கு மைல்)"
-
-msgid "☕ Buy Me a Coffee"
-msgstr "☕ எனக்கு ஒரு காபி வாங்கிப் போடுங்கள்"
-
-msgid "☕ Support – Scan QR to buy me a coffee"
-msgstr "☕ ஆதரவு – காபி வாங்க QR ஸ்கேன் செய்யவும்"
-
-msgid "✅ Location updated successfully"
-msgstr "✅ இருப்பிடம் வெற்றிகரமாக புதுப்பிக்கப்பட்டது"
-
-msgid "🌍 Auto Detection"
-msgstr "🌍 தானியங்கி கண்டறிதல்"
-
-msgid "🌍 Auto Detection Enabled"
-msgstr "🌍 தானியங்கி கண்டறிதல் இயக்கப்பட்டது"
-
-msgid "📍 Manual Location"
-msgstr "📍 கைமுறை இருப்பிடம்"
-
-msgid "📍 Manual – Please set location"
-msgstr "📍 கைமுறை – இருப்பிடம் அமைக்கவும்"
-
-msgid "API key is required for "
-msgstr "API திறவுகோல் தேவை: "
-
-msgid "Enable Weather Alerts"
-msgstr "வானிலை எச்சரிக்கைகளை இயக்கு"
-
-msgid "Send desktop notifications for dangerous weather"
-msgstr "ஆபத்தான வானிலைக்கு டெஸ்க்டாப் அறிவிப்புகள் அனுப்பு"
-
-msgid "Weather Alerts"
-msgstr "வானிலை எச்சரிக்கைகள்"
-
-msgid "⚠️ Severe Weather Alert"
-msgstr "⚠️ கடுமையான வானிலை எச்சரிக்கை"
-
-msgid "🌡️ Heat Warning"
-msgstr "🌡️ வெப்ப எச்சரிக்கை"
-
-msgid "🥶 Cold Warning"
-msgstr "🥶 குளிர் எச்சரிக்கை"
-
-msgid "💨 Wind Warning"
-msgstr "💨 காற்று எச்சரிக்கை"
-
-msgid "🌀 Storm Warning"
-msgstr "🌀 புயல் எச்சரிக்கை"
-
-msgid "Extreme high temperature detected"
-msgstr "அதிக வெப்பநிலை கண்டறியப்பட்டது"
-
-msgid "Extreme low temperature detected"
-msgstr "மிகக் குறைந்த வெப்பநிலை கண்டறியப்பட்டது"
-
-msgid "Dangerous wind speed"
-msgstr "ஆபத்தான காற்று வேகம்"
-
-msgid "Strong winds detected"
-msgstr "வலிமையான காற்று கண்டறியப்பட்டது"
-
-msgid "Advanced Weather"
-msgstr "மேம்பட்ட வானிலை"
-
-msgid "Loading weather…"
-msgstr "வானிலை ஏற்றுகிறது…"
-
-msgid "Location Information"
-msgstr "இருப்பிட தகவல்"
-
-msgid "Weather Provider Status"
-msgstr "வானிலை வழங்குநர் நிலை"
-
-msgid "Hourly Forecast"
-msgstr "மணிக்கணக்கான வானிலை அறிக்கை"
-
-msgid "7-Day Forecast"
-msgstr "7 நாள் வானிலை அறிக்கை"
-
-msgid "Weather Insights"
-msgstr "வானிலை பகுப்பாய்வு"
-
-msgid "Refresh Weather"
-msgstr "வானிலை புதுப்பி"
-
-msgid "Extension Settings"
-msgstr "நீட்டிப்பு அமைப்புகள்"
-
-msgid "Active"
-msgstr "செயலில்"
-
-msgid "Loading…"
-msgstr "ஏற்றுகிறது…"
-
-msgid "Status"
-msgstr "நிலை"
-
-msgid "Checking…"
-msgstr "சரிபார்க்கிறது…"
-
-msgid "Last Update"
-msgstr "கடைசி புதுப்பிப்பு"
-
-msgid "Never"
-msgstr "ஒருபோதும் இல்லை"
-
-msgid "Available Providers"
-msgstr "கிடைக்கக்கூடிய வழங்குநர்கள்"
-
-msgid "Free"
-msgstr "இலவசம்"
-
-msgid "Custom Provider"
-msgstr "தனிப்பயன் வழங்குநர்"
-
-msgid "Working"
-msgstr "செயல்படுகிறது"
-
-msgid "Error"
-msgstr "பிழை"
-
-msgid "Connection Timeout"
-msgstr "இணைப்பு நேர முடிவு"
-
-msgid "Not Configured"
-msgstr "கட்டமைக்கப்படவில்லை"
-
-msgid "Testing Connection…"
-msgstr "இணைப்பை சோதிக்கிறது…"
-
-msgid "Unknown"
-msgstr "தெரியாத"
-
-msgid "Current"
-msgstr "தற்போதைய"
-
-msgid "Auto-detected"
-msgstr "தானியங்கி கண்டறியப்பட்டது"
-
-msgid "Not set"
-msgstr "அமைக்கப்படவில்லை"
-
-msgid "Coordinates"
-msgstr "ஆயங்கள்"
-
-msgid "Not available"
-msgstr "கிடைக்கவில்லை"
-
-msgid "Method"
-msgstr "முறை"
-
-msgid "IP-based geolocation"
-msgstr "IP அடிப்படையிலான புவி இருப்பிடம்"
-
-msgid "Manually configured"
-msgstr "கைமுறையாக கட்டமைக்கப்பட்டது"
-
-msgid "Switch to Auto Detection"
-msgstr "தானியங்கி கண்டறிதலுக்கு மாறு"
-
-msgid "Switch to Manual Location"
-msgstr "கைமுறை இருப்பிடத்திற்கு மாறு"
-
-msgid "Enter city name…"
-msgstr "நகர பெயரை உள்ளிடுக…"
-
-msgid "Search"
-msgstr "தேடு"
-
-msgid "Clear"
-msgstr "அழி"
-
-msgid "Searching…"
-msgstr "தேடுகிறது…"
-
-msgid "No locations found"
-msgstr "இருப்பிடங்கள் எதுவும் இல்லை"
-
-msgid "Unknown Location"
-msgstr "தெரியாத இருப்பிடம்"
-
-msgid "Unknown Provider"
-msgstr "தெரியாத வழங்குநர்"
-
-msgid "SEVERE WEATHER"
-msgstr "கடுமையான வானிலை"
-
-msgid "HEAT WARNING"
-msgstr "வெப்ப எச்சரிக்கை"
-
-msgid "Extreme temperatures"
-msgstr "தீவிர வெப்பநிலை"
-
-msgid "COLD WARNING"
-msgstr "குளிர் எச்சரிக்கை"
-
-msgid "Extreme low temperatures"
-msgstr "மிகக் குறைந்த வெப்பநிலை"
-
-msgid "STORM WARNING"
-msgstr "புயல் எச்சரிக்கை"
-
-msgid "Dangerous winds detected"
-msgstr "ஆபத்தான காற்று கண்டறியப்பட்டது"
-
-msgid "WIND WARNING"
-msgstr "காற்று எச்சரிக்கை"
-
-msgid "Temperature Trend"
-msgstr "வெப்பநிலை போக்கு"
-
-msgid "Precipitation (24h)"
-msgstr "மழை (24 மணி நேரம்)"
-
-msgid "Wind"
-msgstr "காற்று"
-
-msgid "Strong"
-msgstr "வலிமையான"
-
-msgid "Moderate"
-msgstr "மிதமான"
-
-msgid "Light"
-msgstr "மெல்லிய"
-
-msgid "UV Index"
-msgstr "UV குறியீடு"
-
-msgid "High"
-msgstr "அதிகம்"
-
-msgid "Low"
-msgstr "குறைவு"
-
-msgid "Insufficient data"
-msgstr "போதுமான தரவு இல்லை"
-
-msgid "Warming"
-msgstr "வெப்பமாகிறது"
-
-msgid "Cooling"
-msgstr "குளிர்கிறது"
-
-msgid "Stable"
-msgstr "நிலையான"
-
-msgid "Today"
-msgstr "இன்று"
-
-msgid "Tomorrow"
-msgstr "நாளை"
-
-msgid "AUTO"
-msgstr "தானியங்கி"
-
-msgid "MANUAL"
-msgstr "கைமுறை"
-
+#: extension.js:222 extension.js:555
 msgid "Offline"
 msgstr "இணைப்பில்லை"
 
-msgid "No Key"
-msgstr "திறவுகோல் இல்லை"
-
+#: extension.js:370
 msgid "fallback"
 msgstr "மாற்று"
 
+#: extension.js:519
+msgid "cached data"
+msgstr "தாங்கல் தரவு"
+
+#: extension.js:553
+msgid "No Key"
+msgstr "திறவுகோல் இல்லை"
+
+#: extension.js:556 lib/panelMenu.js:435 lib/panelMenu.js:663
+msgid "Error"
+msgstr "பிழை"
+
+#: extension.js:619
+msgid "Advanced Weather"
+msgstr "மேம்பட்ட வானிலை"
+
+#: extension.js:627
+msgid "What to do:"
+msgstr "என்ன செய்ய வேண்டும்:"
+
+#: lib/alerts.js:37
+msgid "⚠️ Severe Weather Alert"
+msgstr "⚠️ கடுமையான வானிலை எச்சரிக்கை"
+
+#: lib/alerts.js:46
+msgid "⚠️ Weather Warning"
+msgstr "⚠️ வானிலை எச்சரிக்கை"
+
+#: lib/alerts.js:66
+msgid "🌡️ Extreme Heat Warning"
+msgstr "🌡️ தீவிர வெப்ப எச்சரிக்கை"
+
+#: lib/alerts.js:68
+msgid "Dangerously high temperature"
+msgstr "ஆபத்தான அளவு அதிக வெப்பம்"
+
+#: lib/alerts.js:75
+msgid "Stay indoors during peak hours (10 AM – 4 PM)"
+msgstr "உச்ச நேரங்களில் (காலை 10 – மாலை 4) உள்ளே இருங்கள்"
+
+#: lib/alerts.js:76
+msgid "Drink water regularly — at least 2–3 litres per day"
+msgstr "தவறாமல் தண்ணீர் குடிக்கவும் — ஒரு நாளுக்குக் குறைந்தது 2–3 லிட்டர்"
+
+#: lib/alerts.js:77
+msgid "Wear light, loose, light-coloured clothing"
+msgstr "லேசான, அகலமான, மங்கலான நிற ஆடைகளை அணியவும்"
+
+#: lib/alerts.js:78
+msgid "Never leave children or pets in parked vehicles"
+msgstr ""
+"நிறுத்தப்பட்ட வாகனங்களில் குழந்தைகளையும் விலங்குகளையும் ஒருபோதும் விட "
+"வேண்டாம்"
+
+#: lib/alerts.js:79
+msgid "Check on elderly neighbours and relatives"
+msgstr "முதிய அண்டை வீட்டாரையும் உறவினரையும் கவனித்துக் கொள்ளுங்கள்"
+
+#: lib/alerts.js:80
+msgid "Use fans or air conditioning if available"
+msgstr "வசமுள்ளவாறு விசிறிகள் அல்லது குளிரூட்டிகளைப் பயன்படுத்தவும்"
+
+#: lib/alerts.js:91
+msgid "🥶 Extreme Cold Warning"
+msgstr "🥶 தீவிர குளிர் எச்சரிக்கை"
+
+#: lib/alerts.js:93
+msgid "Dangerously low temperature"
+msgstr "ஆபத்தான அளவு குறைந்த வெப்பம்"
+
+#: lib/alerts.js:100
+msgid "Layer clothing: base layer, insulation, waterproof outer shell"
+msgstr ""
+"அடுக்காக அணியுங்கள்: அடிப்படை அடுக்கு, வெப்பத் தடுப்பு, நீர் ஊடுருவா வெளி "
+"ஆடை"
+
+#: lib/alerts.js:101
+msgid "Cover exposed skin — risk of frostbite within 30 minutes"
+msgstr "வெளிப்பட்ட தோலை மூடுங்கள் — 30 நிமிடங்களில் உறைபனி ஆபத்து"
+
+#: lib/alerts.js:102
+msgid "Keep emergency supplies in your vehicle if driving"
+msgstr "வாகனம் செல்லும்போது அவசரப் பொருட்களை வாகனத்தில் வைக்கவும்"
+
+#: lib/alerts.js:103
+msgid "Check heating systems and carbon-monoxide detectors"
+msgstr ""
+"வெப்பமூட்டும் அமைப்புகளையும் கார்பன் மோனாக்சைடு உணர்ிகளையும் சரிபார்க்கவும்"
+
+#: lib/alerts.js:104
+msgid "Check on elderly and vulnerable people"
+msgstr "முதியவர்கள் மற்றும் பாதுகாப்பற்றோரைக் கவனித்துக் கொள்ளுங்கள்"
+
+#: lib/alerts.js:105
+msgid "Bring pets indoors"
+msgstr "வீட்டு விலங்குகளை உள்ளே கொண்டு வாருங்கள்"
+
+#: lib/alerts.js:117
+msgid "🌀 Severe Storm Warning"
+msgstr "🌀 தீவிர புயல் எச்சரிக்கை"
+
+#: lib/alerts.js:119
+msgid "Dangerous wind speed"
+msgstr "ஆபத்தான காற்று வேகம்"
+
+#: lib/alerts.js:121
+msgid "Avoid all unnecessary travel"
+msgstr "அனைத்து தேவையற்ற பயணங்களையும் தவிர்க்கவும்"
+
+#: lib/alerts.js:122
+msgid "Stay away from trees, scaffolding, and signs"
+msgstr ""
+"மரங்கள், கட்டுமானக் கூண்டுகள், அடையாளப் பலகைகள் ஆகியவற்றிலிருந்து விலகி "
+"இருங்கள்"
+
+#: lib/alerts.js:123
+msgid "Do not attempt to drive high-sided vehicles"
+msgstr "உயரமான வாகனங்களை ஓட்ட முயற்சிக்க வேண்டாம்"
+
+#: lib/alerts.js:124
+msgid "Secure or bring inside any outdoor furniture"
+msgstr "வெளி நாற்காலிகளை உறுதியாக்கவும் அல்லது உள்ளே கொண்டு செல்லவும்"
+
+#: lib/alerts.js:125
+msgid "Stay indoors away from windows"
+msgstr "ஜன்னல்களிலிருந்து விலகி உள்ளே இருங்கள்"
+
+#: lib/alerts.js:126
+msgid "Follow local emergency service guidance"
+msgstr "உள்ளூர் அவசர சேவைகளின் வழிகாட்டுதலின்படி நடந்து கொள்ளுங்கள்"
+
+#: lib/alerts.js:135
+msgid "💨 Strong Wind Warning"
+msgstr "💨 வலிமையான காற்று எச்சரிக்கை"
+
+#: lib/alerts.js:137
+msgid "Strong winds detected"
+msgstr "வலிமையான காற்று கண்டறியப்பட்டது"
+
+#: lib/alerts.js:140
+msgid ""
+"Take care when walking or cycling — gusts may be stronger than the average"
+msgstr ""
+"நடைபயணத்திலும் சைக்கிள் ஓட்டுவதிலும் கவனமாக இருக்கவும் — காற்று வீச்சுகள் "
+"சராசரியை விட அதிகமாக இருக்கலாம்"
+
+#: lib/alerts.js:142
+msgid "Secure loose outdoor items (bins, garden furniture, etc.)"
+msgstr ""
+"வெளியே உள்ள நகரும் பொருட்களை (குப்பைத் தொட்டிகள், தோட்ட நாற்காலிகள் போன்றவை)"
+" உறுதியாக்கவும்"
+
+#: lib/alerts.js:143
+msgid "Drive with extra caution, especially on exposed roads or bridges"
+msgstr "திறந்த சாலைகள் மற்றும் பாலங்களில் மிகுந்த கவனத்துடன் ஓட்டுங்கள்"
+
+#: lib/alerts.js:144
+msgid "Cyclists and motorcyclists should be especially cautious"
+msgstr ""
+"சைக்கிள் மற்றும் மோட்டார் சைக்கிள் ஓட்டுநர்கள் மிகக் கவனமாக இருக்கவும்"
+
+#: lib/alerts.js:158
+msgid "Seek shelter immediately in a sturdy building"
+msgstr "உறுதியான கட்டிடத்தில் உடனே அடைக்கலம் தேடுங்கள்"
+
+#: lib/alerts.js:159
+msgid "Avoid open fields, hilltops, and isolated trees"
+msgstr ""
+"திறந்த வயல்கள், குன்று உச்சிகள், தனித்த மரங்கள் ஆகியவற்றைத் தவிர்க்கவும்"
+
+#: lib/alerts.js:160
+msgid "Stay away from water, metal objects, and electrical equipment"
+msgstr ""
+"நீர், உலோகப் பொருட்கள், மின் சாதனங்கள் ஆகியவற்றிலிருந்து விலகி இருங்கள்"
+
+#: lib/alerts.js:161
+msgid "If outdoors and unable to shelter, crouch low — do not lie flat"
+msgstr "வெளியே அடைக்கலம் இல்லையெனில் குனிந்து இருங்கள் — படுக்க வேண்டாம்"
+
+#: lib/alerts.js:162
+msgid "Avoid using corded phones or plugged-in devices"
+msgstr ""
+"கம்பி தொலைபேசிகள், மின் இணைப்பில் உள்ள சாதனங்கள் ஆகியவற்றைப் பயன்படுத்த "
+"வேண்டாம்"
+
+#: lib/alerts.js:163
+msgid "Keep away from windows and doors"
+msgstr "ஜன்னல்கள் மற்றும் வாசல்களிலிருந்து விலகி இருங்கள்"
+
+#: lib/alerts.js:167
+msgid "Follow official emergency service guidance"
+msgstr "அதிகாரப்பூர்வ அவசர சேவைகளின் வழிகாட்டுதலின்படி நடந்து கொள்ளுங்கள்"
+
+#: lib/alerts.js:168
+msgid "Stay informed via local weather services"
+msgstr "உள்ளூர் வானிலை சேவைகள் மூலம் தகவலறிந்திருங்கள்"
+
+#: lib/alerts.js:169
+msgid "Avoid non-essential travel"
+msgstr "அத்தியாவசியமற்ற பயணங்களைத் தவிர்க்கவும்"
+
+#: lib/alerts.js:178
+msgid "Avoid driving through flooded roads — even 30 cm can sweep a car away"
+msgstr ""
+"நீரடித்த சாலைகளில் வாகனம் ஓட்டாதீர்கள் — 30 செ.மீ ஆழம் கூட காரை அடித்துச் "
+"செல்லும்"
+
+#: lib/alerts.js:180
+msgid "Be aware of localised flooding in low-lying areas"
+msgstr "தாழ்வான பகுதிகளில் உள்ளூர் நீர்தேக்கத்திற்குத் தயாராக இருங்கள்"
+
+#: lib/alerts.js:181
+msgid "Carry waterproof clothing if you must travel"
+msgstr "பயணம் செய்ய வேண்டுமெனில் நீர் ஊடுருவா ஆடையை எடுத்துச் செல்லுங்கள்"
+
+#: lib/alerts.js:182
+msgid "Check your local flood risk map"
+msgstr "உங்கள் உள்ளூர் வெள்ள ஆபத்து வரைபடத்தைப் பார்க்கவும்"
+
+#: lib/alerts.js:188
+msgid "Avoid travel unless absolutely necessary"
+msgstr "மிக அவசியம் இல்லையெனில் பயணத்தைத் தவிர்க்கவும்"
+
+#: lib/alerts.js:189
+msgid "If driving, carry a winter emergency kit (blanket, shovel, water)"
+msgstr ""
+"வாகனம் ஓட்டுவதானால் பனிக்கால அவசரக் கிட் (போர்வை, பனி அகற்றும் தகடு, "
+"தண்ணீர்) வைத்திருங்கள்"
+
+#: lib/alerts.js:190
+msgid "Clear snow from paths and driveways carefully to avoid injury"
+msgstr ""
+"காயம் ஏற்படாமல் இருக்க பாதைகளிலும் நுழைவழிகளிலும் உள்ள பனியைக் கவனமாக "
+"அகற்றவும்"
+
+#: lib/alerts.js:191
+msgid "Be aware of roof loading from heavy snow accumulation"
+msgstr "கூரையில் படிந்த பனியின் எடைக்குக் கவனம் செலுத்துங்கள்"
+
+#: lib/alerts.js:195
+msgid "Exercise caution outdoors"
+msgstr "வெளியே கவனமாக இருங்கள்"
+
+#: lib/alerts.js:196
+msgid "Stay informed via local weather forecasts"
+msgstr "உள்ளூர் வானிலை முன்னறிவிப்புகள் மூலம் தகவலறிந்திருங்கள்"
+
+#: lib/providers.js:619
 msgid "Clear Sky"
 msgstr "தெளிவான வானம்"
 
+#: lib/providers.js:624
 msgid "Mainly Clear"
 msgstr "பெரும்பாலும் தெளிவு"
 
+#: lib/providers.js:629
 msgid "Partly Cloudy"
 msgstr "ஓரளவு மேகமூட்டம்"
 
+#: lib/providers.js:634
 msgid "Overcast"
 msgstr "முழு மேகமூட்டம்"
 
+#: lib/providers.js:638
 msgid "Fog"
 msgstr "மூடுபனி"
 
+#: lib/providers.js:640
 msgid "Rime Fog"
 msgstr "பனி மூடுபனி"
 
+#: lib/providers.js:645
 msgid "Light Drizzle"
 msgstr "லேசான தூறல்"
 
+#: lib/providers.js:650
 msgid "Drizzle"
 msgstr "தூறல்"
 
+#: lib/providers.js:655
 msgid "Heavy Drizzle"
 msgstr "கனமான தூறல்"
 
+#: lib/providers.js:660
 msgid "Light Rain"
 msgstr "லேசான மழை"
 
+#: lib/providers.js:665
 msgid "Rain"
 msgstr "மழை"
 
+#: lib/providers.js:670
 msgid "Heavy Rain"
 msgstr "கனமழை"
 
+#: lib/providers.js:675
 msgid "Light Snow"
 msgstr "லேசான பனிப்பொழிவு"
 
+#: lib/providers.js:679
 msgid "Snow"
 msgstr "பனிப்பொழிவு"
 
+#: lib/providers.js:681
 msgid "Heavy Snow"
 msgstr "கனமான பனிப்பொழிவு"
 
+#: lib/providers.js:686
 msgid "Snow Grains"
 msgstr "பனி தானியங்கள்"
 
+#: lib/providers.js:691 lib/providers.js:696
 msgid "Rain Showers"
 msgstr "மழை தூறல்"
 
+#: lib/providers.js:701
 msgid "Heavy Showers"
 msgstr "கனமான மழைத் தூறல்"
 
+#: lib/providers.js:706
 msgid "Snow Showers"
 msgstr "பனி தூறல்"
 
+#: lib/providers.js:711
 msgid "Heavy Snow Showers"
 msgstr "கனமான பனி தூறல்"
 
+#: lib/providers.js:716
 msgid "Thunderstorm"
 msgstr "இடிமழை"
 
+#: lib/providers.js:721
 msgid "Hail Storm"
 msgstr "ஆலங்கட்டி மழை"
 
+#: lib/providers.js:726
 msgid "Heavy Hail"
 msgstr "கனமான ஆலங்கட்டி"
+
+#: lib/panelMenu.js:124
+msgid "AUTO"
+msgstr "தானியங்கி"
+
+#: lib/panelMenu.js:125
+msgid "MANUAL"
+msgstr "கைமுறை"
+
+#: lib/panelMenu.js:134
+msgid "Loading weather…"
+msgstr "வானிலை ஏற்றுகிறது…"
+
+#: lib/panelMenu.js:142
+msgid "Weather Alerts"
+msgstr "வானிலை எச்சரிக்கைகள்"
+
+#: lib/panelMenu.js:149
+msgid "Location Information"
+msgstr "இருப்பிட தகவல்"
+
+#: lib/panelMenu.js:156
+msgid "Weather Provider Status"
+msgstr "வானிலை வழங்குநர் நிலை"
+
+#: lib/panelMenu.js:163
+msgid "Hourly Forecast"
+msgstr "மணிக்கணக்கான வானிலை அறிக்கை"
+
+#: lib/panelMenu.js:167
+msgid "7-Day Forecast"
+msgstr "7 நாள் வானிலை அறிக்கை"
+
+#: lib/panelMenu.js:171
+msgid "Weather Insights"
+msgstr "வானிலை பகுப்பாய்வு"
+
+#: lib/panelMenu.js:177
+msgid "Refresh Weather"
+msgstr "வானிலை புதுப்பி"
+
+#: lib/panelMenu.js:185
+msgid "Extension Settings"
+msgstr "நீட்டிப்பு அமைப்புகள்"
+
+#: lib/panelMenu.js:281
+msgid "What to do"
+msgstr "என்ன செய்ய வேண்டும்"
+
+#: lib/panelMenu.js:319 lib/panelMenu.js:425
+msgid "Active"
+msgstr "செயலில்"
+
+#: lib/panelMenu.js:319 lib/panelMenu.js:469 lib/panelMenu.js:473
+#: lib/panelMenu.js:477
+msgid "Loading…"
+msgstr "ஏற்றுகிறது…"
+
+#: lib/panelMenu.js:323 lib/panelMenu.js:442
+msgid "Status"
+msgstr "நிலை"
+
+#: lib/panelMenu.js:323
+msgid "Checking…"
+msgstr "சரிபார்க்கிறது…"
+
+#: lib/panelMenu.js:327 lib/panelMenu.js:455 lib/panelMenu.js:462
+msgid "Last Update"
+msgstr "கடைசி புதுப்பிப்பு"
+
+#: lib/panelMenu.js:327 lib/panelMenu.js:462
+msgid "Never"
+msgstr "ஒருபோதும் இல்லை"
+
+#: lib/panelMenu.js:347
+msgid "Available Providers"
+msgstr "கிடைக்கக்கூடிய வழங்குநர்கள்"
+
+#: lib/panelMenu.js:375
+msgid "Custom Provider"
+msgstr "தனிப்பயன் வழங்குநர்"
+
+#: lib/panelMenu.js:428
+msgid "Free"
+msgstr "இலவசம்"
+
+#: lib/panelMenu.js:434
+msgid "Working"
+msgstr "செயல்படுகிறது"
+
+#: lib/panelMenu.js:436
+msgid "Connection Timeout"
+msgstr "இணைப்பு நேர முடிவு"
+
+#: lib/panelMenu.js:437
+msgid "Not Configured"
+msgstr "கட்டமைக்கப்படவில்லை"
+
+#: lib/panelMenu.js:438
+msgid "Testing Connection…"
+msgstr "இணைப்பை சோதிக்கிறது…"
+
+#: lib/panelMenu.js:439
+msgid "Showing cached data"
+msgstr "தாங்கல் தரவு காட்டப்படுகிறது"
+
+#: lib/panelMenu.js:446
+msgid "Unknown"
+msgstr "தெரியாத"
+
+#: lib/panelMenu.js:469 lib/panelMenu.js:983 lib/panelMenu.js:984
+msgid "Current"
+msgstr "தற்போதைய"
+
+#: lib/panelMenu.js:473 lib/panelMenu.js:989 lib/panelMenu.js:994
+msgid "Coordinates"
+msgstr "ஆயங்கள்"
+
+#: lib/panelMenu.js:477 lib/panelMenu.js:999 lib/panelMenu.js:1000
+msgid "Method"
+msgstr "முறை"
+
+#: lib/panelMenu.js:482
+msgid "Switch to Auto Detection"
+msgstr "தானியங்கி கண்டறிதலுக்கு மாறு"
+
+#: lib/panelMenu.js:491
+msgid "Switch to Manual Location"
+msgstr "கைமுறை இருப்பிடத்திற்கு மாறு"
+
+#: lib/panelMenu.js:508
+msgid "Enter city name…"
+msgstr "நகர பெயரை உள்ளிடுக…"
+
+#: lib/panelMenu.js:513 lib/panelMenu.js:606
+msgid "Search"
+msgstr "தேடு"
+
+#: lib/panelMenu.js:517 prefs.js:725
+msgid "Clear"
+msgstr "அழி"
+
+#: lib/panelMenu.js:556
+msgid "Searching…"
+msgstr "தேடுகிறது…"
+
+#: lib/panelMenu.js:599
+msgid "No locations found"
+msgstr "இருப்பிடங்கள் எதுவும் இல்லை"
+
+#: lib/panelMenu.js:604 prefs.js:1392
+msgid "Search failed. Please try again."
+msgstr "தேடல் தோல்வியடைந்தது. மீண்டும் முயற்சிக்கவும்."
+
+#: lib/panelMenu.js:685
+msgid "Unknown Location"
+msgstr "தெரியாத இருப்பிடம்"
+
+#: lib/panelMenu.js:686
+msgid "Unknown Provider"
+msgstr "தெரியாத வழங்குநர்"
+
+#: lib/panelMenu.js:690
+msgid "Cached data from"
+msgstr "தாங்கல் தரவின் நேரம்:"
+
+#: lib/panelMenu.js:727
+msgid "This forecast has no upcoming hours left"
+msgstr "இந்த முன்னறிவிப்பில் வரவிருக்கும் நேரங்கள் இல்லை"
+
+#: lib/panelMenu.js:816
+msgid "Today"
+msgstr "இன்று"
+
+#: lib/panelMenu.js:818
+msgid "Tomorrow"
+msgstr "நாளை"
+
+#: lib/panelMenu.js:881
+msgid "Temperature Trend"
+msgstr "வெப்பநிலை போக்கு"
+
+#: lib/panelMenu.js:895
+msgid "Precipitation (24h)"
+msgstr "மழை (24 மணி நேரம்)"
+
+#: lib/panelMenu.js:907
+msgid "Strong"
+msgstr "வலிமையான"
+
+#: lib/panelMenu.js:909 lib/panelMenu.js:938
+msgid "Moderate"
+msgstr "மிதமான"
+
+#: lib/panelMenu.js:910
+msgid "Light"
+msgstr "மெல்லிய"
+
+#: lib/panelMenu.js:914
+msgid "Wind"
+msgstr "காற்று"
+
+#: lib/panelMenu.js:938
+msgid "High"
+msgstr "அதிகம்"
+
+#: lib/panelMenu.js:938
+msgid "Low"
+msgstr "குறைவு"
+
+#: lib/panelMenu.js:941
+msgid "UV Index"
+msgstr "UV குறியீடு"
+
+#: lib/panelMenu.js:951
+msgid "Insufficient data"
+msgstr "போதுமான தரவு இல்லை"
+
+#: lib/panelMenu.js:959
+msgid "Warming"
+msgstr "வெப்பமாகிறது"
+
+#: lib/panelMenu.js:960
+msgid "Cooling"
+msgstr "குளிர்கிறது"
+
+#: lib/panelMenu.js:961
+msgid "Stable"
+msgstr "நிலையான"
+
+#: lib/panelMenu.js:983
+msgid "Auto-detected"
+msgstr "தானியங்கி கண்டறியப்பட்டது"
+
+#: lib/panelMenu.js:984
+msgid "Not set"
+msgstr "அமைக்கப்படவில்லை"
+
+#: lib/panelMenu.js:994
+msgid "Not available"
+msgstr "கிடைக்கவில்லை"
+
+#: lib/panelMenu.js:999
+msgid "IP-based geolocation"
+msgstr "IP அடிப்படையிலான புவி இருப்பிடம்"
+
+#: lib/panelMenu.js:1000
+msgid "Manually configured"
+msgstr "கைமுறையாக கட்டமைக்கப்பட்டது"
+
+#: prefs.js:55 prefs.js:1073 prefs.js:1104
+msgid "Advanced Weather Companion"
+msgstr "மேம்பட்ட வானிலை துணை"
+
+#: prefs.js:68
+msgid "General"
+msgstr "பொது"
+
+#: prefs.js:73
+msgid "Units & Format"
+msgstr "அலகுகள் மற்றும் வடிவம்"
+
+#: prefs.js:74
+msgid "Configure measurement units and display format"
+msgstr "அளவீட்டு அலகுகள் மற்றும் காட்சி வடிவமைப்பை அமைக்கவும்"
+
+#: prefs.js:78
+msgid "Use Fahrenheit"
+msgstr "ஃபாரன்ஹீட் பயன்படுத்து"
+
+#: prefs.js:79
+msgid "Switch between Celsius and Fahrenheit"
+msgstr "செல்சியஸ் மற்றும் ஃபாரன்ஹீட்டுக்கு மாறு"
+
+#: prefs.js:87
+msgid "Wind Speed Unit"
+msgstr "காற்று வேக அலகு"
+
+#: prefs.js:88
+msgid "Choose unit for wind speed display"
+msgstr "காற்றின் வேகத்தைக் காட்டும் அலகைத் தேர்ந்தெடுக்கவும்"
+
+#: prefs.js:93
+msgid "km/h (Kilometers per hour)"
+msgstr "கி.மீ/மணி (மணிக்கு கிலோமீட்டர்)"
+
+#: prefs.js:94
+msgid "mph (Miles per hour)"
+msgstr "மைல்/மணி (மணிக்கு மைல்)"
+
+#: prefs.js:95
+msgid "m/s (Meters per second)"
+msgstr "மீ/வி (வினாடிக்கு மீட்டர்)"
+
+#: prefs.js:96
+msgid "knots (Nautical miles per hour)"
+msgstr "நாட் (கடல்மைல்/மணி)"
+
+#: prefs.js:111
+msgid "Use 12-hour Format"
+msgstr "12 மணி நேர வடிவம் பயன்படுத்து"
+
+#: prefs.js:112
+msgid "Display time in 12-hour format with AM/PM"
+msgstr "AM/PM உடன் 12 மணி நேர வடிவத்தில் காட்டு"
+
+#: prefs.js:124
+msgid "Updates"
+msgstr "புதுப்பிப்புகள்"
+
+#: prefs.js:125
+msgid "Configure weather data refresh settings"
+msgstr "வானிலை தரவு புதுப்பிப்பு அமைப்புகளை கட்டமைக்கவும்"
+
+#: prefs.js:129
+msgid "Update Interval"
+msgstr "புதுப்பிப்பு இடைவெளி"
+
+#: prefs.js:130
+msgid "How often to refresh weather data"
+msgstr "வானிலை தரவை எத்தனை அடிக்கடி புதுப்பிக்கவும்"
+
+#: prefs.js:135
+msgid "5 minutes"
+msgstr "5 நிமிடங்கள்"
+
+#: prefs.js:136
+msgid "10 minutes"
+msgstr "10 நிமிடங்கள்"
+
+#: prefs.js:137
+msgid "15 minutes"
+msgstr "15 நிமிடங்கள்"
+
+#: prefs.js:138
+msgid "30 minutes"
+msgstr "30 நிமிடங்கள்"
+
+#: prefs.js:139
+msgid "1 hour"
+msgstr "1 மணி நேரம்"
+
+#: prefs.js:156
+msgid "Features"
+msgstr "அம்சங்கள்"
+
+#: prefs.js:157
+msgid "Enable or disable weather features"
+msgstr "வானிலை அம்சங்களை இயக்கு அல்லது முடக்கு"
+
+#: prefs.js:161
+msgid "Show Humidity"
+msgstr "ஈரப்பதம் காட்டு"
+
+#: prefs.js:162
+msgid "Display relative humidity in weather details"
+msgstr "வானிலை விவரங்களில் ஈரப்பதத்தை காட்டு"
+
+#: prefs.js:253
+msgid "Copy to Clipboard"
+msgstr "கிளிப்போர்டுக்கு நகலெடு"
+
+#: prefs.js:254
+msgid "text"
+msgstr "உரை"
+
+#: prefs.js:259
+msgid "Close"
+msgstr "மூடு"
+
+#: prefs.js:260
+msgid "Select Text"
+msgstr "உரையைத் தேர்ந்தெடு"
+
+#: prefs.js:302
+msgid "💡 Select the text above and press Ctrl+C to copy"
+msgstr "💡 மேலே உள்ள உரையைத் தேர்ந்தெடுத்து, நகலெடுக்க Ctrl+C அழுத்தவும்"
+
+#: prefs.js:335
+msgid "💡 Text selected! Press Ctrl+C to copy"
+msgstr "💡 உரை தேர்ந்தெடுக்கப்பட்டது! நகலெடுக்க Ctrl+C அழுத்தவும்"
+
+#: prefs.js:362
+msgid "Location"
+msgstr "இருப்பிடம்"
+
+#: prefs.js:367
+msgid "Location Detection"
+msgstr "இருப்பிட கண்டறிதல்"
+
+#: prefs.js:368
+msgid "Configure how your location is determined"
+msgstr "இருப்பிடம் எவ்வாறு தீர்மானிக்கப்படுகிறது என்பதை அமைக்கவும்"
+
+#: prefs.js:372
+msgid "Location Mode"
+msgstr "இருப்பிட முறை"
+
+#: prefs.js:373
+msgid "Choose detection method"
+msgstr "கண்டறியும் முறையை தேர்ந்தெடுக்கவும்"
+
+#: prefs.js:377
+msgid "🌍 Auto Detection"
+msgstr "🌍 தானியங்கி கண்டறிதல்"
+
+#: prefs.js:378
+msgid "📍 Manual Location"
+msgstr "📍 கைமுறை இருப்பிடம்"
+
+#: prefs.js:383
+msgid "Current Location"
+msgstr "தற்போதைய இருப்பிடம்"
+
+#: prefs.js:397
+msgid "Refresh location"
+msgstr "இருப்பிடத்தைப் புதுப்பி"
+
+#: prefs.js:409
+msgid "Manual Location Search"
+msgstr "கைமுறை இருப்பிட தேடல்"
+
+#: prefs.js:410
+msgid "Search by city name or coordinates (latitude, longitude)"
+msgstr ""
+"நகரப் பெயர் அல்லது ஆயத்தொலிருகள் (அட்சரேகை, தீர்க்கரேகை) மூலம் தேடுங்கள்"
+
+#: prefs.js:415
+msgid "Search Location"
+msgstr "இருப்பிடம் தேடு"
+
+#: prefs.js:424
+msgid "Search for location"
+msgstr "இருப்பிடம் தேடு"
+
+#: prefs.js:431
+msgid "Clear search"
+msgstr "தேடலை அழிக்கவும்"
+
+#: prefs.js:439
+msgid "Search Examples"
+msgstr "தேடல் எடுத்துக்காட்டுகள்"
+
+#: prefs.js:440
+msgid ""
+"City names: 'London', 'New York', 'Tokyo'\n"
+"Coordinates: '40.7128, -74.0060' or '40.7128 -74.0060'"
+msgstr ""
+"நகரப் பெயர்கள்: 'London', 'New York', 'Tokyo'\n"
+"ஆயத்தொலிருகள்: '40.7128, -74.0060' அல்லது '40.7128 -74.0060'"
+
+#: prefs.js:451
+msgid "Search Results"
+msgstr "தேடல் முடிவுகள்"
+
+#: prefs.js:506 prefs.js:516
+msgid "Weather Provider"
+msgstr "வானிலை வழங்குநர்"
+
+#: prefs.js:511
+msgid "Weather Data Source"
+msgstr "வானிலை தரவு மூலம்"
+
+#: prefs.js:512
+msgid "Choose your weather data provider"
+msgstr "வானிலை தரவு வழங்குநரை தேர்ந்தெடுக்கவும்"
+
+#: prefs.js:517
+msgid "Select weather API service"
+msgstr "வானிலை API சேவையை தேர்ந்தெடு"
+
+#: prefs.js:548
+msgid "Provider Configuration"
+msgstr "வழங்குநர் கட்டமைப்பு"
+
+#: prefs.js:549
+msgid "Configure your selected weather provider"
+msgstr "தேர்ந்தெடுத்த வானிலை வழங்குநரை கட்டமைக்கவும்"
+
+#: prefs.js:554
+msgid "API Key"
+msgstr "API திறவுகோல்"
+
+#: prefs.js:559
+msgid "Get API Key"
+msgstr "API திறவுகோல் பெறுக"
+
+#: prefs.js:567
+msgid "Custom API URL"
+msgstr "தனிப்பயன் API URL"
+
+#: prefs.js:573
+msgid "Provider Information"
+msgstr "வழங்குநர் தகவல்"
+
+#: prefs.js:579
+msgid "Test Connection"
+msgstr "இணைப்பை சோதி"
+
+#: prefs.js:580
+msgid "Verify your provider settings work correctly"
+msgstr "வழங்குநர் அமைப்புகள் சரியாக செயல்படுகின்றனவா என சரிபார்க்கவும்"
+
+#: prefs.js:585 prefs.js:951
+msgid "Test"
+msgstr "சோதனை"
+
+#: prefs.js:627
+msgid "Automatic Provider Fallback"
+msgstr "தானியங்கி வழங்குநர் மாற்று"
+
+#: prefs.js:628
+msgid ""
+"When a provider fails, the next one is tried. Every provider is used at most"
+" once per refresh."
+msgstr ""
+"ஒரு வழங்குநர் தோல்வியடையும்போது அடுத்தவர் சோதிக்கப்படுவார். ஒவ்வொரு "
+"புதுப்பிப்பிலும் ஒவ்வொரு வழங்குநரும் ஒரு முறை மட்டுமே பயன்படுத்தப்படுவார்."
+
+#: prefs.js:632
+msgid "Try Other Providers On Failure"
+msgstr "தோல்வியின்போது மற்ற வழங்குநர்களை முயற்சி"
+
+#: prefs.js:633
+msgid "Turn off to use only the selected provider"
+msgstr "தேர்ந்தெடுத்த வழங்குநரை மட்டுமே பயன்படுத்த இதை அணைக்கவும்"
+
+#: prefs.js:638
+msgid "Fallback Priority"
+msgstr "மாற்று வழங்குநர் முன்னுரிமை"
+
+#: prefs.js:639
+msgid ""
+"Providers are tried in this order. The selected provider is always tried "
+"first."
+msgstr ""
+"வழங்குநர்கள் இந்த வரிசையில் சோதிக்கப்படுகிறார்கள். தேர்ந்தெடுத்த வழங்குநர் "
+"எப்போதும் முதலில் சோதிக்கப்படுவார்."
+
+#: prefs.js:654
+msgid "API key required"
+msgstr "API விசை தேவை"
+
+#: prefs.js:655
+msgid "Free, no API key"
+msgstr "இலவசம், API விசை தேவையில்லை"
+
+#: prefs.js:700
+msgid "Offline Weather Data"
+msgstr "இணைப்பின்றி வானிலை தரவு"
+
+#: prefs.js:701
+msgid ""
+"The last successful fetch, including the hourly and 7-day forecasts, is kept"
+" and shown instead of an error when every provider fails."
+msgstr ""
+"அனைத்து வழங்குநர்களும் தோல்வியடையும்போது, மணிநேர மற்றும் 7 நாள் "
+"முன்னறிவிப்புகள் உட்படக் கடைசி வெற்றிகரமான பெறுதல் சேமிக்கப்பட்டு பிழைக்குப்"
+" பதிலாகக் காட்டப்படும்."
+
+#: prefs.js:705
+msgid "Use Cached Data Up To"
+msgstr "தாங்கல் தரவைப் பயன்படுத்தும் அதிகபட்ச காலம்"
+
+#: prefs.js:706
+msgid "Maximum age of the cached forecast, in days"
+msgstr "நாட்களில், தாங்கப்பட்ட முன்னறிவிப்பின் அதிகபட்ச வயது"
+
+#: prefs.js:720
+msgid "Cached Forecast"
+msgstr "தாங்கப்பட்ட முன்னறிவிப்பு"
+
+#: prefs.js:733
+msgid "Cached weather data cleared"
+msgstr "தாங்கப்பட்ட வானிலை தரவு நீக்கப்பட்டது"
+
+#: prefs.js:781
+msgid "No cached data yet"
+msgstr "இன்னும் தாங்கல் தரவு இல்லை"
+
+#: prefs.js:791
+msgid "min ago"
+msgstr "நிமிடங்களுக்கு முன்"
+
+#: prefs.js:792
+msgid "h ago"
+msgstr "மணிநேரங்களுக்கு முன்"
+
+#: prefs.js:793
+msgid "days ago"
+msgstr "நாட்களுக்கு முன்"
+
+#: prefs.js:795
+msgid "unknown provider"
+msgstr "தெரியாத வழங்குநர்"
+
+#: prefs.js:805
+msgid "Cached data is unreadable"
+msgstr "தாங்கல் தரவைப் படிக்க முடியவில்லை"
+
+#: prefs.js:862
+msgid "Could not open website. Please visit manually."
+msgstr "இணையதளத்தைத் திறக்க முடியவில்லை. கைமுறையாகப் பார்க்கவும்."
+
+#: prefs.js:895
+msgid "Testing…"
+msgstr "சோதிக்கிறது…"
+
+#: prefs.js:908
+msgid "Custom URL is required"
+msgstr "தனிப்பயன் URL தேவை"
+
+#: prefs.js:911
+msgid "API key is required for"
+msgstr "இதற்கு API விசை தேவை:"
+
+#: prefs.js:940
+msgid ""
+"Response received but no weather data found. Check your API key and URL."
+msgstr ""
+"பதில் கிடைத்தது ஆனால் வானிலை தரவு இல்லை. API திறவுகோல் மற்றும் URL "
+"சரிபார்க்கவும்."
+
+#: prefs.js:942
+msgid "Connection successful!"
+msgstr "இணைப்பு வெற்றிகரமாக உள்ளது!"
+
+#: prefs.js:943
+msgid "Current temp:"
+msgstr "தற்போதைய வெப்பநிலை:"
+
+#: prefs.js:948
+msgid "Connection failed:"
+msgstr "இணைப்பு தோல்வி:"
+
+#: prefs.js:958
+msgid "Appearance"
+msgstr "தோற்றம்"
+
+#: prefs.js:963
+msgid "Panel Display"
+msgstr "பலக காட்சி"
+
+#: prefs.js:964
+msgid "Configure how the weather appears in the panel"
+msgstr "பேனலில் வானிலை எப்படித் தெரியும் என அமைக்கவும்"
+
+#: prefs.js:968
+msgid "Panel Position"
+msgstr "பலக நிலை"
+
+#: prefs.js:969
+msgid "Where to show the weather widget"
+msgstr "வானிலை விட்ஜெட்டை எங்கு காட்ட வேண்டும்"
+
+#: prefs.js:974
+msgid "Left"
+msgstr "இடது"
+
+#: prefs.js:975
+msgid "Center"
+msgstr "மையம்"
+
+#: prefs.js:976
+msgid "Right"
+msgstr "வலது"
+
+#: prefs.js:991
+msgid "Panel Position Index"
+msgstr "பலக நிலை குறியீடு"
+
+#: prefs.js:992
+msgid "Position index in the selected panel area"
+msgstr "தேர்ந்தெடுத்த பேனல் பகுதியில் நிலை எண்"
+
+#: prefs.js:1005
+msgid "Show Temperature Text"
+msgstr "வெப்பநிலை உரை காட்டு"
+
+#: prefs.js:1006
+msgid "Display temperature alongside the weather icon"
+msgstr "வானிலை ஐகானுக்கு அருகில் வெப்பநிலையை காட்டு"
+
+#: prefs.js:1014
+msgid "Show Location Indicator"
+msgstr "இருப்பிட குறிகாட்டி காட்டு"
+
+#: prefs.js:1015
+msgid "Display location mode indicator in panel"
+msgstr "பேனலில் இருப்பிட முறைக் குறியீட்டைக் காட்டு"
+
+#: prefs.js:1028
+msgid "Icon Size"
+msgstr "ஐகான் அளவு"
+
+#: prefs.js:1029
+msgid "Size of the weather icon in pixels"
+msgstr "வானிலை ஐகானின் அளவு (பிக்சல்)"
+
+#: prefs.js:1042
+msgid "Text Size"
+msgstr "உரை அளவு"
+
+#: prefs.js:1043
+msgid "Size of the temperature text in pixels"
+msgstr "வெப்பநிலை உரையின் அளவு (பிக்சல்)"
+
+#: prefs.js:1068
+msgid "About"
+msgstr "பற்றி"
+
+#: prefs.js:1074
+msgid "A beautiful, modern weather companion for GNOME Shell"
+msgstr "GNOME Shell-க்கான அழகான நவீன வானிலை நண்பன்"
+
+#: prefs.js:1110
+msgid "Version 2.0"
+msgstr "பதிப்பு 2.0"
+
+#: prefs.js:1116
+msgid "Modern weather extension with native GNOME design"
+msgstr "GNOME வடிவமைப்பில் நவீன வானிலை நீட்டிப்பு"
+
+#: prefs.js:1133
+msgid "Extension Links"
+msgstr "நீட்டிப்பு இணைப்புகள்"
+
+#: prefs.js:1134 prefs.js:1139
+msgid "Source code, issues, and contributions"
+msgstr "மூல குறியீடு, சிக்கல்கள் மற்றும் பங்களிப்புகள்"
+
+#: prefs.js:1138
+msgid "View on GitHub"
+msgstr "GitHub-ல் பார்க்கவும்"
+
+#: prefs.js:1160
+msgid "☕ Support by buying me a coffee — just scan the QR code!"
+msgstr ""
+"☕ எனக்கு ஒரு காபி வாங்கி ஆதரிக்கவும் — QR குறியீட்டை ஸ்கேன் செய்வது தான்!"
+
+#: prefs.js:1161
+msgid "Preferred Method - Scan QR code to support development"
+msgstr "விருப்ப முறை - வளர்ச்சிக்கு ஆதரவாக QR குறியீட்டை ஸ்கேன் செய்யுங்கள்"
+
+#: prefs.js:1206
+msgid "Donation Address"
+msgstr "நன்கொடை முகவரி"
+
+#: prefs.js:1238
+msgid "☕ Buy Me a Coffee"
+msgstr "☕ எனக்கு ஒரு காபி வாங்கிப் போடுங்கள்"
+
+#: prefs.js:1239
+msgid "Support development with a small donation"
+msgstr "சிறு நன்கொடையுடன் வளர்ச்சியை ஆதரிக்கவும்"
+
+#: prefs.js:1261
+msgid "License & Credits"
+msgstr "உரிமம் மற்றும் நன்றிகள்"
+
+#: prefs.js:1262
+msgid "Open source software information"
+msgstr "திறந்த மூல மென்பொருள் தகவல்"
+
+#: prefs.js:1266
+msgid "Open Source License"
+msgstr "திறந்த மூல உரிமம்"
+
+#: prefs.js:1267
+msgid "MIT License - Free and open source software"
+msgstr "MIT உரிமம் - இலவச திறந்த மூல மென்பொருள்"
+
+#: prefs.js:1277
+msgid "Weather Data Sources"
+msgstr "வானிலை தரவு மூலங்கள்"
+
+#: prefs.js:1278
+msgid "Open-Meteo, Meteosource, Wttr.in - Free weather APIs"
+msgstr "Open-Meteo, Meteosource, Wttr.in - இலவச வானிலை API-க்கள்"
+
+#: prefs.js:1382
+msgid ""
+"Invalid coordinates. Latitude must be between -90 and 90, longitude between "
+"-180 and 180."
+msgstr ""
+"தவறான ஆயத்தொலிருகள். அட்சரேகை -90 முதல் 90 வரையிலும், தீர்க்கரேகை -180 முதல்"
+" 180 வரையிலும் இருக்க வேண்டும்."
+
+#: prefs.js:1395
+msgid "Unable to connect to location service. Check your internet connection."
+msgstr ""
+"இருப்பிட சேவையுடன் இணைக்க முடியவில்லை. உங்கள் இணைப்பைச் சரிபார்க்கவும்."
+
+#: prefs.js:1397
+msgid "Invalid response from location service. Please try again."
+msgstr ""
+"இருப்பிட சேவையிலிருந்து தவறான பதில் கிடைத்தது. மீண்டும் முயற்சிக்கவும்."
+
+#: prefs.js:1399
+msgid "Search timed out. Please try again."
+msgstr "தேடல் நேர முடிவு. மீண்டும் முயற்சிக்கவும்."
+
+#: prefs.js:1516 prefs.js:1554
+msgid "Select this location"
+msgstr "இந்த இருப்பிடத்தை தேர்ந்தெடு"
+
+#: prefs.js:1573
+msgid "Location updated successfully"
+msgstr "இருப்பிடம் வெற்றிகரமாகப் புதுப்பிக்கப்பட்டது"
+
+#: prefs.js:1576
+msgid "Failed to save location. Please try again."
+msgstr "இருப்பிடத்தைச் சேமிக்க முடியவில்லை. மீண்டும் முயற்சிக்கவும்."
+
+#: prefs.js:1583
+msgid "No Results Found"
+msgstr "முடிவுகள் எதுவும் இல்லை"
+
+#: prefs.js:1584
+msgid "Try a different search term or check your spelling"
+msgstr ""
+"வேறு தேடல் சொல்லை முயற்சிக்கவும் அல்லது உங்கள் எழுத்துப்பிழையை "
+"சரிபார்க்கவும்"
+
+#: prefs.js:1618
+msgid "Search Error"
+msgstr "தேடல் பிழை"
+
+#: prefs.js:1644 prefs.js:1662
+msgid "🌍 Auto Detection Enabled"
+msgstr "🌍 தானியங்கி கண்டறிதல் இயக்கப்பட்டது"
+
+#: prefs.js:1649 prefs.js:1667
+msgid "📍 Manual - Please set location"
+msgstr "📍 கைமுறை - இருப்பிடத்தை அமைக்கவும்"
+
+#~ msgid "Could not open website."
+#~ msgstr "இணையதளத்தை திறக்க முடியவில்லை."
+
+#~ msgid "Custom / Weather Underground URL"
+#~ msgstr "தனிப்பயன் / Weather Underground URL"
+
+#~ msgid "Donation address"
+#~ msgstr "நன்கொடை முகவரி"
+
+#~ msgid "Not Required"
+#~ msgstr "தேவையில்லை"
+
+#~ msgid "Not specified"
+#~ msgstr "குறிப்பிடப்படவில்லை"
+
+#~ msgid "Rate Limit"
+#~ msgstr "கோரிக்கை வரம்பு"
+
+#~ msgid "Required"
+#~ msgstr "தேவையானது"
+
+#~ msgid "Test failed:"
+#~ msgstr "சோதனை தோல்வியடைந்தது:"
+
+#~ msgid "URL Placeholders"
+#~ msgstr "URL இடம்பிடிகள்"
+
+#~ msgid "☕ Support – Scan QR to buy me a coffee"
+#~ msgstr "☕ ஆதரவு – காபி வாங்க QR ஸ்கேன் செய்யவும்"
+
+#~ msgid "Enable Weather Alerts"
+#~ msgstr "வானிலை எச்சரிக்கைகளை இயக்கு"
+
+#~ msgid "Send desktop notifications for dangerous weather"
+#~ msgstr "ஆபத்தான வானிலைக்கு டெஸ்க்டாப் அறிவிப்புகள் அனுப்பு"
+
+#~ msgid "Extreme high temperature detected"
+#~ msgstr "அதிக வெப்பநிலை கண்டறியப்பட்டது"
+
+#~ msgid "Extreme low temperature detected"
+#~ msgstr "மிகக் குறைந்த வெப்பநிலை கண்டறியப்பட்டது"
+
+#~ msgid "SEVERE WEATHER"
+#~ msgstr "கடுமையான வானிலை"
+
+#~ msgid "HEAT WARNING"
+#~ msgstr "வெப்ப எச்சரிக்கை"
+
+#~ msgid "Extreme temperatures"
+#~ msgstr "தீவிர வெப்பநிலை"
+
+#~ msgid "COLD WARNING"
+#~ msgstr "குளிர் எச்சரிக்கை"
+
+#~ msgid "STORM WARNING"
+#~ msgstr "புயல் எச்சரிக்கை"
+
+#~ msgid "Dangerous winds detected"
+#~ msgstr "ஆபத்தான காற்று கண்டறியப்பட்டது"
+
+#~ msgid "WIND WARNING"
+#~ msgstr "காற்று எச்சரிக்கை"

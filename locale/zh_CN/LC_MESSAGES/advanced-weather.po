@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: advanced-weather 2.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Sanjai-Shaarugesh/Advanced-Weather-Companion/issues\n"
-"POT-Creation-Date: 2026-03-15 00:00+0000\n"
-"PO-Revision-Date: 2026-03-15 00:00+0000\n"
+"POT-Creation-Date: 2026-10-22 19:18+0800\n"
+"PO-Revision-Date: 2026-10-22 12:00+0000\n"
 "Last-Translator: Advanced Weather Team\n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -13,665 +13,1208 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-msgid "1 hour"
-msgstr "1小时"
-
-msgid "10 minutes"
-msgstr "10分钟"
-
-msgid "15 minutes"
-msgstr "15分钟"
-
-msgid "30 minutes"
-msgstr "30分钟"
-
-msgid "5 minutes"
-msgstr "5分钟"
-
-msgid "A beautiful, modern weather companion for GNOME Shell"
-msgstr "GNOME Shell 的美观现代天气助手"
-
-msgid "API Key"
-msgstr "API 密钥"
-
-msgid "About"
-msgstr "关于"
-
-msgid "Advanced Weather Companion"
-msgstr "高级天气助手"
-
-msgid "Appearance"
-msgstr "外观"
-
-msgid "Center"
-msgstr "居中"
-
-msgid "Choose detection method"
-msgstr "选择检测方式"
-
-msgid "Choose your weather data provider"
-msgstr "选择天气数据提供商"
-
-msgid "Clear search"
-msgstr "清除搜索"
-
-msgid "Configure how weather appears in the panel"
-msgstr "配置天气在面板中的显示方式"
-
-msgid "Configure how your location is determined"
-msgstr "配置位置确定方式"
-
-msgid "Configure measurement units and display format"
-msgstr "配置测量单位和显示格式"
-
-msgid "Configure weather data refresh settings"
-msgstr "配置天气数据刷新设置"
-
-msgid "Configure your selected weather provider"
-msgstr "配置所选天气提供商"
-
-msgid "Connection successful!"
-msgstr "连接成功！"
-
-msgid "Could not copy. Please copy manually: "
-msgstr "无法复制，请手动复制："
-
-msgid "Could not open website."
-msgstr "无法打开网站。"
-
-msgid "Current Location"
-msgstr "当前位置"
-
-msgid "Current temp:"
-msgstr "当前温度："
-
-msgid "Custom / Weather Underground URL"
-msgstr "自定义 / Weather Underground URL"
-
-msgid "Custom URL is required"
-msgstr "需要自定义 URL"
-
-msgid "Display AUTO/MANUAL indicator in panel"
-msgstr "在面板中显示自动/手动指示器"
-
-msgid "Display relative humidity in weather details"
-msgstr "在天气详情中显示相对湿度"
-
-msgid "Display temperature alongside the weather icon"
-msgstr "在天气图标旁显示温度"
-
-msgid "Display time in 12-hour format with AM/PM"
-msgstr "以带 AM/PM 的12小时格式显示时间"
-
-msgid "Donation Address"
-msgstr "捐款地址"
-
-msgid "Donation address"
-msgstr "捐款地址"
-
-msgid "Enable or disable weather features"
-msgstr "启用或禁用天气功能"
-
-msgid "Extension Links"
-msgstr "扩展链接"
-
-msgid "Features"
-msgstr "功能"
-
-msgid "General"
-msgstr "常规"
-
-msgid "Get API Key"
-msgstr "获取 API 密钥"
-
-msgid "How often to refresh weather data"
-msgstr "天气数据刷新频率"
-
-msgid "Icon Size"
-msgstr "图标大小"
-
-msgid "Invalid coordinates. Lat: −90 to 90, Lon: −180 to 180."
-msgstr "坐标无效。纬度：−90 至 90，经度：−180 至 180。"
-
-msgid "Left"
-msgstr "左侧"
-
-msgid "License & Credits"
-msgstr "许可证和致谢"
-
-msgid "Location"
-msgstr "位置"
-
-msgid "Location Detection"
-msgstr "位置检测"
-
-msgid "Location Mode"
-msgstr "位置模式"
-
-msgid "MIT License – Free and open source software"
-msgstr "MIT 许可证 – 免费开源软件"
-
-msgid "Manual Location Search"
-msgstr "手动位置搜索"
-
-msgid "Modern weather extension with native GNOME design"
-msgstr "采用原生 GNOME 设计的现代天气扩展"
-
-msgid "No Results Found"
-msgstr "未找到结果"
-
-msgid "Not Required"
-msgstr "不需要"
-
-msgid "Not specified"
-msgstr "未指定"
-
-msgid "Open Source License"
-msgstr "开源许可证"
-
-msgid "Open source software information"
-msgstr "开源软件信息"
-
-msgid "Panel Display"
-msgstr "面板显示"
-
-msgid "Panel Position"
-msgstr "面板位置"
-
-msgid "Panel Position Index"
-msgstr "面板位置索引"
-
-msgid "Position index within the selected panel area"
-msgstr "所选面板区域中的位置索引"
-
-msgid "Provider Configuration"
-msgstr "提供商配置"
-
-msgid "Provider Information"
-msgstr "提供商信息"
-
-msgid "Rate Limit"
-msgstr "请求限制"
-
-msgid "Refresh location display"
-msgstr "刷新位置显示"
-
-msgid "Required"
-msgstr "必填"
-
-msgid "Response received but no weather data found. Check your API key and URL."
-msgstr "收到响应但未找到天气数据，请检查 API 密钥和 URL。"
-
-msgid "Right"
-msgstr "右侧"
-
-msgid "Search Error"
-msgstr "搜索错误"
-
-msgid "Search Examples"
-msgstr "搜索示例"
-
-msgid "Search Location"
-msgstr "搜索位置"
-
-msgid "Search Results"
-msgstr "搜索结果"
-
-msgid "Search by city name or coordinates (lat, lon)"
-msgstr "按城市名称或坐标搜索"
-
-msgid "Search failed. Please try again."
-msgstr "搜索失败，请重试。"
-
-msgid "Search for location"
-msgstr "搜索位置"
-
-msgid "Search timed out. Please try again."
-msgstr "搜索超时，请重试。"
-
-msgid "Select this location"
-msgstr "选择此位置"
-
-msgid "Select weather API service"
-msgstr "选择天气 API 服务"
-
-msgid "Show Humidity"
-msgstr "显示湿度"
-
-msgid "Show Location Indicator"
-msgstr "显示位置指示器"
-
-msgid "Show Temperature Text"
-msgstr "显示温度文字"
-
-msgid "Size of the temperature text in pixels"
-msgstr "温度文字大小（像素）"
-
-msgid "Size of the weather icon in pixels"
-msgstr "天气图标大小（像素）"
-
-msgid "Source code, issues, and contributions"
-msgstr "源代码、问题和贡献"
-
-msgid "Support development with a small donation"
-msgstr "通过小额捐款支持开发"
-
-msgid "Switch between Celsius and Fahrenheit"
-msgstr "切换摄氏度和华氏度"
-
-msgid "Test"
-msgstr "测试"
-
-msgid "Test Connection"
-msgstr "测试连接"
-
-msgid "Test failed:"
-msgstr "测试失败："
-
-msgid "Testing…"
-msgstr "测试中…"
-
-msgid "Text Size"
-msgstr "文字大小"
-
-msgid "Try a different search term or check your spelling"
-msgstr "尝试其他搜索词或检查拼写"
-
-msgid "URL Placeholders"
-msgstr "URL 占位符"
-
-msgid "Unable to reach location service. Check your connection."
-msgstr "无法连接位置服务，请检查网络连接。"
-
-msgid "Unit for wind speed display"
-msgstr "风速显示单位"
-
-msgid "Units & Format"
-msgstr "单位和格式"
-
-msgid "Update Interval"
-msgstr "更新间隔"
-
-msgid "Updates"
-msgstr "更新"
-
-msgid "Use 12-hour Format"
-msgstr "使用12小时格式"
-
-msgid "Use Fahrenheit"
-msgstr "使用华氏度"
-
-msgid "Verify your provider settings work correctly"
-msgstr "验证提供商设置是否正确"
-
-msgid "Version 2.0"
-msgstr "版本 2.0"
-
-msgid "View on GitHub"
-msgstr "在 GitHub 上查看"
-
-msgid "Weather Data Source"
-msgstr "天气数据来源"
-
-msgid "Weather Data Sources"
-msgstr "天气数据来源"
-
-msgid "Weather Provider"
-msgstr "天气提供商"
-
-msgid "Where to show the weather widget"
-msgstr "天气小部件显示位置"
-
-msgid "Wind Speed Unit"
-msgstr "风速单位"
-
-msgid "copied to clipboard"
-msgstr "已复制到剪贴板"
-
-msgid "km/h (Kilometers per hour)"
-msgstr "km/h（千米/小时）"
-
-msgid "knots (Nautical miles)"
-msgstr "节（海里）"
-
-msgid "m/s (Meters per second)"
-msgstr "m/s（米/秒）"
-
-msgid "mph (Miles per hour)"
-msgstr "mph（英里/小时）"
-
-msgid "☕ Buy Me a Coffee"
-msgstr "☕ 请我喝杯咖啡"
-
-msgid "☕ Support – Scan QR to buy me a coffee"
-msgstr "☕ 支持 – 扫描二维码请我喝咖啡"
-
-msgid "✅ Location updated successfully"
-msgstr "✅ 位置更新成功"
-
-msgid "🌍 Auto Detection"
-msgstr "🌍 自动检测"
-
-msgid "🌍 Auto Detection Enabled"
-msgstr "🌍 已启用自动检测"
-
-msgid "📍 Manual Location"
-msgstr "📍 手动位置"
-
-msgid "📍 Manual – Please set location"
-msgstr "📍 手动 – 请设置位置"
-
-msgid "API key is required for "
-msgstr "需要 API 密钥："
-
-msgid "Enable Weather Alerts"
-msgstr "启用天气警报"
-
-msgid "Send desktop notifications for dangerous weather"
-msgstr "危险天气时发送桌面通知"
-
-msgid "Weather Alerts"
-msgstr "天气警报"
-
-msgid "⚠️ Severe Weather Alert"
-msgstr "⚠️ 严重天气警报"
-
-msgid "🌡️ Heat Warning"
-msgstr "🌡️ 高温警告"
-
-msgid "🥶 Cold Warning"
-msgstr "🥶 低温警告"
-
-msgid "💨 Wind Warning"
-msgstr "💨 大风警告"
-
-msgid "🌀 Storm Warning"
-msgstr "🌀 暴风警告"
-
-msgid "Extreme high temperature detected"
-msgstr "检测到极端高温"
-
-msgid "Extreme low temperature detected"
-msgstr "检测到极端低温"
-
-msgid "Dangerous wind speed"
-msgstr "危险风速"
-
-msgid "Strong winds detected"
-msgstr "检测到强风"
-
-msgid "Advanced Weather"
-msgstr "高级天气"
-
-msgid "Loading weather…"
-msgstr "正在加载天气…"
-
-msgid "Location Information"
-msgstr "位置信息"
-
-msgid "Weather Provider Status"
-msgstr "天气提供商状态"
-
-msgid "Hourly Forecast"
-msgstr "逐小时预报"
-
-msgid "7-Day Forecast"
-msgstr "7天预报"
-
-msgid "Weather Insights"
-msgstr "天气分析"
-
-msgid "Refresh Weather"
-msgstr "刷新天气"
-
-msgid "Extension Settings"
-msgstr "扩展设置"
-
-msgid "Active"
-msgstr "活跃"
-
-msgid "Loading…"
-msgstr "加载中…"
-
-msgid "Status"
-msgstr "状态"
-
-msgid "Checking…"
-msgstr "检查中…"
-
-msgid "Last Update"
-msgstr "上次更新"
-
-msgid "Never"
-msgstr "从未"
-
-msgid "Available Providers"
-msgstr "可用提供商"
-
-msgid "Free"
-msgstr "免费"
-
-msgid "Custom Provider"
-msgstr "自定义提供商"
-
-msgid "Working"
-msgstr "正常"
-
-msgid "Error"
-msgstr "错误"
-
-msgid "Connection Timeout"
-msgstr "连接超时"
-
-msgid "Not Configured"
-msgstr "未配置"
-
-msgid "Testing Connection…"
-msgstr "测试连接中…"
-
-msgid "Unknown"
-msgstr "未知"
-
-msgid "Current"
-msgstr "当前"
-
-msgid "Auto-detected"
-msgstr "自动检测"
-
-msgid "Not set"
-msgstr "未设置"
-
-msgid "Coordinates"
-msgstr "坐标"
-
-msgid "Not available"
-msgstr "不可用"
-
-msgid "Method"
-msgstr "方式"
-
-msgid "IP-based geolocation"
-msgstr "基于IP的地理定位"
-
-msgid "Manually configured"
-msgstr "手动配置"
-
-msgid "Switch to Auto Detection"
-msgstr "切换到自动检测"
-
-msgid "Switch to Manual Location"
-msgstr "切换到手动位置"
-
-msgid "Enter city name…"
-msgstr "输入城市名称…"
-
-msgid "Search"
-msgstr "搜索"
-
-msgid "Clear"
-msgstr "清除"
-
-msgid "Searching…"
-msgstr "搜索中…"
-
-msgid "No locations found"
-msgstr "未找到位置"
-
-msgid "Unknown Location"
-msgstr "未知位置"
-
-msgid "Unknown Provider"
-msgstr "未知提供商"
-
-msgid "SEVERE WEATHER"
-msgstr "严重天气"
-
-msgid "HEAT WARNING"
-msgstr "高温警告"
-
-msgid "Extreme temperatures"
-msgstr "极端温度"
-
-msgid "COLD WARNING"
-msgstr "低温警告"
-
-msgid "Extreme low temperatures"
-msgstr "极端低温"
-
-msgid "STORM WARNING"
-msgstr "暴风警告"
-
-msgid "Dangerous winds detected"
-msgstr "检测到危险风速"
-
-msgid "WIND WARNING"
-msgstr "大风警告"
-
-msgid "Temperature Trend"
-msgstr "气温趋势"
-
-msgid "Precipitation (24h)"
-msgstr "降水量（24小时）"
-
-msgid "Wind"
-msgstr "风速"
-
-msgid "Strong"
-msgstr "强"
-
-msgid "Moderate"
-msgstr "中等"
-
-msgid "Light"
-msgstr "弱"
-
-msgid "UV Index"
-msgstr "紫外线指数"
-
-msgid "High"
-msgstr "高"
-
-msgid "Low"
-msgstr "低"
-
-msgid "Insufficient data"
-msgstr "数据不足"
-
-msgid "Warming"
-msgstr "升温"
-
-msgid "Cooling"
-msgstr "降温"
-
-msgid "Stable"
-msgstr "稳定"
-
-msgid "Today"
-msgstr "今天"
-
-msgid "Tomorrow"
-msgstr "明天"
-
-msgid "AUTO"
-msgstr "自动"
-
-msgid "MANUAL"
-msgstr "手动"
-
+#: extension.js:222 extension.js:555
 msgid "Offline"
 msgstr "离线"
 
-msgid "No Key"
-msgstr "无密钥"
-
+#: extension.js:370
 msgid "fallback"
 msgstr "备用"
 
+#: extension.js:519
+msgid "cached data"
+msgstr "缓存数据"
+
+#: extension.js:553
+msgid "No Key"
+msgstr "无密钥"
+
+#: extension.js:556 lib/panelMenu.js:435 lib/panelMenu.js:663
+msgid "Error"
+msgstr "错误"
+
+#: extension.js:619
+msgid "Advanced Weather"
+msgstr "高级天气"
+
+#: extension.js:627
+msgid "What to do:"
+msgstr "应对建议："
+
+#: lib/alerts.js:37
+msgid "⚠️ Severe Weather Alert"
+msgstr "⚠️ 恶劣天气警报"
+
+#: lib/alerts.js:46
+msgid "⚠️ Weather Warning"
+msgstr "⚠️ 天气警告"
+
+#: lib/alerts.js:66
+msgid "🌡️ Extreme Heat Warning"
+msgstr "🌡️ 高温警告"
+
+#: lib/alerts.js:68
+msgid "Dangerously high temperature"
+msgstr "危险的高温"
+
+#: lib/alerts.js:75
+msgid "Stay indoors during peak hours (10 AM – 4 PM)"
+msgstr "高峰时段（10:00–16:00）留在室内"
+
+#: lib/alerts.js:76
+msgid "Drink water regularly — at least 2–3 litres per day"
+msgstr "定时喝水 — 每天至少 2–3 升"
+
+#: lib/alerts.js:77
+msgid "Wear light, loose, light-coloured clothing"
+msgstr "穿着轻薄、宽松、浅色的衣物"
+
+#: lib/alerts.js:78
+msgid "Never leave children or pets in parked vehicles"
+msgstr "切勿将儿童或宠物留在停放的车内"
+
+#: lib/alerts.js:79
+msgid "Check on elderly neighbours and relatives"
+msgstr "探望年迈的邻居和亲属"
+
+#: lib/alerts.js:80
+msgid "Use fans or air conditioning if available"
+msgstr "如有条件，使用风扇或空调"
+
+#: lib/alerts.js:91
+msgid "🥶 Extreme Cold Warning"
+msgstr "🥶 严寒警告"
+
+#: lib/alerts.js:93
+msgid "Dangerously low temperature"
+msgstr "危险的低温"
+
+#: lib/alerts.js:100
+msgid "Layer clothing: base layer, insulation, waterproof outer shell"
+msgstr "分层穿衣：贴身层、保暖层、防水外层"
+
+#: lib/alerts.js:101
+msgid "Cover exposed skin — risk of frostbite within 30 minutes"
+msgstr "遮盖裸露皮肤 — 30 分钟内可能被冻伤"
+
+#: lib/alerts.js:102
+msgid "Keep emergency supplies in your vehicle if driving"
+msgstr "驾车时在车内备好应急物资"
+
+#: lib/alerts.js:103
+msgid "Check heating systems and carbon-monoxide detectors"
+msgstr "检查供暖系统和一氧化碳报警器"
+
+#: lib/alerts.js:104
+msgid "Check on elderly and vulnerable people"
+msgstr "关照老人和弱势群体"
+
+#: lib/alerts.js:105
+msgid "Bring pets indoors"
+msgstr "将宠物带入室内"
+
+#: lib/alerts.js:117
+msgid "🌀 Severe Storm Warning"
+msgstr "🌀 强风暴警告"
+
+#: lib/alerts.js:119
+msgid "Dangerous wind speed"
+msgstr "危险风速"
+
+#: lib/alerts.js:121
+msgid "Avoid all unnecessary travel"
+msgstr "避免一切不必要的出行"
+
+#: lib/alerts.js:122
+msgid "Stay away from trees, scaffolding, and signs"
+msgstr "远离树木、脚手架和广告牌"
+
+#: lib/alerts.js:123
+msgid "Do not attempt to drive high-sided vehicles"
+msgstr "切勿驾驶高大的车辆"
+
+#: lib/alerts.js:124
+msgid "Secure or bring inside any outdoor furniture"
+msgstr "固定或收起户外家具"
+
+#: lib/alerts.js:125
+msgid "Stay indoors away from windows"
+msgstr "留在室内，远离窗户"
+
+#: lib/alerts.js:126
+msgid "Follow local emergency service guidance"
+msgstr "遵循当地应急部门的指引"
+
+#: lib/alerts.js:135
+msgid "💨 Strong Wind Warning"
+msgstr "💨 大风警告"
+
+#: lib/alerts.js:137
+msgid "Strong winds detected"
+msgstr "检测到强风"
+
+#: lib/alerts.js:140
+msgid ""
+"Take care when walking or cycling — gusts may be stronger than the average"
+msgstr "步行或骑行时要小心 — 阵风可能强于平均风速"
+
+#: lib/alerts.js:142
+msgid "Secure loose outdoor items (bins, garden furniture, etc.)"
+msgstr "固定好室外的活动物品（垃圾桶、花园家具等）"
+
+#: lib/alerts.js:143
+msgid "Drive with extra caution, especially on exposed roads or bridges"
+msgstr "格外小心驾驶，尤其在开阔路段和桥梁上"
+
+#: lib/alerts.js:144
+msgid "Cyclists and motorcyclists should be especially cautious"
+msgstr "骑车者和摩托车驾驶者需格外小心"
+
+#: lib/alerts.js:158
+msgid "Seek shelter immediately in a sturdy building"
+msgstr "立即进入坚固建筑物躲避"
+
+#: lib/alerts.js:159
+msgid "Avoid open fields, hilltops, and isolated trees"
+msgstr "避开空旷田野、山顶和孤立的树木"
+
+#: lib/alerts.js:160
+msgid "Stay away from water, metal objects, and electrical equipment"
+msgstr "远离水、金属物体和电气设备"
+
+#: lib/alerts.js:161
+msgid "If outdoors and unable to shelter, crouch low — do not lie flat"
+msgstr "如在户外无法躲避，请低蹲 — 不要平躺"
+
+#: lib/alerts.js:162
+msgid "Avoid using corded phones or plugged-in devices"
+msgstr "避免使用有线电话或插电设备"
+
+#: lib/alerts.js:163
+msgid "Keep away from windows and doors"
+msgstr "远离门窗"
+
+#: lib/alerts.js:167
+msgid "Follow official emergency service guidance"
+msgstr "遵循官方应急部门的指引"
+
+#: lib/alerts.js:168
+msgid "Stay informed via local weather services"
+msgstr "关注当地气象部门"
+
+#: lib/alerts.js:169
+msgid "Avoid non-essential travel"
+msgstr "避免非必要出行"
+
+#: lib/alerts.js:178
+msgid "Avoid driving through flooded roads — even 30 cm can sweep a car away"
+msgstr "避免驶过积水路段 — 仅 30 厘米的水深也能冲走汽车"
+
+#: lib/alerts.js:180
+msgid "Be aware of localised flooding in low-lying areas"
+msgstr "注意低洼地区的局部积水"
+
+#: lib/alerts.js:181
+msgid "Carry waterproof clothing if you must travel"
+msgstr "如必须出行，请携带防水衣物"
+
+#: lib/alerts.js:182
+msgid "Check your local flood risk map"
+msgstr "查看当地的洪水风险地图"
+
+#: lib/alerts.js:188
+msgid "Avoid travel unless absolutely necessary"
+msgstr "除非绝对必要，避免外出"
+
+#: lib/alerts.js:189
+msgid "If driving, carry a winter emergency kit (blanket, shovel, water)"
+msgstr "若驾车，请携带冬季应急包（毯子、铲子、水）"
+
+#: lib/alerts.js:190
+msgid "Clear snow from paths and driveways carefully to avoid injury"
+msgstr "小心清除道路和车道上的积雪，以免受伤"
+
+#: lib/alerts.js:191
+msgid "Be aware of roof loading from heavy snow accumulation"
+msgstr "注意屋顶积雪过重"
+
+#: lib/alerts.js:195
+msgid "Exercise caution outdoors"
+msgstr "户外活动时要小心"
+
+#: lib/alerts.js:196
+msgid "Stay informed via local weather forecasts"
+msgstr "关注当地天气预报"
+
+#: lib/providers.js:619
 msgid "Clear Sky"
 msgstr "晴天"
 
+#: lib/providers.js:624
 msgid "Mainly Clear"
 msgstr "大体晴天"
 
+#: lib/providers.js:629
 msgid "Partly Cloudy"
 msgstr "局部多云"
 
+#: lib/providers.js:634
 msgid "Overcast"
 msgstr "阴天"
 
+#: lib/providers.js:638
 msgid "Fog"
 msgstr "雾"
 
+#: lib/providers.js:640
 msgid "Rime Fog"
 msgstr "雾凇"
 
+#: lib/providers.js:645
 msgid "Light Drizzle"
 msgstr "小毛毛雨"
 
+#: lib/providers.js:650
 msgid "Drizzle"
 msgstr "毛毛雨"
 
+#: lib/providers.js:655
 msgid "Heavy Drizzle"
 msgstr "大毛毛雨"
 
+#: lib/providers.js:660
 msgid "Light Rain"
 msgstr "小雨"
 
+#: lib/providers.js:665
 msgid "Rain"
 msgstr "雨"
 
+#: lib/providers.js:670
 msgid "Heavy Rain"
 msgstr "大雨"
 
+#: lib/providers.js:675
 msgid "Light Snow"
 msgstr "小雪"
 
+#: lib/providers.js:679
 msgid "Snow"
 msgstr "雪"
 
+#: lib/providers.js:681
 msgid "Heavy Snow"
 msgstr "大雪"
 
+#: lib/providers.js:686
 msgid "Snow Grains"
 msgstr "米雪"
 
+#: lib/providers.js:691 lib/providers.js:696
 msgid "Rain Showers"
 msgstr "阵雨"
 
+#: lib/providers.js:701
 msgid "Heavy Showers"
 msgstr "强阵雨"
 
+#: lib/providers.js:706
 msgid "Snow Showers"
 msgstr "阵雪"
 
+#: lib/providers.js:711
 msgid "Heavy Snow Showers"
 msgstr "强阵雪"
 
+#: lib/providers.js:716
 msgid "Thunderstorm"
 msgstr "雷暴"
 
+#: lib/providers.js:721
 msgid "Hail Storm"
 msgstr "冰雹风暴"
 
+#: lib/providers.js:726
 msgid "Heavy Hail"
 msgstr "大冰雹"
+
+#: lib/panelMenu.js:124
+msgid "AUTO"
+msgstr "自动"
+
+#: lib/panelMenu.js:125
+msgid "MANUAL"
+msgstr "手动"
+
+#: lib/panelMenu.js:134
+msgid "Loading weather…"
+msgstr "正在加载天气…"
+
+#: lib/panelMenu.js:142
+msgid "Weather Alerts"
+msgstr "天气警报"
+
+#: lib/panelMenu.js:149
+msgid "Location Information"
+msgstr "位置信息"
+
+#: lib/panelMenu.js:156
+msgid "Weather Provider Status"
+msgstr "天气提供商状态"
+
+#: lib/panelMenu.js:163
+msgid "Hourly Forecast"
+msgstr "逐小时预报"
+
+#: lib/panelMenu.js:167
+msgid "7-Day Forecast"
+msgstr "7天预报"
+
+#: lib/panelMenu.js:171
+msgid "Weather Insights"
+msgstr "天气分析"
+
+#: lib/panelMenu.js:177
+msgid "Refresh Weather"
+msgstr "刷新天气"
+
+#: lib/panelMenu.js:185
+msgid "Extension Settings"
+msgstr "扩展设置"
+
+#: lib/panelMenu.js:281
+msgid "What to do"
+msgstr "应对建议"
+
+#: lib/panelMenu.js:319 lib/panelMenu.js:425
+msgid "Active"
+msgstr "活跃"
+
+#: lib/panelMenu.js:319 lib/panelMenu.js:469 lib/panelMenu.js:473
+#: lib/panelMenu.js:477
+msgid "Loading…"
+msgstr "加载中…"
+
+#: lib/panelMenu.js:323 lib/panelMenu.js:442
+msgid "Status"
+msgstr "状态"
+
+#: lib/panelMenu.js:323
+msgid "Checking…"
+msgstr "检查中…"
+
+#: lib/panelMenu.js:327 lib/panelMenu.js:455 lib/panelMenu.js:462
+msgid "Last Update"
+msgstr "上次更新"
+
+#: lib/panelMenu.js:327 lib/panelMenu.js:462
+msgid "Never"
+msgstr "从未"
+
+#: lib/panelMenu.js:347
+msgid "Available Providers"
+msgstr "可用提供商"
+
+#: lib/panelMenu.js:375
+msgid "Custom Provider"
+msgstr "自定义提供商"
+
+#: lib/panelMenu.js:428
+msgid "Free"
+msgstr "免费"
+
+#: lib/panelMenu.js:434
+msgid "Working"
+msgstr "正常"
+
+#: lib/panelMenu.js:436
+msgid "Connection Timeout"
+msgstr "连接超时"
+
+#: lib/panelMenu.js:437
+msgid "Not Configured"
+msgstr "未配置"
+
+#: lib/panelMenu.js:438
+msgid "Testing Connection…"
+msgstr "测试连接中…"
+
+#: lib/panelMenu.js:439
+msgid "Showing cached data"
+msgstr "正在显示缓存数据"
+
+#: lib/panelMenu.js:446
+msgid "Unknown"
+msgstr "未知"
+
+#: lib/panelMenu.js:469 lib/panelMenu.js:983 lib/panelMenu.js:984
+msgid "Current"
+msgstr "当前"
+
+#: lib/panelMenu.js:473 lib/panelMenu.js:989 lib/panelMenu.js:994
+msgid "Coordinates"
+msgstr "坐标"
+
+#: lib/panelMenu.js:477 lib/panelMenu.js:999 lib/panelMenu.js:1000
+msgid "Method"
+msgstr "方式"
+
+#: lib/panelMenu.js:482
+msgid "Switch to Auto Detection"
+msgstr "切换到自动检测"
+
+#: lib/panelMenu.js:491
+msgid "Switch to Manual Location"
+msgstr "切换到手动位置"
+
+#: lib/panelMenu.js:508
+msgid "Enter city name…"
+msgstr "输入城市名称…"
+
+#: lib/panelMenu.js:513 lib/panelMenu.js:606
+msgid "Search"
+msgstr "搜索"
+
+#: lib/panelMenu.js:517 prefs.js:725
+msgid "Clear"
+msgstr "清除"
+
+#: lib/panelMenu.js:556
+msgid "Searching…"
+msgstr "搜索中…"
+
+#: lib/panelMenu.js:599
+msgid "No locations found"
+msgstr "未找到位置"
+
+#: lib/panelMenu.js:604 prefs.js:1392
+msgid "Search failed. Please try again."
+msgstr "搜索失败，请重试。"
+
+#: lib/panelMenu.js:685
+msgid "Unknown Location"
+msgstr "未知位置"
+
+#: lib/panelMenu.js:686
+msgid "Unknown Provider"
+msgstr "未知提供商"
+
+#: lib/panelMenu.js:690
+msgid "Cached data from"
+msgstr "缓存数据时间："
+
+#: lib/panelMenu.js:727
+msgid "This forecast has no upcoming hours left"
+msgstr "该预报已无剩余未来时段"
+
+#: lib/panelMenu.js:816
+msgid "Today"
+msgstr "今天"
+
+#: lib/panelMenu.js:818
+msgid "Tomorrow"
+msgstr "明天"
+
+#: lib/panelMenu.js:881
+msgid "Temperature Trend"
+msgstr "气温趋势"
+
+#: lib/panelMenu.js:895
+msgid "Precipitation (24h)"
+msgstr "降水量（24小时）"
+
+#: lib/panelMenu.js:907
+msgid "Strong"
+msgstr "强"
+
+#: lib/panelMenu.js:909 lib/panelMenu.js:938
+msgid "Moderate"
+msgstr "中等"
+
+#: lib/panelMenu.js:910
+msgid "Light"
+msgstr "弱"
+
+#: lib/panelMenu.js:914
+msgid "Wind"
+msgstr "风速"
+
+#: lib/panelMenu.js:938
+msgid "High"
+msgstr "高"
+
+#: lib/panelMenu.js:938
+msgid "Low"
+msgstr "低"
+
+#: lib/panelMenu.js:941
+msgid "UV Index"
+msgstr "紫外线指数"
+
+#: lib/panelMenu.js:951
+msgid "Insufficient data"
+msgstr "数据不足"
+
+#: lib/panelMenu.js:959
+msgid "Warming"
+msgstr "升温"
+
+#: lib/panelMenu.js:960
+msgid "Cooling"
+msgstr "降温"
+
+#: lib/panelMenu.js:961
+msgid "Stable"
+msgstr "稳定"
+
+#: lib/panelMenu.js:983
+msgid "Auto-detected"
+msgstr "自动检测"
+
+#: lib/panelMenu.js:984
+msgid "Not set"
+msgstr "未设置"
+
+#: lib/panelMenu.js:994
+msgid "Not available"
+msgstr "不可用"
+
+#: lib/panelMenu.js:999
+msgid "IP-based geolocation"
+msgstr "基于IP的地理定位"
+
+#: lib/panelMenu.js:1000
+msgid "Manually configured"
+msgstr "手动配置"
+
+#: prefs.js:55 prefs.js:1073 prefs.js:1104
+msgid "Advanced Weather Companion"
+msgstr "高级天气助手"
+
+#: prefs.js:68
+msgid "General"
+msgstr "常规"
+
+#: prefs.js:73
+msgid "Units & Format"
+msgstr "单位和格式"
+
+#: prefs.js:74
+msgid "Configure measurement units and display format"
+msgstr "配置测量单位和显示格式"
+
+#: prefs.js:78
+msgid "Use Fahrenheit"
+msgstr "使用华氏度"
+
+#: prefs.js:79
+msgid "Switch between Celsius and Fahrenheit"
+msgstr "切换摄氏度和华氏度"
+
+#: prefs.js:87
+msgid "Wind Speed Unit"
+msgstr "风速单位"
+
+#: prefs.js:88
+msgid "Choose unit for wind speed display"
+msgstr "选择风速显示单位"
+
+#: prefs.js:93
+msgid "km/h (Kilometers per hour)"
+msgstr "km/h（千米/小时）"
+
+#: prefs.js:94
+msgid "mph (Miles per hour)"
+msgstr "mph（英里/小时）"
+
+#: prefs.js:95
+msgid "m/s (Meters per second)"
+msgstr "m/s（米/秒）"
+
+#: prefs.js:96
+msgid "knots (Nautical miles per hour)"
+msgstr "节（海里/小时）"
+
+#: prefs.js:111
+msgid "Use 12-hour Format"
+msgstr "使用12小时格式"
+
+#: prefs.js:112
+msgid "Display time in 12-hour format with AM/PM"
+msgstr "以带 AM/PM 的12小时格式显示时间"
+
+#: prefs.js:124
+msgid "Updates"
+msgstr "更新"
+
+#: prefs.js:125
+msgid "Configure weather data refresh settings"
+msgstr "配置天气数据刷新设置"
+
+#: prefs.js:129
+msgid "Update Interval"
+msgstr "更新间隔"
+
+#: prefs.js:130
+msgid "How often to refresh weather data"
+msgstr "天气数据刷新频率"
+
+#: prefs.js:135
+msgid "5 minutes"
+msgstr "5分钟"
+
+#: prefs.js:136
+msgid "10 minutes"
+msgstr "10分钟"
+
+#: prefs.js:137
+msgid "15 minutes"
+msgstr "15分钟"
+
+#: prefs.js:138
+msgid "30 minutes"
+msgstr "30分钟"
+
+#: prefs.js:139
+msgid "1 hour"
+msgstr "1小时"
+
+#: prefs.js:156
+msgid "Features"
+msgstr "功能"
+
+#: prefs.js:157
+msgid "Enable or disable weather features"
+msgstr "启用或禁用天气功能"
+
+#: prefs.js:161
+msgid "Show Humidity"
+msgstr "显示湿度"
+
+#: prefs.js:162
+msgid "Display relative humidity in weather details"
+msgstr "在天气详情中显示相对湿度"
+
+#: prefs.js:253
+msgid "Copy to Clipboard"
+msgstr "复制到剪贴板"
+
+#: prefs.js:254
+msgid "text"
+msgstr "文本"
+
+#: prefs.js:259
+msgid "Close"
+msgstr "关闭"
+
+#: prefs.js:260
+msgid "Select Text"
+msgstr "选择文本"
+
+#: prefs.js:302
+msgid "💡 Select the text above and press Ctrl+C to copy"
+msgstr "💡 选中上方文本后按 Ctrl+C 复制"
+
+#: prefs.js:335
+msgid "💡 Text selected! Press Ctrl+C to copy"
+msgstr "💡 文本已选中！按 Ctrl+C 复制"
+
+#: prefs.js:362
+msgid "Location"
+msgstr "位置"
+
+#: prefs.js:367
+msgid "Location Detection"
+msgstr "位置检测"
+
+#: prefs.js:368
+msgid "Configure how your location is determined"
+msgstr "配置位置确定方式"
+
+#: prefs.js:372
+msgid "Location Mode"
+msgstr "位置模式"
+
+#: prefs.js:373
+msgid "Choose detection method"
+msgstr "选择检测方式"
+
+#: prefs.js:377
+msgid "🌍 Auto Detection"
+msgstr "🌍 自动检测"
+
+#: prefs.js:378
+msgid "📍 Manual Location"
+msgstr "📍 手动位置"
+
+#: prefs.js:383
+msgid "Current Location"
+msgstr "当前位置"
+
+#: prefs.js:397
+msgid "Refresh location"
+msgstr "刷新位置"
+
+#: prefs.js:409
+msgid "Manual Location Search"
+msgstr "手动位置搜索"
+
+#: prefs.js:410
+msgid "Search by city name or coordinates (latitude, longitude)"
+msgstr "按城市名称或坐标（纬度、经度）搜索"
+
+#: prefs.js:415
+msgid "Search Location"
+msgstr "搜索位置"
+
+#: prefs.js:424
+msgid "Search for location"
+msgstr "搜索位置"
+
+#: prefs.js:431
+msgid "Clear search"
+msgstr "清除搜索"
+
+#: prefs.js:439
+msgid "Search Examples"
+msgstr "搜索示例"
+
+#: prefs.js:440
+msgid ""
+"City names: 'London', 'New York', 'Tokyo'\n"
+"Coordinates: '40.7128, -74.0060' or '40.7128 -74.0060'"
+msgstr ""
+"城市名称：'London'、'New York'、'Tokyo'\n"
+"坐标：'40.7128, -74.0060' 或 '40.7128 -74.0060'"
+
+#: prefs.js:451
+msgid "Search Results"
+msgstr "搜索结果"
+
+#: prefs.js:506 prefs.js:516
+msgid "Weather Provider"
+msgstr "天气提供商"
+
+#: prefs.js:511
+msgid "Weather Data Source"
+msgstr "天气数据来源"
+
+#: prefs.js:512
+msgid "Choose your weather data provider"
+msgstr "选择天气数据提供商"
+
+#: prefs.js:517
+msgid "Select weather API service"
+msgstr "选择天气 API 服务"
+
+#: prefs.js:548
+msgid "Provider Configuration"
+msgstr "提供商配置"
+
+#: prefs.js:549
+msgid "Configure your selected weather provider"
+msgstr "配置所选天气提供商"
+
+#: prefs.js:554
+msgid "API Key"
+msgstr "API 密钥"
+
+#: prefs.js:559
+msgid "Get API Key"
+msgstr "获取 API 密钥"
+
+#: prefs.js:567
+msgid "Custom API URL"
+msgstr "自定义 API 网址"
+
+#: prefs.js:573
+msgid "Provider Information"
+msgstr "提供商信息"
+
+#: prefs.js:579
+msgid "Test Connection"
+msgstr "测试连接"
+
+#: prefs.js:580
+msgid "Verify your provider settings work correctly"
+msgstr "验证提供商设置是否正确"
+
+#: prefs.js:585 prefs.js:951
+msgid "Test"
+msgstr "测试"
+
+#: prefs.js:627
+msgid "Automatic Provider Fallback"
+msgstr "自动切换备用数据源"
+
+#: prefs.js:628
+msgid ""
+"When a provider fails, the next one is tried. Every provider is used at most"
+" once per refresh."
+msgstr "某个数据源失败时将尝试下一个。每次刷新中每个数据源最多使用一次。"
+
+#: prefs.js:632
+msgid "Try Other Providers On Failure"
+msgstr "失败时尝试其他数据源"
+
+#: prefs.js:633
+msgid "Turn off to use only the selected provider"
+msgstr "关闭后仅使用所选数据源"
+
+#: prefs.js:638
+msgid "Fallback Priority"
+msgstr "备用数据源优先级"
+
+#: prefs.js:639
+msgid ""
+"Providers are tried in this order. The selected provider is always tried "
+"first."
+msgstr "按此顺序尝试各数据源。所选数据源总是最先尝试。"
+
+#: prefs.js:654
+msgid "API key required"
+msgstr "需要 API 密钥"
+
+#: prefs.js:655
+msgid "Free, no API key"
+msgstr "免费，无需 API 密钥"
+
+#: prefs.js:700
+msgid "Offline Weather Data"
+msgstr "离线天气数据"
+
+#: prefs.js:701
+msgid ""
+"The last successful fetch, including the hourly and 7-day forecasts, is kept"
+" and shown instead of an error when every provider fails."
+msgstr "当所有数据源都失败时，将保留并显示最近一次成功获取的数据（含逐小时和 7 天预报），而不是错误。"
+
+#: prefs.js:705
+msgid "Use Cached Data Up To"
+msgstr "缓存数据可用最长时长"
+
+#: prefs.js:706
+msgid "Maximum age of the cached forecast, in days"
+msgstr "缓存预报的最长时效（天）"
+
+#: prefs.js:720
+msgid "Cached Forecast"
+msgstr "缓存的预报"
+
+#: prefs.js:733
+msgid "Cached weather data cleared"
+msgstr "已清除缓存的天气数据"
+
+#: prefs.js:781
+msgid "No cached data yet"
+msgstr "暂无缓存数据"
+
+#: prefs.js:791
+msgid "min ago"
+msgstr "分钟前"
+
+#: prefs.js:792
+msgid "h ago"
+msgstr "小时前"
+
+#: prefs.js:793
+msgid "days ago"
+msgstr "天前"
+
+#: prefs.js:795
+msgid "unknown provider"
+msgstr "未知数据源"
+
+#: prefs.js:805
+msgid "Cached data is unreadable"
+msgstr "缓存数据无法读取"
+
+#: prefs.js:862
+msgid "Could not open website. Please visit manually."
+msgstr "无法打开网站，请手动访问。"
+
+#: prefs.js:895
+msgid "Testing…"
+msgstr "测试中…"
+
+#: prefs.js:908
+msgid "Custom URL is required"
+msgstr "需要自定义 URL"
+
+#: prefs.js:911
+msgid "API key is required for"
+msgstr "需要 API 密钥："
+
+#: prefs.js:940
+msgid ""
+"Response received but no weather data found. Check your API key and URL."
+msgstr "收到响应但未找到天气数据，请检查 API 密钥和 URL。"
+
+#: prefs.js:942
+msgid "Connection successful!"
+msgstr "连接成功！"
+
+#: prefs.js:943
+msgid "Current temp:"
+msgstr "当前温度："
+
+#: prefs.js:948
+msgid "Connection failed:"
+msgstr "连接失败："
+
+#: prefs.js:958
+msgid "Appearance"
+msgstr "外观"
+
+#: prefs.js:963
+msgid "Panel Display"
+msgstr "面板显示"
+
+#: prefs.js:964
+msgid "Configure how the weather appears in the panel"
+msgstr "配置天气在面板中的显示方式"
+
+#: prefs.js:968
+msgid "Panel Position"
+msgstr "面板位置"
+
+#: prefs.js:969
+msgid "Where to show the weather widget"
+msgstr "天气小部件显示位置"
+
+#: prefs.js:974
+msgid "Left"
+msgstr "左侧"
+
+#: prefs.js:975
+msgid "Center"
+msgstr "居中"
+
+#: prefs.js:976
+msgid "Right"
+msgstr "右侧"
+
+#: prefs.js:991
+msgid "Panel Position Index"
+msgstr "面板位置索引"
+
+#: prefs.js:992
+msgid "Position index in the selected panel area"
+msgstr "在所选面板区域中的位置索引"
+
+#: prefs.js:1005
+msgid "Show Temperature Text"
+msgstr "显示温度文字"
+
+#: prefs.js:1006
+msgid "Display temperature alongside the weather icon"
+msgstr "在天气图标旁显示温度"
+
+#: prefs.js:1014
+msgid "Show Location Indicator"
+msgstr "显示位置指示器"
+
+#: prefs.js:1015
+msgid "Display location mode indicator in panel"
+msgstr "在面板中显示位置模式指示器"
+
+#: prefs.js:1028
+msgid "Icon Size"
+msgstr "图标大小"
+
+#: prefs.js:1029
+msgid "Size of the weather icon in pixels"
+msgstr "天气图标大小（像素）"
+
+#: prefs.js:1042
+msgid "Text Size"
+msgstr "文字大小"
+
+#: prefs.js:1043
+msgid "Size of the temperature text in pixels"
+msgstr "温度文字大小（像素）"
+
+#: prefs.js:1068
+msgid "About"
+msgstr "关于"
+
+#: prefs.js:1074
+msgid "A beautiful, modern weather companion for GNOME Shell"
+msgstr "GNOME Shell 的美观现代天气助手"
+
+#: prefs.js:1110
+msgid "Version 2.0"
+msgstr "版本 2.0"
+
+#: prefs.js:1116
+msgid "Modern weather extension with native GNOME design"
+msgstr "采用原生 GNOME 设计的现代天气扩展"
+
+#: prefs.js:1133
+msgid "Extension Links"
+msgstr "扩展链接"
+
+#: prefs.js:1134 prefs.js:1139
+msgid "Source code, issues, and contributions"
+msgstr "源代码、问题和贡献"
+
+#: prefs.js:1138
+msgid "View on GitHub"
+msgstr "在 GitHub 上查看"
+
+#: prefs.js:1160
+msgid "☕ Support by buying me a coffee — just scan the QR code!"
+msgstr "☕ 请我喝杯咖啡支持开发 — 只需扫描二维码！"
+
+#: prefs.js:1161
+msgid "Preferred Method - Scan QR code to support development"
+msgstr "推荐方式 - 扫描二维码支持开发"
+
+#: prefs.js:1206
+msgid "Donation Address"
+msgstr "捐款地址"
+
+#: prefs.js:1238
+msgid "☕ Buy Me a Coffee"
+msgstr "☕ 请我喝杯咖啡"
+
+#: prefs.js:1239
+msgid "Support development with a small donation"
+msgstr "通过小额捐款支持开发"
+
+#: prefs.js:1261
+msgid "License & Credits"
+msgstr "许可证和致谢"
+
+#: prefs.js:1262
+msgid "Open source software information"
+msgstr "开源软件信息"
+
+#: prefs.js:1266
+msgid "Open Source License"
+msgstr "开源许可证"
+
+#: prefs.js:1267
+msgid "MIT License - Free and open source software"
+msgstr "MIT 许可证 - 免费开源软件"
+
+#: prefs.js:1277
+msgid "Weather Data Sources"
+msgstr "天气数据来源"
+
+#: prefs.js:1278
+msgid "Open-Meteo, Meteosource, Wttr.in - Free weather APIs"
+msgstr "Open-Meteo、Meteosource、Wttr.in - 免费天气 API"
+
+#: prefs.js:1382
+msgid ""
+"Invalid coordinates. Latitude must be between -90 and 90, longitude between "
+"-180 and 180."
+msgstr "坐标无效。纬度须在 -90 到 90 之间，经度须在 -180 到 180 之间。"
+
+#: prefs.js:1395
+msgid "Unable to connect to location service. Check your internet connection."
+msgstr "无法连接位置服务，请检查网络连接。"
+
+#: prefs.js:1397
+msgid "Invalid response from location service. Please try again."
+msgstr "位置服务返回无效响应，请重试。"
+
+#: prefs.js:1399
+msgid "Search timed out. Please try again."
+msgstr "搜索超时，请重试。"
+
+#: prefs.js:1516 prefs.js:1554
+msgid "Select this location"
+msgstr "选择此位置"
+
+#: prefs.js:1573
+msgid "Location updated successfully"
+msgstr "位置更新成功"
+
+#: prefs.js:1576
+msgid "Failed to save location. Please try again."
+msgstr "保存位置失败，请重试。"
+
+#: prefs.js:1583
+msgid "No Results Found"
+msgstr "未找到结果"
+
+#: prefs.js:1584
+msgid "Try a different search term or check your spelling"
+msgstr "尝试其他搜索词或检查拼写"
+
+#: prefs.js:1618
+msgid "Search Error"
+msgstr "搜索错误"
+
+#: prefs.js:1644 prefs.js:1662
+msgid "🌍 Auto Detection Enabled"
+msgstr "🌍 已启用自动检测"
+
+#: prefs.js:1649 prefs.js:1667
+msgid "📍 Manual - Please set location"
+msgstr "📍 手动 - 请设置位置"
+
+#~ msgid "Could not open website."
+#~ msgstr "无法打开网站。"
+
+#~ msgid "Custom / Weather Underground URL"
+#~ msgstr "自定义 / Weather Underground URL"
+
+#~ msgid "Donation address"
+#~ msgstr "捐款地址"
+
+#~ msgid "Not Required"
+#~ msgstr "不需要"
+
+#~ msgid "Not specified"
+#~ msgstr "未指定"
+
+#~ msgid "Rate Limit"
+#~ msgstr "请求限制"
+
+#~ msgid "Required"
+#~ msgstr "必填"
+
+#~ msgid "Test failed:"
+#~ msgstr "测试失败："
+
+#~ msgid "URL Placeholders"
+#~ msgstr "URL 占位符"
+
+#~ msgid "☕ Support – Scan QR to buy me a coffee"
+#~ msgstr "☕ 支持 – 扫描二维码请我喝咖啡"
+
+#~ msgid "Enable Weather Alerts"
+#~ msgstr "启用天气警报"
+
+#~ msgid "Send desktop notifications for dangerous weather"
+#~ msgstr "危险天气时发送桌面通知"
+
+#~ msgid "Extreme high temperature detected"
+#~ msgstr "检测到极端高温"
+
+#~ msgid "Extreme low temperature detected"
+#~ msgstr "检测到极端低温"
+
+#~ msgid "SEVERE WEATHER"
+#~ msgstr "恶劣天气"
+
+#~ msgid "HEAT WARNING"
+#~ msgstr "高温警告"
+
+#~ msgid "Extreme temperatures"
+#~ msgstr "极端温度"
+
+#~ msgid "COLD WARNING"
+#~ msgstr "低温警告"
+
+#~ msgid "STORM WARNING"
+#~ msgstr "暴风警告"
+
+#~ msgid "Dangerous winds detected"
+#~ msgstr "检测到危险风速"
+
+#~ msgid "WIND WARNING"
+#~ msgstr "大风警告"

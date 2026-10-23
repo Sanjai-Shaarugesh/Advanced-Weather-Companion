@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: advanced-weather 2.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Sanjai-Shaarugesh/Advanced-Weather-Companion/issues\n"
-"POT-Creation-Date: 2026-03-14 17:23+0000\n"
-"PO-Revision-Date: 2026-03-14 17:23+0000\n"
+"POT-Creation-Date: 2026-10-22 19:18+0800\n"
+"PO-Revision-Date: 2026-10-22 12:00+0000\n"
 "Last-Translator: Advanced Weather Team\n"
 "Language-Team: German\n"
 "Language: de\n"
@@ -13,665 +13,1228 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "1 hour"
-msgstr "1 Stunde"
-
-msgid "10 minutes"
-msgstr "10 Minuten"
-
-msgid "15 minutes"
-msgstr "15 Minuten"
-
-msgid "30 minutes"
-msgstr "30 Minuten"
-
-msgid "5 minutes"
-msgstr "5 Minuten"
-
-msgid "A beautiful, modern weather companion for GNOME Shell"
-msgstr "Ein schöner, moderner Wetterbegleiter für GNOME Shell"
-
-msgid "API Key"
-msgstr "API-Schlüssel"
-
-msgid "About"
-msgstr "Info"
-
-msgid "Advanced Weather Companion"
-msgstr "Erweiterter Wetterbegleiter"
-
-msgid "Appearance"
-msgstr "Erscheinungsbild"
-
-msgid "Center"
-msgstr "Mitte"
-
-msgid "Choose detection method"
-msgstr "Erkennungsmethode wählen"
-
-msgid "Choose your weather data provider"
-msgstr "Wetterdatenanbieter wählen"
-
-msgid "City: 'London', 'New York'\\nCoordinates: '40.7128, -74.0060'"
-msgstr ""
-
-msgid "Clear search"
-msgstr "Suche löschen"
-
-msgid "Configure how weather appears in the panel"
-msgstr "Wetteranzeige im Panel konfigurieren"
-
-msgid "Configure how your location is determined"
-msgstr "Standorterkennung konfigurieren"
-
-msgid "Configure measurement units and display format"
-msgstr "Maßeinheiten und Anzeigeformat konfigurieren"
-
-msgid "Configure weather data refresh settings"
-msgstr "Aktualisierungsintervall konfigurieren"
-
-msgid "Configure your selected weather provider"
-msgstr "Gewählten Wetterdatenanbieter konfigurieren"
-
-msgid "Connection successful!"
-msgstr "Verbindung erfolgreich!"
-
-msgid "Could not copy. Please copy manually: "
-msgstr "Kopieren fehlgeschlagen. Bitte manuell kopieren: "
-
-msgid "Could not open website."
-msgstr "Website konnte nicht geöffnet werden."
-
-msgid "Current Location"
-msgstr "Aktueller Standort"
-
-msgid "Current temp:"
-msgstr "Aktuelle Temp.:"
-
-msgid "Custom / Weather Underground URL"
-msgstr "Benutzerdefinierte / Weather Underground URL"
-
-msgid "Custom URL is required"
-msgstr "Benutzerdefinierte URL ist erforderlich"
-
-msgid "Display AUTO/MANUAL indicator in panel"
-msgstr "AUTO/MANUELL-Anzeige im Panel"
-
-msgid "Display relative humidity in weather details"
-msgstr "Relative Luftfeuchtigkeit anzeigen"
-
-msgid "Display temperature alongside the weather icon"
-msgstr "Temperatur neben dem Wettersymbol anzeigen"
-
-msgid "Display time in 12-hour format with AM/PM"
-msgstr "Zeit im 12-Stunden-Format mit AM/PM anzeigen"
-
-msgid "Donation Address"
-msgstr "Spendenadresse"
-
-msgid "Donation address"
-msgstr "Spendenadresse"
-
-msgid "Enable or disable weather features"
-msgstr "Wetterfunktionen aktivieren oder deaktivieren"
-
-msgid "Extension Links"
-msgstr "Erweiterungslinks"
-
-msgid "Features"
-msgstr "Funktionen"
-
-msgid "General"
-msgstr "Allgemein"
-
-msgid "Get API Key"
-msgstr "API-Schlüssel holen"
-
-msgid "How often to refresh weather data"
-msgstr "Wie oft Wetterdaten aktualisieren"
-
-msgid "Icon Size"
-msgstr "Symbolgröße"
-
-msgid "Invalid coordinates. Lat: −90 to 90, Lon: −180 to 180."
-msgstr ""
-
-msgid "Left"
-msgstr "Links"
-
-msgid "License & Credits"
-msgstr "Lizenz & Danksagungen"
-
-msgid "Location"
-msgstr "Standort"
-
-msgid "Location Detection"
-msgstr "Standorterkennung"
-
-msgid "Location Mode"
-msgstr "Standortmodus"
-
-msgid "MIT License – Free and open source software"
-msgstr "MIT-Lizenz – Freie Open-Source-Software"
-
-msgid "Manual Location Search"
-msgstr "Manuelle Standortsuche"
-
-msgid "Modern weather extension with native GNOME design"
-msgstr "Moderne Wettererweiterung mit nativem GNOME-Design"
-
-msgid "No Results Found"
-msgstr "Keine Ergebnisse"
-
-msgid "Not Required"
-msgstr "Nicht erforderlich"
-
-msgid "Not specified"
-msgstr "Nicht angegeben"
-
-msgid "Open Source License"
-msgstr "Open-Source-Lizenz"
-
-msgid "Open source software information"
-msgstr "Informationen zur Open-Source-Software"
-
-msgid "Panel Display"
-msgstr "Panel-Anzeige"
-
-msgid "Panel Position"
-msgstr "Panel-Position"
-
-msgid "Panel Position Index"
-msgstr "Panel-Positionsindex"
-
-msgid "Position index within the selected panel area"
-msgstr "Positionsindex im gewählten Panel-Bereich"
-
-msgid "Provider Configuration"
-msgstr "Anbieterkonfiguration"
-
-msgid "Provider Information"
-msgstr "Anbieterinformationen"
-
-msgid "Rate Limit"
-msgstr "Anfragelimit"
-
-msgid "Refresh location display"
-msgstr "Standortanzeige aktualisieren"
-
-msgid "Required"
-msgstr "Erforderlich"
-
-msgid "Right"
-msgstr "Rechts"
-
-msgid "Search Error"
-msgstr "Suchfehler"
-
-msgid "Search Examples"
-msgstr "Suchbeispiele"
-
-msgid "Search Location"
-msgstr "Standort suchen"
-
-msgid "Search Results"
-msgstr "Suchergebnisse"
-
-msgid "Search by city name or coordinates (lat, lon)"
-msgstr "Nach Stadtname oder Koordinaten suchen"
-
-msgid "Search failed. Please try again."
-msgstr "Suche fehlgeschlagen. Bitte erneut versuchen."
-
-msgid "Search for location"
-msgstr "Standort suchen"
-
-msgid "Search timed out. Please try again."
-msgstr "Suche abgelaufen. Bitte erneut versuchen."
-
-msgid "Select this location"
-msgstr "Diesen Standort wählen"
-
-msgid "Select weather API service"
-msgstr "Wetter-API-Dienst wählen"
-
-msgid "Show Humidity"
-msgstr "Luftfeuchtigkeit anzeigen"
-
-msgid "Show Location Indicator"
-msgstr "Standortanzeige"
-
-msgid "Show Temperature Text"
-msgstr "Temperaturtext anzeigen"
-
-msgid "Size of the temperature text in pixels"
-msgstr "Größe des Temperaturtexts in Pixeln"
-
-msgid "Size of the weather icon in pixels"
-msgstr "Größe des Wettersymbols in Pixeln"
-
-msgid "Source code, issues, and contributions"
-msgstr "Quellcode, Probleme und Beiträge"
-
-msgid "Support development with a small donation"
-msgstr "Entwicklung mit einer kleinen Spende unterstützen"
-
-msgid "Switch between Celsius and Fahrenheit"
-msgstr "Zwischen Celsius und Fahrenheit wechseln"
-
-msgid "Test"
-msgstr "Testen"
-
-msgid "Test Connection"
-msgstr "Verbindung testen"
-
-msgid "Test failed:"
-msgstr "Test fehlgeschlagen:"
-
-msgid "Testing…"
-msgstr "Wird getestet…"
-
-msgid "Text Size"
-msgstr "Textgröße"
-
-msgid "Try a different search term or check your spelling"
-msgstr "Anderen Suchbegriff versuchen oder Schreibweise prüfen"
-
-msgid "URL Placeholders"
-msgstr "URL-Platzhalter"
-
-msgid "Unable to reach location service. Check your connection."
-msgstr "Standortdienst nicht erreichbar. Verbindung prüfen."
-
-msgid "Unit for wind speed display"
-msgstr "Einheit für die Windgeschwindigkeitsanzeige"
-
-msgid "Units & Format"
-msgstr "Einheiten & Format"
-
-msgid "Update Interval"
-msgstr "Aktualisierungsintervall"
-
-msgid "Updates"
-msgstr "Aktualisierungen"
-
-msgid "Use 12-hour Format"
-msgstr "12-Stunden-Format verwenden"
-
-msgid "Use Fahrenheit"
-msgstr "Fahrenheit verwenden"
-
-msgid "Verify your provider settings work correctly"
-msgstr "Anbietereinstellungen überprüfen"
-
-msgid "Version 2.0"
-msgstr "Version 2.0"
-
-msgid "View on GitHub"
-msgstr "Auf GitHub ansehen"
-
-msgid "Weather Data Source"
-msgstr "Wetterdatenquelle"
-
-msgid "Weather Data Sources"
-msgstr "Wetterdatenquellen"
-
-msgid "Weather Provider"
-msgstr "Wetteranbieter"
-
-msgid "Where to show the weather widget"
-msgstr "Wo das Wetter-Widget anzeigen"
-
-msgid "Wind Speed Unit"
-msgstr "Windgeschwindigkeitseinheit"
-
-msgid "copied to clipboard"
-msgstr "in Zwischenablage kopiert"
-
-msgid "km/h (Kilometers per hour)"
-msgstr "km/h (Kilometer pro Stunde)"
-
-msgid "knots (Nautical miles)"
-msgstr "Knoten (Seemeilen)"
-
-msgid "m/s (Meters per second)"
-msgstr "m/s (Meter pro Sekunde)"
-
-msgid "mph (Miles per hour)"
-msgstr "mph (Meilen pro Stunde)"
-
-msgid "☕ Buy Me a Coffee"
-msgstr "☕ Kauf mir einen Kaffee"
-
-msgid "☕ Support – Scan QR to buy me a coffee"
-msgstr "☕ Unterstützen – QR scannen für einen Kaffee"
-
-msgid "✅ Location updated successfully"
-msgstr "✅ Standort erfolgreich aktualisiert"
-
-msgid "🌍 Auto Detection"
-msgstr "🌍 Automatische Erkennung"
-
-msgid "🌍 Auto Detection Enabled"
-msgstr "🌍 Automatische Erkennung aktiv"
-
-msgid "📍 Manual Location"
-msgstr "📍 Manueller Standort"
-
-msgid "📍 Manual – Please set location"
-msgstr "📍 Manuell – Bitte Standort festlegen"
-
-msgid "API key is required for "
-msgstr ""
-
-msgid "Enable Weather Alerts"
-msgstr "Wetterwarnungen aktivieren"
-
-msgid "Send desktop notifications for dangerous weather"
-msgstr "Desktop-Benachrichtigungen bei gefährlichem Wetter senden"
-
-msgid "Weather Alerts"
-msgstr "Wetterwarnungen"
-
-msgid "⚠️ Severe Weather Alert"
-msgstr "⚠️ Unwetterwarnung"
-
-msgid "🌡️ Heat Warning"
-msgstr "🌡️ Hitzewarnung"
-
-msgid "🥶 Cold Warning"
-msgstr "🥶 Kältewarnung"
-
-msgid "💨 Wind Warning"
-msgstr "💨 Windwarnung"
-
-msgid "🌀 Storm Warning"
-msgstr "🌀 Sturmwarnung"
-
-msgid "Extreme high temperature detected"
-msgstr "Extreme Hitze erkannt"
-
-msgid "Extreme low temperature detected"
-msgstr "Extreme Kälte erkannt"
-
-msgid "Dangerous wind speed"
-msgstr "Gefährliche Windgeschwindigkeit"
-
-msgid "Strong winds detected"
-msgstr "Starke Winde erkannt"
-
-msgid "Advanced Weather"
-msgstr "Erweiterter Wetterdienst"
-
-msgid "Loading weather…"
-msgstr "Wetter wird geladen…"
-
-msgid "Location Information"
-msgstr "Standortinformationen"
-
-msgid "Weather Provider Status"
-msgstr "Anbieter-Status"
-
-msgid "Hourly Forecast"
-msgstr "Stundenvorhersage"
-
-msgid "7-Day Forecast"
-msgstr "7-Tage-Vorhersage"
-
-msgid "Weather Insights"
-msgstr "Wetter-Einblicke"
-
-msgid "Refresh Weather"
-msgstr "Wetter aktualisieren"
-
-msgid "Extension Settings"
-msgstr "Erweiterungseinstellungen"
-
-msgid "Active"
-msgstr "Aktiv"
-
-msgid "Loading…"
-msgstr "Wird geladen…"
-
-msgid "Status"
-msgstr "Status"
-
-msgid "Checking…"
-msgstr "Wird überprüft…"
-
-msgid "Last Update"
-msgstr "Letzte Aktualisierung"
-
-msgid "Never"
-msgstr "Nie"
-
-msgid "Available Providers"
-msgstr "Verfügbare Anbieter"
-
-msgid "Free"
-msgstr "Kostenlos"
-
-msgid "Custom Provider"
-msgstr "Benutzerdefinierter Anbieter"
-
-msgid "Working"
-msgstr "Funktioniert"
-
-msgid "Error"
-msgstr "Fehler"
-
-msgid "Connection Timeout"
-msgstr "Verbindungsabbruch"
-
-msgid "Not Configured"
-msgstr "Nicht konfiguriert"
-
-msgid "Testing Connection…"
-msgstr "Verbindung wird getestet…"
-
-msgid "Unknown"
-msgstr "Unbekannt"
-
-msgid "Current"
-msgstr "Aktuell"
-
-msgid "Auto-detected"
-msgstr "Automatisch erkannt"
-
-msgid "Not set"
-msgstr "Nicht festgelegt"
-
-msgid "Coordinates"
-msgstr "Koordinaten"
-
-msgid "Not available"
-msgstr "Nicht verfügbar"
-
-msgid "Method"
-msgstr "Methode"
-
-msgid "IP-based geolocation"
-msgstr "IP-basierte Geolokalisierung"
-
-msgid "Manually configured"
-msgstr "Manuell konfiguriert"
-
-msgid "Switch to Auto Detection"
-msgstr "Zur automatischen Erkennung wechseln"
-
-msgid "Switch to Manual Location"
-msgstr "Zum manuellen Standort wechseln"
-
-msgid "Enter city name…"
-msgstr "Stadtname eingeben…"
-
-msgid "Search"
-msgstr "Suchen"
-
-msgid "Clear"
-msgstr "Löschen"
-
-msgid "Searching…"
-msgstr "Suche läuft…"
-
-msgid "No locations found"
-msgstr "Keine Standorte gefunden"
-
-msgid "Unknown Location"
-msgstr "Unbekannter Standort"
-
-msgid "Unknown Provider"
-msgstr "Unbekannter Anbieter"
-
-msgid "SEVERE WEATHER"
-msgstr "UNWETTER"
-
-msgid "HEAT WARNING"
-msgstr "HITZEWARNUNG"
-
-msgid "Extreme temperatures"
-msgstr "Extreme Temperaturen"
-
-msgid "COLD WARNING"
-msgstr "KÄLTEWARNUNG"
-
-msgid "Extreme low temperatures"
-msgstr "Extreme Kälttemperaturen"
-
-msgid "STORM WARNING"
-msgstr "STURMWARNUNG"
-
-msgid "Dangerous winds detected"
-msgstr "Gefährliche Winde erkannt"
-
-msgid "WIND WARNING"
-msgstr "WINDWARNUNG"
-
-msgid "Temperature Trend"
-msgstr "Temperaturtrend"
-
-msgid "Precipitation (24h)"
-msgstr "Niederschlag (24h)"
-
-msgid "Wind"
-msgstr "Wind"
-
-msgid "Strong"
-msgstr "Stark"
-
-msgid "Moderate"
-msgstr "Mäßig"
-
-msgid "Light"
-msgstr "Leicht"
-
-msgid "UV Index"
-msgstr "UV-Index"
-
-msgid "High"
-msgstr "Hoch"
-
-msgid "Low"
-msgstr "Niedrig"
-
-msgid "Insufficient data"
-msgstr "Unzureichende Daten"
-
-msgid "Warming"
-msgstr "Wärmer werdend"
-
-msgid "Cooling"
-msgstr "Kühler werdend"
-
-msgid "Stable"
-msgstr "Stabil"
-
-msgid "Today"
-msgstr "Heute"
-
-msgid "Tomorrow"
-msgstr "Morgen"
-
-msgid "AUTO"
-msgstr "AUTO"
-
-msgid "MANUAL"
-msgstr "MANUELL"
-
+#: extension.js:222 extension.js:555
 msgid "Offline"
 msgstr "Offline"
 
-msgid "No Key"
-msgstr "Kein Schlüssel"
-
+#: extension.js:370
 msgid "fallback"
 msgstr "Fallback"
 
+#: extension.js:519
+msgid "cached data"
+msgstr "zwischengespeicherte Daten"
+
+#: extension.js:553
+msgid "No Key"
+msgstr "Kein Schlüssel"
+
+#: extension.js:556 lib/panelMenu.js:435 lib/panelMenu.js:663
+msgid "Error"
+msgstr "Fehler"
+
+#: extension.js:619
+msgid "Advanced Weather"
+msgstr "Erweiterter Wetterdienst"
+
+#: extension.js:627
+msgid "What to do:"
+msgstr "Was zu tun ist:"
+
+#: lib/alerts.js:37
+msgid "⚠️ Severe Weather Alert"
+msgstr "⚠️ Unwetterwarnung"
+
+#: lib/alerts.js:46
+msgid "⚠️ Weather Warning"
+msgstr "⚠️ Wetterwarnung"
+
+#: lib/alerts.js:66
+msgid "🌡️ Extreme Heat Warning"
+msgstr "🌡️ Hitzewarnung"
+
+#: lib/alerts.js:68
+msgid "Dangerously high temperature"
+msgstr "Gefährlich hohe Temperatur"
+
+#: lib/alerts.js:75
+msgid "Stay indoors during peak hours (10 AM – 4 PM)"
+msgstr "Während der Spitzenstunden (10–16 Uhr) drinnen bleiben"
+
+#: lib/alerts.js:76
+msgid "Drink water regularly — at least 2–3 litres per day"
+msgstr "Regelmäßig Wasser trinken — mindestens 2–3 Liter pro Tag"
+
+#: lib/alerts.js:77
+msgid "Wear light, loose, light-coloured clothing"
+msgstr "Leichte, lockere, helle Kleidung tragen"
+
+#: lib/alerts.js:78
+msgid "Never leave children or pets in parked vehicles"
+msgstr "Kinder oder Haustiere nie in geparkten Fahrzeugen lassen"
+
+#: lib/alerts.js:79
+msgid "Check on elderly neighbours and relatives"
+msgstr "Nach älteren Nachbarn und Angehörigen sehen"
+
+#: lib/alerts.js:80
+msgid "Use fans or air conditioning if available"
+msgstr "Ventilatoren oder Klimaanlage nutzen, falls vorhanden"
+
+#: lib/alerts.js:91
+msgid "🥶 Extreme Cold Warning"
+msgstr "🥶 Kältewarnung"
+
+#: lib/alerts.js:93
+msgid "Dangerously low temperature"
+msgstr "Gefährlich niedrige Temperatur"
+
+#: lib/alerts.js:100
+msgid "Layer clothing: base layer, insulation, waterproof outer shell"
+msgstr ""
+"Zwiebelprinzip: Funktionsunterwäsche, Isolation, wasserdichte Außenschicht"
+
+#: lib/alerts.js:101
+msgid "Cover exposed skin — risk of frostbite within 30 minutes"
+msgstr "Unbedeckte Haut schützen — Erfrierungsgefahr innerhalb von 30 Minuten"
+
+#: lib/alerts.js:102
+msgid "Keep emergency supplies in your vehicle if driving"
+msgstr "Notfallausrüstung im Fahrzeug bereithalten"
+
+#: lib/alerts.js:103
+msgid "Check heating systems and carbon-monoxide detectors"
+msgstr "Heizung und Kohlenmonoxid-Melder prüfen"
+
+#: lib/alerts.js:104
+msgid "Check on elderly and vulnerable people"
+msgstr "Nach älteren und schutzbedürftigen Menschen sehen"
+
+#: lib/alerts.js:105
+msgid "Bring pets indoors"
+msgstr "Haustiere ins Haus holen"
+
+#: lib/alerts.js:117
+msgid "🌀 Severe Storm Warning"
+msgstr "🌀 Schwere Sturmwarnung"
+
+#: lib/alerts.js:119
+msgid "Dangerous wind speed"
+msgstr "Gefährliche Windgeschwindigkeit"
+
+#: lib/alerts.js:121
+msgid "Avoid all unnecessary travel"
+msgstr "Alle unnötigen Fahrten vermeiden"
+
+#: lib/alerts.js:122
+msgid "Stay away from trees, scaffolding, and signs"
+msgstr "Von Bäumen, Gerüsten und Schildern fernhalten"
+
+#: lib/alerts.js:123
+msgid "Do not attempt to drive high-sided vehicles"
+msgstr "Hochbauende Fahrzeuge nicht fahren"
+
+#: lib/alerts.js:124
+msgid "Secure or bring inside any outdoor furniture"
+msgstr "Gartenmöbel sichern oder hineinholen"
+
+#: lib/alerts.js:125
+msgid "Stay indoors away from windows"
+msgstr "Drinnen bleiben und von Fenstern fernhalten"
+
+#: lib/alerts.js:126
+msgid "Follow local emergency service guidance"
+msgstr "Hinweisen der lokalen Rettungsdienste folgen"
+
+#: lib/alerts.js:135
+msgid "💨 Strong Wind Warning"
+msgstr "💨 Warnung vor starkem Wind"
+
+#: lib/alerts.js:137
+msgid "Strong winds detected"
+msgstr "Starke Winde erkannt"
+
+#: lib/alerts.js:140
+msgid ""
+"Take care when walking or cycling — gusts may be stronger than the average"
+msgstr ""
+"Beim Gehen und Radfahren vorsichtig sein — Böen können stärker als der "
+"Durchschnitt sein"
+
+#: lib/alerts.js:142
+msgid "Secure loose outdoor items (bins, garden furniture, etc.)"
+msgstr "Lose Gegenstände im Freien sichern (Mülleimer, Gartenmöbel usw.)"
+
+#: lib/alerts.js:143
+msgid "Drive with extra caution, especially on exposed roads or bridges"
+msgstr ""
+"Mit erhöhter Vorsicht fahren, besonders auf offenen Straßen und Brücken"
+
+#: lib/alerts.js:144
+msgid "Cyclists and motorcyclists should be especially cautious"
+msgstr "Radfahrende und Motorradfahrende sollten besonders vorsichtig sein"
+
+#: lib/alerts.js:158
+msgid "Seek shelter immediately in a sturdy building"
+msgstr "Sofort Schutz in einem festen Gebäude suchen"
+
+#: lib/alerts.js:159
+msgid "Avoid open fields, hilltops, and isolated trees"
+msgstr "Offene Felder, Hügelpuppen und einzelne Bäume meiden"
+
+#: lib/alerts.js:160
+msgid "Stay away from water, metal objects, and electrical equipment"
+msgstr "Von Wasser, Metallgegenständen und Elektrogeräten fernhalten"
+
+#: lib/alerts.js:161
+msgid "If outdoors and unable to shelter, crouch low — do not lie flat"
+msgstr "Draußen ohne Deckung klein hocken — nicht flach hinlegen"
+
+#: lib/alerts.js:162
+msgid "Avoid using corded phones or plugged-in devices"
+msgstr ""
+"Keine Schnurtelefone oder am Stromnetz angeschlossenen Geräte benutzen"
+
+#: lib/alerts.js:163
+msgid "Keep away from windows and doors"
+msgstr "Von Fenstern und Türen fernhalten"
+
+#: lib/alerts.js:167
+msgid "Follow official emergency service guidance"
+msgstr "Hinweisen der offiziellen Rettungsdienste folgen"
+
+#: lib/alerts.js:168
+msgid "Stay informed via local weather services"
+msgstr "Über lokale Wetterdienste informiert bleiben"
+
+#: lib/alerts.js:169
+msgid "Avoid non-essential travel"
+msgstr "Nicht notwendige Fahrten vermeiden"
+
+#: lib/alerts.js:178
+msgid "Avoid driving through flooded roads — even 30 cm can sweep a car away"
+msgstr ""
+"Nicht durch überflutete Straßen fahren — schon 30 cm können ein Auto "
+"fortspülen"
+
+#: lib/alerts.js:180
+msgid "Be aware of localised flooding in low-lying areas"
+msgstr "Mit lokalen Überschwemmungen in tiefliegenden Gebieten rechnen"
+
+#: lib/alerts.js:181
+msgid "Carry waterproof clothing if you must travel"
+msgstr "Falls Reisen nötig ist, wasserdichte Kleidung mitnehmen"
+
+#: lib/alerts.js:182
+msgid "Check your local flood risk map"
+msgstr "Lokalen Hochwassergefahrenplan prüfen"
+
+#: lib/alerts.js:188
+msgid "Avoid travel unless absolutely necessary"
+msgstr "Reisen nur wenn unbedingt nötig"
+
+#: lib/alerts.js:189
+msgid "If driving, carry a winter emergency kit (blanket, shovel, water)"
+msgstr "Bei Fahrten Winter-Notfallset mitführen (Decke, Schaufel, Wasser)"
+
+#: lib/alerts.js:190
+msgid "Clear snow from paths and driveways carefully to avoid injury"
+msgstr ""
+"Wege und Einfahrten vorsichtig von Schnee befreien, um Verletzungen zu "
+"vermeiden"
+
+#: lib/alerts.js:191
+msgid "Be aware of roof loading from heavy snow accumulation"
+msgstr "Dachbelastung durch hohe Schneemengen beachten"
+
+#: lib/alerts.js:195
+msgid "Exercise caution outdoors"
+msgstr "Draußen vorsichtig sein"
+
+#: lib/alerts.js:196
+msgid "Stay informed via local weather forecasts"
+msgstr "Über lokale Wettervorhersagen informiert bleiben"
+
+#: lib/providers.js:619
 msgid "Clear Sky"
 msgstr "Klarer Himmel"
 
+#: lib/providers.js:624
 msgid "Mainly Clear"
 msgstr "Überwiegend klar"
 
+#: lib/providers.js:629
 msgid "Partly Cloudy"
 msgstr "Teilweise bewölkt"
 
+#: lib/providers.js:634
 msgid "Overcast"
 msgstr "Bedeckt"
 
+#: lib/providers.js:638
 msgid "Fog"
 msgstr "Nebel"
 
+#: lib/providers.js:640
 msgid "Rime Fog"
 msgstr "Raureifnebel"
 
+#: lib/providers.js:645
 msgid "Light Drizzle"
 msgstr "Leichter Nieselregen"
 
+#: lib/providers.js:650
 msgid "Drizzle"
 msgstr "Nieselregen"
 
+#: lib/providers.js:655
 msgid "Heavy Drizzle"
 msgstr "Starker Nieselregen"
 
+#: lib/providers.js:660
 msgid "Light Rain"
 msgstr "Leichter Regen"
 
+#: lib/providers.js:665
 msgid "Rain"
 msgstr "Regen"
 
+#: lib/providers.js:670
 msgid "Heavy Rain"
 msgstr "Starker Regen"
 
+#: lib/providers.js:675
 msgid "Light Snow"
 msgstr "Leichter Schneefall"
 
+#: lib/providers.js:679
 msgid "Snow"
 msgstr "Schnee"
 
+#: lib/providers.js:681
 msgid "Heavy Snow"
 msgstr "Starker Schneefall"
 
+#: lib/providers.js:686
 msgid "Snow Grains"
 msgstr "Schneegriesel"
 
+#: lib/providers.js:691 lib/providers.js:696
 msgid "Rain Showers"
 msgstr "Regenschauer"
 
+#: lib/providers.js:701
 msgid "Heavy Showers"
 msgstr "Starke Schauer"
 
+#: lib/providers.js:706
 msgid "Snow Showers"
 msgstr "Schneeschauer"
 
+#: lib/providers.js:711
 msgid "Heavy Snow Showers"
 msgstr "Starke Schneeschauer"
 
+#: lib/providers.js:716
 msgid "Thunderstorm"
 msgstr "Gewitter"
 
+#: lib/providers.js:721
 msgid "Hail Storm"
 msgstr "Hagelgewitter"
 
+#: lib/providers.js:726
 msgid "Heavy Hail"
 msgstr "Starker Hagel"
+
+#: lib/panelMenu.js:124
+msgid "AUTO"
+msgstr "AUTO"
+
+#: lib/panelMenu.js:125
+msgid "MANUAL"
+msgstr "MANUELL"
+
+#: lib/panelMenu.js:134
+msgid "Loading weather…"
+msgstr "Wetter wird geladen…"
+
+#: lib/panelMenu.js:142
+msgid "Weather Alerts"
+msgstr "Wetterwarnungen"
+
+#: lib/panelMenu.js:149
+msgid "Location Information"
+msgstr "Standortinformationen"
+
+#: lib/panelMenu.js:156
+msgid "Weather Provider Status"
+msgstr "Anbieter-Status"
+
+#: lib/panelMenu.js:163
+msgid "Hourly Forecast"
+msgstr "Stundenvorhersage"
+
+#: lib/panelMenu.js:167
+msgid "7-Day Forecast"
+msgstr "7-Tage-Vorhersage"
+
+#: lib/panelMenu.js:171
+msgid "Weather Insights"
+msgstr "Wetter-Einblicke"
+
+#: lib/panelMenu.js:177
+msgid "Refresh Weather"
+msgstr "Wetter aktualisieren"
+
+#: lib/panelMenu.js:185
+msgid "Extension Settings"
+msgstr "Erweiterungseinstellungen"
+
+#: lib/panelMenu.js:281
+msgid "What to do"
+msgstr "Was zu tun ist"
+
+#: lib/panelMenu.js:319 lib/panelMenu.js:425
+msgid "Active"
+msgstr "Aktiv"
+
+#: lib/panelMenu.js:319 lib/panelMenu.js:469 lib/panelMenu.js:473
+#: lib/panelMenu.js:477
+msgid "Loading…"
+msgstr "Wird geladen…"
+
+#: lib/panelMenu.js:323 lib/panelMenu.js:442
+msgid "Status"
+msgstr "Status"
+
+#: lib/panelMenu.js:323
+msgid "Checking…"
+msgstr "Wird überprüft…"
+
+#: lib/panelMenu.js:327 lib/panelMenu.js:455 lib/panelMenu.js:462
+msgid "Last Update"
+msgstr "Letzte Aktualisierung"
+
+#: lib/panelMenu.js:327 lib/panelMenu.js:462
+msgid "Never"
+msgstr "Nie"
+
+#: lib/panelMenu.js:347
+msgid "Available Providers"
+msgstr "Verfügbare Anbieter"
+
+#: lib/panelMenu.js:375
+msgid "Custom Provider"
+msgstr "Benutzerdefinierter Anbieter"
+
+#: lib/panelMenu.js:428
+msgid "Free"
+msgstr "Kostenlos"
+
+#: lib/panelMenu.js:434
+msgid "Working"
+msgstr "Funktioniert"
+
+#: lib/panelMenu.js:436
+msgid "Connection Timeout"
+msgstr "Verbindungsabbruch"
+
+#: lib/panelMenu.js:437
+msgid "Not Configured"
+msgstr "Nicht konfiguriert"
+
+#: lib/panelMenu.js:438
+msgid "Testing Connection…"
+msgstr "Verbindung wird getestet…"
+
+#: lib/panelMenu.js:439
+msgid "Showing cached data"
+msgstr "Zeigt zwischengespeicherte Daten"
+
+#: lib/panelMenu.js:446
+msgid "Unknown"
+msgstr "Unbekannt"
+
+#: lib/panelMenu.js:469 lib/panelMenu.js:983 lib/panelMenu.js:984
+msgid "Current"
+msgstr "Aktuell"
+
+#: lib/panelMenu.js:473 lib/panelMenu.js:989 lib/panelMenu.js:994
+msgid "Coordinates"
+msgstr "Koordinaten"
+
+#: lib/panelMenu.js:477 lib/panelMenu.js:999 lib/panelMenu.js:1000
+msgid "Method"
+msgstr "Methode"
+
+#: lib/panelMenu.js:482
+msgid "Switch to Auto Detection"
+msgstr "Zur automatischen Erkennung wechseln"
+
+#: lib/panelMenu.js:491
+msgid "Switch to Manual Location"
+msgstr "Zum manuellen Standort wechseln"
+
+#: lib/panelMenu.js:508
+msgid "Enter city name…"
+msgstr "Stadtname eingeben…"
+
+#: lib/panelMenu.js:513 lib/panelMenu.js:606
+msgid "Search"
+msgstr "Suchen"
+
+#: lib/panelMenu.js:517 prefs.js:725
+msgid "Clear"
+msgstr "Löschen"
+
+#: lib/panelMenu.js:556
+msgid "Searching…"
+msgstr "Suche läuft…"
+
+#: lib/panelMenu.js:599
+msgid "No locations found"
+msgstr "Keine Standorte gefunden"
+
+#: lib/panelMenu.js:604 prefs.js:1392
+msgid "Search failed. Please try again."
+msgstr "Suche fehlgeschlagen. Bitte erneut versuchen."
+
+#: lib/panelMenu.js:685
+msgid "Unknown Location"
+msgstr "Unbekannter Standort"
+
+#: lib/panelMenu.js:686
+msgid "Unknown Provider"
+msgstr "Unbekannter Anbieter"
+
+#: lib/panelMenu.js:690
+msgid "Cached data from"
+msgstr "Zwischengespeicherte Daten vom"
+
+#: lib/panelMenu.js:727
+msgid "This forecast has no upcoming hours left"
+msgstr "Für diese Vorhersage gibt es keine kommenden Stunden mehr"
+
+#: lib/panelMenu.js:816
+msgid "Today"
+msgstr "Heute"
+
+#: lib/panelMenu.js:818
+msgid "Tomorrow"
+msgstr "Morgen"
+
+#: lib/panelMenu.js:881
+msgid "Temperature Trend"
+msgstr "Temperaturtrend"
+
+#: lib/panelMenu.js:895
+msgid "Precipitation (24h)"
+msgstr "Niederschlag (24h)"
+
+#: lib/panelMenu.js:907
+msgid "Strong"
+msgstr "Stark"
+
+#: lib/panelMenu.js:909 lib/panelMenu.js:938
+msgid "Moderate"
+msgstr "Mäßig"
+
+#: lib/panelMenu.js:910
+msgid "Light"
+msgstr "Leicht"
+
+#: lib/panelMenu.js:914
+msgid "Wind"
+msgstr "Wind"
+
+#: lib/panelMenu.js:938
+msgid "High"
+msgstr "Hoch"
+
+#: lib/panelMenu.js:938
+msgid "Low"
+msgstr "Niedrig"
+
+#: lib/panelMenu.js:941
+msgid "UV Index"
+msgstr "UV-Index"
+
+#: lib/panelMenu.js:951
+msgid "Insufficient data"
+msgstr "Unzureichende Daten"
+
+#: lib/panelMenu.js:959
+msgid "Warming"
+msgstr "Wärmer werdend"
+
+#: lib/panelMenu.js:960
+msgid "Cooling"
+msgstr "Kühler werdend"
+
+#: lib/panelMenu.js:961
+msgid "Stable"
+msgstr "Stabil"
+
+#: lib/panelMenu.js:983
+msgid "Auto-detected"
+msgstr "Automatisch erkannt"
+
+#: lib/panelMenu.js:984
+msgid "Not set"
+msgstr "Nicht festgelegt"
+
+#: lib/panelMenu.js:994
+msgid "Not available"
+msgstr "Nicht verfügbar"
+
+#: lib/panelMenu.js:999
+msgid "IP-based geolocation"
+msgstr "IP-basierte Geolokalisierung"
+
+#: lib/panelMenu.js:1000
+msgid "Manually configured"
+msgstr "Manuell konfiguriert"
+
+#: prefs.js:55 prefs.js:1073 prefs.js:1104
+msgid "Advanced Weather Companion"
+msgstr "Erweiterter Wetterbegleiter"
+
+#: prefs.js:68
+msgid "General"
+msgstr "Allgemein"
+
+#: prefs.js:73
+msgid "Units & Format"
+msgstr "Einheiten & Format"
+
+#: prefs.js:74
+msgid "Configure measurement units and display format"
+msgstr "Maßeinheiten und Anzeigeformat konfigurieren"
+
+#: prefs.js:78
+msgid "Use Fahrenheit"
+msgstr "Fahrenheit verwenden"
+
+#: prefs.js:79
+msgid "Switch between Celsius and Fahrenheit"
+msgstr "Zwischen Celsius und Fahrenheit wechseln"
+
+#: prefs.js:87
+msgid "Wind Speed Unit"
+msgstr "Windgeschwindigkeitseinheit"
+
+#: prefs.js:88
+msgid "Choose unit for wind speed display"
+msgstr "Einheit für die Windgeschwindigkeitsanzeige wählen"
+
+#: prefs.js:93
+msgid "km/h (Kilometers per hour)"
+msgstr "km/h (Kilometer pro Stunde)"
+
+#: prefs.js:94
+msgid "mph (Miles per hour)"
+msgstr "mph (Meilen pro Stunde)"
+
+#: prefs.js:95
+msgid "m/s (Meters per second)"
+msgstr "m/s (Meter pro Sekunde)"
+
+#: prefs.js:96
+msgid "knots (Nautical miles per hour)"
+msgstr "Knoten (Seemeilen pro Stunde)"
+
+#: prefs.js:111
+msgid "Use 12-hour Format"
+msgstr "12-Stunden-Format verwenden"
+
+#: prefs.js:112
+msgid "Display time in 12-hour format with AM/PM"
+msgstr "Zeit im 12-Stunden-Format mit AM/PM anzeigen"
+
+#: prefs.js:124
+msgid "Updates"
+msgstr "Aktualisierungen"
+
+#: prefs.js:125
+msgid "Configure weather data refresh settings"
+msgstr "Aktualisierungsintervall konfigurieren"
+
+#: prefs.js:129
+msgid "Update Interval"
+msgstr "Aktualisierungsintervall"
+
+#: prefs.js:130
+msgid "How often to refresh weather data"
+msgstr "Wie oft Wetterdaten aktualisieren"
+
+#: prefs.js:135
+msgid "5 minutes"
+msgstr "5 Minuten"
+
+#: prefs.js:136
+msgid "10 minutes"
+msgstr "10 Minuten"
+
+#: prefs.js:137
+msgid "15 minutes"
+msgstr "15 Minuten"
+
+#: prefs.js:138
+msgid "30 minutes"
+msgstr "30 Minuten"
+
+#: prefs.js:139
+msgid "1 hour"
+msgstr "1 Stunde"
+
+#: prefs.js:156
+msgid "Features"
+msgstr "Funktionen"
+
+#: prefs.js:157
+msgid "Enable or disable weather features"
+msgstr "Wetterfunktionen aktivieren oder deaktivieren"
+
+#: prefs.js:161
+msgid "Show Humidity"
+msgstr "Luftfeuchtigkeit anzeigen"
+
+#: prefs.js:162
+msgid "Display relative humidity in weather details"
+msgstr "Relative Luftfeuchtigkeit anzeigen"
+
+#: prefs.js:253
+msgid "Copy to Clipboard"
+msgstr "In Zwischenablage kopieren"
+
+#: prefs.js:254
+msgid "text"
+msgstr "Text"
+
+#: prefs.js:259
+msgid "Close"
+msgstr "Schließen"
+
+#: prefs.js:260
+msgid "Select Text"
+msgstr "Text auswählen"
+
+#: prefs.js:302
+msgid "💡 Select the text above and press Ctrl+C to copy"
+msgstr "💡 Text oben auswählen und Strg+C zum Kopieren drücken"
+
+#: prefs.js:335
+msgid "💡 Text selected! Press Ctrl+C to copy"
+msgstr "💡 Text ausgewählt! Strg+C zum Kopieren drücken"
+
+#: prefs.js:362
+msgid "Location"
+msgstr "Standort"
+
+#: prefs.js:367
+msgid "Location Detection"
+msgstr "Standorterkennung"
+
+#: prefs.js:368
+msgid "Configure how your location is determined"
+msgstr "Standorterkennung konfigurieren"
+
+#: prefs.js:372
+msgid "Location Mode"
+msgstr "Standortmodus"
+
+#: prefs.js:373
+msgid "Choose detection method"
+msgstr "Erkennungsmethode wählen"
+
+#: prefs.js:377
+msgid "🌍 Auto Detection"
+msgstr "🌍 Automatische Erkennung"
+
+#: prefs.js:378
+msgid "📍 Manual Location"
+msgstr "📍 Manueller Standort"
+
+#: prefs.js:383
+msgid "Current Location"
+msgstr "Aktueller Standort"
+
+#: prefs.js:397
+msgid "Refresh location"
+msgstr "Standort aktualisieren"
+
+#: prefs.js:409
+msgid "Manual Location Search"
+msgstr "Manuelle Standortsuche"
+
+#: prefs.js:410
+msgid "Search by city name or coordinates (latitude, longitude)"
+msgstr "Nach Stadtname oder Koordinaten (Breiten-, Längengrad) suchen"
+
+#: prefs.js:415
+msgid "Search Location"
+msgstr "Standort suchen"
+
+#: prefs.js:424
+msgid "Search for location"
+msgstr "Standort suchen"
+
+#: prefs.js:431
+msgid "Clear search"
+msgstr "Suche löschen"
+
+#: prefs.js:439
+msgid "Search Examples"
+msgstr "Suchbeispiele"
+
+#: prefs.js:440
+msgid ""
+"City names: 'London', 'New York', 'Tokyo'\n"
+"Coordinates: '40.7128, -74.0060' or '40.7128 -74.0060'"
+msgstr ""
+"Stadtnamen: 'London', 'New York', 'Tokyo'\n"
+"Koordinaten: '40.7128, -74.0060' oder '40.7128 -74.0060'"
+
+#: prefs.js:451
+msgid "Search Results"
+msgstr "Suchergebnisse"
+
+#: prefs.js:506 prefs.js:516
+msgid "Weather Provider"
+msgstr "Wetteranbieter"
+
+#: prefs.js:511
+msgid "Weather Data Source"
+msgstr "Wetterdatenquelle"
+
+#: prefs.js:512
+msgid "Choose your weather data provider"
+msgstr "Wetterdatenanbieter wählen"
+
+#: prefs.js:517
+msgid "Select weather API service"
+msgstr "Wetter-API-Dienst wählen"
+
+#: prefs.js:548
+msgid "Provider Configuration"
+msgstr "Anbieterkonfiguration"
+
+#: prefs.js:549
+msgid "Configure your selected weather provider"
+msgstr "Gewählten Wetterdatenanbieter konfigurieren"
+
+#: prefs.js:554
+msgid "API Key"
+msgstr "API-Schlüssel"
+
+#: prefs.js:559
+msgid "Get API Key"
+msgstr "API-Schlüssel holen"
+
+#: prefs.js:567
+msgid "Custom API URL"
+msgstr "Eigene API-URL"
+
+#: prefs.js:573
+msgid "Provider Information"
+msgstr "Anbieterinformationen"
+
+#: prefs.js:579
+msgid "Test Connection"
+msgstr "Verbindung testen"
+
+#: prefs.js:580
+msgid "Verify your provider settings work correctly"
+msgstr "Anbietereinstellungen überprüfen"
+
+#: prefs.js:585 prefs.js:951
+msgid "Test"
+msgstr "Testen"
+
+#: prefs.js:627
+msgid "Automatic Provider Fallback"
+msgstr "Automatischer Anbieterwechsel"
+
+#: prefs.js:628
+msgid ""
+"When a provider fails, the next one is tried. Every provider is used at most"
+" once per refresh."
+msgstr ""
+"Schlägt ein Anbieter fehl, wird der nächste versucht. Jeder Anbieter wird "
+"pro Aktualisierung höchstens einmal verwendet."
+
+#: prefs.js:632
+msgid "Try Other Providers On Failure"
+msgstr "Bei Ausfall andere Anbieter versuchen"
+
+#: prefs.js:633
+msgid "Turn off to use only the selected provider"
+msgstr "Ausschalten, um nur den gewählten Anbieter zu nutzen"
+
+#: prefs.js:638
+msgid "Fallback Priority"
+msgstr "Priorität der Ausweichanbieter"
+
+#: prefs.js:639
+msgid ""
+"Providers are tried in this order. The selected provider is always tried "
+"first."
+msgstr ""
+"Anbieter werden in dieser Reihenfolge versucht. Der gewählte Anbieter wird "
+"immer zuerst versucht."
+
+#: prefs.js:654
+msgid "API key required"
+msgstr "API-Schlüssel erforderlich"
+
+#: prefs.js:655
+msgid "Free, no API key"
+msgstr "Kostenlos, ohne API-Schlüssel"
+
+#: prefs.js:700
+msgid "Offline Weather Data"
+msgstr "Offline-Wetterdaten"
+
+#: prefs.js:701
+msgid ""
+"The last successful fetch, including the hourly and 7-day forecasts, is kept"
+" and shown instead of an error when every provider fails."
+msgstr ""
+"Der letzte erfolgreiche Abruf inklusive der Stunden- und 7-Tage-Vorhersage "
+"wird gespeichert und statt einer Fehlermeldung angezeigt, wenn alle Anbieter"
+" fehlschlagen."
+
+#: prefs.js:705
+msgid "Use Cached Data Up To"
+msgstr "Zwischengespeicherte Daten bis zu"
+
+#: prefs.js:706
+msgid "Maximum age of the cached forecast, in days"
+msgstr "Höchstalter der zwischengespeicherten Vorhersage in Tagen"
+
+#: prefs.js:720
+msgid "Cached Forecast"
+msgstr "Zwischengespeicherte Vorhersage"
+
+#: prefs.js:733
+msgid "Cached weather data cleared"
+msgstr "Zwischengespeicherte Wetterdaten gelöscht"
+
+#: prefs.js:781
+msgid "No cached data yet"
+msgstr "Noch keine zwischengespeicherten Daten"
+
+#: prefs.js:791
+msgid "min ago"
+msgstr "Min. her"
+
+#: prefs.js:792
+msgid "h ago"
+msgstr "Std. her"
+
+#: prefs.js:793
+msgid "days ago"
+msgstr "Tage her"
+
+#: prefs.js:795
+msgid "unknown provider"
+msgstr "unbekannter Anbieter"
+
+#: prefs.js:805
+msgid "Cached data is unreadable"
+msgstr "Zwischengespeicherte Daten sind unlesbar"
+
+#: prefs.js:862
+msgid "Could not open website. Please visit manually."
+msgstr "Website konnte nicht geöffnet werden. Bitte manuell aufrufen."
+
+#: prefs.js:895
+msgid "Testing…"
+msgstr "Wird getestet…"
+
+#: prefs.js:908
+msgid "Custom URL is required"
+msgstr "Benutzerdefinierte URL ist erforderlich"
+
+#: prefs.js:911
+msgid "API key is required for"
+msgstr "API-Schlüssel erforderlich für"
+
+#: prefs.js:940
+msgid ""
+"Response received but no weather data found. Check your API key and URL."
+msgstr ""
+"Antwort erhalten, aber keine Wetterdaten gefunden. API-Schlüssel und URL "
+"prüfen."
+
+#: prefs.js:942
+msgid "Connection successful!"
+msgstr "Verbindung erfolgreich!"
+
+#: prefs.js:943
+msgid "Current temp:"
+msgstr "Aktuelle Temp.:"
+
+#: prefs.js:948
+msgid "Connection failed:"
+msgstr "Verbindung fehlgeschlagen:"
+
+#: prefs.js:958
+msgid "Appearance"
+msgstr "Erscheinungsbild"
+
+#: prefs.js:963
+msgid "Panel Display"
+msgstr "Panel-Anzeige"
+
+#: prefs.js:964
+msgid "Configure how the weather appears in the panel"
+msgstr "Konfigurieren, wie das Wetter im Panel angezeigt wird"
+
+#: prefs.js:968
+msgid "Panel Position"
+msgstr "Panel-Position"
+
+#: prefs.js:969
+msgid "Where to show the weather widget"
+msgstr "Wo das Wetter-Widget anzeigen"
+
+#: prefs.js:974
+msgid "Left"
+msgstr "Links"
+
+#: prefs.js:975
+msgid "Center"
+msgstr "Mitte"
+
+#: prefs.js:976
+msgid "Right"
+msgstr "Rechts"
+
+#: prefs.js:991
+msgid "Panel Position Index"
+msgstr "Panel-Positionsindex"
+
+#: prefs.js:992
+msgid "Position index in the selected panel area"
+msgstr "Positionsindex im gewählten Panel-Bereich"
+
+#: prefs.js:1005
+msgid "Show Temperature Text"
+msgstr "Temperaturtext anzeigen"
+
+#: prefs.js:1006
+msgid "Display temperature alongside the weather icon"
+msgstr "Temperatur neben dem Wettersymbol anzeigen"
+
+#: prefs.js:1014
+msgid "Show Location Indicator"
+msgstr "Standortanzeige"
+
+#: prefs.js:1015
+msgid "Display location mode indicator in panel"
+msgstr "Standortmodus im Panel anzeigen"
+
+#: prefs.js:1028
+msgid "Icon Size"
+msgstr "Symbolgröße"
+
+#: prefs.js:1029
+msgid "Size of the weather icon in pixels"
+msgstr "Größe des Wettersymbols in Pixeln"
+
+#: prefs.js:1042
+msgid "Text Size"
+msgstr "Textgröße"
+
+#: prefs.js:1043
+msgid "Size of the temperature text in pixels"
+msgstr "Größe des Temperaturtexts in Pixeln"
+
+#: prefs.js:1068
+msgid "About"
+msgstr "Info"
+
+#: prefs.js:1074
+msgid "A beautiful, modern weather companion for GNOME Shell"
+msgstr "Ein schöner, moderner Wetterbegleiter für GNOME Shell"
+
+#: prefs.js:1110
+msgid "Version 2.0"
+msgstr "Version 2.0"
+
+#: prefs.js:1116
+msgid "Modern weather extension with native GNOME design"
+msgstr "Moderne Wettererweiterung mit nativem GNOME-Design"
+
+#: prefs.js:1133
+msgid "Extension Links"
+msgstr "Erweiterungslinks"
+
+#: prefs.js:1134 prefs.js:1139
+msgid "Source code, issues, and contributions"
+msgstr "Quellcode, Probleme und Beiträge"
+
+#: prefs.js:1138
+msgid "View on GitHub"
+msgstr "Auf GitHub ansehen"
+
+#: prefs.js:1160
+msgid "☕ Support by buying me a coffee — just scan the QR code!"
+msgstr "☕ Unterstütze mich mit einem Kaffee — einfach den QR-Code scannen!"
+
+#: prefs.js:1161
+msgid "Preferred Method - Scan QR code to support development"
+msgstr "Bevorzugte Methode – QR-Code scannen und Entwicklung unterstützen"
+
+#: prefs.js:1206
+msgid "Donation Address"
+msgstr "Spendenadresse"
+
+#: prefs.js:1238
+msgid "☕ Buy Me a Coffee"
+msgstr "☕ Kauf mir einen Kaffee"
+
+#: prefs.js:1239
+msgid "Support development with a small donation"
+msgstr "Entwicklung mit einer kleinen Spende unterstützen"
+
+#: prefs.js:1261
+msgid "License & Credits"
+msgstr "Lizenz & Danksagungen"
+
+#: prefs.js:1262
+msgid "Open source software information"
+msgstr "Informationen zur Open-Source-Software"
+
+#: prefs.js:1266
+msgid "Open Source License"
+msgstr "Open-Source-Lizenz"
+
+#: prefs.js:1267
+msgid "MIT License - Free and open source software"
+msgstr "MIT-Lizenz – Freie und Open-Source-Software"
+
+#: prefs.js:1277
+msgid "Weather Data Sources"
+msgstr "Wetterdatenquellen"
+
+#: prefs.js:1278
+msgid "Open-Meteo, Meteosource, Wttr.in - Free weather APIs"
+msgstr "Open-Meteo, Meteosource, Wttr.in – Kostenlose Wetter-APIs"
+
+#: prefs.js:1382
+msgid ""
+"Invalid coordinates. Latitude must be between -90 and 90, longitude between "
+"-180 and 180."
+msgstr ""
+"Ungültige Koordinaten. Breitengrad zwischen -90 und 90, Längengrad zwischen "
+"-180 und 180."
+
+#: prefs.js:1395
+msgid "Unable to connect to location service. Check your internet connection."
+msgstr "Standortdienst nicht erreichbar. Internetverbindung prüfen."
+
+#: prefs.js:1397
+msgid "Invalid response from location service. Please try again."
+msgstr "Ungültige Antwort des Standortdienstes. Bitte erneut versuchen."
+
+#: prefs.js:1399
+msgid "Search timed out. Please try again."
+msgstr "Suche abgelaufen. Bitte erneut versuchen."
+
+#: prefs.js:1516 prefs.js:1554
+msgid "Select this location"
+msgstr "Diesen Standort wählen"
+
+#: prefs.js:1573
+msgid "Location updated successfully"
+msgstr "Standort erfolgreich aktualisiert"
+
+#: prefs.js:1576
+msgid "Failed to save location. Please try again."
+msgstr "Standort konnte nicht gespeichert werden. Bitte erneut versuchen."
+
+#: prefs.js:1583
+msgid "No Results Found"
+msgstr "Keine Ergebnisse"
+
+#: prefs.js:1584
+msgid "Try a different search term or check your spelling"
+msgstr "Anderen Suchbegriff versuchen oder Schreibweise prüfen"
+
+#: prefs.js:1618
+msgid "Search Error"
+msgstr "Suchfehler"
+
+#: prefs.js:1644 prefs.js:1662
+msgid "🌍 Auto Detection Enabled"
+msgstr "🌍 Automatische Erkennung aktiv"
+
+#: prefs.js:1649 prefs.js:1667
+msgid "📍 Manual - Please set location"
+msgstr "📍 Manuell – Bitte Standort festlegen"
+
+#~ msgid "Could not open website."
+#~ msgstr "Website konnte nicht geöffnet werden."
+
+#~ msgid "Custom / Weather Underground URL"
+#~ msgstr "Benutzerdefinierte / Weather Underground URL"
+
+#~ msgid "Donation address"
+#~ msgstr "Spendenadresse"
+
+#~ msgid "Not Required"
+#~ msgstr "Nicht erforderlich"
+
+#~ msgid "Not specified"
+#~ msgstr "Nicht angegeben"
+
+#~ msgid "Rate Limit"
+#~ msgstr "Anfragelimit"
+
+#~ msgid "Required"
+#~ msgstr "Erforderlich"
+
+#~ msgid "Test failed:"
+#~ msgstr "Test fehlgeschlagen:"
+
+#~ msgid "URL Placeholders"
+#~ msgstr "URL-Platzhalter"
+
+#~ msgid "☕ Support – Scan QR to buy me a coffee"
+#~ msgstr "☕ Unterstützen – QR scannen für einen Kaffee"
+
+#~ msgid "Enable Weather Alerts"
+#~ msgstr "Wetterwarnungen aktivieren"
+
+#~ msgid "Send desktop notifications for dangerous weather"
+#~ msgstr "Desktop-Benachrichtigungen bei gefährlichem Wetter senden"
+
+#~ msgid "Extreme high temperature detected"
+#~ msgstr "Extreme Hitze erkannt"
+
+#~ msgid "Extreme low temperature detected"
+#~ msgstr "Extreme Kälte erkannt"
+
+#~ msgid "SEVERE WEATHER"
+#~ msgstr "UNWETTER"
+
+#~ msgid "HEAT WARNING"
+#~ msgstr "HITZEWARNUNG"
+
+#~ msgid "Extreme temperatures"
+#~ msgstr "Extreme Temperaturen"
+
+#~ msgid "COLD WARNING"
+#~ msgstr "KÄLTEWARNUNG"
+
+#~ msgid "STORM WARNING"
+#~ msgstr "STURMWARNUNG"
+
+#~ msgid "Dangerous winds detected"
+#~ msgstr "Gefährliche Winde erkannt"
+
+#~ msgid "WIND WARNING"
+#~ msgstr "WINDWARNUNG"

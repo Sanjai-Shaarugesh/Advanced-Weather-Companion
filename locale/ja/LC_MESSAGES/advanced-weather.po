@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: advanced-weather 2.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Sanjai-Shaarugesh/Advanced-Weather-Companion/issues\n"
-"POT-Creation-Date: 2026-03-15 00:00+0000\n"
-"PO-Revision-Date: 2026-03-15 00:00+0000\n"
+"POT-Creation-Date: 2026-10-22 19:18+0800\n"
+"PO-Revision-Date: 2026-10-22 12:00+0000\n"
 "Last-Translator: Advanced Weather Team\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -13,665 +13,1208 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-msgid "1 hour"
-msgstr "1時間"
-
-msgid "10 minutes"
-msgstr "10分"
-
-msgid "15 minutes"
-msgstr "15分"
-
-msgid "30 minutes"
-msgstr "30分"
-
-msgid "5 minutes"
-msgstr "5分"
-
-msgid "A beautiful, modern weather companion for GNOME Shell"
-msgstr "GNOME Shell 向けの美しくモダンな天気アプリ"
-
-msgid "API Key"
-msgstr "APIキー"
-
-msgid "About"
-msgstr "このアプリについて"
-
-msgid "Advanced Weather Companion"
-msgstr "高度天気ウィジェット"
-
-msgid "Appearance"
-msgstr "外観"
-
-msgid "Center"
-msgstr "中央"
-
-msgid "Choose detection method"
-msgstr "検出方法を選択"
-
-msgid "Choose your weather data provider"
-msgstr "天気データプロバイダーを選択"
-
-msgid "Clear search"
-msgstr "検索をクリア"
-
-msgid "Configure how weather appears in the panel"
-msgstr "パネルの天気表示を設定"
-
-msgid "Configure how your location is determined"
-msgstr "位置情報の取得方法を設定"
-
-msgid "Configure measurement units and display format"
-msgstr "単位と表示形式を設定"
-
-msgid "Configure weather data refresh settings"
-msgstr "天気データの更新設定"
-
-msgid "Configure your selected weather provider"
-msgstr "選択したプロバイダーを設定"
-
-msgid "Connection successful!"
-msgstr "接続成功！"
-
-msgid "Could not copy. Please copy manually: "
-msgstr "コピーできません。手動でコピーしてください: "
-
-msgid "Could not open website."
-msgstr "ウェブサイトを開けませんでした。"
-
-msgid "Current Location"
-msgstr "現在地"
-
-msgid "Current temp:"
-msgstr "現在の気温:"
-
-msgid "Custom / Weather Underground URL"
-msgstr "カスタム / Weather Underground URL"
-
-msgid "Custom URL is required"
-msgstr "カスタム URL が必要です"
-
-msgid "Display AUTO/MANUAL indicator in panel"
-msgstr "パネルに AUTO/MANUAL インジケーターを表示"
-
-msgid "Display relative humidity in weather details"
-msgstr "天気の詳細に相対湿度を表示"
-
-msgid "Display temperature alongside the weather icon"
-msgstr "天気アイコンの横に気温を表示"
-
-msgid "Display time in 12-hour format with AM/PM"
-msgstr "AM/PM 付き 12 時間形式で時刻を表示"
-
-msgid "Donation Address"
-msgstr "寄付先アドレス"
-
-msgid "Donation address"
-msgstr "寄付先アドレス"
-
-msgid "Enable or disable weather features"
-msgstr "天気機能を有効/無効にする"
-
-msgid "Extension Links"
-msgstr "拡張機能リンク"
-
-msgid "Features"
-msgstr "機能"
-
-msgid "General"
-msgstr "一般"
-
-msgid "Get API Key"
-msgstr "APIキーを取得"
-
-msgid "How often to refresh weather data"
-msgstr "天気データの更新頻度"
-
-msgid "Icon Size"
-msgstr "アイコンサイズ"
-
-msgid "Invalid coordinates. Lat: −90 to 90, Lon: −180 to 180."
-msgstr "無効な座標です。緯度: −90〜90、経度: −180〜180。"
-
-msgid "Left"
-msgstr "左"
-
-msgid "License & Credits"
-msgstr "ライセンスとクレジット"
-
-msgid "Location"
-msgstr "場所"
-
-msgid "Location Detection"
-msgstr "位置情報検出"
-
-msgid "Location Mode"
-msgstr "位置情報モード"
-
-msgid "MIT License – Free and open source software"
-msgstr "MIT ライセンス – 無料のオープンソースソフトウェア"
-
-msgid "Manual Location Search"
-msgstr "手動位置情報検索"
-
-msgid "Modern weather extension with native GNOME design"
-msgstr "ネイティブ GNOME デザインのモダンな天気拡張"
-
-msgid "No Results Found"
-msgstr "結果が見つかりません"
-
-msgid "Not Required"
-msgstr "不要"
-
-msgid "Not specified"
-msgstr "未指定"
-
-msgid "Open Source License"
-msgstr "オープンソースライセンス"
-
-msgid "Open source software information"
-msgstr "オープンソースソフトウェア情報"
-
-msgid "Panel Display"
-msgstr "パネル表示"
-
-msgid "Panel Position"
-msgstr "パネル位置"
-
-msgid "Panel Position Index"
-msgstr "パネル位置インデックス"
-
-msgid "Position index within the selected panel area"
-msgstr "選択したパネルエリア内の位置インデックス"
-
-msgid "Provider Configuration"
-msgstr "プロバイダー設定"
-
-msgid "Provider Information"
-msgstr "プロバイダー情報"
-
-msgid "Rate Limit"
-msgstr "リクエスト制限"
-
-msgid "Refresh location display"
-msgstr "位置情報表示を更新"
-
-msgid "Required"
-msgstr "必須"
-
-msgid "Response received but no weather data found. Check your API key and URL."
-msgstr "応答を受信しましたが天気データが見つかりません。APIキーと URL を確認してください。"
-
-msgid "Right"
-msgstr "右"
-
-msgid "Search Error"
-msgstr "検索エラー"
-
-msgid "Search Examples"
-msgstr "検索例"
-
-msgid "Search Location"
-msgstr "場所を検索"
-
-msgid "Search Results"
-msgstr "検索結果"
-
-msgid "Search by city name or coordinates (lat, lon)"
-msgstr "都市名または座標で検索"
-
-msgid "Search failed. Please try again."
-msgstr "検索に失敗しました。もう一度お試しください。"
-
-msgid "Search for location"
-msgstr "場所を検索"
-
-msgid "Search timed out. Please try again."
-msgstr "検索がタイムアウトしました。もう一度お試しください。"
-
-msgid "Select this location"
-msgstr "この場所を選択"
-
-msgid "Select weather API service"
-msgstr "天気 API サービスを選択"
-
-msgid "Show Humidity"
-msgstr "湿度を表示"
-
-msgid "Show Location Indicator"
-msgstr "位置情報インジケーターを表示"
-
-msgid "Show Temperature Text"
-msgstr "気温テキストを表示"
-
-msgid "Size of the temperature text in pixels"
-msgstr "気温テキストのサイズ（ピクセル）"
-
-msgid "Size of the weather icon in pixels"
-msgstr "天気アイコンのサイズ（ピクセル）"
-
-msgid "Source code, issues, and contributions"
-msgstr "ソースコード、問題、貢献"
-
-msgid "Support development with a small donation"
-msgstr "少額の寄付で開発を支援してください"
-
-msgid "Switch between Celsius and Fahrenheit"
-msgstr "摂氏と華氏を切り替え"
-
-msgid "Test"
-msgstr "テスト"
-
-msgid "Test Connection"
-msgstr "接続テスト"
-
-msgid "Test failed:"
-msgstr "テスト失敗:"
-
-msgid "Testing…"
-msgstr "テスト中…"
-
-msgid "Text Size"
-msgstr "テキストサイズ"
-
-msgid "Try a different search term or check your spelling"
-msgstr "別の検索ワードを試すか、スペルを確認してください"
-
-msgid "URL Placeholders"
-msgstr "URL プレースホルダー"
-
-msgid "Unable to reach location service. Check your connection."
-msgstr "位置情報サービスに接続できません。接続を確認してください。"
-
-msgid "Unit for wind speed display"
-msgstr "風速の表示単位"
-
-msgid "Units & Format"
-msgstr "単位と形式"
-
-msgid "Update Interval"
-msgstr "更新間隔"
-
-msgid "Updates"
-msgstr "更新"
-
-msgid "Use 12-hour Format"
-msgstr "12時間形式を使用"
-
-msgid "Use Fahrenheit"
-msgstr "華氏を使用"
-
-msgid "Verify your provider settings work correctly"
-msgstr "プロバイダー設定が正しく機能しているか確認"
-
-msgid "Version 2.0"
-msgstr "バージョン 2.0"
-
-msgid "View on GitHub"
-msgstr "GitHub で見る"
-
-msgid "Weather Data Source"
-msgstr "天気データソース"
-
-msgid "Weather Data Sources"
-msgstr "天気データソース"
-
-msgid "Weather Provider"
-msgstr "天気プロバイダー"
-
-msgid "Where to show the weather widget"
-msgstr "天気ウィジェットの表示場所"
-
-msgid "Wind Speed Unit"
-msgstr "風速単位"
-
-msgid "copied to clipboard"
-msgstr "クリップボードにコピーされました"
-
-msgid "km/h (Kilometers per hour)"
-msgstr "km/h（時速キロメートル）"
-
-msgid "knots (Nautical miles)"
-msgstr "ノット（海里）"
-
-msgid "m/s (Meters per second)"
-msgstr "m/s（毎秒メートル）"
-
-msgid "mph (Miles per hour)"
-msgstr "mph（時速マイル）"
-
-msgid "☕ Buy Me a Coffee"
-msgstr "☕ コーヒーをおごってください"
-
-msgid "☕ Support – Scan QR to buy me a coffee"
-msgstr "☕ サポート – QR をスキャンしてコーヒーを"
-
-msgid "✅ Location updated successfully"
-msgstr "✅ 位置情報が正常に更新されました"
-
-msgid "🌍 Auto Detection"
-msgstr "🌍 自動検出"
-
-msgid "🌍 Auto Detection Enabled"
-msgstr "🌍 自動検出が有効"
-
-msgid "📍 Manual Location"
-msgstr "📍 手動位置情報"
-
-msgid "📍 Manual – Please set location"
-msgstr "📍 手動 – 場所を設定してください"
-
-msgid "API key is required for "
-msgstr "API キーが必要です: "
-
-msgid "Enable Weather Alerts"
-msgstr "天気警報を有効にする"
-
-msgid "Send desktop notifications for dangerous weather"
-msgstr "危険な天気のデスクトップ通知を送信"
-
-msgid "Weather Alerts"
-msgstr "天気警報"
-
-msgid "⚠️ Severe Weather Alert"
-msgstr "⚠️ 荒天警報"
-
-msgid "🌡️ Heat Warning"
-msgstr "🌡️ 熱中症警戒アラート"
-
-msgid "🥶 Cold Warning"
-msgstr "🥶 寒波警報"
-
-msgid "💨 Wind Warning"
-msgstr "💨 強風警報"
-
-msgid "🌀 Storm Warning"
-msgstr "🌀 暴風警報"
-
-msgid "Extreme high temperature detected"
-msgstr "極端な高温が検出されました"
-
-msgid "Extreme low temperature detected"
-msgstr "極端な低温が検出されました"
-
-msgid "Dangerous wind speed"
-msgstr "危険な風速"
-
-msgid "Strong winds detected"
-msgstr "強風が検出されました"
-
-msgid "Advanced Weather"
-msgstr "高度天気"
-
-msgid "Loading weather…"
-msgstr "天気を読み込み中…"
-
-msgid "Location Information"
-msgstr "位置情報"
-
-msgid "Weather Provider Status"
-msgstr "天気プロバイダーの状態"
-
-msgid "Hourly Forecast"
-msgstr "時間別予報"
-
-msgid "7-Day Forecast"
-msgstr "7日間予報"
-
-msgid "Weather Insights"
-msgstr "天気分析"
-
-msgid "Refresh Weather"
-msgstr "天気を更新"
-
-msgid "Extension Settings"
-msgstr "拡張機能の設定"
-
-msgid "Active"
-msgstr "有効"
-
-msgid "Loading…"
-msgstr "読み込み中…"
-
-msgid "Status"
-msgstr "状態"
-
-msgid "Checking…"
-msgstr "確認中…"
-
-msgid "Last Update"
-msgstr "最終更新"
-
-msgid "Never"
-msgstr "なし"
-
-msgid "Available Providers"
-msgstr "利用可能なプロバイダー"
-
-msgid "Free"
-msgstr "無料"
-
-msgid "Custom Provider"
-msgstr "カスタムプロバイダー"
-
-msgid "Working"
-msgstr "動作中"
-
-msgid "Error"
-msgstr "エラー"
-
-msgid "Connection Timeout"
-msgstr "接続タイムアウト"
-
-msgid "Not Configured"
-msgstr "未設定"
-
-msgid "Testing Connection…"
-msgstr "接続テスト中…"
-
-msgid "Unknown"
-msgstr "不明"
-
-msgid "Current"
-msgstr "現在"
-
-msgid "Auto-detected"
-msgstr "自動検出"
-
-msgid "Not set"
-msgstr "未設定"
-
-msgid "Coordinates"
-msgstr "座標"
-
-msgid "Not available"
-msgstr "利用不可"
-
-msgid "Method"
-msgstr "方法"
-
-msgid "IP-based geolocation"
-msgstr "IP ベースの位置情報"
-
-msgid "Manually configured"
-msgstr "手動設定"
-
-msgid "Switch to Auto Detection"
-msgstr "自動検出に切り替え"
-
-msgid "Switch to Manual Location"
-msgstr "手動位置情報に切り替え"
-
-msgid "Enter city name…"
-msgstr "都市名を入力…"
-
-msgid "Search"
-msgstr "検索"
-
-msgid "Clear"
-msgstr "クリア"
-
-msgid "Searching…"
-msgstr "検索中…"
-
-msgid "No locations found"
-msgstr "場所が見つかりません"
-
-msgid "Unknown Location"
-msgstr "不明な場所"
-
-msgid "Unknown Provider"
-msgstr "不明なプロバイダー"
-
-msgid "SEVERE WEATHER"
-msgstr "荒天"
-
-msgid "HEAT WARNING"
-msgstr "高温警報"
-
-msgid "Extreme temperatures"
-msgstr "極端な気温"
-
-msgid "COLD WARNING"
-msgstr "低温警報"
-
-msgid "Extreme low temperatures"
-msgstr "極端な低温"
-
-msgid "STORM WARNING"
-msgstr "暴風警報"
-
-msgid "Dangerous winds detected"
-msgstr "危険な強風が検出されました"
-
-msgid "WIND WARNING"
-msgstr "強風警報"
-
-msgid "Temperature Trend"
-msgstr "気温の傾向"
-
-msgid "Precipitation (24h)"
-msgstr "降水量（24時間）"
-
-msgid "Wind"
-msgstr "風"
-
-msgid "Strong"
-msgstr "強い"
-
-msgid "Moderate"
-msgstr "普通"
-
-msgid "Light"
-msgstr "弱い"
-
-msgid "UV Index"
-msgstr "紫外線指数"
-
-msgid "High"
-msgstr "高い"
-
-msgid "Low"
-msgstr "低い"
-
-msgid "Insufficient data"
-msgstr "データ不足"
-
-msgid "Warming"
-msgstr "気温上昇"
-
-msgid "Cooling"
-msgstr "気温低下"
-
-msgid "Stable"
-msgstr "安定"
-
-msgid "Today"
-msgstr "今日"
-
-msgid "Tomorrow"
-msgstr "明日"
-
-msgid "AUTO"
-msgstr "自動"
-
-msgid "MANUAL"
-msgstr "手動"
-
+#: extension.js:222 extension.js:555
 msgid "Offline"
 msgstr "オフライン"
 
-msgid "No Key"
-msgstr "キーなし"
-
+#: extension.js:370
 msgid "fallback"
 msgstr "代替"
 
+#: extension.js:519
+msgid "cached data"
+msgstr "キャッシュデータ"
+
+#: extension.js:553
+msgid "No Key"
+msgstr "キーなし"
+
+#: extension.js:556 lib/panelMenu.js:435 lib/panelMenu.js:663
+msgid "Error"
+msgstr "エラー"
+
+#: extension.js:619
+msgid "Advanced Weather"
+msgstr "高度天気"
+
+#: extension.js:627
+msgid "What to do:"
+msgstr "とるべき行動:"
+
+#: lib/alerts.js:37
+msgid "⚠️ Severe Weather Alert"
+msgstr "⚠️ 荒天警報"
+
+#: lib/alerts.js:46
+msgid "⚠️ Weather Warning"
+msgstr "⚠️ 気象警報"
+
+#: lib/alerts.js:66
+msgid "🌡️ Extreme Heat Warning"
+msgstr "🌡️ 猛暑警報"
+
+#: lib/alerts.js:68
+msgid "Dangerously high temperature"
+msgstr "危険なほどの高温"
+
+#: lib/alerts.js:75
+msgid "Stay indoors during peak hours (10 AM – 4 PM)"
+msgstr "日中の時間帯 (10 時〜16 時) は屋内にいてください"
+
+#: lib/alerts.js:76
+msgid "Drink water regularly — at least 2–3 litres per day"
+msgstr "こまめに水分補給 — 1 日 2〜3 リットル以上"
+
+#: lib/alerts.js:77
+msgid "Wear light, loose, light-coloured clothing"
+msgstr "薄くてゆったりした明るい色の服装をしてください"
+
+#: lib/alerts.js:78
+msgid "Never leave children or pets in parked vehicles"
+msgstr "駐車した車内に子供やペットを残さないでください"
+
+#: lib/alerts.js:79
+msgid "Check on elderly neighbours and relatives"
+msgstr "高齢の近隣の人や親族の様子を確認してください"
+
+#: lib/alerts.js:80
+msgid "Use fans or air conditioning if available"
+msgstr "扇風機やエアコンがあれば使用してください"
+
+#: lib/alerts.js:91
+msgid "🥶 Extreme Cold Warning"
+msgstr "🥶 極寒警報"
+
+#: lib/alerts.js:93
+msgid "Dangerously low temperature"
+msgstr "危険なほどの低温"
+
+#: lib/alerts.js:100
+msgid "Layer clothing: base layer, insulation, waterproof outer shell"
+msgstr "重ね着: ベースレイヤー、断熱、防水アウター"
+
+#: lib/alerts.js:101
+msgid "Cover exposed skin — risk of frostbite within 30 minutes"
+msgstr "露出した肌を覆ってください — 30 分以内に凍傷の恐れ"
+
+#: lib/alerts.js:102
+msgid "Keep emergency supplies in your vehicle if driving"
+msgstr "運転する場合は車内に緊急用品を備えてください"
+
+#: lib/alerts.js:103
+msgid "Check heating systems and carbon-monoxide detectors"
+msgstr "暖房設備と一酸化炭素警報機を確認してください"
+
+#: lib/alerts.js:104
+msgid "Check on elderly and vulnerable people"
+msgstr "高齢者や弱い立場の人に目を配ってください"
+
+#: lib/alerts.js:105
+msgid "Bring pets indoors"
+msgstr "ペットは屋内に入れてください"
+
+#: lib/alerts.js:117
+msgid "🌀 Severe Storm Warning"
+msgstr "🌀 激しい嵐の警報"
+
+#: lib/alerts.js:119
+msgid "Dangerous wind speed"
+msgstr "危険な風速"
+
+#: lib/alerts.js:121
+msgid "Avoid all unnecessary travel"
+msgstr "不要な外出はすべて控えてください"
+
+#: lib/alerts.js:122
+msgid "Stay away from trees, scaffolding, and signs"
+msgstr "木、足場、看板から離れてください"
+
+#: lib/alerts.js:123
+msgid "Do not attempt to drive high-sided vehicles"
+msgstr "背の高い車の運転はしないでください"
+
+#: lib/alerts.js:124
+msgid "Secure or bring inside any outdoor furniture"
+msgstr "屋外家具を固定するか屋内に入れてください"
+
+#: lib/alerts.js:125
+msgid "Stay indoors away from windows"
+msgstr "屋内で窓から離れてください"
+
+#: lib/alerts.js:126
+msgid "Follow local emergency service guidance"
+msgstr "地域の防災上の指示に従ってください"
+
+#: lib/alerts.js:135
+msgid "💨 Strong Wind Warning"
+msgstr "💨 強風警報"
+
+#: lib/alerts.js:137
+msgid "Strong winds detected"
+msgstr "強風が検出されました"
+
+#: lib/alerts.js:140
+msgid ""
+"Take care when walking or cycling — gusts may be stronger than the average"
+msgstr "歩行や自転車では注意してください — 突風は平均より強くなることがあります"
+
+#: lib/alerts.js:142
+msgid "Secure loose outdoor items (bins, garden furniture, etc.)"
+msgstr "屋外の飛散しやすい物 (ごみ箱、ガーデン家具など) を固定してください"
+
+#: lib/alerts.js:143
+msgid "Drive with extra caution, especially on exposed roads or bridges"
+msgstr "開けた道路や橋では特に注意して運転してください"
+
+#: lib/alerts.js:144
+msgid "Cyclists and motorcyclists should be especially cautious"
+msgstr "自転車やオートバイの運転者は特に注意してください"
+
+#: lib/alerts.js:158
+msgid "Seek shelter immediately in a sturdy building"
+msgstr "丈夫な建物にすぐに避難してください"
+
+#: lib/alerts.js:159
+msgid "Avoid open fields, hilltops, and isolated trees"
+msgstr "開けた野原、丘の上、孤立した木を避けてください"
+
+#: lib/alerts.js:160
+msgid "Stay away from water, metal objects, and electrical equipment"
+msgstr "水、金属物、電気機器から離れてください"
+
+#: lib/alerts.js:161
+msgid "If outdoors and unable to shelter, crouch low — do not lie flat"
+msgstr "戸外で避難できない場合は低くかがんでください — 伏せないでください"
+
+#: lib/alerts.js:162
+msgid "Avoid using corded phones or plugged-in devices"
+msgstr "有線電話や電源に接続した機器の使用を避けてください"
+
+#: lib/alerts.js:163
+msgid "Keep away from windows and doors"
+msgstr "窓やドアから離れてください"
+
+#: lib/alerts.js:167
+msgid "Follow official emergency service guidance"
+msgstr "公式の緊急情報の指示に従ってください"
+
+#: lib/alerts.js:168
+msgid "Stay informed via local weather services"
+msgstr "地域の気象情報の発表を確認してください"
+
+#: lib/alerts.js:169
+msgid "Avoid non-essential travel"
+msgstr "不要な外出を控えてください"
+
+#: lib/alerts.js:178
+msgid "Avoid driving through flooded roads — even 30 cm can sweep a car away"
+msgstr "冠水した道路を走行しないでください — 30 cm でも車は流されます"
+
+#: lib/alerts.js:180
+msgid "Be aware of localised flooding in low-lying areas"
+msgstr "低地での局所的な冠水に注意してください"
+
+#: lib/alerts.js:181
+msgid "Carry waterproof clothing if you must travel"
+msgstr "外出が必要な場合は防水の服装を持ってください"
+
+#: lib/alerts.js:182
+msgid "Check your local flood risk map"
+msgstr "地域の洪水ハザードマップを確認してください"
+
+#: lib/alerts.js:188
+msgid "Avoid travel unless absolutely necessary"
+msgstr "どうしても必要な場合を除き、外出しないでください"
+
+#: lib/alerts.js:189
+msgid "If driving, carry a winter emergency kit (blanket, shovel, water)"
+msgstr "運転する場合は冬の緊急キット (毛布、スコップ、水) を携行してください"
+
+#: lib/alerts.js:190
+msgid "Clear snow from paths and driveways carefully to avoid injury"
+msgstr "ケガをしないよう、通路や駐車場の雪は慎重に除雪してください"
+
+#: lib/alerts.js:191
+msgid "Be aware of roof loading from heavy snow accumulation"
+msgstr "屋根への積雪の重みに注意してください"
+
+#: lib/alerts.js:195
+msgid "Exercise caution outdoors"
+msgstr "戸外では注意してください"
+
+#: lib/alerts.js:196
+msgid "Stay informed via local weather forecasts"
+msgstr "地域の天気予報で最新情報を確認してください"
+
+#: lib/providers.js:619
 msgid "Clear Sky"
 msgstr "快晴"
 
+#: lib/providers.js:624
 msgid "Mainly Clear"
 msgstr "おおむね晴れ"
 
+#: lib/providers.js:629
 msgid "Partly Cloudy"
 msgstr "一部曇り"
 
+#: lib/providers.js:634
 msgid "Overcast"
 msgstr "曇り"
 
+#: lib/providers.js:638
 msgid "Fog"
 msgstr "霧"
 
+#: lib/providers.js:640
 msgid "Rime Fog"
 msgstr "霧氷霧"
 
+#: lib/providers.js:645
 msgid "Light Drizzle"
 msgstr "小雨"
 
+#: lib/providers.js:650
 msgid "Drizzle"
 msgstr "霧雨"
 
+#: lib/providers.js:655
 msgid "Heavy Drizzle"
 msgstr "強い霧雨"
 
+#: lib/providers.js:660
 msgid "Light Rain"
 msgstr "弱い雨"
 
+#: lib/providers.js:665
 msgid "Rain"
 msgstr "雨"
 
+#: lib/providers.js:670
 msgid "Heavy Rain"
 msgstr "大雨"
 
+#: lib/providers.js:675
 msgid "Light Snow"
 msgstr "小雪"
 
+#: lib/providers.js:679
 msgid "Snow"
 msgstr "雪"
 
+#: lib/providers.js:681
 msgid "Heavy Snow"
 msgstr "大雪"
 
+#: lib/providers.js:686
 msgid "Snow Grains"
 msgstr "霰"
 
+#: lib/providers.js:691 lib/providers.js:696
 msgid "Rain Showers"
 msgstr "にわか雨"
 
+#: lib/providers.js:701
 msgid "Heavy Showers"
 msgstr "強いにわか雨"
 
+#: lib/providers.js:706
 msgid "Snow Showers"
 msgstr "雪のにわか降り"
 
+#: lib/providers.js:711
 msgid "Heavy Snow Showers"
 msgstr "強い雪のにわか降り"
 
+#: lib/providers.js:716
 msgid "Thunderstorm"
 msgstr "雷雨"
 
+#: lib/providers.js:721
 msgid "Hail Storm"
 msgstr "雹嵐"
 
+#: lib/providers.js:726
 msgid "Heavy Hail"
 msgstr "大粒の雹"
+
+#: lib/panelMenu.js:124
+msgid "AUTO"
+msgstr "自動"
+
+#: lib/panelMenu.js:125
+msgid "MANUAL"
+msgstr "手動"
+
+#: lib/panelMenu.js:134
+msgid "Loading weather…"
+msgstr "天気を読み込み中…"
+
+#: lib/panelMenu.js:142
+msgid "Weather Alerts"
+msgstr "天気警報"
+
+#: lib/panelMenu.js:149
+msgid "Location Information"
+msgstr "位置情報"
+
+#: lib/panelMenu.js:156
+msgid "Weather Provider Status"
+msgstr "天気プロバイダーの状態"
+
+#: lib/panelMenu.js:163
+msgid "Hourly Forecast"
+msgstr "時間別予報"
+
+#: lib/panelMenu.js:167
+msgid "7-Day Forecast"
+msgstr "7日間予報"
+
+#: lib/panelMenu.js:171
+msgid "Weather Insights"
+msgstr "天気分析"
+
+#: lib/panelMenu.js:177
+msgid "Refresh Weather"
+msgstr "天気を更新"
+
+#: lib/panelMenu.js:185
+msgid "Extension Settings"
+msgstr "拡張機能の設定"
+
+#: lib/panelMenu.js:281
+msgid "What to do"
+msgstr "とるべき行動"
+
+#: lib/panelMenu.js:319 lib/panelMenu.js:425
+msgid "Active"
+msgstr "有効"
+
+#: lib/panelMenu.js:319 lib/panelMenu.js:469 lib/panelMenu.js:473
+#: lib/panelMenu.js:477
+msgid "Loading…"
+msgstr "読み込み中…"
+
+#: lib/panelMenu.js:323 lib/panelMenu.js:442
+msgid "Status"
+msgstr "状態"
+
+#: lib/panelMenu.js:323
+msgid "Checking…"
+msgstr "確認中…"
+
+#: lib/panelMenu.js:327 lib/panelMenu.js:455 lib/panelMenu.js:462
+msgid "Last Update"
+msgstr "最終更新"
+
+#: lib/panelMenu.js:327 lib/panelMenu.js:462
+msgid "Never"
+msgstr "なし"
+
+#: lib/panelMenu.js:347
+msgid "Available Providers"
+msgstr "利用可能なプロバイダー"
+
+#: lib/panelMenu.js:375
+msgid "Custom Provider"
+msgstr "カスタムプロバイダー"
+
+#: lib/panelMenu.js:428
+msgid "Free"
+msgstr "無料"
+
+#: lib/panelMenu.js:434
+msgid "Working"
+msgstr "動作中"
+
+#: lib/panelMenu.js:436
+msgid "Connection Timeout"
+msgstr "接続タイムアウト"
+
+#: lib/panelMenu.js:437
+msgid "Not Configured"
+msgstr "未設定"
+
+#: lib/panelMenu.js:438
+msgid "Testing Connection…"
+msgstr "接続テスト中…"
+
+#: lib/panelMenu.js:439
+msgid "Showing cached data"
+msgstr "キャッシュデータを表示中"
+
+#: lib/panelMenu.js:446
+msgid "Unknown"
+msgstr "不明"
+
+#: lib/panelMenu.js:469 lib/panelMenu.js:983 lib/panelMenu.js:984
+msgid "Current"
+msgstr "現在"
+
+#: lib/panelMenu.js:473 lib/panelMenu.js:989 lib/panelMenu.js:994
+msgid "Coordinates"
+msgstr "座標"
+
+#: lib/panelMenu.js:477 lib/panelMenu.js:999 lib/panelMenu.js:1000
+msgid "Method"
+msgstr "方法"
+
+#: lib/panelMenu.js:482
+msgid "Switch to Auto Detection"
+msgstr "自動検出に切り替え"
+
+#: lib/panelMenu.js:491
+msgid "Switch to Manual Location"
+msgstr "手動位置情報に切り替え"
+
+#: lib/panelMenu.js:508
+msgid "Enter city name…"
+msgstr "都市名を入力…"
+
+#: lib/panelMenu.js:513 lib/panelMenu.js:606
+msgid "Search"
+msgstr "検索"
+
+#: lib/panelMenu.js:517 prefs.js:725
+msgid "Clear"
+msgstr "クリア"
+
+#: lib/panelMenu.js:556
+msgid "Searching…"
+msgstr "検索中…"
+
+#: lib/panelMenu.js:599
+msgid "No locations found"
+msgstr "場所が見つかりません"
+
+#: lib/panelMenu.js:604 prefs.js:1392
+msgid "Search failed. Please try again."
+msgstr "検索に失敗しました。もう一度お試しください。"
+
+#: lib/panelMenu.js:685
+msgid "Unknown Location"
+msgstr "不明な場所"
+
+#: lib/panelMenu.js:686
+msgid "Unknown Provider"
+msgstr "不明なプロバイダー"
+
+#: lib/panelMenu.js:690
+msgid "Cached data from"
+msgstr "キャッシュデータの取得日時:"
+
+#: lib/panelMenu.js:727
+msgid "This forecast has no upcoming hours left"
+msgstr "この予報に今後の時間帯は残っていません"
+
+#: lib/panelMenu.js:816
+msgid "Today"
+msgstr "今日"
+
+#: lib/panelMenu.js:818
+msgid "Tomorrow"
+msgstr "明日"
+
+#: lib/panelMenu.js:881
+msgid "Temperature Trend"
+msgstr "気温の傾向"
+
+#: lib/panelMenu.js:895
+msgid "Precipitation (24h)"
+msgstr "降水量（24時間）"
+
+#: lib/panelMenu.js:907
+msgid "Strong"
+msgstr "強い"
+
+#: lib/panelMenu.js:909 lib/panelMenu.js:938
+msgid "Moderate"
+msgstr "普通"
+
+#: lib/panelMenu.js:910
+msgid "Light"
+msgstr "弱い"
+
+#: lib/panelMenu.js:914
+msgid "Wind"
+msgstr "風"
+
+#: lib/panelMenu.js:938
+msgid "High"
+msgstr "高い"
+
+#: lib/panelMenu.js:938
+msgid "Low"
+msgstr "低い"
+
+#: lib/panelMenu.js:941
+msgid "UV Index"
+msgstr "紫外線指数"
+
+#: lib/panelMenu.js:951
+msgid "Insufficient data"
+msgstr "データ不足"
+
+#: lib/panelMenu.js:959
+msgid "Warming"
+msgstr "気温上昇"
+
+#: lib/panelMenu.js:960
+msgid "Cooling"
+msgstr "気温低下"
+
+#: lib/panelMenu.js:961
+msgid "Stable"
+msgstr "安定"
+
+#: lib/panelMenu.js:983
+msgid "Auto-detected"
+msgstr "自動検出"
+
+#: lib/panelMenu.js:984
+msgid "Not set"
+msgstr "未設定"
+
+#: lib/panelMenu.js:994
+msgid "Not available"
+msgstr "利用不可"
+
+#: lib/panelMenu.js:999
+msgid "IP-based geolocation"
+msgstr "IP ベースの位置情報"
+
+#: lib/panelMenu.js:1000
+msgid "Manually configured"
+msgstr "手動設定"
+
+#: prefs.js:55 prefs.js:1073 prefs.js:1104
+msgid "Advanced Weather Companion"
+msgstr "高度天気ウィジェット"
+
+#: prefs.js:68
+msgid "General"
+msgstr "一般"
+
+#: prefs.js:73
+msgid "Units & Format"
+msgstr "単位と形式"
+
+#: prefs.js:74
+msgid "Configure measurement units and display format"
+msgstr "単位と表示形式を設定"
+
+#: prefs.js:78
+msgid "Use Fahrenheit"
+msgstr "華氏を使用"
+
+#: prefs.js:79
+msgid "Switch between Celsius and Fahrenheit"
+msgstr "摂氏と華氏を切り替え"
+
+#: prefs.js:87
+msgid "Wind Speed Unit"
+msgstr "風速単位"
+
+#: prefs.js:88
+msgid "Choose unit for wind speed display"
+msgstr "風速の表示単位を選択"
+
+#: prefs.js:93
+msgid "km/h (Kilometers per hour)"
+msgstr "km/h（時速キロメートル）"
+
+#: prefs.js:94
+msgid "mph (Miles per hour)"
+msgstr "mph（時速マイル）"
+
+#: prefs.js:95
+msgid "m/s (Meters per second)"
+msgstr "m/s（毎秒メートル）"
+
+#: prefs.js:96
+msgid "knots (Nautical miles per hour)"
+msgstr "ノット (海里/時)"
+
+#: prefs.js:111
+msgid "Use 12-hour Format"
+msgstr "12時間形式を使用"
+
+#: prefs.js:112
+msgid "Display time in 12-hour format with AM/PM"
+msgstr "AM/PM 付き 12 時間形式で時刻を表示"
+
+#: prefs.js:124
+msgid "Updates"
+msgstr "更新"
+
+#: prefs.js:125
+msgid "Configure weather data refresh settings"
+msgstr "天気データの更新設定"
+
+#: prefs.js:129
+msgid "Update Interval"
+msgstr "更新間隔"
+
+#: prefs.js:130
+msgid "How often to refresh weather data"
+msgstr "天気データの更新頻度"
+
+#: prefs.js:135
+msgid "5 minutes"
+msgstr "5分"
+
+#: prefs.js:136
+msgid "10 minutes"
+msgstr "10分"
+
+#: prefs.js:137
+msgid "15 minutes"
+msgstr "15分"
+
+#: prefs.js:138
+msgid "30 minutes"
+msgstr "30分"
+
+#: prefs.js:139
+msgid "1 hour"
+msgstr "1時間"
+
+#: prefs.js:156
+msgid "Features"
+msgstr "機能"
+
+#: prefs.js:157
+msgid "Enable or disable weather features"
+msgstr "天気機能を有効/無効にする"
+
+#: prefs.js:161
+msgid "Show Humidity"
+msgstr "湿度を表示"
+
+#: prefs.js:162
+msgid "Display relative humidity in weather details"
+msgstr "天気の詳細に相対湿度を表示"
+
+#: prefs.js:253
+msgid "Copy to Clipboard"
+msgstr "クリップボードにコピー"
+
+#: prefs.js:254
+msgid "text"
+msgstr "テキスト"
+
+#: prefs.js:259
+msgid "Close"
+msgstr "閉じる"
+
+#: prefs.js:260
+msgid "Select Text"
+msgstr "テキストを選択"
+
+#: prefs.js:302
+msgid "💡 Select the text above and press Ctrl+C to copy"
+msgstr "💡 上のテキストを選択して Ctrl+C でコピー"
+
+#: prefs.js:335
+msgid "💡 Text selected! Press Ctrl+C to copy"
+msgstr "💡 テキストを選択しました! Ctrl+C でコピー"
+
+#: prefs.js:362
+msgid "Location"
+msgstr "場所"
+
+#: prefs.js:367
+msgid "Location Detection"
+msgstr "位置情報検出"
+
+#: prefs.js:368
+msgid "Configure how your location is determined"
+msgstr "位置情報の取得方法を設定"
+
+#: prefs.js:372
+msgid "Location Mode"
+msgstr "位置情報モード"
+
+#: prefs.js:373
+msgid "Choose detection method"
+msgstr "検出方法を選択"
+
+#: prefs.js:377
+msgid "🌍 Auto Detection"
+msgstr "🌍 自動検出"
+
+#: prefs.js:378
+msgid "📍 Manual Location"
+msgstr "📍 手動位置情報"
+
+#: prefs.js:383
+msgid "Current Location"
+msgstr "現在地"
+
+#: prefs.js:397
+msgid "Refresh location"
+msgstr "位置情報を更新"
+
+#: prefs.js:409
+msgid "Manual Location Search"
+msgstr "手動位置情報検索"
+
+#: prefs.js:410
+msgid "Search by city name or coordinates (latitude, longitude)"
+msgstr "都市名または座標 (緯度、経度) で検索"
+
+#: prefs.js:415
+msgid "Search Location"
+msgstr "場所を検索"
+
+#: prefs.js:424
+msgid "Search for location"
+msgstr "場所を検索"
+
+#: prefs.js:431
+msgid "Clear search"
+msgstr "検索をクリア"
+
+#: prefs.js:439
+msgid "Search Examples"
+msgstr "検索例"
+
+#: prefs.js:440
+msgid ""
+"City names: 'London', 'New York', 'Tokyo'\n"
+"Coordinates: '40.7128, -74.0060' or '40.7128 -74.0060'"
+msgstr ""
+"都市名: 'London'、'New York'、'Tokyo'\n"
+"座標: '40.7128, -74.0060' または '40.7128 -74.0060'"
+
+#: prefs.js:451
+msgid "Search Results"
+msgstr "検索結果"
+
+#: prefs.js:506 prefs.js:516
+msgid "Weather Provider"
+msgstr "天気プロバイダー"
+
+#: prefs.js:511
+msgid "Weather Data Source"
+msgstr "天気データソース"
+
+#: prefs.js:512
+msgid "Choose your weather data provider"
+msgstr "天気データプロバイダーを選択"
+
+#: prefs.js:517
+msgid "Select weather API service"
+msgstr "天気 API サービスを選択"
+
+#: prefs.js:548
+msgid "Provider Configuration"
+msgstr "プロバイダー設定"
+
+#: prefs.js:549
+msgid "Configure your selected weather provider"
+msgstr "選択したプロバイダーを設定"
+
+#: prefs.js:554
+msgid "API Key"
+msgstr "APIキー"
+
+#: prefs.js:559
+msgid "Get API Key"
+msgstr "APIキーを取得"
+
+#: prefs.js:567
+msgid "Custom API URL"
+msgstr "カスタム API URL"
+
+#: prefs.js:573
+msgid "Provider Information"
+msgstr "プロバイダー情報"
+
+#: prefs.js:579
+msgid "Test Connection"
+msgstr "接続テスト"
+
+#: prefs.js:580
+msgid "Verify your provider settings work correctly"
+msgstr "プロバイダー設定が正しく機能しているか確認"
+
+#: prefs.js:585 prefs.js:951
+msgid "Test"
+msgstr "テスト"
+
+#: prefs.js:627
+msgid "Automatic Provider Fallback"
+msgstr "プロバイダーの自動フォールバック"
+
+#: prefs.js:628
+msgid ""
+"When a provider fails, the next one is tried. Every provider is used at most"
+" once per refresh."
+msgstr "プロバイダーが失敗すると次を試します。各プロバイダーは 1 回の更新で最大 1 回使用されます。"
+
+#: prefs.js:632
+msgid "Try Other Providers On Failure"
+msgstr "失敗時に他プロバイダーを試す"
+
+#: prefs.js:633
+msgid "Turn off to use only the selected provider"
+msgstr "オフにすると選択したプロバイダーのみ使用します"
+
+#: prefs.js:638
+msgid "Fallback Priority"
+msgstr "フォールバックの優先順位"
+
+#: prefs.js:639
+msgid ""
+"Providers are tried in this order. The selected provider is always tried "
+"first."
+msgstr "プロバイダーはこの順に試します。選択したプロバイダーは必ず最初に試します。"
+
+#: prefs.js:654
+msgid "API key required"
+msgstr "API キーが必要"
+
+#: prefs.js:655
+msgid "Free, no API key"
+msgstr "無料、API キー不要"
+
+#: prefs.js:700
+msgid "Offline Weather Data"
+msgstr "オフラインの気象データ"
+
+#: prefs.js:701
+msgid ""
+"The last successful fetch, including the hourly and 7-day forecasts, is kept"
+" and shown instead of an error when every provider fails."
+msgstr "すべてのプロバイダーが失敗した場合、1 時間別と 7 日間の予報を含む最後の正常取得データが保持され、エラーの代わりに表示されます。"
+
+#: prefs.js:705
+msgid "Use Cached Data Up To"
+msgstr "キャッシュデータの使用を許可する最大日数"
+
+#: prefs.js:706
+msgid "Maximum age of the cached forecast, in days"
+msgstr "キャッシュされた予報の最大経過日数"
+
+#: prefs.js:720
+msgid "Cached Forecast"
+msgstr "キャッシュされた予報"
+
+#: prefs.js:733
+msgid "Cached weather data cleared"
+msgstr "キャッシュされた気象データを消去しました"
+
+#: prefs.js:781
+msgid "No cached data yet"
+msgstr "キャッシュデータはまだありません"
+
+#: prefs.js:791
+msgid "min ago"
+msgstr "分前"
+
+#: prefs.js:792
+msgid "h ago"
+msgstr "時間前"
+
+#: prefs.js:793
+msgid "days ago"
+msgstr "日前"
+
+#: prefs.js:795
+msgid "unknown provider"
+msgstr "不明なプロバイダー"
+
+#: prefs.js:805
+msgid "Cached data is unreadable"
+msgstr "キャッシュデータを読み込めません"
+
+#: prefs.js:862
+msgid "Could not open website. Please visit manually."
+msgstr "ウェブサイトを開けませんでした。手動でアクセスしてください。"
+
+#: prefs.js:895
+msgid "Testing…"
+msgstr "テスト中…"
+
+#: prefs.js:908
+msgid "Custom URL is required"
+msgstr "カスタム URL が必要です"
+
+#: prefs.js:911
+msgid "API key is required for"
+msgstr "API キーが必要です:"
+
+#: prefs.js:940
+msgid ""
+"Response received but no weather data found. Check your API key and URL."
+msgstr "応答を受信しましたが天気データが見つかりません。APIキーと URL を確認してください。"
+
+#: prefs.js:942
+msgid "Connection successful!"
+msgstr "接続成功！"
+
+#: prefs.js:943
+msgid "Current temp:"
+msgstr "現在の気温:"
+
+#: prefs.js:948
+msgid "Connection failed:"
+msgstr "接続失敗:"
+
+#: prefs.js:958
+msgid "Appearance"
+msgstr "外観"
+
+#: prefs.js:963
+msgid "Panel Display"
+msgstr "パネル表示"
+
+#: prefs.js:964
+msgid "Configure how the weather appears in the panel"
+msgstr "パネル内の天気表示を設定"
+
+#: prefs.js:968
+msgid "Panel Position"
+msgstr "パネル位置"
+
+#: prefs.js:969
+msgid "Where to show the weather widget"
+msgstr "天気ウィジェットの表示場所"
+
+#: prefs.js:974
+msgid "Left"
+msgstr "左"
+
+#: prefs.js:975
+msgid "Center"
+msgstr "中央"
+
+#: prefs.js:976
+msgid "Right"
+msgstr "右"
+
+#: prefs.js:991
+msgid "Panel Position Index"
+msgstr "パネル位置インデックス"
+
+#: prefs.js:992
+msgid "Position index in the selected panel area"
+msgstr "選択したパネル領域内の位置番号"
+
+#: prefs.js:1005
+msgid "Show Temperature Text"
+msgstr "気温テキストを表示"
+
+#: prefs.js:1006
+msgid "Display temperature alongside the weather icon"
+msgstr "天気アイコンの横に気温を表示"
+
+#: prefs.js:1014
+msgid "Show Location Indicator"
+msgstr "位置情報インジケーターを表示"
+
+#: prefs.js:1015
+msgid "Display location mode indicator in panel"
+msgstr "パネルに位置モードの表示を示す"
+
+#: prefs.js:1028
+msgid "Icon Size"
+msgstr "アイコンサイズ"
+
+#: prefs.js:1029
+msgid "Size of the weather icon in pixels"
+msgstr "天気アイコンのサイズ（ピクセル）"
+
+#: prefs.js:1042
+msgid "Text Size"
+msgstr "テキストサイズ"
+
+#: prefs.js:1043
+msgid "Size of the temperature text in pixels"
+msgstr "気温テキストのサイズ（ピクセル）"
+
+#: prefs.js:1068
+msgid "About"
+msgstr "このアプリについて"
+
+#: prefs.js:1074
+msgid "A beautiful, modern weather companion for GNOME Shell"
+msgstr "GNOME Shell 向けの美しくモダンな天気アプリ"
+
+#: prefs.js:1110
+msgid "Version 2.0"
+msgstr "バージョン 2.0"
+
+#: prefs.js:1116
+msgid "Modern weather extension with native GNOME design"
+msgstr "ネイティブ GNOME デザインのモダンな天気拡張"
+
+#: prefs.js:1133
+msgid "Extension Links"
+msgstr "拡張機能リンク"
+
+#: prefs.js:1134 prefs.js:1139
+msgid "Source code, issues, and contributions"
+msgstr "ソースコード、問題、貢献"
+
+#: prefs.js:1138
+msgid "View on GitHub"
+msgstr "GitHub で見る"
+
+#: prefs.js:1160
+msgid "☕ Support by buying me a coffee — just scan the QR code!"
+msgstr "☕ コーヒーを買うつもりで支援してください — QR コードを読むだけ!"
+
+#: prefs.js:1161
+msgid "Preferred Method - Scan QR code to support development"
+msgstr "推奨方法 - QR コードを読み取って開発を支援"
+
+#: prefs.js:1206
+msgid "Donation Address"
+msgstr "寄付先アドレス"
+
+#: prefs.js:1238
+msgid "☕ Buy Me a Coffee"
+msgstr "☕ コーヒーをおごってください"
+
+#: prefs.js:1239
+msgid "Support development with a small donation"
+msgstr "少額の寄付で開発を支援してください"
+
+#: prefs.js:1261
+msgid "License & Credits"
+msgstr "ライセンスとクレジット"
+
+#: prefs.js:1262
+msgid "Open source software information"
+msgstr "オープンソースソフトウェア情報"
+
+#: prefs.js:1266
+msgid "Open Source License"
+msgstr "オープンソースライセンス"
+
+#: prefs.js:1267
+msgid "MIT License - Free and open source software"
+msgstr "MIT ライセンス - 無料のオープンソースソフトウェア"
+
+#: prefs.js:1277
+msgid "Weather Data Sources"
+msgstr "天気データソース"
+
+#: prefs.js:1278
+msgid "Open-Meteo, Meteosource, Wttr.in - Free weather APIs"
+msgstr "Open-Meteo、Meteosource、Wttr.in - 無料の天気 API"
+
+#: prefs.js:1382
+msgid ""
+"Invalid coordinates. Latitude must be between -90 and 90, longitude between "
+"-180 and 180."
+msgstr "座標が不正です。緯度は -90〜90、経度は -180〜180 の範囲にある必要があります。"
+
+#: prefs.js:1395
+msgid "Unable to connect to location service. Check your internet connection."
+msgstr "位置情報サービスに接続できません。インターネット接続を確認してください。"
+
+#: prefs.js:1397
+msgid "Invalid response from location service. Please try again."
+msgstr "位置情報サービスからの応答が不正です。もう一度お試しください。"
+
+#: prefs.js:1399
+msgid "Search timed out. Please try again."
+msgstr "検索がタイムアウトしました。もう一度お試しください。"
+
+#: prefs.js:1516 prefs.js:1554
+msgid "Select this location"
+msgstr "この場所を選択"
+
+#: prefs.js:1573
+msgid "Location updated successfully"
+msgstr "位置情報を更新しました"
+
+#: prefs.js:1576
+msgid "Failed to save location. Please try again."
+msgstr "位置を保存できませんでした。もう一度お試しください。"
+
+#: prefs.js:1583
+msgid "No Results Found"
+msgstr "結果が見つかりません"
+
+#: prefs.js:1584
+msgid "Try a different search term or check your spelling"
+msgstr "別の検索ワードを試すか、スペルを確認してください"
+
+#: prefs.js:1618
+msgid "Search Error"
+msgstr "検索エラー"
+
+#: prefs.js:1644 prefs.js:1662
+msgid "🌍 Auto Detection Enabled"
+msgstr "🌍 自動検出が有効"
+
+#: prefs.js:1649 prefs.js:1667
+msgid "📍 Manual - Please set location"
+msgstr "📍 手動 - 位置を設定してください"
+
+#~ msgid "Could not open website."
+#~ msgstr "ウェブサイトを開けませんでした。"
+
+#~ msgid "Custom / Weather Underground URL"
+#~ msgstr "カスタム / Weather Underground URL"
+
+#~ msgid "Donation address"
+#~ msgstr "寄付先アドレス"
+
+#~ msgid "Not Required"
+#~ msgstr "不要"
+
+#~ msgid "Not specified"
+#~ msgstr "未指定"
+
+#~ msgid "Rate Limit"
+#~ msgstr "リクエスト制限"
+
+#~ msgid "Required"
+#~ msgstr "必須"
+
+#~ msgid "Test failed:"
+#~ msgstr "テスト失敗:"
+
+#~ msgid "URL Placeholders"
+#~ msgstr "URL プレースホルダー"
+
+#~ msgid "☕ Support – Scan QR to buy me a coffee"
+#~ msgstr "☕ サポート – QR をスキャンしてコーヒーを"
+
+#~ msgid "Enable Weather Alerts"
+#~ msgstr "天気警報を有効にする"
+
+#~ msgid "Send desktop notifications for dangerous weather"
+#~ msgstr "危険な天気のデスクトップ通知を送信"
+
+#~ msgid "Extreme high temperature detected"
+#~ msgstr "極端な高温が検出されました"
+
+#~ msgid "Extreme low temperature detected"
+#~ msgstr "極端な低温が検出されました"
+
+#~ msgid "SEVERE WEATHER"
+#~ msgstr "荒天"
+
+#~ msgid "HEAT WARNING"
+#~ msgstr "高温警報"
+
+#~ msgid "Extreme temperatures"
+#~ msgstr "極端な気温"
+
+#~ msgid "COLD WARNING"
+#~ msgstr "低温警報"
+
+#~ msgid "STORM WARNING"
+#~ msgstr "暴風警報"
+
+#~ msgid "Dangerous winds detected"
+#~ msgstr "危険な強風が検出されました"
+
+#~ msgid "WIND WARNING"
+#~ msgstr "強風警報"
