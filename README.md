@@ -220,6 +220,23 @@ Two guards decide whether a cached entry may be shown:
 3. Commit changes
 4. Push and create a Pull Request
 
+Run the test suite locally:
+
+```bash
+node test/run-tests.mjs
+```
+
+It syntax-checks the sources, verifies that `schemas/gschemas.compiled` and every `locale/*/*.mo` were regenerated from their sources, checks that `locale/advanced-weather.pot` still matches the strings used in the code, and exercises the provider fallback chain, the offline cache, the panel rendering and the preferences wiring (Node 20+, no dependencies).
+
+After touching those inputs, regenerate them:
+
+```bash
+glib-compile-schemas schemas     # after editing schemas/
+./translations.sh --all          # after adding or changing a _("…") string
+```
+
+`--all` re-extracts the template, merges it into every `.po` and recompiles the `.mo` files. Strings with no translation fall back to English, so the extension stays usable while translators catch up.
+
 ## Uses
 This extension is using `ipapi.co` and `open-meteo.com` services
 
