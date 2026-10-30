@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: advanced-weather 2.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Sanjai-Shaarugesh/Advanced-Weather-Companion/issues\n"
-"POT-Creation-Date: 2026-03-15 00:00+0000\n"
-"PO-Revision-Date: 2026-03-15 00:00+0000\n"
+"POT-Creation-Date: 2026-10-22 19:18+0800\n"
+"PO-Revision-Date: 2026-10-22 12:00+0000\n"
 "Last-Translator: Advanced Weather Team\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -13,665 +13,1215 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-msgid "1 hour"
-msgstr "1 ชั่วโมง"
-
-msgid "10 minutes"
-msgstr "10 นาที"
-
-msgid "15 minutes"
-msgstr "15 นาที"
-
-msgid "30 minutes"
-msgstr "30 นาที"
-
-msgid "5 minutes"
-msgstr "5 นาที"
-
-msgid "A beautiful, modern weather companion for GNOME Shell"
-msgstr "ผู้ช่วยสภาพอากาศที่สวยงามและทันสมัยสำหรับ GNOME Shell"
-
-msgid "API Key"
-msgstr "คีย์ API"
-
-msgid "About"
-msgstr "เกี่ยวกับ"
-
-msgid "Advanced Weather Companion"
-msgstr "ผู้ช่วยสภาพอากาศขั้นสูง"
-
-msgid "Appearance"
-msgstr "รูปลักษณ์"
-
-msgid "Center"
-msgstr "ตรงกลาง"
-
-msgid "Choose detection method"
-msgstr "เลือกวิธีตรวจจับ"
-
-msgid "Choose your weather data provider"
-msgstr "เลือกผู้ให้บริการข้อมูลสภาพอากาศ"
-
-msgid "Clear search"
-msgstr "ล้างการค้นหา"
-
-msgid "Configure how weather appears in the panel"
-msgstr "ตั้งค่าการแสดงสภาพอากาศบนแผง"
-
-msgid "Configure how your location is determined"
-msgstr "ตั้งค่าวิธีระบุตำแหน่ง"
-
-msgid "Configure measurement units and display format"
-msgstr "ตั้งค่าหน่วยวัดและรูปแบบแสดงผล"
-
-msgid "Configure weather data refresh settings"
-msgstr "ตั้งค่าการรีเฟรชข้อมูลสภาพอากาศ"
-
-msgid "Configure your selected weather provider"
-msgstr "ตั้งค่าผู้ให้บริการสภาพอากาศที่เลือก"
-
-msgid "Connection successful!"
-msgstr "เชื่อมต่อสำเร็จ!"
-
-msgid "Could not copy. Please copy manually: "
-msgstr "ไม่สามารถคัดลอกได้ กรุณาคัดลอกด้วยตนเอง: "
-
-msgid "Could not open website."
-msgstr "ไม่สามารถเปิดเว็บไซต์ได้"
-
-msgid "Current Location"
-msgstr "ตำแหน่งปัจจุบัน"
-
-msgid "Current temp:"
-msgstr "อุณหภูมิปัจจุบัน:"
-
-msgid "Custom / Weather Underground URL"
-msgstr "URL แบบกำหนดเอง / Weather Underground"
-
-msgid "Custom URL is required"
-msgstr "จำเป็นต้องระบุ URL แบบกำหนดเอง"
-
-msgid "Display AUTO/MANUAL indicator in panel"
-msgstr "แสดงตัวบ่งชี้ AUTO/MANUAL บนแผง"
-
-msgid "Display relative humidity in weather details"
-msgstr "แสดงความชื้นสัมพัทธ์ในรายละเอียดสภาพอากาศ"
-
-msgid "Display temperature alongside the weather icon"
-msgstr "แสดงอุณหภูมิข้างไอคอนสภาพอากาศ"
-
-msgid "Display time in 12-hour format with AM/PM"
-msgstr "แสดงเวลาในรูปแบบ 12 ชั่วโมง พร้อม AM/PM"
-
-msgid "Donation Address"
-msgstr "ที่อยู่รับบริจาค"
-
-msgid "Donation address"
-msgstr "ที่อยู่รับบริจาค"
-
-msgid "Enable or disable weather features"
-msgstr "เปิดหรือปิดฟีเจอร์สภาพอากาศ"
-
-msgid "Extension Links"
-msgstr "ลิงก์ส่วนขยาย"
-
-msgid "Features"
-msgstr "ฟีเจอร์"
-
-msgid "General"
-msgstr "ทั่วไป"
-
-msgid "Get API Key"
-msgstr "รับคีย์ API"
-
-msgid "How often to refresh weather data"
-msgstr "ความถี่ในการรีเฟรชข้อมูลสภาพอากาศ"
-
-msgid "Icon Size"
-msgstr "ขนาดไอคอน"
-
-msgid "Invalid coordinates. Lat: −90 to 90, Lon: −180 to 180."
-msgstr "พิกัดไม่ถูกต้อง ละติจูด: −90 ถึง 90, ลองจิจูด: −180 ถึง 180"
-
-msgid "Left"
-msgstr "ซ้าย"
-
-msgid "License & Credits"
-msgstr "ใบอนุญาตและเครดิต"
-
-msgid "Location"
-msgstr "ตำแหน่ง"
-
-msgid "Location Detection"
-msgstr "การตรวจจับตำแหน่ง"
-
-msgid "Location Mode"
-msgstr "โหมดตำแหน่ง"
-
-msgid "MIT License – Free and open source software"
-msgstr "ใบอนุญาต MIT – ซอฟต์แวร์โอเพนซอร์สฟรี"
-
-msgid "Manual Location Search"
-msgstr "ค้นหาตำแหน่งด้วยตนเอง"
-
-msgid "Modern weather extension with native GNOME design"
-msgstr "ส่วนขยายสภาพอากาศสมัยใหม่ในสไตล์ GNOME"
-
-msgid "No Results Found"
-msgstr "ไม่พบผลลัพธ์"
-
-msgid "Not Required"
-msgstr "ไม่จำเป็น"
-
-msgid "Not specified"
-msgstr "ไม่ระบุ"
-
-msgid "Open Source License"
-msgstr "ใบอนุญาตโอเพนซอร์ส"
-
-msgid "Open source software information"
-msgstr "ข้อมูลซอฟต์แวร์โอเพนซอร์ส"
-
-msgid "Panel Display"
-msgstr "การแสดงผลบนแผง"
-
-msgid "Panel Position"
-msgstr "ตำแหน่งบนแผง"
-
-msgid "Panel Position Index"
-msgstr "ดัชนีตำแหน่งบนแผง"
-
-msgid "Position index within the selected panel area"
-msgstr "ดัชนีตำแหน่งในพื้นที่แผงที่เลือก"
-
-msgid "Provider Configuration"
-msgstr "การตั้งค่าผู้ให้บริการ"
-
-msgid "Provider Information"
-msgstr "ข้อมูลผู้ให้บริการ"
-
-msgid "Rate Limit"
-msgstr "ขีดจำกัดคำขอ"
-
-msgid "Refresh location display"
-msgstr "รีเฟรชการแสดงตำแหน่ง"
-
-msgid "Required"
-msgstr "จำเป็น"
-
-msgid "Response received but no weather data found. Check your API key and URL."
-msgstr "ได้รับการตอบกลับแต่ไม่พบข้อมูลสภาพอากาศ โปรดตรวจสอบคีย์ API และ URL"
-
-msgid "Right"
-msgstr "ขวา"
-
-msgid "Search Error"
-msgstr "ข้อผิดพลาดในการค้นหา"
-
-msgid "Search Examples"
-msgstr "ตัวอย่างการค้นหา"
-
-msgid "Search Location"
-msgstr "ค้นหาตำแหน่ง"
-
-msgid "Search Results"
-msgstr "ผลการค้นหา"
-
-msgid "Search by city name or coordinates (lat, lon)"
-msgstr "ค้นหาตามชื่อเมืองหรือพิกัด"
-
-msgid "Search failed. Please try again."
-msgstr "การค้นหาล้มเหลว กรุณาลองใหม่"
-
-msgid "Search for location"
-msgstr "ค้นหาตำแหน่ง"
-
-msgid "Search timed out. Please try again."
-msgstr "การค้นหาหมดเวลา กรุณาลองใหม่"
-
-msgid "Select this location"
-msgstr "เลือกตำแหน่งนี้"
-
-msgid "Select weather API service"
-msgstr "เลือกบริการ API สภาพอากาศ"
-
-msgid "Show Humidity"
-msgstr "แสดงความชื้น"
-
-msgid "Show Location Indicator"
-msgstr "แสดงตัวบ่งชี้ตำแหน่ง"
-
-msgid "Show Temperature Text"
-msgstr "แสดงข้อความอุณหภูมิ"
-
-msgid "Size of the temperature text in pixels"
-msgstr "ขนาดข้อความอุณหภูมิ (พิกเซล)"
-
-msgid "Size of the weather icon in pixels"
-msgstr "ขนาดไอคอนสภาพอากาศ (พิกเซล)"
-
-msgid "Source code, issues, and contributions"
-msgstr "โค้ดต้นฉบับ ปัญหา และการมีส่วนร่วม"
-
-msgid "Support development with a small donation"
-msgstr "สนับสนุนการพัฒนาด้วยการบริจาคเล็กน้อย"
-
-msgid "Switch between Celsius and Fahrenheit"
-msgstr "สลับระหว่างเซลเซียสและฟาเรนไฮต์"
-
-msgid "Test"
-msgstr "ทดสอบ"
-
-msgid "Test Connection"
-msgstr "ทดสอบการเชื่อมต่อ"
-
-msgid "Test failed:"
-msgstr "การทดสอบล้มเหลว:"
-
-msgid "Testing…"
-msgstr "กำลังทดสอบ…"
-
-msgid "Text Size"
-msgstr "ขนาดตัวอักษร"
-
-msgid "Try a different search term or check your spelling"
-msgstr "ลองคำค้นหาอื่นหรือตรวจสอบการสะกด"
-
-msgid "URL Placeholders"
-msgstr "ตัวแทนใน URL"
-
-msgid "Unable to reach location service. Check your connection."
-msgstr "ไม่สามารถเข้าถึงบริการตำแหน่ง โปรดตรวจสอบการเชื่อมต่อ"
-
-msgid "Unit for wind speed display"
-msgstr "หน่วยแสดงความเร็วลม"
-
-msgid "Units & Format"
-msgstr "หน่วยและรูปแบบ"
-
-msgid "Update Interval"
-msgstr "ช่วงเวลาอัปเดต"
-
-msgid "Updates"
-msgstr "อัปเดต"
-
-msgid "Use 12-hour Format"
-msgstr "ใช้รูปแบบ 12 ชั่วโมง"
-
-msgid "Use Fahrenheit"
-msgstr "ใช้ฟาเรนไฮต์"
-
-msgid "Verify your provider settings work correctly"
-msgstr "ตรวจสอบว่าการตั้งค่าผู้ให้บริการทำงานถูกต้อง"
-
-msgid "Version 2.0"
-msgstr "เวอร์ชัน 2.0"
-
-msgid "View on GitHub"
-msgstr "ดูบน GitHub"
-
-msgid "Weather Data Source"
-msgstr "แหล่งข้อมูลสภาพอากาศ"
-
-msgid "Weather Data Sources"
-msgstr "แหล่งข้อมูลสภาพอากาศ"
-
-msgid "Weather Provider"
-msgstr "ผู้ให้บริการสภาพอากาศ"
-
-msgid "Where to show the weather widget"
-msgstr "ตำแหน่งแสดงวิดเจ็ตสภาพอากาศ"
-
-msgid "Wind Speed Unit"
-msgstr "หน่วยความเร็วลม"
-
-msgid "copied to clipboard"
-msgstr "คัดลอกไปยังคลิปบอร์ดแล้ว"
-
-msgid "km/h (Kilometers per hour)"
-msgstr "km/h (กิโลเมตร/ชั่วโมง)"
-
-msgid "knots (Nautical miles)"
-msgstr "นอต (ไมล์ทะเล)"
-
-msgid "m/s (Meters per second)"
-msgstr "m/s (เมตร/วินาที)"
-
-msgid "mph (Miles per hour)"
-msgstr "mph (ไมล์/ชั่วโมง)"
-
-msgid "☕ Buy Me a Coffee"
-msgstr "☕ ซื้อกาแฟให้ฉันหน่อย"
-
-msgid "☕ Support – Scan QR to buy me a coffee"
-msgstr "☕ สนับสนุน – สแกน QR เพื่อซื้อกาแฟ"
-
-msgid "✅ Location updated successfully"
-msgstr "✅ อัปเดตตำแหน่งสำเร็จ"
-
-msgid "🌍 Auto Detection"
-msgstr "🌍 ตรวจจับอัตโนมัติ"
-
-msgid "🌍 Auto Detection Enabled"
-msgstr "🌍 เปิดใช้การตรวจจับอัตโนมัติ"
-
-msgid "📍 Manual Location"
-msgstr "📍 ตำแหน่งด้วยตนเอง"
-
-msgid "📍 Manual – Please set location"
-msgstr "📍 ด้วยตนเอง – กรุณาตั้งค่าตำแหน่ง"
-
-msgid "API key is required for "
-msgstr "ต้องการคีย์ API สำหรับ "
-
-msgid "Enable Weather Alerts"
-msgstr "เปิดใช้การแจ้งเตือนสภาพอากาศ"
-
-msgid "Send desktop notifications for dangerous weather"
-msgstr "ส่งการแจ้งเตือนเดสก์ท็อปสำหรับสภาพอากาศอันตราย"
-
-msgid "Weather Alerts"
-msgstr "การแจ้งเตือนสภาพอากาศ"
-
-msgid "⚠️ Severe Weather Alert"
-msgstr "⚠️ แจ้งเตือนสภาพอากาศรุนแรง"
-
-msgid "🌡️ Heat Warning"
-msgstr "🌡️ คำเตือนคลื่นความร้อน"
-
-msgid "🥶 Cold Warning"
-msgstr "🥶 คำเตือนอากาศหนาวจัด"
-
-msgid "💨 Wind Warning"
-msgstr "💨 คำเตือนลมแรง"
-
-msgid "🌀 Storm Warning"
-msgstr "🌀 คำเตือนพายุ"
-
-msgid "Extreme high temperature detected"
-msgstr "ตรวจพบอุณหภูมิสูงมาก"
-
-msgid "Extreme low temperature detected"
-msgstr "ตรวจพบอุณหภูมิต่ำมาก"
-
-msgid "Dangerous wind speed"
-msgstr "ความเร็วลมอันตราย"
-
-msgid "Strong winds detected"
-msgstr "ตรวจพบลมแรง"
-
-msgid "Advanced Weather"
-msgstr "สภาพอากาศขั้นสูง"
-
-msgid "Loading weather…"
-msgstr "กำลังโหลดสภาพอากาศ…"
-
-msgid "Location Information"
-msgstr "ข้อมูลตำแหน่ง"
-
-msgid "Weather Provider Status"
-msgstr "สถานะผู้ให้บริการสภาพอากาศ"
-
-msgid "Hourly Forecast"
-msgstr "พยากรณ์รายชั่วโมง"
-
-msgid "7-Day Forecast"
-msgstr "พยากรณ์ 7 วัน"
-
-msgid "Weather Insights"
-msgstr "การวิเคราะห์สภาพอากาศ"
-
-msgid "Refresh Weather"
-msgstr "รีเฟรชสภาพอากาศ"
-
-msgid "Extension Settings"
-msgstr "การตั้งค่าส่วนขยาย"
-
-msgid "Active"
-msgstr "ใช้งานอยู่"
-
-msgid "Loading…"
-msgstr "กำลังโหลด…"
-
-msgid "Status"
-msgstr "สถานะ"
-
-msgid "Checking…"
-msgstr "กำลังตรวจสอบ…"
-
-msgid "Last Update"
-msgstr "อัปเดตล่าสุด"
-
-msgid "Never"
-msgstr "ไม่เคย"
-
-msgid "Available Providers"
-msgstr "ผู้ให้บริการที่พร้อมใช้"
-
-msgid "Free"
-msgstr "ฟรี"
-
-msgid "Custom Provider"
-msgstr "ผู้ให้บริการกำหนดเอง"
-
-msgid "Working"
-msgstr "ทำงานอยู่"
-
-msgid "Error"
-msgstr "ข้อผิดพลาด"
-
-msgid "Connection Timeout"
-msgstr "หมดเวลาการเชื่อมต่อ"
-
-msgid "Not Configured"
-msgstr "ยังไม่ได้ตั้งค่า"
-
-msgid "Testing Connection…"
-msgstr "กำลังทดสอบการเชื่อมต่อ…"
-
-msgid "Unknown"
-msgstr "ไม่ทราบ"
-
-msgid "Current"
-msgstr "ปัจจุบัน"
-
-msgid "Auto-detected"
-msgstr "ตรวจจับอัตโนมัติ"
-
-msgid "Not set"
-msgstr "ยังไม่ได้ตั้งค่า"
-
-msgid "Coordinates"
-msgstr "พิกัด"
-
-msgid "Not available"
-msgstr "ไม่พร้อมใช้งาน"
-
-msgid "Method"
-msgstr "วิธีการ"
-
-msgid "IP-based geolocation"
-msgstr "การระบุตำแหน่งจาก IP"
-
-msgid "Manually configured"
-msgstr "ตั้งค่าด้วยตนเอง"
-
-msgid "Switch to Auto Detection"
-msgstr "เปลี่ยนเป็นตรวจจับอัตโนมัติ"
-
-msgid "Switch to Manual Location"
-msgstr "เปลี่ยนเป็นตำแหน่งด้วยตนเอง"
-
-msgid "Enter city name…"
-msgstr "ป้อนชื่อเมือง…"
-
-msgid "Search"
-msgstr "ค้นหา"
-
-msgid "Clear"
-msgstr "ล้าง"
-
-msgid "Searching…"
-msgstr "กำลังค้นหา…"
-
-msgid "No locations found"
-msgstr "ไม่พบตำแหน่ง"
-
-msgid "Unknown Location"
-msgstr "ตำแหน่งที่ไม่รู้จัก"
-
-msgid "Unknown Provider"
-msgstr "ผู้ให้บริการที่ไม่รู้จัก"
-
-msgid "SEVERE WEATHER"
-msgstr "สภาพอากาศรุนแรง"
-
-msgid "HEAT WARNING"
-msgstr "คำเตือนคลื่นความร้อน"
-
-msgid "Extreme temperatures"
-msgstr "อุณหภูมิสุดขีด"
-
-msgid "COLD WARNING"
-msgstr "คำเตือนอากาศหนาวจัด"
-
-msgid "Extreme low temperatures"
-msgstr "อุณหภูมิต่ำสุดขีด"
-
-msgid "STORM WARNING"
-msgstr "คำเตือนพายุ"
-
-msgid "Dangerous winds detected"
-msgstr "ตรวจพบลมอันตราย"
-
-msgid "WIND WARNING"
-msgstr "คำเตือนลมแรง"
-
-msgid "Temperature Trend"
-msgstr "แนวโน้มอุณหภูมิ"
-
-msgid "Precipitation (24h)"
-msgstr "ปริมาณน้ำฝน (24 ชม.)"
-
-msgid "Wind"
-msgstr "ลม"
-
-msgid "Strong"
-msgstr "แรง"
-
-msgid "Moderate"
-msgstr "ปานกลาง"
-
-msgid "Light"
-msgstr "เบา"
-
-msgid "UV Index"
-msgstr "ดัชนี UV"
-
-msgid "High"
-msgstr "สูง"
-
-msgid "Low"
-msgstr "ต่ำ"
-
-msgid "Insufficient data"
-msgstr "ข้อมูลไม่เพียงพอ"
-
-msgid "Warming"
-msgstr "อุณหภูมิสูงขึ้น"
-
-msgid "Cooling"
-msgstr "อุณหภูมิต่ำลง"
-
-msgid "Stable"
-msgstr "คงที่"
-
-msgid "Today"
-msgstr "วันนี้"
-
-msgid "Tomorrow"
-msgstr "พรุ่งนี้"
-
-msgid "AUTO"
-msgstr "อัตโนมัติ"
-
-msgid "MANUAL"
-msgstr "ด้วยตนเอง"
-
+#: extension.js:222 extension.js:555
 msgid "Offline"
 msgstr "ออฟไลน์"
 
-msgid "No Key"
-msgstr "ไม่มีคีย์"
-
+#: extension.js:370
 msgid "fallback"
 msgstr "สำรอง"
 
+#: extension.js:519
+msgid "cached data"
+msgstr "ข้อมูลที่แคชไว้"
+
+#: extension.js:553
+msgid "No Key"
+msgstr "ไม่มีคีย์"
+
+#: extension.js:556 lib/panelMenu.js:435 lib/panelMenu.js:663
+msgid "Error"
+msgstr "ข้อผิดพลาด"
+
+#: extension.js:619
+msgid "Advanced Weather"
+msgstr "สภาพอากาศขั้นสูง"
+
+#: extension.js:627
+msgid "What to do:"
+msgstr "สิ่งที่ควรทำ:"
+
+#: lib/alerts.js:37
+msgid "⚠️ Severe Weather Alert"
+msgstr "⚠️ แจ้งเตือนสภาพอากาศรุนแรง"
+
+#: lib/alerts.js:46
+msgid "⚠️ Weather Warning"
+msgstr "⚠️ ประกาศเตือนสภาพอากาศ"
+
+#: lib/alerts.js:66
+msgid "🌡️ Extreme Heat Warning"
+msgstr "🌡️ ประกาศเตือนอากาศร้อนจัด"
+
+#: lib/alerts.js:68
+msgid "Dangerously high temperature"
+msgstr "อุณหภูมิสูงอย่างอันตราย"
+
+#: lib/alerts.js:75
+msgid "Stay indoors during peak hours (10 AM – 4 PM)"
+msgstr "อยู่ในอาคารช่วงพีค (10:00–16:00)"
+
+#: lib/alerts.js:76
+msgid "Drink water regularly — at least 2–3 litres per day"
+msgstr "ดื่มน้ำสม่ำเสมอ — อย่างน้อย 2–3 ลิตรต่อวัน"
+
+#: lib/alerts.js:77
+msgid "Wear light, loose, light-coloured clothing"
+msgstr "สวมเสื้อผ้าเบา หลวม สีอ่อน"
+
+#: lib/alerts.js:78
+msgid "Never leave children or pets in parked vehicles"
+msgstr "ห้ามทิ้งเด็กหรือสัตว์เลี้ยงไว้ในรถที่จอดไว้"
+
+#: lib/alerts.js:79
+msgid "Check on elderly neighbours and relatives"
+msgstr "ดูแลเพื่อนบ้านและญาติผู้สูงอายุ"
+
+#: lib/alerts.js:80
+msgid "Use fans or air conditioning if available"
+msgstr "ใช้พัดลมหรือเครื่องปรับอากาศหากมี"
+
+#: lib/alerts.js:91
+msgid "🥶 Extreme Cold Warning"
+msgstr "🥶 ประกาศเตือนอากาศหนาวจัด"
+
+#: lib/alerts.js:93
+msgid "Dangerously low temperature"
+msgstr "อุณหภูมิต่ำอย่างอันตราย"
+
+#: lib/alerts.js:100
+msgid "Layer clothing: base layer, insulation, waterproof outer shell"
+msgstr "สวมเสื้อผ้าหลายชั้น: ชั้นใน ชั้นกันหนาว ชั้นนอกกันน้ำ"
+
+#: lib/alerts.js:101
+msgid "Cover exposed skin — risk of frostbite within 30 minutes"
+msgstr "ปกปิดผิวหนังที่โผล่ — เสี่ยงถูกน้ำแข็งกัดภายใน 30 นาที"
+
+#: lib/alerts.js:102
+msgid "Keep emergency supplies in your vehicle if driving"
+msgstr "เตรียมสิ่งของฉุกเฉินไว้ในรถหากขับรถ"
+
+#: lib/alerts.js:103
+msgid "Check heating systems and carbon-monoxide detectors"
+msgstr "ตรวจระบบทำความร้อนและเครื่องตรวจจับคาร์บอนมอนอกไซด์"
+
+#: lib/alerts.js:104
+msgid "Check on elderly and vulnerable people"
+msgstr "ดูแลผู้สูงอายุและผู้เปราะบาง"
+
+#: lib/alerts.js:105
+msgid "Bring pets indoors"
+msgstr "นำสัตว์เลี้ยงเข้าในบ้าน"
+
+#: lib/alerts.js:117
+msgid "🌀 Severe Storm Warning"
+msgstr "🌀 ประกาศเตือนพายุรุนแรง"
+
+#: lib/alerts.js:119
+msgid "Dangerous wind speed"
+msgstr "ความเร็วลมอันตราย"
+
+#: lib/alerts.js:121
+msgid "Avoid all unnecessary travel"
+msgstr "หลีกเลี่ยงการเดินทางที่ไม่จำเป็นทั้งหมด"
+
+#: lib/alerts.js:122
+msgid "Stay away from trees, scaffolding, and signs"
+msgstr "อยู่ให้ห่างจากต้นไม้ นั่งร้าน และป้าย"
+
+#: lib/alerts.js:123
+msgid "Do not attempt to drive high-sided vehicles"
+msgstr "อย่าพยายามขับรถที่มีตัวถังสูง"
+
+#: lib/alerts.js:124
+msgid "Secure or bring inside any outdoor furniture"
+msgstr "ยึดหรือนำเฟอร์นิเจอร์กลางแจ้งเข้าข้างใน"
+
+#: lib/alerts.js:125
+msgid "Stay indoors away from windows"
+msgstr "อยู่ในอาคารและอยู่ให้ห่างจากหน้าต่าง"
+
+#: lib/alerts.js:126
+msgid "Follow local emergency service guidance"
+msgstr "ปฏิบัติตามคำแนะนำของหน่วยงานฉุกเฉินในพื้นที่"
+
+#: lib/alerts.js:135
+msgid "💨 Strong Wind Warning"
+msgstr "💨 ประกาศเตือนลมแรง"
+
+#: lib/alerts.js:137
+msgid "Strong winds detected"
+msgstr "ตรวจพบลมแรง"
+
+#: lib/alerts.js:140
+msgid ""
+"Take care when walking or cycling — gusts may be stronger than the average"
+msgstr "ระมัดระวังเมื่อเดินหรือขี่จักรยาน — ลมกระโชกอาจแรงกว่าค่าเฉลี่ย"
+
+#: lib/alerts.js:142
+msgid "Secure loose outdoor items (bins, garden furniture, etc.)"
+msgstr "ยึดสิ่งของนอกบ้านที่หลุดง่าย (ถังขยะ เฟอร์นิเจอร์สนาม ฯลฯ)"
+
+#: lib/alerts.js:143
+msgid "Drive with extra caution, especially on exposed roads or bridges"
+msgstr "ขับรถอย่างระมัดระวังเป็นพิเศษ โดยเฉพาะถนนโล่งและสะพาน"
+
+#: lib/alerts.js:144
+msgid "Cyclists and motorcyclists should be especially cautious"
+msgstr "ผู้ขี่จักรยานและผู้ขับขี่มอเตอร์ไซค์ควรระมัดระวังเป็นพิเศษ"
+
+#: lib/alerts.js:158
+msgid "Seek shelter immediately in a sturdy building"
+msgstr "เข้าที่หลบภัยในอาคารแข็งแรงทันที"
+
+#: lib/alerts.js:159
+msgid "Avoid open fields, hilltops, and isolated trees"
+msgstr "หลีกเลี่ยงทุ่งโล่ง ยอดเขา และต้นไม้โดดเดี่ยว"
+
+#: lib/alerts.js:160
+msgid "Stay away from water, metal objects, and electrical equipment"
+msgstr "อยู่ให้ห่างจากน้ำ วัตถุโลหะ และอุปกรณ์ไฟฟ้า"
+
+#: lib/alerts.js:161
+msgid "If outdoors and unable to shelter, crouch low — do not lie flat"
+msgstr "หากอยู่กลางแจ้งและหลบไม่ได้ ให้หมอบต่ำ — ไม่นอนราบ"
+
+#: lib/alerts.js:162
+msgid "Avoid using corded phones or plugged-in devices"
+msgstr "หลีกเลี่ยงการใช้โทรศัพท์มีสายและอุปกรณ์ที่เสียบปลั๊ก"
+
+#: lib/alerts.js:163
+msgid "Keep away from windows and doors"
+msgstr "อยู่ให้ห่างจากหน้าต่างและประตู"
+
+#: lib/alerts.js:167
+msgid "Follow official emergency service guidance"
+msgstr "ปฏิบัติตามคำแนะนำอย่างเป็นทางการของหน่วยงานฉุกเฉิน"
+
+#: lib/alerts.js:168
+msgid "Stay informed via local weather services"
+msgstr "ติดตามข้อมูลจากหน่วยงานอากาศในท้องถิ่น"
+
+#: lib/alerts.js:169
+msgid "Avoid non-essential travel"
+msgstr "หลีกเลี่ยงการเดินทางที่ไม่จำเป็น"
+
+#: lib/alerts.js:178
+msgid "Avoid driving through flooded roads — even 30 cm can sweep a car away"
+msgstr "อย่าขับรถผ่านถนนที่น้ำท่วม — แค่ 30 ซม. ก็พัดรถหายได้"
+
+#: lib/alerts.js:180
+msgid "Be aware of localised flooding in low-lying areas"
+msgstr "ระวังน้ำท่วมขังเฉพาะจุดในพื้นที่ลุ่ม"
+
+#: lib/alerts.js:181
+msgid "Carry waterproof clothing if you must travel"
+msgstr "พกเสื้อผ้ากันน้ำหากจำเป็นต้องเดินทาง"
+
+#: lib/alerts.js:182
+msgid "Check your local flood risk map"
+msgstr "ตรวจสอบแผนที่ความเสี่ยงน้ำท่วมในท้องถิ่น"
+
+#: lib/alerts.js:188
+msgid "Avoid travel unless absolutely necessary"
+msgstr "หลีกเลี่ยงการเดินทางหากไม่จำเป็นจริง ๆ"
+
+#: lib/alerts.js:189
+msgid "If driving, carry a winter emergency kit (blanket, shovel, water)"
+msgstr "หากขับรถ ให้พกชุดฉุกเฉินฤดูหนาว (ผ้าห่ม พลั่ว น้ำ)"
+
+#: lib/alerts.js:190
+msgid "Clear snow from paths and driveways carefully to avoid injury"
+msgstr ""
+"กวาดหิมะออกจากทางเดินและทางเข้าอย่างระมัดระวังเพื่อป้องกันอาการบาดเจ็บ"
+
+#: lib/alerts.js:191
+msgid "Be aware of roof loading from heavy snow accumulation"
+msgstr "ระวังน้ำหนักบนหลังคาจากหิมะที่ทับถม"
+
+#: lib/alerts.js:195
+msgid "Exercise caution outdoors"
+msgstr "ระมัดระวังเมื่ออยู่กลางแจ้ง"
+
+#: lib/alerts.js:196
+msgid "Stay informed via local weather forecasts"
+msgstr "ติดตามพยากรณ์อากาศในท้องถิ่น"
+
+#: lib/providers.js:619
 msgid "Clear Sky"
 msgstr "ท้องฟ้าแจ่มใส"
 
+#: lib/providers.js:624
 msgid "Mainly Clear"
 msgstr "ส่วนใหญ่แจ่มใส"
 
+#: lib/providers.js:629
 msgid "Partly Cloudy"
 msgstr "มีเมฆบางส่วน"
 
+#: lib/providers.js:634
 msgid "Overcast"
 msgstr "มีเมฆมาก"
 
+#: lib/providers.js:638
 msgid "Fog"
 msgstr "หมอก"
 
+#: lib/providers.js:640
 msgid "Rime Fog"
 msgstr "หมอกน้ำค้างแข็ง"
 
+#: lib/providers.js:645
 msgid "Light Drizzle"
 msgstr "ฝนปรอยเบา"
 
+#: lib/providers.js:650
 msgid "Drizzle"
 msgstr "ฝนปรอย"
 
+#: lib/providers.js:655
 msgid "Heavy Drizzle"
 msgstr "ฝนปรอยหนัก"
 
+#: lib/providers.js:660
 msgid "Light Rain"
 msgstr "ฝนเบา"
 
+#: lib/providers.js:665
 msgid "Rain"
 msgstr "ฝน"
 
+#: lib/providers.js:670
 msgid "Heavy Rain"
 msgstr "ฝนหนัก"
 
+#: lib/providers.js:675
 msgid "Light Snow"
 msgstr "หิมะเบา"
 
+#: lib/providers.js:679
 msgid "Snow"
 msgstr "หิมะ"
 
+#: lib/providers.js:681
 msgid "Heavy Snow"
 msgstr "หิมะหนัก"
 
+#: lib/providers.js:686
 msgid "Snow Grains"
 msgstr "เม็ดหิมะ"
 
+#: lib/providers.js:691 lib/providers.js:696
 msgid "Rain Showers"
 msgstr "ฝนตกเป็นพักๆ"
 
+#: lib/providers.js:701
 msgid "Heavy Showers"
 msgstr "ฝนตกหนักเป็นพักๆ"
 
+#: lib/providers.js:706
 msgid "Snow Showers"
 msgstr "หิมะตกเป็นพักๆ"
 
+#: lib/providers.js:711
 msgid "Heavy Snow Showers"
 msgstr "หิมะตกหนักเป็นพักๆ"
 
+#: lib/providers.js:716
 msgid "Thunderstorm"
 msgstr "พายุฝนฟ้าคะนอง"
 
+#: lib/providers.js:721
 msgid "Hail Storm"
 msgstr "พายุลูกเห็บ"
 
+#: lib/providers.js:726
 msgid "Heavy Hail"
 msgstr "ลูกเห็บขนาดใหญ่"
+
+#: lib/panelMenu.js:124
+msgid "AUTO"
+msgstr "อัตโนมัติ"
+
+#: lib/panelMenu.js:125
+msgid "MANUAL"
+msgstr "ด้วยตนเอง"
+
+#: lib/panelMenu.js:134
+msgid "Loading weather…"
+msgstr "กำลังโหลดสภาพอากาศ…"
+
+#: lib/panelMenu.js:142
+msgid "Weather Alerts"
+msgstr "การแจ้งเตือนสภาพอากาศ"
+
+#: lib/panelMenu.js:149
+msgid "Location Information"
+msgstr "ข้อมูลตำแหน่ง"
+
+#: lib/panelMenu.js:156
+msgid "Weather Provider Status"
+msgstr "สถานะผู้ให้บริการสภาพอากาศ"
+
+#: lib/panelMenu.js:163
+msgid "Hourly Forecast"
+msgstr "พยากรณ์รายชั่วโมง"
+
+#: lib/panelMenu.js:167
+msgid "7-Day Forecast"
+msgstr "พยากรณ์ 7 วัน"
+
+#: lib/panelMenu.js:171
+msgid "Weather Insights"
+msgstr "การวิเคราะห์สภาพอากาศ"
+
+#: lib/panelMenu.js:177
+msgid "Refresh Weather"
+msgstr "รีเฟรชสภาพอากาศ"
+
+#: lib/panelMenu.js:185
+msgid "Extension Settings"
+msgstr "การตั้งค่าส่วนขยาย"
+
+#: lib/panelMenu.js:281
+msgid "What to do"
+msgstr "สิ่งที่ควรทำ"
+
+#: lib/panelMenu.js:319 lib/panelMenu.js:425
+msgid "Active"
+msgstr "ใช้งานอยู่"
+
+#: lib/panelMenu.js:319 lib/panelMenu.js:469 lib/panelMenu.js:473
+#: lib/panelMenu.js:477
+msgid "Loading…"
+msgstr "กำลังโหลด…"
+
+#: lib/panelMenu.js:323 lib/panelMenu.js:442
+msgid "Status"
+msgstr "สถานะ"
+
+#: lib/panelMenu.js:323
+msgid "Checking…"
+msgstr "กำลังตรวจสอบ…"
+
+#: lib/panelMenu.js:327 lib/panelMenu.js:455 lib/panelMenu.js:462
+msgid "Last Update"
+msgstr "อัปเดตล่าสุด"
+
+#: lib/panelMenu.js:327 lib/panelMenu.js:462
+msgid "Never"
+msgstr "ไม่เคย"
+
+#: lib/panelMenu.js:347
+msgid "Available Providers"
+msgstr "ผู้ให้บริการที่พร้อมใช้"
+
+#: lib/panelMenu.js:375
+msgid "Custom Provider"
+msgstr "ผู้ให้บริการกำหนดเอง"
+
+#: lib/panelMenu.js:428
+msgid "Free"
+msgstr "ฟรี"
+
+#: lib/panelMenu.js:434
+msgid "Working"
+msgstr "ทำงานอยู่"
+
+#: lib/panelMenu.js:436
+msgid "Connection Timeout"
+msgstr "หมดเวลาการเชื่อมต่อ"
+
+#: lib/panelMenu.js:437
+msgid "Not Configured"
+msgstr "ยังไม่ได้ตั้งค่า"
+
+#: lib/panelMenu.js:438
+msgid "Testing Connection…"
+msgstr "กำลังทดสอบการเชื่อมต่อ…"
+
+#: lib/panelMenu.js:439
+msgid "Showing cached data"
+msgstr "กำลังแสดงข้อมูลที่แคชไว้"
+
+#: lib/panelMenu.js:446
+msgid "Unknown"
+msgstr "ไม่ทราบ"
+
+#: lib/panelMenu.js:469 lib/panelMenu.js:983 lib/panelMenu.js:984
+msgid "Current"
+msgstr "ปัจจุบัน"
+
+#: lib/panelMenu.js:473 lib/panelMenu.js:989 lib/panelMenu.js:994
+msgid "Coordinates"
+msgstr "พิกัด"
+
+#: lib/panelMenu.js:477 lib/panelMenu.js:999 lib/panelMenu.js:1000
+msgid "Method"
+msgstr "วิธีการ"
+
+#: lib/panelMenu.js:482
+msgid "Switch to Auto Detection"
+msgstr "เปลี่ยนเป็นตรวจจับอัตโนมัติ"
+
+#: lib/panelMenu.js:491
+msgid "Switch to Manual Location"
+msgstr "เปลี่ยนเป็นตำแหน่งด้วยตนเอง"
+
+#: lib/panelMenu.js:508
+msgid "Enter city name…"
+msgstr "ป้อนชื่อเมือง…"
+
+#: lib/panelMenu.js:513 lib/panelMenu.js:606
+msgid "Search"
+msgstr "ค้นหา"
+
+#: lib/panelMenu.js:517 prefs.js:725
+msgid "Clear"
+msgstr "ล้าง"
+
+#: lib/panelMenu.js:556
+msgid "Searching…"
+msgstr "กำลังค้นหา…"
+
+#: lib/panelMenu.js:599
+msgid "No locations found"
+msgstr "ไม่พบตำแหน่ง"
+
+#: lib/panelMenu.js:604 prefs.js:1392
+msgid "Search failed. Please try again."
+msgstr "การค้นหาล้มเหลว กรุณาลองใหม่"
+
+#: lib/panelMenu.js:685
+msgid "Unknown Location"
+msgstr "ตำแหน่งที่ไม่รู้จัก"
+
+#: lib/panelMenu.js:686
+msgid "Unknown Provider"
+msgstr "ผู้ให้บริการที่ไม่รู้จัก"
+
+#: lib/panelMenu.js:690
+msgid "Cached data from"
+msgstr "ข้อมูลที่แคชไว้จาก"
+
+#: lib/panelMenu.js:727
+msgid "This forecast has no upcoming hours left"
+msgstr "พยากรณ์นี้ไม่เหลือช่วงเวลาข้างหน้าแล้ว"
+
+#: lib/panelMenu.js:816
+msgid "Today"
+msgstr "วันนี้"
+
+#: lib/panelMenu.js:818
+msgid "Tomorrow"
+msgstr "พรุ่งนี้"
+
+#: lib/panelMenu.js:881
+msgid "Temperature Trend"
+msgstr "แนวโน้มอุณหภูมิ"
+
+#: lib/panelMenu.js:895
+msgid "Precipitation (24h)"
+msgstr "ปริมาณน้ำฝน (24 ชม.)"
+
+#: lib/panelMenu.js:907
+msgid "Strong"
+msgstr "แรง"
+
+#: lib/panelMenu.js:909 lib/panelMenu.js:938
+msgid "Moderate"
+msgstr "ปานกลาง"
+
+#: lib/panelMenu.js:910
+msgid "Light"
+msgstr "เบา"
+
+#: lib/panelMenu.js:914
+msgid "Wind"
+msgstr "ลม"
+
+#: lib/panelMenu.js:938
+msgid "High"
+msgstr "สูง"
+
+#: lib/panelMenu.js:938
+msgid "Low"
+msgstr "ต่ำ"
+
+#: lib/panelMenu.js:941
+msgid "UV Index"
+msgstr "ดัชนี UV"
+
+#: lib/panelMenu.js:951
+msgid "Insufficient data"
+msgstr "ข้อมูลไม่เพียงพอ"
+
+#: lib/panelMenu.js:959
+msgid "Warming"
+msgstr "อุณหภูมิสูงขึ้น"
+
+#: lib/panelMenu.js:960
+msgid "Cooling"
+msgstr "อุณหภูมิต่ำลง"
+
+#: lib/panelMenu.js:961
+msgid "Stable"
+msgstr "คงที่"
+
+#: lib/panelMenu.js:983
+msgid "Auto-detected"
+msgstr "ตรวจจับอัตโนมัติ"
+
+#: lib/panelMenu.js:984
+msgid "Not set"
+msgstr "ยังไม่ได้ตั้งค่า"
+
+#: lib/panelMenu.js:994
+msgid "Not available"
+msgstr "ไม่พร้อมใช้งาน"
+
+#: lib/panelMenu.js:999
+msgid "IP-based geolocation"
+msgstr "การระบุตำแหน่งจาก IP"
+
+#: lib/panelMenu.js:1000
+msgid "Manually configured"
+msgstr "ตั้งค่าด้วยตนเอง"
+
+#: prefs.js:55 prefs.js:1073 prefs.js:1104
+msgid "Advanced Weather Companion"
+msgstr "ผู้ช่วยสภาพอากาศขั้นสูง"
+
+#: prefs.js:68
+msgid "General"
+msgstr "ทั่วไป"
+
+#: prefs.js:73
+msgid "Units & Format"
+msgstr "หน่วยและรูปแบบ"
+
+#: prefs.js:74
+msgid "Configure measurement units and display format"
+msgstr "ตั้งค่าหน่วยวัดและรูปแบบแสดงผล"
+
+#: prefs.js:78
+msgid "Use Fahrenheit"
+msgstr "ใช้ฟาเรนไฮต์"
+
+#: prefs.js:79
+msgid "Switch between Celsius and Fahrenheit"
+msgstr "สลับระหว่างเซลเซียสและฟาเรนไฮต์"
+
+#: prefs.js:87
+msgid "Wind Speed Unit"
+msgstr "หน่วยความเร็วลม"
+
+#: prefs.js:88
+msgid "Choose unit for wind speed display"
+msgstr "เลือกหน่วยแสดงผลความเร็วลม"
+
+#: prefs.js:93
+msgid "km/h (Kilometers per hour)"
+msgstr "km/h (กิโลเมตร/ชั่วโมง)"
+
+#: prefs.js:94
+msgid "mph (Miles per hour)"
+msgstr "mph (ไมล์/ชั่วโมง)"
+
+#: prefs.js:95
+msgid "m/s (Meters per second)"
+msgstr "m/s (เมตร/วินาที)"
+
+#: prefs.js:96
+msgid "knots (Nautical miles per hour)"
+msgstr "นอต (ไมล์ทะเลต่อชั่วโมง)"
+
+#: prefs.js:111
+msgid "Use 12-hour Format"
+msgstr "ใช้รูปแบบ 12 ชั่วโมง"
+
+#: prefs.js:112
+msgid "Display time in 12-hour format with AM/PM"
+msgstr "แสดงเวลาในรูปแบบ 12 ชั่วโมง พร้อม AM/PM"
+
+#: prefs.js:124
+msgid "Updates"
+msgstr "อัปเดต"
+
+#: prefs.js:125
+msgid "Configure weather data refresh settings"
+msgstr "ตั้งค่าการรีเฟรชข้อมูลสภาพอากาศ"
+
+#: prefs.js:129
+msgid "Update Interval"
+msgstr "ช่วงเวลาอัปเดต"
+
+#: prefs.js:130
+msgid "How often to refresh weather data"
+msgstr "ความถี่ในการรีเฟรชข้อมูลสภาพอากาศ"
+
+#: prefs.js:135
+msgid "5 minutes"
+msgstr "5 นาที"
+
+#: prefs.js:136
+msgid "10 minutes"
+msgstr "10 นาที"
+
+#: prefs.js:137
+msgid "15 minutes"
+msgstr "15 นาที"
+
+#: prefs.js:138
+msgid "30 minutes"
+msgstr "30 นาที"
+
+#: prefs.js:139
+msgid "1 hour"
+msgstr "1 ชั่วโมง"
+
+#: prefs.js:156
+msgid "Features"
+msgstr "ฟีเจอร์"
+
+#: prefs.js:157
+msgid "Enable or disable weather features"
+msgstr "เปิดหรือปิดฟีเจอร์สภาพอากาศ"
+
+#: prefs.js:161
+msgid "Show Humidity"
+msgstr "แสดงความชื้น"
+
+#: prefs.js:162
+msgid "Display relative humidity in weather details"
+msgstr "แสดงความชื้นสัมพัทธ์ในรายละเอียดสภาพอากาศ"
+
+#: prefs.js:253
+msgid "Copy to Clipboard"
+msgstr "คัดลอกไปยังคลิปบอร์ด"
+
+#: prefs.js:254
+msgid "text"
+msgstr "ข้อความ"
+
+#: prefs.js:259
+msgid "Close"
+msgstr "ปิด"
+
+#: prefs.js:260
+msgid "Select Text"
+msgstr "เลือกข้อความ"
+
+#: prefs.js:302
+msgid "💡 Select the text above and press Ctrl+C to copy"
+msgstr "💡 เลือกข้อความด้านบนแล้วกด Ctrl+C เพื่อคัดลอก"
+
+#: prefs.js:335
+msgid "💡 Text selected! Press Ctrl+C to copy"
+msgstr "💡 เลือกข้อความแล้ว! กด Ctrl+C เพื่อคัดลอก"
+
+#: prefs.js:362
+msgid "Location"
+msgstr "ตำแหน่ง"
+
+#: prefs.js:367
+msgid "Location Detection"
+msgstr "การตรวจจับตำแหน่ง"
+
+#: prefs.js:368
+msgid "Configure how your location is determined"
+msgstr "ตั้งค่าวิธีระบุตำแหน่ง"
+
+#: prefs.js:372
+msgid "Location Mode"
+msgstr "โหมดตำแหน่ง"
+
+#: prefs.js:373
+msgid "Choose detection method"
+msgstr "เลือกวิธีตรวจจับ"
+
+#: prefs.js:377
+msgid "🌍 Auto Detection"
+msgstr "🌍 ตรวจจับอัตโนมัติ"
+
+#: prefs.js:378
+msgid "📍 Manual Location"
+msgstr "📍 ตำแหน่งด้วยตนเอง"
+
+#: prefs.js:383
+msgid "Current Location"
+msgstr "ตำแหน่งปัจจุบัน"
+
+#: prefs.js:397
+msgid "Refresh location"
+msgstr "รีเฟรชตำแหน่ง"
+
+#: prefs.js:409
+msgid "Manual Location Search"
+msgstr "ค้นหาตำแหน่งด้วยตนเอง"
+
+#: prefs.js:410
+msgid "Search by city name or coordinates (latitude, longitude)"
+msgstr "ค้นหาด้วยชื่อเมืองหรือพิกัด (ละติจูด, ลองติจูด)"
+
+#: prefs.js:415
+msgid "Search Location"
+msgstr "ค้นหาตำแหน่ง"
+
+#: prefs.js:424
+msgid "Search for location"
+msgstr "ค้นหาตำแหน่ง"
+
+#: prefs.js:431
+msgid "Clear search"
+msgstr "ล้างการค้นหา"
+
+#: prefs.js:439
+msgid "Search Examples"
+msgstr "ตัวอย่างการค้นหา"
+
+#: prefs.js:440
+msgid ""
+"City names: 'London', 'New York', 'Tokyo'\n"
+"Coordinates: '40.7128, -74.0060' or '40.7128 -74.0060'"
+msgstr ""
+"ชื่อเมือง: 'London', 'New York', 'Tokyo'\n"
+"พิกัด: '40.7128, -74.0060' หรือ '40.7128 -74.0060'"
+
+#: prefs.js:451
+msgid "Search Results"
+msgstr "ผลการค้นหา"
+
+#: prefs.js:506 prefs.js:516
+msgid "Weather Provider"
+msgstr "ผู้ให้บริการสภาพอากาศ"
+
+#: prefs.js:511
+msgid "Weather Data Source"
+msgstr "แหล่งข้อมูลสภาพอากาศ"
+
+#: prefs.js:512
+msgid "Choose your weather data provider"
+msgstr "เลือกผู้ให้บริการข้อมูลสภาพอากาศ"
+
+#: prefs.js:517
+msgid "Select weather API service"
+msgstr "เลือกบริการ API สภาพอากาศ"
+
+#: prefs.js:548
+msgid "Provider Configuration"
+msgstr "การตั้งค่าผู้ให้บริการ"
+
+#: prefs.js:549
+msgid "Configure your selected weather provider"
+msgstr "ตั้งค่าผู้ให้บริการสภาพอากาศที่เลือก"
+
+#: prefs.js:554
+msgid "API Key"
+msgstr "คีย์ API"
+
+#: prefs.js:559
+msgid "Get API Key"
+msgstr "รับคีย์ API"
+
+#: prefs.js:567
+msgid "Custom API URL"
+msgstr "URL API กำหนดเอง"
+
+#: prefs.js:573
+msgid "Provider Information"
+msgstr "ข้อมูลผู้ให้บริการ"
+
+#: prefs.js:579
+msgid "Test Connection"
+msgstr "ทดสอบการเชื่อมต่อ"
+
+#: prefs.js:580
+msgid "Verify your provider settings work correctly"
+msgstr "ตรวจสอบว่าการตั้งค่าผู้ให้บริการทำงานถูกต้อง"
+
+#: prefs.js:585 prefs.js:951
+msgid "Test"
+msgstr "ทดสอบ"
+
+#: prefs.js:627
+msgid "Automatic Provider Fallback"
+msgstr "สลับผู้ให้บริการอัตโนมัติ"
+
+#: prefs.js:628
+msgid ""
+"When a provider fails, the next one is tried. Every provider is used at most"
+" once per refresh."
+msgstr ""
+"เมื่อผู้ให้บริการล้มเหลว จะลองรายถัดไป "
+"แต่ละผู้ให้บริการจะใช้ไม่เกินหนึ่งครั้งต่อการรีเฟรช"
+
+#: prefs.js:632
+msgid "Try Other Providers On Failure"
+msgstr "ลองผู้ให้บริการอื่นเมื่อล้มเหลว"
+
+#: prefs.js:633
+msgid "Turn off to use only the selected provider"
+msgstr "ปิดเพื่อให้ใช้เฉพาะผู้ให้บริการที่เลือก"
+
+#: prefs.js:638
+msgid "Fallback Priority"
+msgstr "ลำดับความสำคัญของผู้ให้บริการสำรอง"
+
+#: prefs.js:639
+msgid ""
+"Providers are tried in this order. The selected provider is always tried "
+"first."
+msgstr "จะลองผู้ให้บริการตามลำดับนี้ ผู้ให้บริการที่เลือกจะลองก่อนเสมอ"
+
+#: prefs.js:654
+msgid "API key required"
+msgstr "ต้องมีคีย์ API"
+
+#: prefs.js:655
+msgid "Free, no API key"
+msgstr "ฟรี ไม่ต้องใช้คีย์ API"
+
+#: prefs.js:700
+msgid "Offline Weather Data"
+msgstr "ข้อมูลสภาพอากาศออฟไลน์"
+
+#: prefs.js:701
+msgid ""
+"The last successful fetch, including the hourly and 7-day forecasts, is kept"
+" and shown instead of an error when every provider fails."
+msgstr ""
+"จะเก็บการดึงข้อมูลครั้งล่าสุดที่สำเร็จไว้ รวมถึงพยากรณ์รายชั่วโมงและ 7 วัน "
+"แล้วแสดงแทนข้อผิดพลาดเมื่อทุกผู้ให้บริการล้มเหลว"
+
+#: prefs.js:705
+msgid "Use Cached Data Up To"
+msgstr "ใช้ข้อมูลที่แคชไว้ได้นานถิง"
+
+#: prefs.js:706
+msgid "Maximum age of the cached forecast, in days"
+msgstr "อายุสูงสุดของพยากรณ์ในแคช เป็นวัน"
+
+#: prefs.js:720
+msgid "Cached Forecast"
+msgstr "พยากรณ์ที่เก็บไว้ในแคช"
+
+#: prefs.js:733
+msgid "Cached weather data cleared"
+msgstr "ล้างข้อมูลสภาพอากาศที่แคชไว้แล้ว"
+
+#: prefs.js:781
+msgid "No cached data yet"
+msgstr "ยังไม่มีข้อมูลที่แคชไว้"
+
+#: prefs.js:791
+msgid "min ago"
+msgstr "นาทีที่ผ่านมา"
+
+#: prefs.js:792
+msgid "h ago"
+msgstr "ชม. ที่ผ่านมา"
+
+#: prefs.js:793
+msgid "days ago"
+msgstr "วันที่ผ่านมา"
+
+#: prefs.js:795
+msgid "unknown provider"
+msgstr "ไม่ทราบผู้ให้บริการ"
+
+#: prefs.js:805
+msgid "Cached data is unreadable"
+msgstr "อ่านข้อมูลในแคชไม่ได้"
+
+#: prefs.js:862
+msgid "Could not open website. Please visit manually."
+msgstr "เปิดเว็บไซต์ไม่ได้ โปรดเปิดด้วยตนเอง"
+
+#: prefs.js:895
+msgid "Testing…"
+msgstr "กำลังทดสอบ…"
+
+#: prefs.js:908
+msgid "Custom URL is required"
+msgstr "จำเป็นต้องระบุ URL แบบกำหนดเอง"
+
+#: prefs.js:911
+msgid "API key is required for"
+msgstr "ต้องมีคีย์ API สำหรับ"
+
+#: prefs.js:940
+msgid ""
+"Response received but no weather data found. Check your API key and URL."
+msgstr "ได้รับการตอบกลับแต่ไม่พบข้อมูลสภาพอากาศ โปรดตรวจสอบคีย์ API และ URL"
+
+#: prefs.js:942
+msgid "Connection successful!"
+msgstr "เชื่อมต่อสำเร็จ!"
+
+#: prefs.js:943
+msgid "Current temp:"
+msgstr "อุณหภูมิปัจจุบัน:"
+
+#: prefs.js:948
+msgid "Connection failed:"
+msgstr "การเชื่อมต่อล้มเหลว:"
+
+#: prefs.js:958
+msgid "Appearance"
+msgstr "รูปลักษณ์"
+
+#: prefs.js:963
+msgid "Panel Display"
+msgstr "การแสดงผลบนแผง"
+
+#: prefs.js:964
+msgid "Configure how the weather appears in the panel"
+msgstr "กำหนดลักษณะการแสดงสภาพอากาศบนพาเนล"
+
+#: prefs.js:968
+msgid "Panel Position"
+msgstr "ตำแหน่งบนแผง"
+
+#: prefs.js:969
+msgid "Where to show the weather widget"
+msgstr "ตำแหน่งแสดงวิดเจ็ตสภาพอากาศ"
+
+#: prefs.js:974
+msgid "Left"
+msgstr "ซ้าย"
+
+#: prefs.js:975
+msgid "Center"
+msgstr "ตรงกลาง"
+
+#: prefs.js:976
+msgid "Right"
+msgstr "ขวา"
+
+#: prefs.js:991
+msgid "Panel Position Index"
+msgstr "ดัชนีตำแหน่งบนแผง"
+
+#: prefs.js:992
+msgid "Position index in the selected panel area"
+msgstr "ลำดับตำแหน่งในพื้นที่พาเนลที่เลือก"
+
+#: prefs.js:1005
+msgid "Show Temperature Text"
+msgstr "แสดงข้อความอุณหภูมิ"
+
+#: prefs.js:1006
+msgid "Display temperature alongside the weather icon"
+msgstr "แสดงอุณหภูมิข้างไอคอนสภาพอากาศ"
+
+#: prefs.js:1014
+msgid "Show Location Indicator"
+msgstr "แสดงตัวบ่งชี้ตำแหน่ง"
+
+#: prefs.js:1015
+msgid "Display location mode indicator in panel"
+msgstr "แสดงตัวบ่งชี้โหมดตำแหน่งบนพาเนล"
+
+#: prefs.js:1028
+msgid "Icon Size"
+msgstr "ขนาดไอคอน"
+
+#: prefs.js:1029
+msgid "Size of the weather icon in pixels"
+msgstr "ขนาดไอคอนสภาพอากาศ (พิกเซล)"
+
+#: prefs.js:1042
+msgid "Text Size"
+msgstr "ขนาดตัวอักษร"
+
+#: prefs.js:1043
+msgid "Size of the temperature text in pixels"
+msgstr "ขนาดข้อความอุณหภูมิ (พิกเซล)"
+
+#: prefs.js:1068
+msgid "About"
+msgstr "เกี่ยวกับ"
+
+#: prefs.js:1074
+msgid "A beautiful, modern weather companion for GNOME Shell"
+msgstr "ผู้ช่วยสภาพอากาศที่สวยงามและทันสมัยสำหรับ GNOME Shell"
+
+#: prefs.js:1110
+msgid "Version 2.0"
+msgstr "เวอร์ชัน 2.0"
+
+#: prefs.js:1116
+msgid "Modern weather extension with native GNOME design"
+msgstr "ส่วนขยายสภาพอากาศสมัยใหม่ในสไตล์ GNOME"
+
+#: prefs.js:1133
+msgid "Extension Links"
+msgstr "ลิงก์ส่วนขยาย"
+
+#: prefs.js:1134 prefs.js:1139
+msgid "Source code, issues, and contributions"
+msgstr "โค้ดต้นฉบับ ปัญหา และการมีส่วนร่วม"
+
+#: prefs.js:1138
+msgid "View on GitHub"
+msgstr "ดูบน GitHub"
+
+#: prefs.js:1160
+msgid "☕ Support by buying me a coffee — just scan the QR code!"
+msgstr "☕ สนับสนุนด้วยการซื้อกาแฟให้ผม — แค่สแกน QR Code!"
+
+#: prefs.js:1161
+msgid "Preferred Method - Scan QR code to support development"
+msgstr "วิธีที่แนะนำ - สแกน QR Code เพื่อสนับสนุนการพัฒนา"
+
+#: prefs.js:1206
+msgid "Donation Address"
+msgstr "ที่อยู่รับบริจาค"
+
+#: prefs.js:1238
+msgid "☕ Buy Me a Coffee"
+msgstr "☕ ซื้อกาแฟให้ฉันหน่อย"
+
+#: prefs.js:1239
+msgid "Support development with a small donation"
+msgstr "สนับสนุนการพัฒนาด้วยการบริจาคเล็กน้อย"
+
+#: prefs.js:1261
+msgid "License & Credits"
+msgstr "ใบอนุญาตและเครดิต"
+
+#: prefs.js:1262
+msgid "Open source software information"
+msgstr "ข้อมูลซอฟต์แวร์โอเพนซอร์ส"
+
+#: prefs.js:1266
+msgid "Open Source License"
+msgstr "ใบอนุญาตโอเพนซอร์ส"
+
+#: prefs.js:1267
+msgid "MIT License - Free and open source software"
+msgstr "สัญญาอนุญาต MIT - ซอฟต์แวร์เสรีและโอเพนซอร์ส"
+
+#: prefs.js:1277
+msgid "Weather Data Sources"
+msgstr "แหล่งข้อมูลสภาพอากาศ"
+
+#: prefs.js:1278
+msgid "Open-Meteo, Meteosource, Wttr.in - Free weather APIs"
+msgstr "Open-Meteo, Meteosource, Wttr.in - API สภาพอากาศฟรี"
+
+#: prefs.js:1382
+msgid ""
+"Invalid coordinates. Latitude must be between -90 and 90, longitude between "
+"-180 and 180."
+msgstr ""
+"พิกัดไม่ถูกต้อง ละติจูดต้องอยู่ระหว่าง -90 ถึง 90 ลองติจูดระหว่าง -180 ถึง "
+"180"
+
+#: prefs.js:1395
+msgid "Unable to connect to location service. Check your internet connection."
+msgstr "เชื่อมต่อบริการตำแหน่งไม่ได้ ตรวจสอบการเชื่อมต่ออินเทอร์เน็ตของคุณ"
+
+#: prefs.js:1397
+msgid "Invalid response from location service. Please try again."
+msgstr "บริการตำแหน่งตอบกลับไม่ถูกต้อง โปรดลองอีกครั้ง"
+
+#: prefs.js:1399
+msgid "Search timed out. Please try again."
+msgstr "การค้นหาหมดเวลา กรุณาลองใหม่"
+
+#: prefs.js:1516 prefs.js:1554
+msgid "Select this location"
+msgstr "เลือกตำแหน่งนี้"
+
+#: prefs.js:1573
+msgid "Location updated successfully"
+msgstr "ปรับปรุงตำแหน่งเรียบร้อยแล้ว"
+
+#: prefs.js:1576
+msgid "Failed to save location. Please try again."
+msgstr "บันทึกตำแหน่งไม่สำเร็จ โปรดลองอีกครั้ง"
+
+#: prefs.js:1583
+msgid "No Results Found"
+msgstr "ไม่พบผลลัพธ์"
+
+#: prefs.js:1584
+msgid "Try a different search term or check your spelling"
+msgstr "ลองคำค้นหาอื่นหรือตรวจสอบการสะกด"
+
+#: prefs.js:1618
+msgid "Search Error"
+msgstr "ข้อผิดพลาดในการค้นหา"
+
+#: prefs.js:1644 prefs.js:1662
+msgid "🌍 Auto Detection Enabled"
+msgstr "🌍 เปิดใช้การตรวจจับอัตโนมัติ"
+
+#: prefs.js:1649 prefs.js:1667
+msgid "📍 Manual - Please set location"
+msgstr "📍 กำหนดเอง - โปรดตั้งตำแหน่ง"
+
+#~ msgid "Could not open website."
+#~ msgstr "ไม่สามารถเปิดเว็บไซต์ได้"
+
+#~ msgid "Custom / Weather Underground URL"
+#~ msgstr "URL แบบกำหนดเอง / Weather Underground"
+
+#~ msgid "Donation address"
+#~ msgstr "ที่อยู่รับบริจาค"
+
+#~ msgid "Not Required"
+#~ msgstr "ไม่จำเป็น"
+
+#~ msgid "Not specified"
+#~ msgstr "ไม่ระบุ"
+
+#~ msgid "Rate Limit"
+#~ msgstr "ขีดจำกัดคำขอ"
+
+#~ msgid "Required"
+#~ msgstr "จำเป็น"
+
+#~ msgid "Test failed:"
+#~ msgstr "การทดสอบล้มเหลว:"
+
+#~ msgid "URL Placeholders"
+#~ msgstr "ตัวแทนใน URL"
+
+#~ msgid "☕ Support – Scan QR to buy me a coffee"
+#~ msgstr "☕ สนับสนุน – สแกน QR เพื่อซื้อกาแฟ"
+
+#~ msgid "Enable Weather Alerts"
+#~ msgstr "เปิดใช้การแจ้งเตือนสภาพอากาศ"
+
+#~ msgid "Send desktop notifications for dangerous weather"
+#~ msgstr "ส่งการแจ้งเตือนเดสก์ท็อปสำหรับสภาพอากาศอันตราย"
+
+#~ msgid "Extreme high temperature detected"
+#~ msgstr "ตรวจพบอุณหภูมิสูงมาก"
+
+#~ msgid "Extreme low temperature detected"
+#~ msgstr "ตรวจพบอุณหภูมิต่ำมาก"
+
+#~ msgid "SEVERE WEATHER"
+#~ msgstr "สภาพอากาศรุนแรง"
+
+#~ msgid "HEAT WARNING"
+#~ msgstr "คำเตือนคลื่นความร้อน"
+
+#~ msgid "Extreme temperatures"
+#~ msgstr "อุณหภูมิสุดขีด"
+
+#~ msgid "COLD WARNING"
+#~ msgstr "คำเตือนอากาศหนาวจัด"
+
+#~ msgid "STORM WARNING"
+#~ msgstr "คำเตือนพายุ"
+
+#~ msgid "Dangerous winds detected"
+#~ msgstr "ตรวจพบลมอันตราย"
+
+#~ msgid "WIND WARNING"
+#~ msgstr "คำเตือนลมแรง"
