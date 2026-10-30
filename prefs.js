@@ -12,69 +12,26 @@ import {
   gettext as _,
 } from "resource:///org/gnome/Shell/Extensions/js/extensions/prefs.js";
 
+// One provider table for the whole extension: lib/providers.js is where the
+// request URL, the payload parser and the UI metadata live. A copy here drifts
+// (it used to advertise methods the provider does not have), so it is imported.
+import { WEATHER_PROVIDERS } from "./lib/providers.js";
+
 const GEOCODING_URL = "https://geocoding-api.open-meteo.com/v1/search";
 const REVERSE_GEOCODING_URL = "https://api.bigdatacloud.net/data/reverse-geocode-client";
 
 
-const DEBUG = false;
+// Follows the debug-logging gsetting so the prefs dialog logs the same
+// provider diagnostics as the extension itself.
+let DEBUG = false;
 function _log(...args)  { if (DEBUG) console.log(...args); }
 function _warn(...args) { if (DEBUG) console.error(...args); }
 
 
-const WEATHER_PROVIDERS = {
-  openmeteo: {
-    name: "Open-Meteo (Free)",
-    description: "Free weather API - No API key required",
-    baseUrl: "https://api.open-meteo.com/v1/forecast",
-    requiresApiKey: false,
-    supportedParams: ["temperature_2m", "relative_humidity_2m", "weather_code", "wind_speed_10m", "surface_pressure"],
-    rateLimit: "10,000 requests/day"
-  },
-  meteosource: {
-    name: "Meteosource (Free)",
-    description: "Free tier - 400 calls/day without API key",
-    baseUrl: "https://www.meteosource.com/api/v1/free/point",
-    requiresApiKey: false,
-    supportedParams: ["temperature", "humidity", "weather_icon", "wind_speed", "pressure"],
-    rateLimit: "400 requests/day (free tier)"
-  },
-  wttr: {
-    name: "Wttr.in (Free)",
-    description: "Free console weather service - No registration, unlimited requests",
-    baseUrl: "https://wttr.in",
-    requiresApiKey: false,
-    supportedParams: ["temp_C", "humidity", "weatherCode", "windspeedKmph", "pressure"],
-    rateLimit: "No limits"
-  },
-  openweathermap: {
-    name: "OpenWeatherMap",
-    description: "Comprehensive weather data - API key required",
-    baseUrl: "https://api.openweathermap.org/data/2.5/weather",
-    requiresApiKey: true,
-    supportedParams: ["temp", "humidity", "weather", "wind_speed", "pressure"],
-    rateLimit: "1,000 requests/day (free tier)"
-  },
-  weatherapi: {
-    name: "WeatherAPI",
-    description: "Real-time weather API - API key required",
-    baseUrl: "https://api.weatherapi.com/v1/forecast.json",
-    requiresApiKey: true,
-    supportedParams: ["temp_c", "humidity", "condition", "wind_kph", "pressure_mb"],
-    rateLimit: "1 million requests/month (free tier)"
-  },
-  custom: {
-    name: "Custom Provider",
-    description: "Configure your own weather API endpoint",
-    baseUrl: "",
-    requiresApiKey: true,
-    supportedParams: [],
-    rateLimit: "Depends on provider"
-  }
-};
-
 export default class WeatherPreferences extends ExtensionPreferences {
   fillPreferencesWindow(window) {
     const settings = this.getSettings("org.gnome.shell.extensions.advanced-weather");
+    DEBUG = settings.get_boolean("debug-logging");
     this._session = new Soup.Session();
     this._session.timeout = 15;
 
@@ -89,6 +46,10 @@ export default class WeatherPreferences extends ExtensionPreferences {
       this._customUrlRow = null;
       this._providerInfoRow = null;
       this._searchResultsGroup = null;
+      this._fallbackOrderGroup = null;
+      this._fallbackRowRefs = [];
+      this._rerenderFallbackRows = null;
+      this._cacheStatusRow = null;
     });
 
     window.set_title(_("Advanced Weather Companion"));
@@ -562,9 +523,9 @@ export default class WeatherPreferences extends ExtensionPreferences {
       const selectedKey = providerKeys[providerRow.get_selected()];
       settings.set_string("weather-provider", selectedKey);
       this._updateProviderSettings(selectedKey);
-      
-      // Force settings sync
-      settings.sync();
+      // no settings.sync() here: GSettings writes are flushed immediately, and
+      // GSettings.sync() no longer exists in the GLib shipped with GNOME 50,
+      // so calling it killed the whole preferences window.
     });
 
     
@@ -661,8 +622,129 @@ export default class WeatherPreferences extends ExtensionPreferences {
     this._providerDetailsGroup.add(this._providerInfoRow);
     this._providerDetailsGroup.add(testConnectionRow);
 
+    // ── Automatic provider fallback ──────────────────────────────────────────
+    const fallbackGroup = new Adw.PreferencesGroup({
+      title: _("Automatic Provider Fallback"),
+      description: _("When a provider fails, the next one is tried. Every provider is used at most once per refresh.")
+    });
+
+    const fallbackSwitchRow = new Adw.SwitchRow({
+      title: _("Try Other Providers On Failure"),
+      subtitle: _("Turn off to use only the selected provider")
+    });
+    fallbackSwitchRow.set_active(settings.get_boolean("enable-provider-fallback"));
+
+    this._fallbackOrderGroup = new Adw.PreferencesGroup({
+      title: _("Fallback Priority"),
+      description: _("Providers are tried in this order. The selected provider is always tried first.")
+    });
+    this._fallbackRowRefs = [];
+
+    const renderFallbackRows = () => {
+      if (!this._fallbackOrderGroup) return;
+      for (const row of this._fallbackRowRefs) this._fallbackOrderGroup.remove(row);
+      this._fallbackRowRefs = [];
+
+      const keys = this._getFallbackKeys(settings);
+      keys.forEach((key, index) => {
+        const provider = WEATHER_PROVIDERS[key];
+        const row = new Adw.ActionRow({
+          title: `${index + 1}. ${provider.name}`,
+          subtitle: provider.requiresApiKey
+            ? _("API key required")
+            : _("Free, no API key"),
+          activatable: false
+        });
+
+        const upButton = new Gtk.Button({
+          icon_name: "go-up-symbolic",
+          valign: Gtk.Align.CENTER
+        });
+        upButton.add_css_class("flat");
+        upButton.set_sensitive(index > 0);
+        upButton.connect("clicked", () => this._moveFallbackProvider(settings, index, -1));
+
+        const downButton = new Gtk.Button({
+          icon_name: "go-down-symbolic",
+          valign: Gtk.Align.CENTER
+        });
+        downButton.add_css_class("flat");
+        downButton.set_sensitive(index < keys.length - 1);
+        downButton.connect("clicked", () => this._moveFallbackProvider(settings, index, 1));
+
+        row.add_suffix(downButton);
+        row.add_suffix(upButton);
+
+        this._fallbackRowRefs.push(row);
+        this._fallbackOrderGroup.add(row);
+      });
+    };
+
+    this._rerenderFallbackRows = renderFallbackRows;
+
+    fallbackSwitchRow.connect("notify::active", () => {
+      const enabled = fallbackSwitchRow.get_active();
+      settings.set_boolean("enable-provider-fallback", enabled);
+      this._fallbackOrderGroup.visible = enabled;
+    });
+    this._fallbackOrderGroup.visible = fallbackSwitchRow.get_active();
+
+    renderFallbackRows();
+    // A custom endpoint only joins the fallback list once a URL is configured.
+    settings.connect("changed::custom-weather-url", renderFallbackRows);
+
+    fallbackGroup.add(fallbackSwitchRow);
+
+    // ── Offline data ────────────────────────────────────────────────────────
+    const cacheGroup = new Adw.PreferencesGroup({
+      title: _("Offline Weather Data"),
+      description: _("The last successful fetch, including the hourly and 7-day forecasts, is kept and shown instead of an error when every provider fails.")
+    });
+
+    const cacheAgeRow = new Adw.SpinRow({
+      title: _("Use Cached Data Up To"),
+      subtitle: _("Maximum age of the cached forecast, in days"),
+      adjustment: new Gtk.Adjustment({
+        lower: 1,
+        upper: 14,
+        step_increment: 1,
+        page_increment: 1,
+        value: settings.get_int("weather-cache-max-age-days") || 7
+      })
+    });
+    cacheAgeRow.connect("notify::value", () => {
+      settings.set_int("weather-cache-max-age-days", Math.round(cacheAgeRow.get_value()));
+    });
+
+    this._cacheStatusRow = new Adw.ActionRow({
+      title: _("Cached Forecast"),
+      activatable: false
+    });
+
+    const clearCacheButton = new Gtk.Button({
+      label: _("Clear"),
+      valign: Gtk.Align.CENTER
+    });
+    clearCacheButton.add_css_class("flat");
+    clearCacheButton.connect("clicked", () => {
+      settings.set_string("cached-weather-data", "{}");
+      settings.set_int64("weather-cached-at", 0);
+      this._updateCacheStatusRow(settings);
+      this._showToast(_("Cached weather data cleared"));
+    });
+    this._cacheStatusRow.add_suffix(clearCacheButton);
+    this._updateCacheStatusRow(settings);
+    // Keep the row live while the panel writes new cache entries in the background.
+    settings.connect("changed::cached-weather-data", () => this._updateCacheStatusRow(settings));
+
+    cacheGroup.add(cacheAgeRow);
+    cacheGroup.add(this._cacheStatusRow);
+
     page.add(providerGroup);
     page.add(this._providerDetailsGroup);
+    page.add(fallbackGroup);
+    page.add(this._fallbackOrderGroup);
+    page.add(cacheGroup);
 
 
     this._updateProviderSettings(currentProvider);
@@ -670,9 +752,79 @@ export default class WeatherPreferences extends ExtensionPreferences {
     return page;
   }
 
+  /**
+   * Fallback priority list: stored order first, then any provider that is not
+   * listed yet. A custom endpoint counts only when a URL is configured.
+   */
+  _getFallbackKeys(settings) {
+    const available = Object.keys(WEATHER_PROVIDERS).filter(key =>
+      key !== "custom" || (settings.get_string("custom-weather-url") || "").trim()
+    );
+    const stored = settings.get_strv("fallback-provider-order") ?? [];
+    return [
+      ...stored.filter(key => available.includes(key)),
+      ...available.filter(key => !stored.includes(key))
+    ];
+  }
+
+  _updateCacheStatusRow(settings) {
+    if (!this._cacheStatusRow) return;
+
+    let raw = "{}";
+    try {
+      raw = settings.get_string("cached-weather-data") || "{}";
+    } catch (error) {
+      _warn("Could not read the weather cache:", error);
+    }
+
+    if (raw.length < 3) {
+      this._cacheStatusRow.set_subtitle(_("No cached data yet"));
+      return;
+    }
+
+    try {
+      const data = JSON.parse(raw);
+      const savedAt = Number(data.fetchedAt ?? 0) || Number(settings.get_int64("weather-cached-at") ?? 0);
+      const ageMinutes = Math.max(0, Math.round((GLib.get_real_time() / 1000000 - savedAt) / 60));
+
+      let ageText;
+      if (ageMinutes < 60) ageText = `${ageMinutes} ${_("min ago")}`;
+      else if (ageMinutes < 1440) ageText = `${Math.round(ageMinutes / 60)} ${_("h ago")}`;
+      else ageText = `${Math.round(ageMinutes / 1440)} ${_("days ago")}`;
+
+      const source = data.provider ?? WEATHER_PROVIDERS[data.providerKey]?.name ?? _("unknown provider");
+      const temp = typeof data.current?.temperature_2m === "number"
+        ? ` • ${Math.round(data.current.temperature_2m)}°C`
+        : "";
+      const hourly = data.hourly?.time?.length ? ` • ⏰ ${data.hourly.time.length}` : "";
+      const daily = data.daily?.time?.length ? ` • 📅 ${data.daily.time.length}` : "";
+
+      this._cacheStatusRow.set_subtitle(`♻️ ${source}${temp} • ${ageText}${hourly}${daily}`);
+    } catch (error) {
+      _warn("Could not parse the weather cache:", error);
+      this._cacheStatusRow.set_subtitle(_("Cached data is unreadable"));
+    }
+  }
+
+  _moveFallbackProvider(settings, index, delta) {
+    const order = this._getFallbackKeys(settings);
+    const target = index + delta;
+    if (target < 0 || target >= order.length) return;
+
+    [order[index], order[target]] = [order[target], order[index]];
+    settings.set_strv("fallback-provider-order", order);
+
+    this._rerenderFallbackRows?.();
+  }
+
   _updateProviderSettings(providerKey) {
     const provider = WEATHER_PROVIDERS[providerKey];
 
+    // The provider combo reports its selection while the page is still being
+    // built, before the detail rows exist. They are refreshed right after they
+    // are created, so there is nothing to update yet.
+    if (!provider || !this._apiKeyRow || !this._customUrlRow || !this._providerInfoRow)
+      return;
 
     this._apiKeyRow.visible = provider.requiresApiKey;
 
@@ -712,40 +864,56 @@ export default class WeatherPreferences extends ExtensionPreferences {
     }
   }
 
+  /**
+   * Coordinates for the "Test" request: the location the panel will actually
+   * ask for, so the test answers "will my weather work", not "is the API up
+   * somewhere". Falls back to a fixed point when the location is automatic and
+   * has not been resolved yet.
+   */
+  _testCoordinates() {
+    // Ask for the place the panel actually shows: the manual coordinates, else
+    // the ones the last successful fetch cached (an auto-detected location only
+    // lives in the panel process), else a fixed probe point.
+    const parts = (this._settings.get_string("location") || "").split(",");
+    const lat = parseFloat(parts[0]);
+    const lon = parseFloat(parts[1]);
+    if (isFinite(lat) && isFinite(lon)) return [lat, lon];
+
+    try {
+      const cached = JSON.parse(this._settings.get_string("cached-weather-data") || "{}");
+      if ((isFinite(cached.lat) && isFinite(cached.lon)) && (cached.lat || cached.lon))
+        return [cached.lat, cached.lon];
+    } catch {
+      // a cache we cannot read says nothing about where we are
+    }
+    return [52.52, 13.405];
+  }
+
   async _testWeatherConnection(settings) {
     if (this._testInProgress) return;
     this._testInProgress = true;
     this._testButton.set_label(_("Testing…"));
     this._testButton.set_sensitive(false);
 
+    let key = "";
     try {
-      const key       = this._settings.get_string("weather-provider") || "openmeteo";
-      const apiKey    = this._settings.get_string("weather-api-key")   || "";
-      const customUrl = this._settings.get_string("custom-weather-url") || "";
-      const cfg       = WEATHER_PROVIDERS[key];
+      key           = this._settings.get_string("weather-provider") || "openmeteo";
+      const apiKey  = this._settings.get_string("weather-api-key")  || "";
+      const cfg     = WEATHER_PROVIDERS[key];
+
+      if (!cfg)
+        throw new Error(`no adapter for provider "${key}"`);
+
+      if (key === "custom" && !(this._settings.get_string("custom-weather-url") || "").trim())
+        throw new Error(_("Custom URL is required"));
 
       if (cfg.requiresApiKey && !apiKey.trim())
         throw new Error(_("API key is required for") + " " + cfg.name);
 
-      let testUrl;
-      if (key === "custom") {
-        if (!customUrl.trim())
-          throw new Error(_("Custom URL is required"));
-
-        testUrl = customUrl
-          .replace("{lat}",       TEST_LAT).replace("{latitude}",  TEST_LAT)
-          .replace("{lon}",       TEST_LON).replace("{longitude}", TEST_LON);
-
-        if (apiKey?.trim()) {
-          const hasKey =
-            testUrl.includes("apiKey=") || testUrl.includes("api_key=") ||
-            testUrl.includes("key=")    || testUrl.includes("appid=");
-          if (!hasKey)
-            testUrl += (testUrl.includes("?") ? "&" : "?") + `apiKey=${apiKey}`;
-        }
-      } else {
-        testUrl = cfg.testUrl(TEST_LAT, TEST_LON, apiKey);
-      }
+      // The same adapter the panel uses, so a passing test means the panel will
+      // be able to read this endpoint too, not merely that it answers.
+      const [lat, lon] = this._testCoordinates();
+      const testUrl = cfg.buildUrl(lat, lon, apiKey);
 
       const msg = Soup.Message.new("GET", testUrl);
       msg.request_headers.append("User-Agent", "GNOME-Weather-Extension/1.0");
@@ -756,29 +924,35 @@ export default class WeatherPreferences extends ExtensionPreferences {
       if (msg.status_code !== 200)
         throw new Error(`HTTP ${msg.status_code}: ${msg.reason_phrase}`);
 
-      const resp = JSON.parse(new TextDecoder().decode(bytes.get_data()));
+      // An adapter that rejects the body usually means a wrong key or URL, so
+      // the toast keeps the actionable wording while the journal keeps the reason.
+      let parsed = null;
+      try {
+        parsed = cfg.parseResponse(JSON.parse(new TextDecoder().decode(bytes.get_data())));
+      } catch (parseError) {
+        _warn(`provider ${key} rejected its response:`, parseError?.message ?? parseError);
+      }
 
-      if (!cfg.validateResponse(resp))
+      const raw = parsed?.current?.temperature_2m;
+
+      if (raw === undefined || raw === null || !isFinite(parseFloat(raw)))
         throw new Error(
           _("Response received but no weather data found. Check your API key and URL."));
 
-      const raw     = cfg.getTemp(resp);
-      const temp    = raw !== null ? Math.round(parseFloat(raw)) : null;
-      const tempStr = temp !== null
-        ? " " + _("Current temp:") + ` ${temp}°C`
-        : "";
-      this._showToast("✅ " + _("Connection successful!") + tempStr);
+      this._showToast("✅ " + _("Connection successful!") + " " +
+        _("Current temp:") + ` ${Math.round(parseFloat(raw))}°C`);
 
     } catch (e) {
       if (e.matches?.(Gio.IOErrorEnum, Gio.IOErrorEnum.CANCELLED)) return;
-      this._showToast("❌ " + _("Connection failed:") + " " + e.message);
+      _warn(`provider test failed for ${key || "unknown"}:`, e?.message ?? e);
+      this._showToast("❌ " + _("Connection failed:") + " " + (e?.message ?? e));
     } finally {
       this._testInProgress = false;
       this._testButton.set_label(_("Test"));
       this._testButton.set_sensitive(true);
     }
   }
-  
+
   _createAppearancePage(settings) {
     const page = new Adw.PreferencesPage({
       title: _("Appearance"),

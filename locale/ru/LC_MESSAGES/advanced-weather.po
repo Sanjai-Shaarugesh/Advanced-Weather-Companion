@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: advanced-weather 2.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Sanjai-Shaarugesh/Advanced-Weather-Companion/issues\n"
-"POT-Creation-Date: 2026-03-15 00:00+0000\n"
-"PO-Revision-Date: 2026-03-15 00:00+0000\n"
+"POT-Creation-Date: 2026-10-22 19:18+0800\n"
+"PO-Revision-Date: 2026-10-22 12:00+0000\n"
 "Last-Translator: Advanced Weather Team\n"
 "Language-Team: Russian\n"
 "Language: ru\n"
@@ -13,665 +13,1232 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-msgid "1 hour"
-msgstr "1 час"
-
-msgid "10 minutes"
-msgstr "10 минут"
-
-msgid "15 minutes"
-msgstr "15 минут"
-
-msgid "30 minutes"
-msgstr "30 минут"
-
-msgid "5 minutes"
-msgstr "5 минут"
-
-msgid "A beautiful, modern weather companion for GNOME Shell"
-msgstr "Красивый современный погодный виджет для GNOME Shell"
-
-msgid "API Key"
-msgstr "API-ключ"
-
-msgid "About"
-msgstr "О расширении"
-
-msgid "Advanced Weather Companion"
-msgstr "Расширенный погодный виджет"
-
-msgid "Appearance"
-msgstr "Внешний вид"
-
-msgid "Center"
-msgstr "По центру"
-
-msgid "Choose detection method"
-msgstr "Выбрать метод определения"
-
-msgid "Choose your weather data provider"
-msgstr "Выбрать поставщика погодных данных"
-
-msgid "Clear search"
-msgstr "Очистить поиск"
-
-msgid "Configure how weather appears in the panel"
-msgstr "Настроить отображение погоды на панели"
-
-msgid "Configure how your location is determined"
-msgstr "Настроить определение местоположения"
-
-msgid "Configure measurement units and display format"
-msgstr "Настроить единицы измерения и формат отображения"
-
-msgid "Configure weather data refresh settings"
-msgstr "Настроить интервал обновления"
-
-msgid "Configure your selected weather provider"
-msgstr "Настроить выбранный поставщик погоды"
-
-msgid "Connection successful!"
-msgstr "Соединение установлено!"
-
-msgid "Could not copy. Please copy manually: "
-msgstr "Не удалось скопировать. Скопируйте вручную: "
-
-msgid "Could not open website."
-msgstr "Не удалось открыть сайт."
-
-msgid "Current Location"
-msgstr "Текущее местоположение"
-
-msgid "Current temp:"
-msgstr "Текущая температура:"
-
-msgid "Custom / Weather Underground URL"
-msgstr "Пользовательский URL / Weather Underground"
-
-msgid "Custom URL is required"
-msgstr "Требуется пользовательский URL"
-
-msgid "Display AUTO/MANUAL indicator in panel"
-msgstr "Показывать индикатор АВТО/ВРУЧНУЮ на панели"
-
-msgid "Display relative humidity in weather details"
-msgstr "Показывать относительную влажность"
-
-msgid "Display temperature alongside the weather icon"
-msgstr "Показывать температуру рядом со значком погоды"
-
-msgid "Display time in 12-hour format with AM/PM"
-msgstr "Отображать время в 12-часовом формате с AM/PM"
-
-msgid "Donation Address"
-msgstr "Адрес для пожертвований"
-
-msgid "Donation address"
-msgstr "Адрес для пожертвований"
-
-msgid "Enable or disable weather features"
-msgstr "Включить или отключить функции погоды"
-
-msgid "Extension Links"
-msgstr "Ссылки расширения"
-
-msgid "Features"
-msgstr "Функции"
-
-msgid "General"
-msgstr "Общие"
-
-msgid "Get API Key"
-msgstr "Получить API-ключ"
-
-msgid "How often to refresh weather data"
-msgstr "Как часто обновлять погодные данные"
-
-msgid "Icon Size"
-msgstr "Размер значка"
-
-msgid "Invalid coordinates. Lat: −90 to 90, Lon: −180 to 180."
-msgstr "Неверные координаты. Шир.: −90 до 90, Дол.: −180 до 180."
-
-msgid "Left"
-msgstr "Слева"
-
-msgid "License & Credits"
-msgstr "Лицензия и благодарности"
-
-msgid "Location"
-msgstr "Местоположение"
-
-msgid "Location Detection"
-msgstr "Определение местоположения"
-
-msgid "Location Mode"
-msgstr "Режим местоположения"
-
-msgid "MIT License – Free and open source software"
-msgstr "Лицензия MIT – Свободное программное обеспечение"
-
-msgid "Manual Location Search"
-msgstr "Поиск местоположения вручную"
-
-msgid "Modern weather extension with native GNOME design"
-msgstr "Современное погодное расширение в стиле GNOME"
-
-msgid "No Results Found"
-msgstr "Результатов не найдено"
-
-msgid "Not Required"
-msgstr "Не требуется"
-
-msgid "Not specified"
-msgstr "Не указано"
-
-msgid "Open Source License"
-msgstr "Лицензия с открытым исходным кодом"
-
-msgid "Open source software information"
-msgstr "Информация о программном обеспечении с открытым кодом"
-
-msgid "Panel Display"
-msgstr "Отображение на панели"
-
-msgid "Panel Position"
-msgstr "Положение на панели"
-
-msgid "Panel Position Index"
-msgstr "Индекс положения на панели"
-
-msgid "Position index within the selected panel area"
-msgstr "Индекс позиции в выбранной области панели"
-
-msgid "Provider Configuration"
-msgstr "Настройка поставщика"
-
-msgid "Provider Information"
-msgstr "Информация о поставщике"
-
-msgid "Rate Limit"
-msgstr "Ограничение запросов"
-
-msgid "Refresh location display"
-msgstr "Обновить отображение местоположения"
-
-msgid "Required"
-msgstr "Обязательно"
-
-msgid "Response received but no weather data found. Check your API key and URL."
-msgstr "Ответ получен, но данные о погоде не найдены. Проверьте API-ключ и URL."
-
-msgid "Right"
-msgstr "Справа"
-
-msgid "Search Error"
-msgstr "Ошибка поиска"
-
-msgid "Search Examples"
-msgstr "Примеры поиска"
-
-msgid "Search Location"
-msgstr "Поиск местоположения"
-
-msgid "Search Results"
-msgstr "Результаты поиска"
-
-msgid "Search by city name or coordinates (lat, lon)"
-msgstr "Поиск по названию города или координатам"
-
-msgid "Search failed. Please try again."
-msgstr "Поиск не удался. Попробуйте ещё раз."
-
-msgid "Search for location"
-msgstr "Найти местоположение"
-
-msgid "Search timed out. Please try again."
-msgstr "Время поиска истекло. Попробуйте ещё раз."
-
-msgid "Select this location"
-msgstr "Выбрать это местоположение"
-
-msgid "Select weather API service"
-msgstr "Выбрать сервис погодного API"
-
-msgid "Show Humidity"
-msgstr "Показывать влажность"
-
-msgid "Show Location Indicator"
-msgstr "Показывать индикатор местоположения"
-
-msgid "Show Temperature Text"
-msgstr "Показывать температуру текстом"
-
-msgid "Size of the temperature text in pixels"
-msgstr "Размер текста температуры в пикселях"
-
-msgid "Size of the weather icon in pixels"
-msgstr "Размер значка погоды в пикселях"
-
-msgid "Source code, issues, and contributions"
-msgstr "Исходный код, проблемы и вклад"
-
-msgid "Support development with a small donation"
-msgstr "Поддержите разработку небольшим пожертвованием"
-
-msgid "Switch between Celsius and Fahrenheit"
-msgstr "Переключение между Цельсием и Фаренгейтом"
-
-msgid "Test"
-msgstr "Тест"
-
-msgid "Test Connection"
-msgstr "Проверить соединение"
-
-msgid "Test failed:"
-msgstr "Тест не пройден:"
-
-msgid "Testing…"
-msgstr "Проверка…"
-
-msgid "Text Size"
-msgstr "Размер текста"
-
-msgid "Try a different search term or check your spelling"
-msgstr "Попробуйте другой запрос или проверьте правописание"
-
-msgid "URL Placeholders"
-msgstr "Заполнители URL"
-
-msgid "Unable to reach location service. Check your connection."
-msgstr "Не удаётся связаться со службой местоположения. Проверьте соединение."
-
-msgid "Unit for wind speed display"
-msgstr "Единица отображения скорости ветра"
-
-msgid "Units & Format"
-msgstr "Единицы и формат"
-
-msgid "Update Interval"
-msgstr "Интервал обновления"
-
-msgid "Updates"
-msgstr "Обновления"
-
-msgid "Use 12-hour Format"
-msgstr "Использовать 12-часовой формат"
-
-msgid "Use Fahrenheit"
-msgstr "Использовать Фаренгейты"
-
-msgid "Verify your provider settings work correctly"
-msgstr "Проверьте настройки поставщика"
-
-msgid "Version 2.0"
-msgstr "Версия 2.0"
-
-msgid "View on GitHub"
-msgstr "Посмотреть на GitHub"
-
-msgid "Weather Data Source"
-msgstr "Источник погодных данных"
-
-msgid "Weather Data Sources"
-msgstr "Источники погодных данных"
-
-msgid "Weather Provider"
-msgstr "Поставщик погоды"
-
-msgid "Where to show the weather widget"
-msgstr "Где отображать виджет погоды"
-
-msgid "Wind Speed Unit"
-msgstr "Единица скорости ветра"
-
-msgid "copied to clipboard"
-msgstr "скопировано в буфер обмена"
-
-msgid "km/h (Kilometers per hour)"
-msgstr "км/ч (километры в час)"
-
-msgid "knots (Nautical miles)"
-msgstr "узлы (морские мили)"
-
-msgid "m/s (Meters per second)"
-msgstr "м/с (метры в секунду)"
-
-msgid "mph (Miles per hour)"
-msgstr "миль/ч (мили в час)"
-
-msgid "☕ Buy Me a Coffee"
-msgstr "☕ Угостите меня кофе"
-
-msgid "☕ Support – Scan QR to buy me a coffee"
-msgstr "☕ Поддержка – отсканируйте QR для угощения кофе"
-
-msgid "✅ Location updated successfully"
-msgstr "✅ Местоположение успешно обновлено"
-
-msgid "🌍 Auto Detection"
-msgstr "🌍 Автоопределение"
-
-msgid "🌍 Auto Detection Enabled"
-msgstr "🌍 Автоопределение включено"
-
-msgid "📍 Manual Location"
-msgstr "📍 Ручное местоположение"
-
-msgid "📍 Manual – Please set location"
-msgstr "📍 Вручную – задайте местоположение"
-
-msgid "API key is required for "
-msgstr "Требуется API-ключ для "
-
-msgid "Enable Weather Alerts"
-msgstr "Включить погодные оповещения"
-
-msgid "Send desktop notifications for dangerous weather"
-msgstr "Отправлять уведомления рабочего стола при опасной погоде"
-
-msgid "Weather Alerts"
-msgstr "Погодные оповещения"
-
-msgid "⚠️ Severe Weather Alert"
-msgstr "⚠️ Предупреждение об опасной погоде"
-
-msgid "🌡️ Heat Warning"
-msgstr "🌡️ Предупреждение о жаре"
-
-msgid "🥶 Cold Warning"
-msgstr "🥶 Предупреждение о морозе"
-
-msgid "💨 Wind Warning"
-msgstr "💨 Предупреждение о ветре"
-
-msgid "🌀 Storm Warning"
-msgstr "🌀 Штормовое предупреждение"
-
-msgid "Extreme high temperature detected"
-msgstr "Обнаружена экстремально высокая температура"
-
-msgid "Extreme low temperature detected"
-msgstr "Обнаружена экстремально низкая температура"
-
-msgid "Dangerous wind speed"
-msgstr "Опасная скорость ветра"
-
-msgid "Strong winds detected"
-msgstr "Обнаружен сильный ветер"
-
-msgid "Advanced Weather"
-msgstr "Расширенная погода"
-
-msgid "Loading weather…"
-msgstr "Загрузка погоды…"
-
-msgid "Location Information"
-msgstr "Сведения о местоположении"
-
-msgid "Weather Provider Status"
-msgstr "Статус поставщика погоды"
-
-msgid "Hourly Forecast"
-msgstr "Почасовой прогноз"
-
-msgid "7-Day Forecast"
-msgstr "Прогноз на 7 дней"
-
-msgid "Weather Insights"
-msgstr "Анализ погоды"
-
-msgid "Refresh Weather"
-msgstr "Обновить погоду"
-
-msgid "Extension Settings"
-msgstr "Настройки расширения"
-
-msgid "Active"
-msgstr "Активен"
-
-msgid "Loading…"
-msgstr "Загрузка…"
-
-msgid "Status"
-msgstr "Статус"
-
-msgid "Checking…"
-msgstr "Проверка…"
-
-msgid "Last Update"
-msgstr "Последнее обновление"
-
-msgid "Never"
-msgstr "Никогда"
-
-msgid "Available Providers"
-msgstr "Доступные поставщики"
-
-msgid "Free"
-msgstr "Бесплатно"
-
-msgid "Custom Provider"
-msgstr "Пользовательский поставщик"
-
-msgid "Working"
-msgstr "Работает"
-
-msgid "Error"
-msgstr "Ошибка"
-
-msgid "Connection Timeout"
-msgstr "Тайм-аут соединения"
-
-msgid "Not Configured"
-msgstr "Не настроен"
-
-msgid "Testing Connection…"
-msgstr "Проверка соединения…"
-
-msgid "Unknown"
-msgstr "Неизвестно"
-
-msgid "Current"
-msgstr "Текущий"
-
-msgid "Auto-detected"
-msgstr "Определено автоматически"
-
-msgid "Not set"
-msgstr "Не задано"
-
-msgid "Coordinates"
-msgstr "Координаты"
-
-msgid "Not available"
-msgstr "Недоступно"
-
-msgid "Method"
-msgstr "Метод"
-
-msgid "IP-based geolocation"
-msgstr "Геолокация по IP"
-
-msgid "Manually configured"
-msgstr "Настроено вручную"
-
-msgid "Switch to Auto Detection"
-msgstr "Переключиться на автоопределение"
-
-msgid "Switch to Manual Location"
-msgstr "Переключиться на ручное местоположение"
-
-msgid "Enter city name…"
-msgstr "Введите название города…"
-
-msgid "Search"
-msgstr "Поиск"
-
-msgid "Clear"
-msgstr "Очистить"
-
-msgid "Searching…"
-msgstr "Поиск…"
-
-msgid "No locations found"
-msgstr "Местоположений не найдено"
-
-msgid "Unknown Location"
-msgstr "Неизвестное местоположение"
-
-msgid "Unknown Provider"
-msgstr "Неизвестный поставщик"
-
-msgid "SEVERE WEATHER"
-msgstr "ОПАСНАЯ ПОГОДА"
-
-msgid "HEAT WARNING"
-msgstr "ПРЕДУПРЕЖДЕНИЕ О ЖАРЕ"
-
-msgid "Extreme temperatures"
-msgstr "Экстремальные температуры"
-
-msgid "COLD WARNING"
-msgstr "ПРЕДУПРЕЖДЕНИЕ О МОРОЗЕ"
-
-msgid "Extreme low temperatures"
-msgstr "Экстремально низкие температуры"
-
-msgid "STORM WARNING"
-msgstr "ШТОРМОВОЕ ПРЕДУПРЕЖДЕНИЕ"
-
-msgid "Dangerous winds detected"
-msgstr "Обнаружен опасный ветер"
-
-msgid "WIND WARNING"
-msgstr "ПРЕДУПРЕЖДЕНИЕ О ВЕТРЕ"
-
-msgid "Temperature Trend"
-msgstr "Тенденция температуры"
-
-msgid "Precipitation (24h)"
-msgstr "Осадки (24ч)"
-
-msgid "Wind"
-msgstr "Ветер"
-
-msgid "Strong"
-msgstr "Сильный"
-
-msgid "Moderate"
-msgstr "Умеренный"
-
-msgid "Light"
-msgstr "Слабый"
-
-msgid "UV Index"
-msgstr "УФ-индекс"
-
-msgid "High"
-msgstr "Высокий"
-
-msgid "Low"
-msgstr "Низкий"
-
-msgid "Insufficient data"
-msgstr "Недостаточно данных"
-
-msgid "Warming"
-msgstr "Потепление"
-
-msgid "Cooling"
-msgstr "Похолодание"
-
-msgid "Stable"
-msgstr "Стабильно"
-
-msgid "Today"
-msgstr "Сегодня"
-
-msgid "Tomorrow"
-msgstr "Завтра"
-
-msgid "AUTO"
-msgstr "АВТО"
-
-msgid "MANUAL"
-msgstr "ВРУЧНУЮ"
-
+#: extension.js:222 extension.js:555
 msgid "Offline"
 msgstr "Нет сети"
 
-msgid "No Key"
-msgstr "Нет ключа"
-
+#: extension.js:370
 msgid "fallback"
 msgstr "резервный"
 
+#: extension.js:519
+msgid "cached data"
+msgstr "кэшированные данные"
+
+#: extension.js:553
+msgid "No Key"
+msgstr "Нет ключа"
+
+#: extension.js:556 lib/panelMenu.js:435 lib/panelMenu.js:663
+msgid "Error"
+msgstr "Ошибка"
+
+#: extension.js:619
+msgid "Advanced Weather"
+msgstr "Расширенная погода"
+
+#: extension.js:627
+msgid "What to do:"
+msgstr "Что делать:"
+
+#: lib/alerts.js:37
+msgid "⚠️ Severe Weather Alert"
+msgstr "⚠️ Предупреждение об опасной погоде"
+
+#: lib/alerts.js:46
+msgid "⚠️ Weather Warning"
+msgstr "⚠️ Метеопредупреждение"
+
+#: lib/alerts.js:66
+msgid "🌡️ Extreme Heat Warning"
+msgstr "🌡️ Предупреждение об экстремальной жаре"
+
+#: lib/alerts.js:68
+msgid "Dangerously high temperature"
+msgstr "Опасная высокая температура"
+
+#: lib/alerts.js:75
+msgid "Stay indoors during peak hours (10 AM – 4 PM)"
+msgstr "Оставайтесь в помещении в пиковые часы (10:00–16:00)"
+
+#: lib/alerts.js:76
+msgid "Drink water regularly — at least 2–3 litres per day"
+msgstr "Пейте воду регулярно — не менее 2–3 литров в день"
+
+#: lib/alerts.js:77
+msgid "Wear light, loose, light-coloured clothing"
+msgstr "Носите лёгкую, свободную и светлую одежду"
+
+#: lib/alerts.js:78
+msgid "Never leave children or pets in parked vehicles"
+msgstr "Никогда не оставляйте детей и животных в припаркованных автомобилях"
+
+#: lib/alerts.js:79
+msgid "Check on elderly neighbours and relatives"
+msgstr "Проверьте пожилых соседей и родственников"
+
+#: lib/alerts.js:80
+msgid "Use fans or air conditioning if available"
+msgstr "Используйте вентиляторы или кондиционер, если есть"
+
+#: lib/alerts.js:91
+msgid "🥶 Extreme Cold Warning"
+msgstr "🥶 Предупреждение об экстремальном холоде"
+
+#: lib/alerts.js:93
+msgid "Dangerously low temperature"
+msgstr "Опасная низкая температура"
+
+#: lib/alerts.js:100
+msgid "Layer clothing: base layer, insulation, waterproof outer shell"
+msgstr ""
+"Одевайтесь слоями: базовый слой, утепление, водонепроницаемая верхняя одежда"
+
+#: lib/alerts.js:101
+msgid "Cover exposed skin — risk of frostbite within 30 minutes"
+msgstr "Закройте открытую кожу — обморожение возможно в течение 30 минут"
+
+#: lib/alerts.js:102
+msgid "Keep emergency supplies in your vehicle if driving"
+msgstr "Держите аварийный запас в машине, если едете"
+
+#: lib/alerts.js:103
+msgid "Check heating systems and carbon-monoxide detectors"
+msgstr "Проверьте отопление и датчики угарного газа"
+
+#: lib/alerts.js:104
+msgid "Check on elderly and vulnerable people"
+msgstr "Проявляйте заботу о пожилых и уязвимых людях"
+
+#: lib/alerts.js:105
+msgid "Bring pets indoors"
+msgstr "Заберите домашних животных в помещение"
+
+#: lib/alerts.js:117
+msgid "🌀 Severe Storm Warning"
+msgstr "🌀 Предупреждение о сильной буре"
+
+#: lib/alerts.js:119
+msgid "Dangerous wind speed"
+msgstr "Опасная скорость ветра"
+
+#: lib/alerts.js:121
+msgid "Avoid all unnecessary travel"
+msgstr "Избегайте всех ненужных поездок"
+
+#: lib/alerts.js:122
+msgid "Stay away from trees, scaffolding, and signs"
+msgstr "Держитесь подальше от деревьев, строительных лесов и указателей"
+
+#: lib/alerts.js:123
+msgid "Do not attempt to drive high-sided vehicles"
+msgstr "Не управляйте транспортом с большой высотой кузова"
+
+#: lib/alerts.js:124
+msgid "Secure or bring inside any outdoor furniture"
+msgstr "Закрепите или уберите садовую мебель"
+
+#: lib/alerts.js:125
+msgid "Stay indoors away from windows"
+msgstr "Оставайтесь в помещении, вдали от окон"
+
+#: lib/alerts.js:126
+msgid "Follow local emergency service guidance"
+msgstr "Следуйте указаниям местных экстренных служб"
+
+#: lib/alerts.js:135
+msgid "💨 Strong Wind Warning"
+msgstr "💨 Предупреждение о сильном ветре"
+
+#: lib/alerts.js:137
+msgid "Strong winds detected"
+msgstr "Обнаружен сильный ветер"
+
+#: lib/alerts.js:140
+msgid ""
+"Take care when walking or cycling — gusts may be stronger than the average"
+msgstr ""
+"Будьте осторожны пешком и на велосипеде — порывы могут быть сильнее средней "
+"скорости"
+
+#: lib/alerts.js:142
+msgid "Secure loose outdoor items (bins, garden furniture, etc.)"
+msgstr ""
+"Закрепите незакреплённые предметы на улице (мусорные баки, садовая мебель и "
+"т. п.)"
+
+#: lib/alerts.js:143
+msgid "Drive with extra caution, especially on exposed roads or bridges"
+msgstr ""
+"Ведите с особой осторожностью, особенно на открытых участках дорог и мостах"
+
+#: lib/alerts.js:144
+msgid "Cyclists and motorcyclists should be especially cautious"
+msgstr "Велосипедистам и мотоциклистам стоит быть особенно осторожными"
+
+#: lib/alerts.js:158
+msgid "Seek shelter immediately in a sturdy building"
+msgstr "Немедленно укройтесь в прочном здании"
+
+#: lib/alerts.js:159
+msgid "Avoid open fields, hilltops, and isolated trees"
+msgstr "Избегайте открытых полей, вершин холмов и одиноких деревьев"
+
+#: lib/alerts.js:160
+msgid "Stay away from water, metal objects, and electrical equipment"
+msgstr ""
+"Держитесь подальше от воды, металлических предметов и электрооборудования"
+
+#: lib/alerts.js:161
+msgid "If outdoors and unable to shelter, crouch low — do not lie flat"
+msgstr "Если на улице и укрыться нельзя, присядьте низко — не ложитесь"
+
+#: lib/alerts.js:162
+msgid "Avoid using corded phones or plugged-in devices"
+msgstr "Не используйте проводные телефоны и устройства, включённые в сеть"
+
+#: lib/alerts.js:163
+msgid "Keep away from windows and doors"
+msgstr "Держитесь подальше от окон и дверей"
+
+#: lib/alerts.js:167
+msgid "Follow official emergency service guidance"
+msgstr "Следуйте официальным указаниям экстренных служб"
+
+#: lib/alerts.js:168
+msgid "Stay informed via local weather services"
+msgstr "Следите за сообщениями местных метеослужб"
+
+#: lib/alerts.js:169
+msgid "Avoid non-essential travel"
+msgstr "Избегайте поездок, если они не абсолютно необходимы"
+
+#: lib/alerts.js:178
+msgid "Avoid driving through flooded roads — even 30 cm can sweep a car away"
+msgstr ""
+"Не проезжайте по затопленным дорогам — даже 30 см могут смыть автомобиль"
+
+#: lib/alerts.js:180
+msgid "Be aware of localised flooding in low-lying areas"
+msgstr "Остерегайтесь локальных подтоплений в низинах"
+
+#: lib/alerts.js:181
+msgid "Carry waterproof clothing if you must travel"
+msgstr "Возьмите непромокаемую одежду, если поездка необходима"
+
+#: lib/alerts.js:182
+msgid "Check your local flood risk map"
+msgstr "Изучите местную карту риска наводнений"
+
+#: lib/alerts.js:188
+msgid "Avoid travel unless absolutely necessary"
+msgstr "Не путешествуйте, если это не абсолютно необходимо"
+
+#: lib/alerts.js:189
+msgid "If driving, carry a winter emergency kit (blanket, shovel, water)"
+msgstr ""
+"Если едете на машине, возьмите зимний аварийный набор (одеяло, лопата, вода)"
+
+#: lib/alerts.js:190
+msgid "Clear snow from paths and driveways carefully to avoid injury"
+msgstr ""
+"Осторожно убирайте снег с дорожек и подъездных путей, чтобы не получить "
+"травму"
+
+#: lib/alerts.js:191
+msgid "Be aware of roof loading from heavy snow accumulation"
+msgstr "Учитывайте нагрузку на крышу от скопления снега"
+
+#: lib/alerts.js:195
+msgid "Exercise caution outdoors"
+msgstr "Будьте осторожны на улице"
+
+#: lib/alerts.js:196
+msgid "Stay informed via local weather forecasts"
+msgstr "Следите за местными прогнозами погоды"
+
+#: lib/providers.js:619
 msgid "Clear Sky"
 msgstr "Ясное небо"
 
+#: lib/providers.js:624
 msgid "Mainly Clear"
 msgstr "Преимущественно ясно"
 
+#: lib/providers.js:629
 msgid "Partly Cloudy"
 msgstr "Переменная облачность"
 
+#: lib/providers.js:634
 msgid "Overcast"
 msgstr "Пасмурно"
 
+#: lib/providers.js:638
 msgid "Fog"
 msgstr "Туман"
 
+#: lib/providers.js:640
 msgid "Rime Fog"
 msgstr "Туман с изморозью"
 
+#: lib/providers.js:645
 msgid "Light Drizzle"
 msgstr "Лёгкая морось"
 
+#: lib/providers.js:650
 msgid "Drizzle"
 msgstr "Морось"
 
+#: lib/providers.js:655
 msgid "Heavy Drizzle"
 msgstr "Сильная морось"
 
+#: lib/providers.js:660
 msgid "Light Rain"
 msgstr "Лёгкий дождь"
 
+#: lib/providers.js:665
 msgid "Rain"
 msgstr "Дождь"
 
+#: lib/providers.js:670
 msgid "Heavy Rain"
 msgstr "Сильный дождь"
 
+#: lib/providers.js:675
 msgid "Light Snow"
 msgstr "Лёгкий снег"
 
+#: lib/providers.js:679
 msgid "Snow"
 msgstr "Снег"
 
+#: lib/providers.js:681
 msgid "Heavy Snow"
 msgstr "Сильный снег"
 
+#: lib/providers.js:686
 msgid "Snow Grains"
 msgstr "Снежная крупа"
 
+#: lib/providers.js:691 lib/providers.js:696
 msgid "Rain Showers"
 msgstr "Ливневый дождь"
 
+#: lib/providers.js:701
 msgid "Heavy Showers"
 msgstr "Сильные ливни"
 
+#: lib/providers.js:706
 msgid "Snow Showers"
 msgstr "Снежные ливни"
 
+#: lib/providers.js:711
 msgid "Heavy Snow Showers"
 msgstr "Сильные снежные ливни"
 
+#: lib/providers.js:716
 msgid "Thunderstorm"
 msgstr "Гроза"
 
+#: lib/providers.js:721
 msgid "Hail Storm"
 msgstr "Град"
 
+#: lib/providers.js:726
 msgid "Heavy Hail"
 msgstr "Сильный град"
+
+#: lib/panelMenu.js:124
+msgid "AUTO"
+msgstr "АВТО"
+
+#: lib/panelMenu.js:125
+msgid "MANUAL"
+msgstr "ВРУЧНУЮ"
+
+#: lib/panelMenu.js:134
+msgid "Loading weather…"
+msgstr "Загрузка погоды…"
+
+#: lib/panelMenu.js:142
+msgid "Weather Alerts"
+msgstr "Погодные оповещения"
+
+#: lib/panelMenu.js:149
+msgid "Location Information"
+msgstr "Сведения о местоположении"
+
+#: lib/panelMenu.js:156
+msgid "Weather Provider Status"
+msgstr "Статус поставщика погоды"
+
+#: lib/panelMenu.js:163
+msgid "Hourly Forecast"
+msgstr "Почасовой прогноз"
+
+#: lib/panelMenu.js:167
+msgid "7-Day Forecast"
+msgstr "Прогноз на 7 дней"
+
+#: lib/panelMenu.js:171
+msgid "Weather Insights"
+msgstr "Анализ погоды"
+
+#: lib/panelMenu.js:177
+msgid "Refresh Weather"
+msgstr "Обновить погоду"
+
+#: lib/panelMenu.js:185
+msgid "Extension Settings"
+msgstr "Настройки расширения"
+
+#: lib/panelMenu.js:281
+msgid "What to do"
+msgstr "Что делать"
+
+#: lib/panelMenu.js:319 lib/panelMenu.js:425
+msgid "Active"
+msgstr "Активен"
+
+#: lib/panelMenu.js:319 lib/panelMenu.js:469 lib/panelMenu.js:473
+#: lib/panelMenu.js:477
+msgid "Loading…"
+msgstr "Загрузка…"
+
+#: lib/panelMenu.js:323 lib/panelMenu.js:442
+msgid "Status"
+msgstr "Статус"
+
+#: lib/panelMenu.js:323
+msgid "Checking…"
+msgstr "Проверка…"
+
+#: lib/panelMenu.js:327 lib/panelMenu.js:455 lib/panelMenu.js:462
+msgid "Last Update"
+msgstr "Последнее обновление"
+
+#: lib/panelMenu.js:327 lib/panelMenu.js:462
+msgid "Never"
+msgstr "Никогда"
+
+#: lib/panelMenu.js:347
+msgid "Available Providers"
+msgstr "Доступные поставщики"
+
+#: lib/panelMenu.js:375
+msgid "Custom Provider"
+msgstr "Пользовательский поставщик"
+
+#: lib/panelMenu.js:428
+msgid "Free"
+msgstr "Бесплатно"
+
+#: lib/panelMenu.js:434
+msgid "Working"
+msgstr "Работает"
+
+#: lib/panelMenu.js:436
+msgid "Connection Timeout"
+msgstr "Тайм-аут соединения"
+
+#: lib/panelMenu.js:437
+msgid "Not Configured"
+msgstr "Не настроен"
+
+#: lib/panelMenu.js:438
+msgid "Testing Connection…"
+msgstr "Проверка соединения…"
+
+#: lib/panelMenu.js:439
+msgid "Showing cached data"
+msgstr "Показаны кэшированные данные"
+
+#: lib/panelMenu.js:446
+msgid "Unknown"
+msgstr "Неизвестно"
+
+#: lib/panelMenu.js:469 lib/panelMenu.js:983 lib/panelMenu.js:984
+msgid "Current"
+msgstr "Текущий"
+
+#: lib/panelMenu.js:473 lib/panelMenu.js:989 lib/panelMenu.js:994
+msgid "Coordinates"
+msgstr "Координаты"
+
+#: lib/panelMenu.js:477 lib/panelMenu.js:999 lib/panelMenu.js:1000
+msgid "Method"
+msgstr "Метод"
+
+#: lib/panelMenu.js:482
+msgid "Switch to Auto Detection"
+msgstr "Переключиться на автоопределение"
+
+#: lib/panelMenu.js:491
+msgid "Switch to Manual Location"
+msgstr "Переключиться на ручное местоположение"
+
+#: lib/panelMenu.js:508
+msgid "Enter city name…"
+msgstr "Введите название города…"
+
+#: lib/panelMenu.js:513 lib/panelMenu.js:606
+msgid "Search"
+msgstr "Поиск"
+
+#: lib/panelMenu.js:517 prefs.js:725
+msgid "Clear"
+msgstr "Очистить"
+
+#: lib/panelMenu.js:556
+msgid "Searching…"
+msgstr "Поиск…"
+
+#: lib/panelMenu.js:599
+msgid "No locations found"
+msgstr "Местоположений не найдено"
+
+#: lib/panelMenu.js:604 prefs.js:1392
+msgid "Search failed. Please try again."
+msgstr "Поиск не удался. Попробуйте ещё раз."
+
+#: lib/panelMenu.js:685
+msgid "Unknown Location"
+msgstr "Неизвестное местоположение"
+
+#: lib/panelMenu.js:686
+msgid "Unknown Provider"
+msgstr "Неизвестный поставщик"
+
+#: lib/panelMenu.js:690
+msgid "Cached data from"
+msgstr "Данные из кэша от"
+
+#: lib/panelMenu.js:727
+msgid "This forecast has no upcoming hours left"
+msgstr "В этом прогнозе не осталось предстоящих часов"
+
+#: lib/panelMenu.js:816
+msgid "Today"
+msgstr "Сегодня"
+
+#: lib/panelMenu.js:818
+msgid "Tomorrow"
+msgstr "Завтра"
+
+#: lib/panelMenu.js:881
+msgid "Temperature Trend"
+msgstr "Тенденция температуры"
+
+#: lib/panelMenu.js:895
+msgid "Precipitation (24h)"
+msgstr "Осадки (24ч)"
+
+#: lib/panelMenu.js:907
+msgid "Strong"
+msgstr "Сильный"
+
+#: lib/panelMenu.js:909 lib/panelMenu.js:938
+msgid "Moderate"
+msgstr "Умеренный"
+
+#: lib/panelMenu.js:910
+msgid "Light"
+msgstr "Слабый"
+
+#: lib/panelMenu.js:914
+msgid "Wind"
+msgstr "Ветер"
+
+#: lib/panelMenu.js:938
+msgid "High"
+msgstr "Высокий"
+
+#: lib/panelMenu.js:938
+msgid "Low"
+msgstr "Низкий"
+
+#: lib/panelMenu.js:941
+msgid "UV Index"
+msgstr "УФ-индекс"
+
+#: lib/panelMenu.js:951
+msgid "Insufficient data"
+msgstr "Недостаточно данных"
+
+#: lib/panelMenu.js:959
+msgid "Warming"
+msgstr "Потепление"
+
+#: lib/panelMenu.js:960
+msgid "Cooling"
+msgstr "Похолодание"
+
+#: lib/panelMenu.js:961
+msgid "Stable"
+msgstr "Стабильно"
+
+#: lib/panelMenu.js:983
+msgid "Auto-detected"
+msgstr "Определено автоматически"
+
+#: lib/panelMenu.js:984
+msgid "Not set"
+msgstr "Не задано"
+
+#: lib/panelMenu.js:994
+msgid "Not available"
+msgstr "Недоступно"
+
+#: lib/panelMenu.js:999
+msgid "IP-based geolocation"
+msgstr "Геолокация по IP"
+
+#: lib/panelMenu.js:1000
+msgid "Manually configured"
+msgstr "Настроено вручную"
+
+#: prefs.js:55 prefs.js:1073 prefs.js:1104
+msgid "Advanced Weather Companion"
+msgstr "Расширенный погодный виджет"
+
+#: prefs.js:68
+msgid "General"
+msgstr "Общие"
+
+#: prefs.js:73
+msgid "Units & Format"
+msgstr "Единицы и формат"
+
+#: prefs.js:74
+msgid "Configure measurement units and display format"
+msgstr "Настроить единицы измерения и формат отображения"
+
+#: prefs.js:78
+msgid "Use Fahrenheit"
+msgstr "Использовать Фаренгейты"
+
+#: prefs.js:79
+msgid "Switch between Celsius and Fahrenheit"
+msgstr "Переключение между Цельсием и Фаренгейтом"
+
+#: prefs.js:87
+msgid "Wind Speed Unit"
+msgstr "Единица скорости ветра"
+
+#: prefs.js:88
+msgid "Choose unit for wind speed display"
+msgstr "Выберите единицу отображения скорости ветра"
+
+#: prefs.js:93
+msgid "km/h (Kilometers per hour)"
+msgstr "км/ч (километры в час)"
+
+#: prefs.js:94
+msgid "mph (Miles per hour)"
+msgstr "миль/ч (мили в час)"
+
+#: prefs.js:95
+msgid "m/s (Meters per second)"
+msgstr "м/с (метры в секунду)"
+
+#: prefs.js:96
+msgid "knots (Nautical miles per hour)"
+msgstr "узлы (морские мили в час)"
+
+#: prefs.js:111
+msgid "Use 12-hour Format"
+msgstr "Использовать 12-часовой формат"
+
+#: prefs.js:112
+msgid "Display time in 12-hour format with AM/PM"
+msgstr "Отображать время в 12-часовом формате с AM/PM"
+
+#: prefs.js:124
+msgid "Updates"
+msgstr "Обновления"
+
+#: prefs.js:125
+msgid "Configure weather data refresh settings"
+msgstr "Настроить интервал обновления"
+
+#: prefs.js:129
+msgid "Update Interval"
+msgstr "Интервал обновления"
+
+#: prefs.js:130
+msgid "How often to refresh weather data"
+msgstr "Как часто обновлять погодные данные"
+
+#: prefs.js:135
+msgid "5 minutes"
+msgstr "5 минут"
+
+#: prefs.js:136
+msgid "10 minutes"
+msgstr "10 минут"
+
+#: prefs.js:137
+msgid "15 minutes"
+msgstr "15 минут"
+
+#: prefs.js:138
+msgid "30 minutes"
+msgstr "30 минут"
+
+#: prefs.js:139
+msgid "1 hour"
+msgstr "1 час"
+
+#: prefs.js:156
+msgid "Features"
+msgstr "Функции"
+
+#: prefs.js:157
+msgid "Enable or disable weather features"
+msgstr "Включить или отключить функции погоды"
+
+#: prefs.js:161
+msgid "Show Humidity"
+msgstr "Показывать влажность"
+
+#: prefs.js:162
+msgid "Display relative humidity in weather details"
+msgstr "Показывать относительную влажность"
+
+#: prefs.js:253
+msgid "Copy to Clipboard"
+msgstr "Копировать в буфер обмена"
+
+#: prefs.js:254
+msgid "text"
+msgstr "текст"
+
+#: prefs.js:259
+msgid "Close"
+msgstr "Закрыть"
+
+#: prefs.js:260
+msgid "Select Text"
+msgstr "Выделить текст"
+
+#: prefs.js:302
+msgid "💡 Select the text above and press Ctrl+C to copy"
+msgstr "💡 Выделите текст выше и нажмите Ctrl+C для копирования"
+
+#: prefs.js:335
+msgid "💡 Text selected! Press Ctrl+C to copy"
+msgstr "💡 Текст выделен! Нажмите Ctrl+C для копирования"
+
+#: prefs.js:362
+msgid "Location"
+msgstr "Местоположение"
+
+#: prefs.js:367
+msgid "Location Detection"
+msgstr "Определение местоположения"
+
+#: prefs.js:368
+msgid "Configure how your location is determined"
+msgstr "Настроить определение местоположения"
+
+#: prefs.js:372
+msgid "Location Mode"
+msgstr "Режим местоположения"
+
+#: prefs.js:373
+msgid "Choose detection method"
+msgstr "Выбрать метод определения"
+
+#: prefs.js:377
+msgid "🌍 Auto Detection"
+msgstr "🌍 Автоопределение"
+
+#: prefs.js:378
+msgid "📍 Manual Location"
+msgstr "📍 Ручное местоположение"
+
+#: prefs.js:383
+msgid "Current Location"
+msgstr "Текущее местоположение"
+
+#: prefs.js:397
+msgid "Refresh location"
+msgstr "Обновить местоположение"
+
+#: prefs.js:409
+msgid "Manual Location Search"
+msgstr "Поиск местоположения вручную"
+
+#: prefs.js:410
+msgid "Search by city name or coordinates (latitude, longitude)"
+msgstr "Поиск по названию города или координатам (широта, долгота)"
+
+#: prefs.js:415
+msgid "Search Location"
+msgstr "Поиск местоположения"
+
+#: prefs.js:424
+msgid "Search for location"
+msgstr "Найти местоположение"
+
+#: prefs.js:431
+msgid "Clear search"
+msgstr "Очистить поиск"
+
+#: prefs.js:439
+msgid "Search Examples"
+msgstr "Примеры поиска"
+
+#: prefs.js:440
+msgid ""
+"City names: 'London', 'New York', 'Tokyo'\n"
+"Coordinates: '40.7128, -74.0060' or '40.7128 -74.0060'"
+msgstr ""
+"Названия городов: 'London', 'New York', 'Tokyo'\n"
+"Координаты: '40.7128, -74.0060' или '40.7128 -74.0060'"
+
+#: prefs.js:451
+msgid "Search Results"
+msgstr "Результаты поиска"
+
+#: prefs.js:506 prefs.js:516
+msgid "Weather Provider"
+msgstr "Поставщик погоды"
+
+#: prefs.js:511
+msgid "Weather Data Source"
+msgstr "Источник погодных данных"
+
+#: prefs.js:512
+msgid "Choose your weather data provider"
+msgstr "Выбрать поставщика погодных данных"
+
+#: prefs.js:517
+msgid "Select weather API service"
+msgstr "Выбрать сервис погодного API"
+
+#: prefs.js:548
+msgid "Provider Configuration"
+msgstr "Настройка поставщика"
+
+#: prefs.js:549
+msgid "Configure your selected weather provider"
+msgstr "Настроить выбранный поставщик погоды"
+
+#: prefs.js:554
+msgid "API Key"
+msgstr "API-ключ"
+
+#: prefs.js:559
+msgid "Get API Key"
+msgstr "Получить API-ключ"
+
+#: prefs.js:567
+msgid "Custom API URL"
+msgstr "Свой URL API"
+
+#: prefs.js:573
+msgid "Provider Information"
+msgstr "Информация о поставщике"
+
+#: prefs.js:579
+msgid "Test Connection"
+msgstr "Проверить соединение"
+
+#: prefs.js:580
+msgid "Verify your provider settings work correctly"
+msgstr "Проверьте настройки поставщика"
+
+#: prefs.js:585 prefs.js:951
+msgid "Test"
+msgstr "Тест"
+
+#: prefs.js:627
+msgid "Automatic Provider Fallback"
+msgstr "Автоматический запасной провайдер"
+
+#: prefs.js:628
+msgid ""
+"When a provider fails, the next one is tried. Every provider is used at most"
+" once per refresh."
+msgstr ""
+"При сбое одного провайдера пробуется следующий. Каждый провайдер "
+"используется не более одного раза за обновление."
+
+#: prefs.js:632
+msgid "Try Other Providers On Failure"
+msgstr "Пробовать другие провайдеры при сбое"
+
+#: prefs.js:633
+msgid "Turn off to use only the selected provider"
+msgstr "Отключите, чтобы использовать только выбранный провайдер"
+
+#: prefs.js:638
+msgid "Fallback Priority"
+msgstr "Приоритет запасных провайдеров"
+
+#: prefs.js:639
+msgid ""
+"Providers are tried in this order. The selected provider is always tried "
+"first."
+msgstr ""
+"Провайдеры пробуются в этом порядке. Выбранный провайдер всегда пробуется "
+"первым."
+
+#: prefs.js:654
+msgid "API key required"
+msgstr "Требуется ключ API"
+
+#: prefs.js:655
+msgid "Free, no API key"
+msgstr "Бесплатно, без ключа API"
+
+#: prefs.js:700
+msgid "Offline Weather Data"
+msgstr "Метеоданные без сети"
+
+#: prefs.js:701
+msgid ""
+"The last successful fetch, including the hourly and 7-day forecasts, is kept"
+" and shown instead of an error when every provider fails."
+msgstr ""
+"Последний успешный запрос, включая почасовой прогноз и прогноз на 7 дней, "
+"сохраняется и показывается вместо ошибки, когда все провайдеры недоступны."
+
+#: prefs.js:705
+msgid "Use Cached Data Up To"
+msgstr "Использовать кэшированные данные не старше"
+
+#: prefs.js:706
+msgid "Maximum age of the cached forecast, in days"
+msgstr "Максимальный возраст кэшированного прогноза, в днях"
+
+#: prefs.js:720
+msgid "Cached Forecast"
+msgstr "Прогноз из кэша"
+
+#: prefs.js:733
+msgid "Cached weather data cleared"
+msgstr "Кэшированные метеоданные очищены"
+
+#: prefs.js:781
+msgid "No cached data yet"
+msgstr "Кэшированных данных пока нет"
+
+#: prefs.js:791
+msgid "min ago"
+msgstr "мин назад"
+
+#: prefs.js:792
+msgid "h ago"
+msgstr "ч назад"
+
+#: prefs.js:793
+msgid "days ago"
+msgstr "дн. назад"
+
+#: prefs.js:795
+msgid "unknown provider"
+msgstr "неизвестный провайдер"
+
+#: prefs.js:805
+msgid "Cached data is unreadable"
+msgstr "Кэшированные данные нечитаемы"
+
+#: prefs.js:862
+msgid "Could not open website. Please visit manually."
+msgstr "Не удалось открыть сайт. Откройте его вручную."
+
+#: prefs.js:895
+msgid "Testing…"
+msgstr "Проверка…"
+
+#: prefs.js:908
+msgid "Custom URL is required"
+msgstr "Требуется пользовательский URL"
+
+#: prefs.js:911
+msgid "API key is required for"
+msgstr "Требуется ключ API для"
+
+#: prefs.js:940
+msgid ""
+"Response received but no weather data found. Check your API key and URL."
+msgstr ""
+"Ответ получен, но данные о погоде не найдены. Проверьте API-ключ и URL."
+
+#: prefs.js:942
+msgid "Connection successful!"
+msgstr "Соединение установлено!"
+
+#: prefs.js:943
+msgid "Current temp:"
+msgstr "Текущая температура:"
+
+#: prefs.js:948
+msgid "Connection failed:"
+msgstr "Соединение не установлено:"
+
+#: prefs.js:958
+msgid "Appearance"
+msgstr "Внешний вид"
+
+#: prefs.js:963
+msgid "Panel Display"
+msgstr "Отображение на панели"
+
+#: prefs.js:964
+msgid "Configure how the weather appears in the panel"
+msgstr "Настройте отображение погоды на панели"
+
+#: prefs.js:968
+msgid "Panel Position"
+msgstr "Положение на панели"
+
+#: prefs.js:969
+msgid "Where to show the weather widget"
+msgstr "Где отображать виджет погоды"
+
+#: prefs.js:974
+msgid "Left"
+msgstr "Слева"
+
+#: prefs.js:975
+msgid "Center"
+msgstr "По центру"
+
+#: prefs.js:976
+msgid "Right"
+msgstr "Справа"
+
+#: prefs.js:991
+msgid "Panel Position Index"
+msgstr "Индекс положения на панели"
+
+#: prefs.js:992
+msgid "Position index in the selected panel area"
+msgstr "Индекс позиции в выбранной области панели"
+
+#: prefs.js:1005
+msgid "Show Temperature Text"
+msgstr "Показывать температуру текстом"
+
+#: prefs.js:1006
+msgid "Display temperature alongside the weather icon"
+msgstr "Показывать температуру рядом со значком погоды"
+
+#: prefs.js:1014
+msgid "Show Location Indicator"
+msgstr "Показывать индикатор местоположения"
+
+#: prefs.js:1015
+msgid "Display location mode indicator in panel"
+msgstr "Показывать индикатор режима местоположения на панели"
+
+#: prefs.js:1028
+msgid "Icon Size"
+msgstr "Размер значка"
+
+#: prefs.js:1029
+msgid "Size of the weather icon in pixels"
+msgstr "Размер значка погоды в пикселях"
+
+#: prefs.js:1042
+msgid "Text Size"
+msgstr "Размер текста"
+
+#: prefs.js:1043
+msgid "Size of the temperature text in pixels"
+msgstr "Размер текста температуры в пикселях"
+
+#: prefs.js:1068
+msgid "About"
+msgstr "О расширении"
+
+#: prefs.js:1074
+msgid "A beautiful, modern weather companion for GNOME Shell"
+msgstr "Красивый современный погодный виджет для GNOME Shell"
+
+#: prefs.js:1110
+msgid "Version 2.0"
+msgstr "Версия 2.0"
+
+#: prefs.js:1116
+msgid "Modern weather extension with native GNOME design"
+msgstr "Современное погодное расширение в стиле GNOME"
+
+#: prefs.js:1133
+msgid "Extension Links"
+msgstr "Ссылки расширения"
+
+#: prefs.js:1134 prefs.js:1139
+msgid "Source code, issues, and contributions"
+msgstr "Исходный код, проблемы и вклад"
+
+#: prefs.js:1138
+msgid "View on GitHub"
+msgstr "Посмотреть на GitHub"
+
+#: prefs.js:1160
+msgid "☕ Support by buying me a coffee — just scan the QR code!"
+msgstr "☕ Поддержите меня чашкой кофе — просто отсканируйте QR-код!"
+
+#: prefs.js:1161
+msgid "Preferred Method - Scan QR code to support development"
+msgstr ""
+"Предпочтительный способ — отсканируйте QR-код, чтобы поддержать разработку"
+
+#: prefs.js:1206
+msgid "Donation Address"
+msgstr "Адрес для пожертвований"
+
+#: prefs.js:1238
+msgid "☕ Buy Me a Coffee"
+msgstr "☕ Угостите меня кофе"
+
+#: prefs.js:1239
+msgid "Support development with a small donation"
+msgstr "Поддержите разработку небольшим пожертвованием"
+
+#: prefs.js:1261
+msgid "License & Credits"
+msgstr "Лицензия и благодарности"
+
+#: prefs.js:1262
+msgid "Open source software information"
+msgstr "Информация о программном обеспечении с открытым кодом"
+
+#: prefs.js:1266
+msgid "Open Source License"
+msgstr "Лицензия с открытым исходным кодом"
+
+#: prefs.js:1267
+msgid "MIT License - Free and open source software"
+msgstr "Лицензия MIT - свободное программное обеспечение с открытым кодом"
+
+#: prefs.js:1277
+msgid "Weather Data Sources"
+msgstr "Источники погодных данных"
+
+#: prefs.js:1278
+msgid "Open-Meteo, Meteosource, Wttr.in - Free weather APIs"
+msgstr "Open-Meteo, Meteosource, Wttr.in - бесплатные погодные API"
+
+#: prefs.js:1382
+msgid ""
+"Invalid coordinates. Latitude must be between -90 and 90, longitude between "
+"-180 and 180."
+msgstr ""
+"Неверные координаты. Широта должна быть от -90 до 90, долгота — от -180 до "
+"180."
+
+#: prefs.js:1395
+msgid "Unable to connect to location service. Check your internet connection."
+msgstr ""
+"Не удалось связаться со службой местоположения. Проверьте подключение к "
+"Интернету."
+
+#: prefs.js:1397
+msgid "Invalid response from location service. Please try again."
+msgstr ""
+"Некорректный ответ службы определения местоположения. Попробуйте ещё раз."
+
+#: prefs.js:1399
+msgid "Search timed out. Please try again."
+msgstr "Время поиска истекло. Попробуйте ещё раз."
+
+#: prefs.js:1516 prefs.js:1554
+msgid "Select this location"
+msgstr "Выбрать это местоположение"
+
+#: prefs.js:1573
+msgid "Location updated successfully"
+msgstr "Местоположение успешно обновлено"
+
+#: prefs.js:1576
+msgid "Failed to save location. Please try again."
+msgstr "Не удалось сохранить местоположение. Попробуйте ещё раз."
+
+#: prefs.js:1583
+msgid "No Results Found"
+msgstr "Результатов не найдено"
+
+#: prefs.js:1584
+msgid "Try a different search term or check your spelling"
+msgstr "Попробуйте другой запрос или проверьте правописание"
+
+#: prefs.js:1618
+msgid "Search Error"
+msgstr "Ошибка поиска"
+
+#: prefs.js:1644 prefs.js:1662
+msgid "🌍 Auto Detection Enabled"
+msgstr "🌍 Автоопределение включено"
+
+#: prefs.js:1649 prefs.js:1667
+msgid "📍 Manual - Please set location"
+msgstr "📍 Вручную - задайте местоположение"
+
+#~ msgid "Could not open website."
+#~ msgstr "Не удалось открыть сайт."
+
+#~ msgid "Custom / Weather Underground URL"
+#~ msgstr "Пользовательский URL / Weather Underground"
+
+#~ msgid "Donation address"
+#~ msgstr "Адрес для пожертвований"
+
+#~ msgid "Not Required"
+#~ msgstr "Не требуется"
+
+#~ msgid "Not specified"
+#~ msgstr "Не указано"
+
+#~ msgid "Rate Limit"
+#~ msgstr "Ограничение запросов"
+
+#~ msgid "Required"
+#~ msgstr "Обязательно"
+
+#~ msgid "Test failed:"
+#~ msgstr "Тест не пройден:"
+
+#~ msgid "URL Placeholders"
+#~ msgstr "Заполнители URL"
+
+#~ msgid "☕ Support – Scan QR to buy me a coffee"
+#~ msgstr "☕ Поддержка – отсканируйте QR для угощения кофе"
+
+#~ msgid "Enable Weather Alerts"
+#~ msgstr "Включить погодные оповещения"
+
+#~ msgid "Send desktop notifications for dangerous weather"
+#~ msgstr "Отправлять уведомления рабочего стола при опасной погоде"
+
+#~ msgid "Extreme high temperature detected"
+#~ msgstr "Обнаружена экстремально высокая температура"
+
+#~ msgid "Extreme low temperature detected"
+#~ msgstr "Обнаружена экстремально низкая температура"
+
+#~ msgid "SEVERE WEATHER"
+#~ msgstr "ОПАСНАЯ ПОГОДА"
+
+#~ msgid "HEAT WARNING"
+#~ msgstr "ПРЕДУПРЕЖДЕНИЕ О ЖАРЕ"
+
+#~ msgid "Extreme temperatures"
+#~ msgstr "Экстремальные температуры"
+
+#~ msgid "COLD WARNING"
+#~ msgstr "ПРЕДУПРЕЖДЕНИЕ О МОРОЗЕ"
+
+#~ msgid "STORM WARNING"
+#~ msgstr "ШТОРМОВОЕ ПРЕДУПРЕЖДЕНИЕ"
+
+#~ msgid "Dangerous winds detected"
+#~ msgstr "Обнаружен опасный ветер"
+
+#~ msgid "WIND WARNING"
+#~ msgstr "ПРЕДУПРЕЖДЕНИЕ О ВЕТРЕ"

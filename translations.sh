@@ -71,6 +71,12 @@ banner() {
 po_file_for()  { echo "$LOCALE_DIR/$1/LC_MESSAGES/$EXTENSION_NAME.po"; }
 mo_file_for()  { echo "$LOCALE_DIR/$1/LC_MESSAGES/$EXTENSION_NAME.mo"; }
 
+# msgfmt --statistics localises its summary to LC_MESSAGES, but the counts are
+# parsed with English-only regexes below, so pin the message locale for every
+# parsed run. Without this, a non-English LC_MESSAGES makes every language look
+# like it has 0% coverage.
+po_stats() { LC_ALL=C msgfmt --statistics "$1" -o /dev/null 2>&1; }
+
 # ── extract strings from JS sources ──────────────────────────────────────────
 
 extract_strings() {
@@ -137,7 +143,7 @@ compile_translation() {
     msgfmt "$po_file" -o "$mo_file"
 
     local stats
-    stats=$(msgfmt --statistics "$po_file" -o /dev/null 2>&1)
+    stats=$(po_stats "$po_file")
     echo -e "${GREEN}✓${NC} $lang: Compiled successfully"
     echo "  └─ $stats"
 
@@ -322,7 +328,7 @@ list_translations() {
             compiled="${RED}[not compiled]${NC}"
         fi
 
-        stats=$(msgfmt --statistics "$po_file" -o /dev/null 2>&1)
+        stats=$(po_stats "$po_file")
         echo -e "  ${BLUE}${lang}${NC}  $compiled"
         echo    "    └─ $stats"
     done < <(find "$LOCALE_DIR" -name "$EXTENSION_NAME.po" -print0 2>/dev/null | sort -z)
@@ -349,7 +355,7 @@ show_stats() {
         fi
 
         local raw translated fuzzy untranslated total coverage
-        raw=$(msgfmt --statistics "$po_file" -o /dev/null 2>&1)
+        raw=$(po_stats "$po_file")
         translated=$(echo "$raw"   | grep -oP '\d+(?= translated)'   || echo 0)
         fuzzy=$(echo "$raw"        | grep -oP '\d+(?= fuzzy)'        || echo 0)
         untranslated=$(echo "$raw" | grep -oP '\d+(?= untranslated)' || echo 0)
